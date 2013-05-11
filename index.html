@@ -1,8 +1,89 @@
+﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>PoC</title>
-    </head>
-    <body>
-        <p>Hellooo again</p>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <title>Mustached bear! What else?</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <script src="lib/xui-2.3.2.min.js"></script>
+    <script src="lib/iscroll.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style/main.css">
+
+    <script type="text/javascript">
+
+        function loaded() {
+            x$('#view_main').setStyle('height', (window.innerHeight-45)+'px');
+
+            x$('#content').html(x$('#view_main').removeClass('view'));
+
+            var myScroll = new iScroll('view_main');
+        }
+
+        window.addEventListener('deviceready', loaded, false);
+    </script>
+</head>
+
+<body>
+
+    <div class="slidingview_wrapper">
+        <div id="sidebar"></div>
+        <div id="body">
+            <div id="header">
+
+            </div>
+            <div id="content"></div>
+        </div>
+    </div>
+
+
+    <div id="header_main" class="view">
+        <img src="asset/icons/63-runner.png">
+        <img src="asset/icons/34-coffee.png">
+    </div>
+
+    <div id="view_main" class="view">
+        <ul>
+            <li>Loremipasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö öskldjaslö djök</li>
+            <li>Lorempasda sdjasö djaöskldjaslö djök</li>
+            <li>Lmipasda sdjasö djakldjlö djök</li>
+            <li>Loremipda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö djkldjaslö djök</li>
+            <li>Loremipasda sdjasö djaöskjaslö djök</li>
+            <li>Lempasda sdjasö djakldjaslö djök</li>
+            <li>Loremipasda sdjasö djaöskldjaslök</li>
+            <li>Lorpasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö öskldjaslö djök</li>
+            <li>Loremipasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremida sdjasö djakldjlö djök</li>
+            <li>Loremipasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö djkldjaslö djök</li>
+            <li>Loripasda sdjasö djaöskjaslö djök</li>
+            <li>Lorempaa sdjasö djakldjaslö djök</li>
+            <li>Loremipa sdjasö djaöskldjaslök</li>
+            <li>Lomipasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö öskldjaslö djök</li>
+            <li>Lorempasda sdjasö djaöskldjaslö djök</li>
+            <li>Lmipasda sdjasö djakldjlö djök</li>
+            <li>Loremipda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö djkldjaslö djök</li>
+            <li>Loremipasda sdjasö djaöskjaslö djök</li>
+            <li>Lempasda sdjasö djakldjaslö djök</li>
+            <li>Loremipasda sdjasö djaöskldjaslök</li>
+            <li>Lorpasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö öskldjaslö djök</li>
+            <li>Loremipasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremida sdjasö djakldjlö djök</li>
+            <li>Loremipasda sdjasö djaöskldjaslö djök</li>
+            <li>Loremipasda sdjasö djkldjaslö djök</li>
+            <li>Loripasda sdjasö djaöskjaslö djök</li>
+            <li>Lorempaa sdjasö djakldjaslö djök</li>
+            <li>Loremipa sdjasö djaöskldjaslök</li>
+            <li>Lomipasda sdjasö djaöskldjaslö djök</li>
+        </ul>
+    </div>
+</body>
 </html>
