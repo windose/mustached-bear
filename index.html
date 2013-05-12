@@ -7,41 +7,43 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <script src="lib/xui-2.3.2.min.js"></script>
+    <script src="lib/jquery-2.0.0.min.js"></script>
     <script src="lib/iscroll.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style/main.css">
 
+    <script src="script/dom.js"></script>
+    <script src="script/dimens.js"></script>
+    <script src="script/navigator.js"></script>
     <script type="text/javascript">
 
-        function loaded() {
-            x$('#view_main').setStyle('height', (window.innerHeight-45)+'px');
+        $(function () {
+            $('#view_main').height(MS.dimens.viewport.height-MS.dimens.header.height);
+            $('.sidebar').height(MS.dimens.viewport.height);
 
-            x$('#content').html(x$('#view_main').removeClass('view'));
+            MS.navigator.goTo('main');
+        });
 
-            var myScroll = new iScroll('view_main');
-        }
-
-        window.addEventListener('deviceready', loaded, false);
     </script>
 </head>
 
 <body>
 
-    <div class="slidingview_wrapper">
-        <div id="sidebar"></div>
+    <div>
+        <div id="sidebarLeft" class="sidebar">&nbsp;</div>
         <div id="body">
             <div id="header">
 
             </div>
             <div id="content"></div>
         </div>
+        <div id="sidebarRight" class="sidebar">&nbsp;</div>
     </div>
 
 
     <div id="header_main" class="view">
-        <img src="asset/icons/63-runner.png">
-        <img src="asset/icons/34-coffee.png">
+        <img class="fl openSidebarLeft" src="asset/icons/63-runner.png">
+        <img class="fr openSidebarRight" src="asset/icons/34-coffee.png">
     </div>
 
     <div id="view_main" class="view">

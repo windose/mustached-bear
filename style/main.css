@@ -9,12 +9,31 @@ ul, li {
     list-style-type: none;
 }
 
+.fl { float: left; }
+.fr { float: right; }
+
 #body {
+    position: absolute;
+    z-index: 2;
     background-color: #333;
+    width: 100%;
 }
 
-#sidebar {
+.sidebar {
+    position: absolute;
+    z-index: 1;
+    width: 75%;
+    display: none;
+}
+
+#sidebarLeft {
     background-color: red;
+    left: 0;
+}
+
+#sidebarRight {
+    background-color: green;
+    right: 0;
 }
 
 #header {
@@ -27,4 +46,8 @@ ul, li {
 
 .view {
     display: none;
+}
+#content .view,
+#header .view {
+    display: block;
 }
