@@ -16,6 +16,8 @@ html,body {
     margin: 0;
     color: #e6e4e7;
     font-family: "TitilliumWebLight";
+    -webkit-user-select: none;
+            user-select: none;
 }
 ul, li {
     padding: 0;
