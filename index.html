@@ -40,6 +40,7 @@
 
                     var self = $(this);
 
+                    alert('click: '+(self.hasClass('open')?'isOpen':'isClosed'));
                     if (self.hasClass('open')) {
                         self.removeClass('open');
                     } else {
