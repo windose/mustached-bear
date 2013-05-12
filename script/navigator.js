@@ -90,7 +90,9 @@ $(function() {
             MS.dom.content.html(newView);
             newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
 
-            new iScroll(MS.dom.content.children('.view').first()[0]);
+            new iScroll(MS.dom.content.children('.view').first()[0], {
+                scrollbarClass: 'scrollbar'
+            });
 
             if (newHeader.length > 0) {
                 MS.dom.header.html(newHeader.clone().removeAttr('id'));

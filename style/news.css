@@ -1,0 +1,24 @@
+.news {
+    padding: 10px;
+}
+
+.news li {
+    height: 45px;
+    line-height: 15px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+}
+
+.news li:first-line {
+    font-weight: bold;
+}
+
+.news li img {
+    float: left;
+    width: 17px;
+    height: 23px;
+    margin: 5px 11px;
+    padding: 6px;
+    border: 0px solid rgba(255,255,255,0.2);
+}
