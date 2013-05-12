@@ -13,6 +13,8 @@
 
     -webkit-transition: max-height .5s ease-in-out;
             transition: max-height .5s ease-in-out;
+
+    -webkit-transform: translateZ(0);
 }
 
 .news li.new {
