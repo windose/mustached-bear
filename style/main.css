@@ -42,8 +42,8 @@ ul, li {
 }
 
 .header {
-    height: 25px;
-    padding: 10px;
+    height: 40px;
+    padding: 10px 10px 0px 10px;
     text-align: center;
 }
 
@@ -54,6 +54,7 @@ ul, li {
     line-height: 1px;
     width: 90%;
     margin: auto;
+    margin-top: 5px;
 }
 
 .header img {

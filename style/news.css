@@ -3,16 +3,23 @@
 }
 
 .news li {
-    height: 45px;
+    max-height: 45px;
     line-height: 15px;
     overflow: hidden;
     margin-bottom: 5px;
     text-overflow: ellipsis;
-    border-left: 4px solid transparent;
+    border-left: 5px solid transparent;
+
+    -webkit-transition: max-height 5s ease-in-out;
+            transition: max-height 5s ease-in-out;
 }
 
-.news li.new{
-    border-left: 4px solid #066513;
+.news li.new {
+    border-left: 5px solid #066513;
+}
+
+.news li.open {
+    max-height: 9999px;
 }
 
 .news li:first-line {
