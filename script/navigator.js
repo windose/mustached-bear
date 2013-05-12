@@ -84,6 +84,8 @@ $(function() {
          * @param pagename
          */
         goTo: function goTo(pagename) {
+            console.log('[Navigator:goTo]', pagename);
+
             var newView = $('#view'+pagename).clone().removeAttr('id'),
                 newHeader = $('#header'+pagename);
 
