@@ -35,27 +35,20 @@
             MS.navigator.goTo('Main', function(view) {
 
                 view.find('li').hammer().on('tap', function() {
-                    alert('standard tapped');
+
+                    if (MS.dom.body.hasClass('open-menu')) {
+                        return;
+                    }
+
+                    var self = $(this);
+
+                    if (self.hasClass('open')) {
+                        self.removeClass('open');
+                    } else {
+                        self.addClass('open');
+                    }
                 });
 
-                view.hammer().on('tap', 'li', function() {
-                    alert('delegation tapped');
-                });
-
-//                view.on('tap', 'li', function () {
-//                    alert('tapped');
-//                    if (MS.dom.body.hasClass('open-menu')) {
-//                        return;
-//                    }
-//
-//                    var self = $(this);
-//
-//                    if (self.hasClass('open')) {
-//                        self.removeClass('open');
-//                    } else {
-//                        self.addClass('open');
-//                    }
-//                });
             });
 
             MS.dom.sidebarLeft.find('li').click(function() {
