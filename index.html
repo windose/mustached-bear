@@ -18,10 +18,19 @@
     <script type="text/javascript">
 
         $(function () {
-            $('#view_main').height(MS.dimens.viewport.height-MS.dimens.header.height);
             $('.sidebar').height(MS.dimens.viewport.height);
 
-            MS.navigator.goTo('main');
+            if (device.platform === 'Android') {
+                document.addEventListener("backbutton", function backbutton() {
+                    MS.navigator.back();
+                }, false);
+            }
+
+            MS.navigator.goTo('Main');
+
+            MS.dom.sidebarLeft.find('li').click(function() {
+                MS.navigator.goTo($(this).attr('data-target'));
+            });
         });
 
     </script>
@@ -30,23 +39,30 @@
 <body>
 
     <div>
-        <div id="sidebarLeft" class="sidebar">&nbsp;</div>
+        <div id="sidebarLeft" class="sidebar">
+            <ul>
+                <li data-target="Main">Main</li>
+                <li data-target="Kurse">Kurse</li>
+            </ul>
+        </div>
+
         <div id="body">
             <div id="header">
 
             </div>
             <div id="content"></div>
         </div>
+
         <div id="sidebarRight" class="sidebar">&nbsp;</div>
     </div>
 
 
-    <div id="header_main" class="view">
+    <div id="headerMain" class="view">
         <img class="fl openSidebarLeft" src="asset/icons/63-runner.png">
         <img class="fr openSidebarRight" src="asset/icons/34-coffee.png">
     </div>
 
-    <div id="view_main" class="view">
+    <div id="viewMain" class="view">
         <ul>
             <li>Loremipasda sdjasö djaöskldjaslö djök</li>
             <li>Loremipasda sdjasö öskldjaslö djök</li>
@@ -85,6 +101,15 @@
             <li>Lorempaa sdjasö djakldjaslö djök</li>
             <li>Loremipa sdjasö djaöskldjaslök</li>
             <li>Lomipasda sdjasö djaöskldjaslö djök</li>
+        </ul>
+    </div>
+
+    <div id="viewKurse" class="view">
+        <ul>
+            <li>Kurs 1</li>
+            <li>Kurs 2</li>
+            <li>Kurs 3</li>
+            <li>Kurs 4</li>
         </ul>
     </div>
 </body>
