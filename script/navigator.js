@@ -86,7 +86,7 @@ document.addEventListener('deviceready', function() {
          *
          * @param pagename
          */
-        goTo: function goTo(pagename) {
+        goTo: function goTo(pagename, callback) {
             console.log('[Navigator:goTo]', pagename);
 
             var newView = $('#view'+pagename).clone().removeAttr('id'),
@@ -105,11 +105,20 @@ document.addEventListener('deviceready', function() {
             }
 
             if(MS.dom.body.hasClass('open-menu')) {
-                MS.navigator.back();
-            }
+                MS.navigator.back(function() {
+                    if (typeof callback === 'function') {
+                        callback(newView);
+                    }
+                });
 
-            if (MS.navigator.history[MS.navigator.history.length-1] !== pagename) {
-                MS.navigator.history.push(pagename);
+            } else {
+                if (MS.navigator.history[MS.navigator.history.length-1] !== pagename) {
+                    MS.navigator.history.push(pagename);
+                }
+
+                if (typeof callback === 'function') {
+                    callback(newView);
+                }
             }
         }
     };

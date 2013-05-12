@@ -3,15 +3,16 @@
 }
 
 .news li {
-    max-height: 45px;
-    line-height: 15px;
+    max-height: 54px;
+    line-height: 18px;
     overflow: hidden;
-    margin-bottom: 5px;
+    margin: 5px 10px;
+    padding-left: 10px;
     text-overflow: ellipsis;
     border-left: 5px solid transparent;
 
-    -webkit-transition: max-height 5s ease-in-out;
-            transition: max-height 5s ease-in-out;
+    -webkit-transition: max-height .5s ease-in-out;
+            transition: max-height .5s ease-in-out;
 }
 
 .news li.new {
@@ -19,7 +20,7 @@
 }
 
 .news li.open {
-    max-height: 9999px;
+    max-height: 999px;
 }
 
 .news li:first-line {
@@ -28,9 +29,9 @@
 
 .news li img {
     float: left;
-    width: 17px;
-    height: 23px;
-    margin: 5px 11px;
+    width: 32px;
+    height: 32px;
+    margin: 5px;
     padding: 6px;
     border: 0px solid rgba(255,255,255,0.2);
 }
