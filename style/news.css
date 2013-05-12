@@ -8,10 +8,15 @@
     overflow: hidden;
     margin-bottom: 5px;
     text-overflow: ellipsis;
+    border-left: 4px solid transparent;
+}
+
+.news li.new{
+    border-left: 4px solid #066513;
 }
 
 .news li:first-line {
-    font-weight: bold;
+    font-family: 'TitilliumWeb';
 }
 
 .news li img {

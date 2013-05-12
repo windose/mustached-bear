@@ -1,4 +1,31 @@
 #sidebarLeft {
-    background-color: red;
+    background-color: #565457;
     left: 0;
+    font-family: 'TitilliumWebBold';
+    color: #232124;
+}
+
+#sidebarLeft .header {
+    line-height: 33px;
+}
+
+#sidebarLeft ul {
+    padding: 10px;
+}
+
+#sidebarLeft li {
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+}
+
+#sidebarLeft li img {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 0px 10px;
+    padding: 2.5px;
+    border: 0px solid rgba(255,255,255,0.2);
 }
