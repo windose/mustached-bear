@@ -39,7 +39,7 @@ $(function() {
             });
         },
 
-        back: function() {
+        back: function(callback) {
             var undo = MS.navigator.history.pop();
 
             switch(undo) {
@@ -47,12 +47,20 @@ $(function() {
                     MS.dom.body.removeClass('open-menu');
                     MS.dom.body.animate({marginLeft:'0%'}, 200, 'swing', function() {
                         MS.dom.sidebarLeft.hide();
+
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
                     });
                     break;
                 case 'sidebarRight':
                     MS.dom.body.removeClass('open-menu');
                     MS.dom.body.animate({marginLeft:'0%'}, 200, 'swing', function() {
                         MS.dom.sidebarRight.hide();
+
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
                     });
                     break;
                 default:
@@ -64,13 +72,16 @@ $(function() {
             MS.dom.content.html($('#view_'+pagename).clone().removeAttr('id'));
             new iScroll(MS.dom.content.children('.view').first()[0]);
 
-            this.history.push(pagename);
-
             var newHeader = $('#header_'+pagename);
             if (newHeader.length > 0) {
                 MS.dom.header.html(newHeader.clone().removeAttr('id'));
                 this.initSidemenu();
             }
+
+            if(MS.dom.body.hasClass('open-menu')) {
+                MS.navigator.back();
+            }
+            this.history.push(pagename);
         }
     };
 });
