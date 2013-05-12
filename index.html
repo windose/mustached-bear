@@ -9,7 +9,7 @@
 
     <script src="./lib/cordova-2.5.0.js"></script>
     <script src="./lib/jquery-2.0.0.min.js"></script>
-    <script src="./lib/jquery.mobile.events.js"></script>
+    <script src="./lib/hammer.js"></script>
     <script src="./lib/iscroll.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./style/main.css">
@@ -34,20 +34,28 @@
 
             MS.navigator.goTo('Main', function(view) {
 
-                view.on('tap', 'li', function () {
-                    if (MS.dom.body.hasClass('open-menu')) {
-                        return;
-                    }
-
-                    var self = $(this);
-
-                    alert('click: '+(self.hasClass('open')?'isOpen':'isClosed'));
-                    if (self.hasClass('open')) {
-                        self.removeClass('open');
-                    } else {
-                        self.addClass('open');
-                    }
+                view.find('li').hammer().on('tap', function() {
+                    alert('standard tapped');
                 });
+
+                view.hammer().on('tap', 'li', function() {
+                    alert('delegation tapped');
+                });
+
+//                view.on('tap', 'li', function () {
+//                    alert('tapped');
+//                    if (MS.dom.body.hasClass('open-menu')) {
+//                        return;
+//                    }
+//
+//                    var self = $(this);
+//
+//                    if (self.hasClass('open')) {
+//                        self.removeClass('open');
+//                    } else {
+//                        self.addClass('open');
+//                    }
+//                });
             });
 
             MS.dom.sidebarLeft.find('li').click(function() {
