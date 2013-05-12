@@ -1,6 +1,7 @@
 window.MS = window.MS || {};
 
-$(function() {
+document.addEventListener('deviceready', function() {
+
     MS.navigator = {
         history: [],
 
@@ -14,7 +15,7 @@ $(function() {
                     MS.navigator.history.push('sidebarLeft');
                     MS.dom.sidebarLeft.show();
                     MS.dom.body.addClass('open-menu');
-                    MS.dom.body.animate({marginLeft:'75%'}, 200);
+                    MS.dom.body.addClass('right');
                 } else {
                     MS.navigator.back();
                 }
@@ -27,7 +28,7 @@ $(function() {
                     MS.navigator.history.push('sidebarRight');
                     MS.dom.sidebarRight.show();
                     MS.dom.body.addClass('open-menu');
-                    MS.dom.body.animate({marginLeft:'-75%'}, 200);
+                    MS.dom.body.addClass('left');
                 } else {
                     MS.navigator.back();
                 }
@@ -56,23 +57,25 @@ $(function() {
             switch(undo) {
                 case 'sidebarLeft':
                     MS.dom.body.removeClass('open-menu');
-                    MS.dom.body.animate({marginLeft:'0%'}, 200, 'swing', function() {
+                    MS.dom.body.removeClass('right');
+                    setTimeout(function() {
                         MS.dom.sidebarLeft.hide();
 
                         if (typeof callback === 'function') {
                             callback();
                         }
-                    });
+                    }, 200);
                     break;
                 case 'sidebarRight':
                     MS.dom.body.removeClass('open-menu');
-                    MS.dom.body.animate({marginLeft:'0%'}, 200, 'swing', function() {
+                    MS.dom.body.removeClass('left');
+                    setTimeout(function() {
                         MS.dom.sidebarRight.hide();
 
                         if (typeof callback === 'function') {
                             callback();
                         }
-                    });
+                    }, 200);
                     break;
                 default:
                     MS.navigator.goTo(MS.navigator.history[MS.navigator.history.length-1]);
@@ -110,4 +113,5 @@ $(function() {
             }
         }
     };
-});
+
+}, false);

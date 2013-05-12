@@ -1,6 +1,7 @@
 window.MS = window.MS || {};
 
-$(function() {
+document.addEventListener('deviceready', function() {
+
     MS.dom = {
         window: $(window),
         body: $('#body'),
@@ -9,4 +10,5 @@ $(function() {
         header: $('#header'),
         content: $('#content')
     }
-});
+
+}, false);

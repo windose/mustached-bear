@@ -1,6 +1,6 @@
 window.MS = window.MS || {};
 
-$(function() {
+document.addEventListener('deviceready', function() {
 
     MS.dimens = {
         viewport: {
@@ -12,4 +12,5 @@ $(function() {
             width: MS.dom.header.outerWidth()
         }
     };
-});
+
+}, false);

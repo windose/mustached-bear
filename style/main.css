@@ -67,6 +67,19 @@ ul, li {
     z-index: 2;
     background: #232124;
     width: 100%;
+
+    -webkit-transition-duration: .2s;
+            transition-duration: .2s;
+}
+
+#body.right {
+    -webkit-transform: translate3d(75%, 0, 0);
+            transform: translate3d(75%, 0, 0);
+}
+
+#body.left {
+    -webkit-transform: translate3d(-75%, 0, 0);
+            transform: translate3d(-75%, 0, 0);
 }
 
 #content {
