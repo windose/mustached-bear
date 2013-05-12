@@ -48,7 +48,7 @@ $(function() {
          */
         back: function back(callback) {
             if (MS.navigator.history.length === 1) {
-                return;
+                navigator.app.exitApp();
             }
 
             var undo = MS.navigator.history.pop();
