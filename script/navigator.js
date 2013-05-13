@@ -86,41 +86,55 @@ document.addEventListener('deviceready', function() {
          *
          * @param pagename
          */
-        goTo: function goTo(pagename, callback) {
-            console.log('[Navigator:goTo]', pagename);
+        goTo: function goTo(pagename) {
 
-            var newView = $('#view'+pagename).clone().removeAttr('id'),
-                newHeader = $('#header'+pagename),
-                scroll;
+            // Load dom
+            $.ajax({
+                url: './page/'+pagename.toLowerCase()+'/index.html',
+                success: function(html) {
 
-            MS.dom.content.html(newView);
-            newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
+                    var dom = $("<div></div>").html(html),
+                        newView = dom.find('#view'+pagename).clone().removeAttr('id'),
+                        newHeader = dom.find('#header'+pagename),
+                        scroll;
 
-            scroll = new iScroll(MS.dom.content.children('.view').first()[0], {
-                scrollbarClass: 'scrollbar'
-            });
+                    MS.dom.content.html(newView);
+                    newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
 
-            if (newHeader.length > 0) {
-                MS.dom.header.html(newHeader.clone().removeAttr('id'));
-                this.initSidemenu();
-            }
+                    scroll = new iScroll(MS.dom.content.children('.view').first()[0], {
+                        scrollbarClass: 'scrollbar'
+                    });
 
-            if(MS.dom.body.hasClass('open-menu')) {
-                MS.navigator.back(function() {
-                    if (typeof callback === 'function') {
-                        callback(newView, scroll);
+                    if (newHeader.length > 0) {
+                        MS.dom.header.html(newHeader.clone().removeAttr('id'));
+                        MS.navigator.initSidemenu();
                     }
-                });
 
-            } else {
-                if (MS.navigator.history[MS.navigator.history.length-1] !== pagename) {
-                    MS.navigator.history.push(pagename);
-                }
+                    // Load javascript
+                    $.ajax({
+                        url: './page/'+pagename.toLowerCase()+'/index.js',
+                        success: function() {
 
-                if (typeof callback === 'function') {
-                    callback(newView, scroll);
+                            if(MS.dom.body.hasClass('open-menu')) {
+                                MS.navigator.back(function() {
+                                    if (typeof MS.fn === 'function') {
+                                        MS.fn(newView, scroll);
+                                    }
+                                });
+
+                            } else {
+                                if (MS.navigator.history[MS.navigator.history.length-1] !== pagename) {
+                                    MS.navigator.history.push(pagename);
+                                }
+
+                                if (typeof MS.fn === 'function') {
+                                    MS.fn(newView, scroll);
+                                }
+                            }
+                        }
+                    });
                 }
-            }
+            });
         }
     };
 
