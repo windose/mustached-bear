@@ -1,28 +1,25 @@
 #sidebarRight {
-    background-color: #565457;
+    /*background-color: #565457;#232124*/
+    background-color: #232124;
+    color: #232124;
     right: 0;
+    font-family: 'TitilliumWeb';
 }
 
-#sidebarRight .header {
-    line-height: 33px;
-    font-family: 'TitilliumWebBold';
-    color: #232124;
-}
 
 #sidebarRight ul {
-    padding: 10px 10px 10px 25px;
+    padding: 50px 10px 10px 25px;
 }
 
 #sidebarRight li {
     width: 80%;
     height: 25px;
     padding: 10px 5px;
-    border-left: 5px solid #131114;
     line-height: 25px;
     overflow: hidden;
     margin-bottom: 5px;
     text-overflow: ellipsis;
-    background: #232124;
+    background-color: rgba(255,255,255,0.1);
 }
 
 #sidebarRight li img {

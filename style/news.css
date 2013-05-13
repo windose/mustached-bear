@@ -18,7 +18,7 @@
 }
 
 .news li.new {
-    border-left: 5px solid #066513;
+    border-left: 5px solid transparent;
 }
 
 .news li.open {

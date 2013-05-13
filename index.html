@@ -53,8 +53,8 @@
 
             MS.navigator.goTo('Main', function(view) {
 
-                //view.find('li').hammer().on('tap', function() {
-                view.find('li').on('click', function() {
+                view.find('li').hammer().on('tap', function() {
+                //view.find('li').on('click', function() {
 
                     if (MS.dom.body.hasClass('open-menu')) {
                         return;
@@ -83,13 +83,11 @@
 
     <div>
         <div id="sidebarLeft" class="sidebar">
-            <div class="header">
-                Mustached Bear
-            </div>
             <ul>
                 <li data-target="Main"><img src="./asset/icon/20-gear2.png">Nachrichten</li>
-                <li data-target="Kurse"><img src="./asset/icon/19-gear.png">Kursliste</li>
-                <li data-target="Kurse"><img src="./asset/icon/20-gear2.png">Ausloggen</li>
+                <li data-target="Courses"><img src="./asset/icon/19-gear.png">Kursliste</li>
+                <li data-target="Options"><img src="./asset/icon/19-gear.png">Einstellungen</li>
+                <li data-target="Logout"><img src="./asset/icon/20-gear2.png">Ausloggen</li>
             </ul>
         </div>
 
@@ -99,10 +97,6 @@
         </div>
 
         <div id="sidebarRight" class="sidebar">
-            <div class="header">
-                <img class="fr openCal" src="./asset/icon/104-index-cards.png">
-                Kommende Termine
-            </div>
             <ul>
                 <li>Termin 1</li>
                 <li>Termin 2</li>

@@ -53,7 +53,7 @@ ul, li {
 .header:after {
     content: "\00a0";
     display: block;
-    background-color: rgba(255,255,255,0.1);
+    background-color: #007ACC;
     line-height: 1px;
     width: 90%;
     margin: auto;
