@@ -51,7 +51,7 @@
 //                });
 //            });
 
-            MS.navigator.goTo('Main', function(view) {
+            MS.navigator.goTo('Main', function(view, scroll) {
 
                 view.find('li').hammer().on('tap', function() {
                 //view.find('li').on('click', function() {
@@ -67,8 +67,11 @@
                     } else {
                         self.addClass('open');
                     }
-                });
 
+                    setTimeout(function() {
+                        scroll.refresh();
+                    }, 500);
+                });
             });
 
             MS.dom.sidebarLeft.find('li').click(function() {
@@ -92,8 +95,8 @@
         </div>
 
         <div id="body">
-            <div id="header" class="header"></div>
-            <div id="content"></div>
+            <div id="header" class="header">&nbsp;</div>
+            <div id="content">&nbsp;</div>
         </div>
 
         <div id="sidebarRight" class="sidebar">
@@ -115,42 +118,57 @@
 
     <div id="viewMain" class="view">
         <ul class="news">
+
             <li class="new">
-                <img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskl-djaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj
+                <img src="asset/icon/162-receipt.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
                 <div class="footer">F T W Share</div>
             </li>
-            <li class="new"><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li class="new"><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
-            <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
+            <li class="new">
+                <img src="asset/icon/41-picture-frame.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/41-picture-frame.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/162-receipt.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/162-receipt.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/41-picture-frame.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/162-receipt.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/41-picture-frame.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/41-picture-frame.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
+            <li class="new">
+                <img src="asset/icon/162-receipt.png">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                <div class="footer">F T W Share</div>
+            </li>
         </ul>
     </div>
 

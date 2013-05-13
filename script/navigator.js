@@ -90,12 +90,13 @@ document.addEventListener('deviceready', function() {
             console.log('[Navigator:goTo]', pagename);
 
             var newView = $('#view'+pagename).clone().removeAttr('id'),
-                newHeader = $('#header'+pagename);
+                newHeader = $('#header'+pagename),
+                scroll;
 
             MS.dom.content.html(newView);
             newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
 
-            new iScroll(MS.dom.content.children('.view').first()[0], {
+            scroll = new iScroll(MS.dom.content.children('.view').first()[0], {
                 scrollbarClass: 'scrollbar'
             });
 
@@ -107,7 +108,7 @@ document.addEventListener('deviceready', function() {
             if(MS.dom.body.hasClass('open-menu')) {
                 MS.navigator.back(function() {
                     if (typeof callback === 'function') {
-                        callback(newView);
+                        callback(newView, scroll);
                     }
                 });
 
@@ -117,7 +118,7 @@ document.addEventListener('deviceready', function() {
                 }
 
                 if (typeof callback === 'function') {
-                    callback(newView);
+                    callback(newView, scroll);
                 }
             }
         }
