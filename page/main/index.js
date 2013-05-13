@@ -3,8 +3,8 @@ window.MS = window.MS || {};
 (function() {
     window.MS.fn = function(view, scroll) {
 
-        //view.find('li').hammer().on('tap', function() {
-        view.find('li').on('click', function() {
+        view.find('li').hammer().on('tap', function() {
+        //view.find('li').on('click', function() {
 
             if (MS.dom.body.hasClass('open-menu')) {
                 return;
