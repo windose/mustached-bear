@@ -7,7 +7,7 @@
     line-height: 18px;
     overflow: hidden;
     margin: 5px 10px;
-    padding-left: 10px;
+    padding: 0px 0px 0px 15px;
     text-overflow: ellipsis;
     border-left: 5px solid transparent;
 
@@ -22,7 +22,7 @@
 }
 
 .news li.open {
-    max-height: 999px;
+    max-height: 200px;
 }
 
 .news li:first-line {
@@ -33,7 +33,7 @@
     float: left;
     width: 32px;
     height: 32px;
-    margin: 5px;
+    margin: 5px 5px 5px 0px;
     padding: 6px;
     border: 0px solid rgba(255,255,255,0.2);
 }

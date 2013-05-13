@@ -14,9 +14,10 @@
 
     <link rel="stylesheet" type="text/css" href="./style/main.css">
     <link rel="stylesheet" type="text/css" href="./style/scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="./style/news.css">
     <link rel="stylesheet" type="text/css" href="./style/sidebarLeft.css">
     <link rel="stylesheet" type="text/css" href="./style/sidebarRight.css">
+    <link rel="stylesheet" type="text/css" href="./style/news.css">
+    <link rel="stylesheet" type="text/css" href="./style/courses.css">
 
     <script src="./script/dom.js"></script>
     <script src="./script/dimens.js"></script>
@@ -32,24 +33,44 @@
                 }, false);
             }
 
-            MS.navigator.goTo('Main', function(view) {
+            MS.navigator.goTo('Courses', function(view) {
+                var courses = view.find('ul');
 
-                view.find('li').hammer().on('tap', function() {
+                view.css('width', 80*courses.length+'%');
+                view.css('padding-left', 10*courses.length+'%');
+                view.css('padding-right', 10*courses.length+'%');
+                courses.css('width', 100/courses.length*0.8+'%');
 
-                    if (MS.dom.body.hasClass('open-menu')) {
-                        return;
-                    }
-
-                    var self = $(this);
-
-                    if (self.hasClass('open')) {
-                        self.removeClass('open');
-                    } else {
-                        self.addClass('open');
-                    }
+                view.hammer().on('swipeleft', function() {
+                    var pos = 80/courses.length*0.8;
+                    view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
+                });
+                view.hammer().on('swiperight', function() {
+                    var pos = 80/courses.length*0.8;
+                    view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
                 });
 
             });
+
+//            MS.navigator.goTo('Main', function(view) {
+//
+//                //view.find('li').hammer().on('tap', function() {
+//                view.find('li').on('click', function() {
+//
+//                    if (MS.dom.body.hasClass('open-menu')) {
+//                        return;
+//                    }
+//
+//                    var self = $(this);
+//
+//                    if (self.hasClass('open')) {
+//                        self.removeClass('open');
+//                    } else {
+//                        self.addClass('open');
+//                    }
+//                });
+//
+//            });
 
             MS.dom.sidebarLeft.find('li').click(function() {
                 MS.navigator.goTo($(this).attr('data-target'));
@@ -101,7 +122,10 @@
 
     <div id="viewMain" class="view">
         <ul class="news">
-            <li class="new"><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskl-djaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
+            <li class="new">
+                <img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskl-djaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj
+                <div class="footer">F T W Share</div>
+            </li>
             <li class="new"><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
             <li class="new"><img src="asset/icon/41-picture-frame.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
             <li><img src="asset/icon/162-receipt.png">Loremipasda sdjasö djaöskldjaslö djökasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djdja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dja sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö djasda sdjasö djaöskldjaslö dj</li>
@@ -137,13 +161,33 @@
         </ul>
     </div>
 
-    <div id="viewKurse" class="view">
-        <ul>
-            <li>Kurs 1</li>
-            <li>Kurs 2</li>
-            <li>Kurs 3</li>
-            <li>Kurs 4</li>
-        </ul>
+    <div id="headerCourses" class="view">
+        <img class="fl openSidebarLeft" src="./asset/icon/63-runner.png">
+        &nbsp;
+        <img class="fr openSidebarRight" src="./asset/icon/34-coffee.png">
+    </div>
+
+    <div id="viewCourses" class="view">
+        <div class="courses">
+            <ul class="sem1">
+                <li><input type="checkbox" value="">Kurs 1:1</li>
+                <li><input type="checkbox" value="">Kurs 1:2</li>
+                <li><input type="checkbox" value="">Kurs 1:3</li>
+                <li><input type="checkbox" value="">Kurs 1:4</li>
+            </ul>
+            <ul class="sem2">
+                <li><input type="checkbox" value="">Kurs 2:1</li>
+                <li><input type="checkbox" value="">Kurs 2:2</li>
+                <li><input type="checkbox" value="">Kurs 2:3</li>
+                <li><input type="checkbox" value="">Kurs 2:4</li>
+            </ul>
+            <ul class="sem3">
+                <li><input type="checkbox" value="">Kurs 3:1</li>
+                <li><input type="checkbox" value="">Kurs 3:2</li>
+                <li><input type="checkbox" value="">Kurs 3:3</li>
+                <li><input type="checkbox" value="">Kurs 3:4</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
