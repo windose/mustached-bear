@@ -33,44 +33,43 @@
                 }, false);
             }
 
-            MS.navigator.goTo('Courses', function(view) {
-                var courses = view.find('ul');
+//            MS.navigator.goTo('Courses', function(view) {
+//                var courses = view.find('ul');
+//
+//                view.css('width', 80*courses.length+'%');
+//                view.css('padding-left', 10*courses.length+'%');
+//                view.css('padding-right', 10*courses.length+'%');
+//                courses.css('width', 100/courses.length*0.8+'%');
+//
+//                view.hammer().on('swipeleft', function() {
+//                    var pos = 80/courses.length*0.8;
+//                    view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
+//                });
+//                view.hammer().on('swiperight', function() {
+//                    var pos = 80/courses.length*0.8;
+//                    view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
+//                });
+//            });
 
-                view.css('width', 80*courses.length+'%');
-                view.css('padding-left', 10*courses.length+'%');
-                view.css('padding-right', 10*courses.length+'%');
-                courses.css('width', 100/courses.length*0.8+'%');
+            MS.navigator.goTo('Main', function(view) {
 
-                view.hammer().on('swipeleft', function() {
-                    var pos = 80/courses.length*0.8;
-                    view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
-                });
-                view.hammer().on('swiperight', function() {
-                    var pos = 80/courses.length*0.8;
-                    view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
+                //view.find('li').hammer().on('tap', function() {
+                view.find('li').on('click', function() {
+
+                    if (MS.dom.body.hasClass('open-menu')) {
+                        return;
+                    }
+
+                    var self = $(this);
+
+                    if (self.hasClass('open')) {
+                        self.removeClass('open');
+                    } else {
+                        self.addClass('open');
+                    }
                 });
 
             });
-
-//            MS.navigator.goTo('Main', function(view) {
-//
-//                //view.find('li').hammer().on('tap', function() {
-//                view.find('li').on('click', function() {
-//
-//                    if (MS.dom.body.hasClass('open-menu')) {
-//                        return;
-//                    }
-//
-//                    var self = $(this);
-//
-//                    if (self.hasClass('open')) {
-//                        self.removeClass('open');
-//                    } else {
-//                        self.addClass('open');
-//                    }
-//                });
-//
-//            });
 
             MS.dom.sidebarLeft.find('li').click(function() {
                 MS.navigator.goTo($(this).attr('data-target'));
