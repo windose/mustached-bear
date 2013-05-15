@@ -1,10 +1,11 @@
 .news {
     padding: 0.5em;
+    margin: 0 0.5em 0 0;
 }
 
 .news li {
-    max-height: 3em;
-    line-height: 1em;
+    max-height: 3.6em;
+    line-height: 1.2em;
     overflow: hidden;
     margin: 0.25em 0.5em 0.5em 0.5em;
     padding: 0 0 0 0.75em;
@@ -24,7 +25,7 @@
 }
 
 .news li:first-line {
-    font-family: 'TitilliumWeb';
+    font-family: 'Raleway-SemiBold';
 }
 
 .news li img {

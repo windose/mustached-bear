@@ -5,29 +5,29 @@
     display: none;
     background-color: #232124;
     color: #232124;
-    font-family: 'TitilliumWeb';
+    font-family: 'Raleway-SemiBold';
 }
 
 .sidebar ul {
-    padding: 2.5em 0.5em 0.5em 1.25em;
+    padding: 3.75em 0.75em 0.75em 1.875em;
 }
 
 .sidebar ul li {
     width: 80%;
-    height: 1.25em;
-    padding: 0.5em 0.25em;
-    line-height: 1.25em;
+    height: 1.875em;
+    padding: 0.75em 0.375em;
+    line-height: 1.875em;
     overflow: hidden;
-    margin-bottom: 0.25em;
+    margin-bottom: 0.375em;
     text-overflow: ellipsis;
     background-color: #565457;
 }
 
 .sidebar ul li img {
     float: left;
-    width: 1em;
-    height: 1em;
-    margin: 0 0.5em;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 0.75em;
     padding: 0.125em;
     border: 0 solid rgba(255,255,255,0.2);
 }

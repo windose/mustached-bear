@@ -13,10 +13,10 @@ ul, li {
 
 /* Device scaling with em */
 html, body { font-size: 20px; }
-@media screen and (-webkit-device-pixel-ratio: 0.75)    { html, body { font-size: 15px; } } /* Low density (120),        ldpi  */
-@media screen and (-webkit-device-pixel-ratio: 1)       { html, body { font-size: 20px; } } /* Medium density (160),     mdpi  */
-@media screen and (-webkit-device-pixel-ratio: 1.5)     { html, body { font-size: 30px; } } /* High density (240),       hdpi  */
-@media screen and (-webkit-device-pixel-ratio: 2)       { html, body { font-size: 40px; } } /* Extra high density (320), xhdpi */
+@media screen and (-webkit-device-pixel-ratio: 0.75)    { html, body { font-size: 13.5px; } } /* Low density (120),        ldpi  */
+@media screen and (-webkit-device-pixel-ratio: 1)       { html, body { font-size: 18px; } }   /* Medium density (160),     mdpi  */
+@media screen and (-webkit-device-pixel-ratio: 1.5)     { html, body { font-size: 27px; } }   /* High density (240),       hdpi  */
+@media screen and (-webkit-device-pixel-ratio: 2)       { html, body { font-size: 36px; } }   /* Extra high density (320), xhdpi */
 
 /* OOCSS */
 .fl { float: left; }
@@ -26,14 +26,50 @@ html, body { font-size: 20px; }
 
 /* Custom Fonts */
 @font-face {
-    font-family: "TitilliumWebLight";
+    font-family: "Raleway-Thin";
+    src: url("../asset/font/Raleway-Thin.ttf") format("opentype");
+}
+@font-face {
+    font-family: "Raleway-ExtraLight";
+    src: url("../asset/font/Raleway-ExtraLight.ttf") format("opentype");
+}
+@font-face {
+    font-family: "Raleway-Light";
+    src: url("../asset/font/Raleway-Light.ttf") format("opentype");
+}
+@font-face {
+    font-family: "Raleway-Regular";
+    src: url("../asset/font/Raleway-Regular.ttf") format("opentype");
+}
+@font-face {
+    font-family: "Raleway-SemiBold";
+    src: url("../asset/font/Raleway-SemiBold.ttf") format("opentype");
+}
+@font-face {
+    font-family: "Raleway-Bold";
+    src: url("../asset/font/Raleway-Bold.ttf") format("opentype");
+}
+@font-face {
+    font-family: "Raleway-Heavy";
+    src: url("../asset/font/Raleway-Heavy.ttf") format("opentype");
+}
+@font-face {
+    font-family: "TitilliumWeb-ExtraLight";
     src: url("../asset/font/TitilliumWeb-ExtraLight.ttf") format("opentype");
 }
 @font-face {
-    font-family: "TitilliumWeb";
+    font-family: "TitilliumWeb-Light";
+    src: url("../asset/font/TitilliumWeb-Light.ttf") format("opentype");
+}
+@font-face {
+    font-family: "TitilliumWeb-Regular";
     src: url("../asset/font/TitilliumWeb-Regular.ttf") format("opentype");
 }
 @font-face {
-    font-family: "TitilliumWebBold";
+    font-family: "TitilliumWeb-SemiBold";
+    src: url("../asset/font/TitilliumWeb-SemiBold.ttf") format("opentype");
+}
+@font-face {
+    font-family: "TitilliumWeb-Bold";
     src: url("../asset/font/TitilliumWeb-Bold.ttf") format("opentype");
 }
