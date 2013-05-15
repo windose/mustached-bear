@@ -1,16 +1,16 @@
 window.MS = window.MS || {};
 
 (function() {
-    alert('main script loaded');
+    navigator.notification.alert('news.js loaded');
 
     window.MS.fn = function(view, scroll) {
 
-        alert('main script called');
+        navigator.notification.alert('news.js called');
 
         view.find('li').hammer().on('tap', function() {
         //view.find('li').on('click', function() {
 
-            alert('tap');
+            navigator.notification.alert('tap');
 
             if (MS.dom.body.hasClass('open-menu')) {
                 return;

@@ -89,9 +89,12 @@ document.addEventListener('deviceready', function() {
         goTo: function goTo(pagename) {
 
             // Load dom
+            navigator.notification.alert('load html');
+
             $.ajax({
                 url: './page/'+pagename.toLowerCase()+'/index.html',
                 success: function(html) {
+                    navigator.notification.alert('load html -> success');
 
                     var dom = $("<div></div>").html(html),
                         newView = dom.find('#view'+pagename).clone().removeAttr('id'),
@@ -111,9 +114,13 @@ document.addEventListener('deviceready', function() {
                     }
 
                     // Load javascript
+                    navigator.notification.alert('load js');
+
                     $.ajax({
                         url: './page/'+pagename.toLowerCase()+'/index.js',
                         success: function() {
+
+                            navigator.notification.alert('load js -> success');
 
                             if(MS.dom.body.hasClass('open-menu')) {
                                 MS.navigator.back(function() {
