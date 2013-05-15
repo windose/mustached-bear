@@ -1,0 +1,33 @@
+.sidebar {
+    position: absolute;
+    z-index: 1;
+    width: 75%;
+    display: none;
+    background-color: #232124;
+    color: #232124;
+    font-family: 'TitilliumWeb';
+}
+
+.sidebar ul {
+    padding: 2.5em 0.5em 0.5em 1.25em;
+}
+
+.sidebar ul li {
+    width: 80%;
+    height: 1.25em;
+    padding: 0.5em 0.25em;
+    line-height: 1.25em;
+    overflow: hidden;
+    margin-bottom: 0.25em;
+    text-overflow: ellipsis;
+    background-color: #565457;
+}
+
+.sidebar ul li img {
+    float: left;
+    width: 1em;
+    height: 1em;
+    margin: 0 0.5em;
+    padding: 0.125em;
+    border: 0 solid rgba(255,255,255,0.2);
+}

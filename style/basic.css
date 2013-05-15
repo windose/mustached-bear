@@ -1,0 +1,39 @@
+* {
+    position: relative;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+}
+ul, li {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+/* Device scaling with em */
+html, body { font-size: 20px; }
+@media screen and (-webkit-device-pixel-ratio: 0.75)    { html, body { font-size: 15px; } } /* Low density (120),        ldpi  */
+@media screen and (-webkit-device-pixel-ratio: 1)       { html, body { font-size: 20px; } } /* Medium density (160),     mdpi  */
+@media screen and (-webkit-device-pixel-ratio: 1.5)     { html, body { font-size: 30px; } } /* High density (240),       hdpi  */
+@media screen and (-webkit-device-pixel-ratio: 2)       { html, body { font-size: 40px; } } /* Extra high density (320), xhdpi */
+
+/* OOCSS */
+.fl { float: left; }
+.fr { float: right; }
+.l { left: 0; }
+.r { right: 0; }
+
+/* Custom Fonts */
+@font-face {
+    font-family: "TitilliumWebLight";
+    src: url("../asset/font/TitilliumWeb-ExtraLight.ttf") format("opentype");
+}
+@font-face {
+    font-family: "TitilliumWeb";
+    src: url("../asset/font/TitilliumWeb-Regular.ttf") format("opentype");
+}
+@font-face {
+    font-family: "TitilliumWebBold";
+    src: url("../asset/font/TitilliumWeb-Bold.ttf") format("opentype");
+}

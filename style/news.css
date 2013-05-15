@@ -1,13 +1,13 @@
 .news {
-    padding: 10px;
+    padding: 0.5em;
 }
 
 .news li {
-    max-height: 60px;
-    line-height: 20px;
+    max-height: 3em;
+    line-height: 1em;
     overflow: hidden;
-    margin: 5px 10px 10px 10px;
-    padding: 0px 0px 0px 15px;
+    margin: 0.25em 0.5em 0.5em 0.5em;
+    padding: 0 0 0 0.75em;
     text-overflow: ellipsis;
 
     -webkit-transition: max-height .5s ease-in-out;
@@ -20,7 +20,7 @@
 }
 
 .news li.open {
-    max-height: 500px;
+    max-height: 30em;
 }
 
 .news li:first-line {
@@ -29,13 +29,12 @@
 
 .news li img {
     float: left;
-    width: 32px;
-    height: 32px;
-    margin: 4px 11px 0px 6px;
+    width: 1.6em;
+    height: 1.6em;
+    margin: 0.2em 0.5em 0 0.3em;
     padding: 0;
-    border: 0px solid rgba(255,255,255,0.2);
 }
 
 .news li .footer {
-    margin: 5px 0px;
+    margin: 0.25em 0;
 }

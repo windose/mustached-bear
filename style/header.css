@@ -1,0 +1,33 @@
+.header {
+    height: 2em;
+    padding-bottom: 0.5em;
+    text-align: center;
+}
+
+.header > .view {
+    height: 2em;
+    padding: 0 5%;
+}
+
+.header:after {
+    content: "\00a0";
+    display: block;
+    background-color: #007ACC;
+    line-height: 0.05em;
+    width: 90%;
+    margin: 0.25em auto auto;
+}
+
+.header img {
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0.5em 0.4em 0.3em 0.4em;
+}
+
+.header img.openSidebarLeft {
+    margin-left: 0;
+}
+
+.header img.openSidebarRight {
+    margin-right: 0;
+}
