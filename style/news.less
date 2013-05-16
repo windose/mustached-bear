@@ -1,15 +1,16 @@
 @line-height: 1.3em;
 
 .news {
-    padding: 0;
-    margin: 0;
+}
+
+.news li {
+    overflow: hidden;
+    line-height: @line-height;
 }
 
 .news .item {
     max-height: @line-height*3;
-    line-height: @line-height;
-    overflow: hidden;
-    margin: 0.5em;
+    margin: 2.5% 5%;
     text-overflow: ellipsis;
 
     -webkit-transition: max-height .5s ease-in-out;
@@ -17,19 +18,31 @@
 
     -webkit-transform: translate3d(0,0,0);
 
-  text-align: justify;
+    text-align: justify;
 }
 
 .news .cal {
-  background-color: @color-main;
-  padding: 1em;
-  height: 1em;
-  line-height: 1em;
-  margin-bottom: 1.5em;
-  color: rgba(255,255,255,0.9);
+    background-color: @color-main;
+    padding: 5%;
+    height: 1em;
+    line-height: 1em;
+    color: rgba(255,255,255,0.9);
 }
+
 .news .cal .light {
-  color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.5);
+}
+
+.news .teaser {
+    max-height: @line-height*6;
+    margin: 1.5em 5%;
+    img { display: none; }
+}
+
+.news .item:nth-child(3n-1) {
+    max-height: @line-height*6;
+    margin: 1.5em 5%;
+    img { display: none; }
 }
 
 .news li.new {
@@ -45,7 +58,7 @@
 
 .news li img {
     float: left;
-    width: 2em;
+    width: 2em*1.32;
     height: 2em;
     margin: (@line-height - 1em) 0.6em 0 0;
     padding: 0;
