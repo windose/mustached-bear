@@ -1,22 +1,35 @@
 @line-height: 1.3em;
 
 .news {
-    padding: 0.5em;
-    margin: 0 0.5em 0 0;
+    padding: 0;
+    margin: 0;
 }
 
-.news li {
+.news .item {
     max-height: @line-height*3;
     line-height: @line-height;
     overflow: hidden;
-    margin: 0.25em 0.5em 0.5em 0.5em;
-    padding: 0 0 0 0.75em;
+    margin: 0.5em;
     text-overflow: ellipsis;
 
     -webkit-transition: max-height .5s ease-in-out;
             transition: max-height .5s ease-in-out;
 
     -webkit-transform: translate3d(0,0,0);
+
+  text-align: justify;
+}
+
+.news .cal {
+  background-color: @color-main;
+  padding: 1em;
+  height: 1em;
+  line-height: 1em;
+  margin-bottom: 1.5em;
+  color: rgba(255,255,255,0.9);
+}
+.news .cal .light {
+  color: rgba(255,255,255,0.5);
 }
 
 .news li.new {

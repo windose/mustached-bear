@@ -1,33 +1,16 @@
+@height: 3.6em;
+
 .header {
-    height: 3em;
-    padding-bottom: 0.75em;
+    height: @height;
     text-align: center;
 }
 
 .header > .view {
-    height: 3em;
-    padding: 0 5%;
-}
-
-.header:after {
-    content: "\00a0";
-    display: block;
-    background-color: @color-main;
-    line-height: 0.075em;
-    width: 90%;
-    margin: 0.375em auto auto;
+    height: 100%;
 }
 
 .header img {
-    width: 1.8em;
-    height: 1.8em;
-    margin: 0.75em 0.6em 0.45em 0.6em;
-}
-
-.header img.openSidebarLeft {
-    margin-left: 0;
-}
-
-.header img.openSidebarRight {
-    margin-right: 0;
+    width: 0.5*@height;
+    height: 0.5*@height;
+    margin: 0.25*@height 0.6em 0;
 }
