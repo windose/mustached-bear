@@ -27,22 +27,21 @@
     height: 1em;
     line-height: 1em;
     color: rgba(255,255,255,0.9);
+    span {
+        height: 1.2em;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
 
 .news .cal .light {
     color: rgba(255,255,255,0.5);
 }
 
-.news .teaser {
-    max-height: @line-height*6;
+.news .item.long {
+    max-height: @line-height*5;
     margin: 1.5em 5%;
-    img { display: none; }
-}
-
-.news .item:nth-child(3n-1) {
-    max-height: @line-height*6;
-    margin: 1.5em 5%;
-    img { display: none; }
 }
 
 .news li.new {

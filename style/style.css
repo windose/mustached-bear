@@ -215,22 +215,18 @@ li {
   line-height: 1em;
   color: rgba(255, 255, 255, 0.9);
 }
+.news .cal span {
+  height: 1.2em;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
 .news .cal .light {
   color: rgba(255, 255, 255, 0.5);
 }
-.news .teaser {
-  max-height: 7.800000000000001em;
+.news .item.long {
+  max-height: 6.5em;
   margin: 1.5em 5%;
-}
-.news .teaser img {
-  display: none;
-}
-.news .item:nth-child(3n-1) {
-  max-height: 7.800000000000001em;
-  margin: 1.5em 5%;
-}
-.news .item:nth-child(3n-1) img {
-  display: none;
 }
 .news li.open {
   max-height: 39em;
