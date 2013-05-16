@@ -87,9 +87,10 @@ document.addEventListener('deviceready', function() {
          * @param pagename
          */
         goTo: function goTo(pagename) {
+            var pagenameLower = pagename.toLowerCase();
 
             $.ajax({
-                url: './page/'+pagename.toLowerCase()+'/index.html',
+                url: './page/'+pagenameLower+'/index.html',
                 success: function(html) {
 
                     var dom = $("<div></div>").html(html),
@@ -107,8 +108,6 @@ document.addEventListener('deviceready', function() {
 
                     dom.find('script').prependTo(MS.dom.body);
 
-                    console.log(MS.dimens.header.height);
-                    console.log(MS.dom.header);
                     newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
 
 //                    scroll = new iScroll(MS.dom.content.children('.view').first()[0], {
