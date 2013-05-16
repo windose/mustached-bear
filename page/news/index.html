@@ -4,7 +4,8 @@
     (function() {
         MS.fn = function(view, scroll) {
 
-            view.find('li').hammer().on('tap', function() {
+            view[0].addEventListener('touchend', function() {
+            //view.find('li').hammer().on('tap', function() {
                 //view.find('li').on('click', function() {
 
                 if (MS.dom.body.hasClass('open-menu')) {
