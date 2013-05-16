@@ -88,7 +88,6 @@ document.addEventListener('deviceready', function() {
          */
         goTo: function goTo(pagename) {
 
-            // Load dom
             $.ajax({
                 url: './page/'+pagename.toLowerCase()+'/index.html',
                 success: function(html) {
@@ -112,35 +111,22 @@ document.addEventListener('deviceready', function() {
 
                     dom.find('script').prependTo(MS.dom.body);
 
-//                    // Load javascript
-//                    $.ajax({
-//                        url: './page/'+pagename.toLowerCase()+'/index.js',
-//                        success: function() {
-
-                            navigator.notification.alert('load js -> success: '+(typeof MS.fn));
-
-                            if(MS.dom.body.hasClass('open-menu')) {
-                                navigator.notification.alert('navigator.back()');
-                                MS.navigator.back(function() {
-                                    navigator.notification.alert('navigator.back() -> callback:'+(typeof MS.fn));
-                                    if (typeof MS.fn === 'function') {
-                                        MS.fn(newView, scroll);
-                                    }
-                                });
-
-                            } else {
-                                if (MS.navigator.history[MS.navigator.history.length-1] !== pagename) {
-                                    MS.navigator.history.push(pagename);
-                                }
-
-                                navigator.notification.alert('history: '+MS.navigator.history.join());
-
-                                if (typeof MS.fn === 'function') {
-                                    MS.fn(newView, scroll);
-                                }
+                    if(MS.dom.body.hasClass('open-menu')) {
+                        MS.navigator.back(function() {
+                            if (typeof MS.fn === 'function') {
+                                MS.fn(newView, scroll);
                             }
-//                        }
-//                    });
+                        });
+
+                    } else {
+                        if (MS.navigator.history[MS.navigator.history.length-1] !== pagename) {
+                            MS.navigator.history.push(pagename);
+                        }
+
+                        if (typeof MS.fn === 'function') {
+                            MS.fn(newView, scroll);
+                        }
+                    }
                 }
             });
         }
