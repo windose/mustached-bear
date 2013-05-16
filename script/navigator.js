@@ -98,18 +98,22 @@ document.addEventListener('deviceready', function() {
                         scroll;
 
                     MS.dom.content.html(newView);
-                    newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
-
-                    scroll = new iScroll(MS.dom.content.children('.view').first()[0], {
-                        scrollbarClass: 'scrollbar'
-                    });
 
                     if (newHeader.length > 0) {
                         MS.dom.header.html(newHeader.clone().removeAttr('id'));
                         MS.navigator.initSidemenu();
+                        MS.dimens.header.update();
                     }
 
                     dom.find('script').prependTo(MS.dom.body);
+
+                    console.log(MS.dimens.header.height);
+                    console.log(MS.dom.header);
+                    newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
+
+//                    scroll = new iScroll(MS.dom.content.children('.view').first()[0], {
+//                        scrollbarClass: 'scrollbar'
+//                    });
 
                     if(MS.dom.body.hasClass('open-menu')) {
                         MS.navigator.back(function() {
