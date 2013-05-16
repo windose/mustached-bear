@@ -3,7 +3,7 @@ window.MS = window.MS || {};
 (function() {
     navigator.notification.alert('news.js loaded');
 
-    window.MS.fn = function(view, scroll) {
+    MS.fn = function(view, scroll) {
 
         navigator.notification.alert('news.js called');
 
