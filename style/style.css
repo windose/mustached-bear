@@ -43,6 +43,15 @@ body {
 .r {
   right: 0;
 }
+.tl {
+  text-align: left;
+}
+.tr {
+  text-align: right;
+}
+.tc {
+  text-align: center;
+}
 /* Custom Fonts */
 @font-face {
   font-family: "Raleway-Thin";
@@ -184,7 +193,6 @@ li {
 }
 .header {
   min-height: 3.6em;
-  text-align: center;
 }
 .headerheight {
   height: 3.6em;
@@ -224,7 +232,7 @@ li {
   overflow: hidden;
   white-space: nowrap;
 }
-.news .cal .light {
+.header .news-cal .light {
   color: rgba(255, 255, 255, 0.5);
 }
 .news .item.long {
