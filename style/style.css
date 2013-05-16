@@ -183,8 +183,11 @@ li {
   box-sizing: border-box;
 }
 .header {
-  height: 3.6em;
+  min-height: 3.6em;
   text-align: center;
+}
+.headerheight {
+  height: 3.6em;
 }
 .header > .view {
   height: 100%;
@@ -208,14 +211,14 @@ li {
   -webkit-transform: translate3d(0, 0, 0);
   text-align: justify;
 }
-.news .cal {
+.header .news-cal {
   background-color: #007acc;
   padding: 5%;
   height: 1em;
   line-height: 1em;
   color: rgba(255, 255, 255, 0.9);
 }
-.news .cal span {
+.header .news-cal span {
   height: 1.2em;
   display: block;
   overflow: hidden;
