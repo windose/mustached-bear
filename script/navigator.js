@@ -110,17 +110,19 @@ document.addEventListener('deviceready', function() {
                         MS.navigator.initSidemenu();
                     }
 
-                    // Load javascript
-                    $.ajax({
-                        url: './page/'+pagename.toLowerCase()+'/index.js',
-                        success: function() {
+                    dom.find('script').prependTo(MS.dom.body);
+
+//                    // Load javascript
+//                    $.ajax({
+//                        url: './page/'+pagename.toLowerCase()+'/index.js',
+//                        success: function() {
 
                             navigator.notification.alert('load js -> success: '+(typeof MS.fn));
 
                             if(MS.dom.body.hasClass('open-menu')) {
                                 navigator.notification.alert('navigator.back()');
                                 MS.navigator.back(function() {
-                                    navigator.notification.alert('navigator.back() -> callback');
+                                    navigator.notification.alert('navigator.back() -> callback:'+(typeof MS.fn));
                                     if (typeof MS.fn === 'function') {
                                         MS.fn(newView, scroll);
                                     }
@@ -137,8 +139,8 @@ document.addEventListener('deviceready', function() {
                                     MS.fn(newView, scroll);
                                 }
                             }
-                        }
-                    });
+//                        }
+//                    });
                 }
             });
         }
