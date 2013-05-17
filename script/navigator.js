@@ -10,7 +10,7 @@ document.addEventListener('deviceready', function() {
          */
         initSidemenu: function initSidemenu() {
             // Event handler
-            MS.dom.header.find('.openSidebarLeft').click(function(){
+            MS.dom.header.find('.openSidebarLeft').bind('touchstart', function() {
                 if(!MS.dom.body.hasClass('open-menu')) {
                     MS.navigator.history.push('sidebarLeft');
                     MS.dom.sidebarLeft.show();
@@ -23,7 +23,7 @@ document.addEventListener('deviceready', function() {
                 return false;
             });
 
-            MS.dom.header.find('.openSidebarRight').click(function(){
+            MS.dom.header.find('.openSidebarRight').bind('touchstart', function() {
                 if(!MS.dom.body.hasClass('open-menu')) {
                     MS.navigator.history.push('sidebarRight');
                     MS.dom.sidebarRight.show();
@@ -36,7 +36,7 @@ document.addEventListener('deviceready', function() {
                 return false;
             });
 
-            MS.dom.body.unbind('click').click(function(){
+            MS.dom.body.unbind('touchstart').bind('touchstart', function() {
                 if(MS.dom.body.hasClass('open-menu')) {
                     MS.navigator.back();
                 }
