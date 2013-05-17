@@ -12,11 +12,25 @@
     height: 100%;
 }
 
-.header img {
-    /*width: 0.5*@height;*/
+.header .mheader {
+
+    img {
+        margin: 0.3*@height 0.6em 0;
+        height: 0.4*@height;
+    }
+
+    &.fl {
+        margin-left: 5%;
+        img { margin-left: 0; }
+    }
+    
+    &.fr {
+        margin-right: 5%;
+        img { margin-right: 0; }
+    }
+}
+
+.header img.mheader {
     height: 0.4*@height;
     margin: 0.3*@height 0.6em 0;
-
-    &.fl { margin-left: 5%; }
-    &.fr { margin-right: 5%; }
 }

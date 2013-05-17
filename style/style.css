@@ -234,17 +234,25 @@ li {
 .header > .view {
   height: 100%;
 }
-.header img {
-  /*width: 0.5*@height;*/
-
-  height: 1.2000000000000002em;
+.header .mheader img {
   margin: 0.8999999999999999em 0.6em 0;
+  height: 1.2000000000000002em;
 }
-.header img.fl {
+.header .mheader.fl {
   margin-left: 5%;
 }
-.header img.fr {
+.header .mheader.fl img {
+  margin-left: 0;
+}
+.header .mheader.fr {
   margin-right: 5%;
+}
+.header .mheader.fr img {
+  margin-right: 0;
+}
+.header img.mheader {
+  height: 1.2000000000000002em;
+  margin: 0.8999999999999999em 0.6em 0;
 }
 .news {
   overflow-y: scroll;
