@@ -6,6 +6,14 @@
 
             header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
 
+            /*
+             * Force reflow after @font-face is loaded.
+             * text-align: justify will cut off text if we dont reflow.
+             */
+            setTimeout(function() {
+                view.find('li').width(view.find('li').width());
+            }, 200);
+
             view[0].addEventListener('touchend', function() {
             //view.find('li').hammer().on('tap', function() {
                 //view.find('li').on('click', function() {

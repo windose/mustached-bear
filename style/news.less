@@ -7,7 +7,7 @@
     li {
         overflow: hidden;
         line-height: @line-height;
-        max-height: @line-height*3;
+        max-height: @line-height*3 - 0.05em;
         margin: 2.5% 5%;
 
         -webkit-transition: max-height .5s ease-in-out;
@@ -20,7 +20,7 @@
                 column-count: 1;
 
         &.long {
-            max-height: @line-height*5;
+            max-height: @line-height*5 - 0.05em;
             margin: 1.5em 5%;
         }
 

@@ -244,7 +244,7 @@ li {
 .news li {
   overflow: hidden;
   line-height: 1.3em;
-  max-height: 3.9000000000000004em;
+  max-height: 3.8500000000000005em;
   margin: 2.5% 5%;
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
@@ -254,7 +254,7 @@ li {
   column-count: 1;
 }
 .news li.long {
-  max-height: 6.5em;
+  max-height: 6.45em;
   margin: 1.5em 5%;
 }
 .news li.open {
