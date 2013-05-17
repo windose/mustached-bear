@@ -172,21 +172,29 @@ li {
   width: 75%;
   display: none;
   background-color: #232124;
-  color: #232124;
-  font-family: 'Raleway-SemiBold';
 }
 .sidebar ul {
-  padding: 3.75em 0.75em 0.75em 1.875em;
+  padding: 3em 0 0 0;
 }
 .sidebar ul li {
-  width: 80%;
-  height: 1.875em;
-  padding: 0.75em 0.375em;
-  line-height: 1.875em;
+  width: 85%;
+  height: 3.9em;
+  padding: 1em 5%;
+  line-height: 1.3em;
   overflow: hidden;
   margin-bottom: 0.375em;
-  text-overflow: ellipsis;
-  background-color: #565457;
+  color: rgba(255, 255, 255, 0.7);
+}
+.sidebar ul li:first-child {
+  background-color: #007acc;
+  color: rgba(255, 255, 255, 0.5);
+}
+.sidebar ul li div {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.sidebar ul li div:first-child {
+  color: rgba(255, 255, 255, 0.9);
 }
 .sidebar ul li img {
   float: left;
