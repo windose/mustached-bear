@@ -24,6 +24,18 @@ body {
   }
 }
 /* hdpi   */
+@media screen and (-webkit-min-device-pixel-ratio: 1.6) {
+  html,
+  body {
+    font-size: 25.6px;
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1.7) {
+  html,
+  body {
+    font-size: 27.2px;
+  }
+}
 @media screen and (-webkit-min-device-pixel-ratio: 2) {
   html,
   body {
@@ -31,6 +43,12 @@ body {
   }
 }
 /* xhdpi  */
+@media screen and (-webkit-min-device-pixel-ratio: 2.37) {
+  html,
+  body {
+    font-size: 37.9px;
+  }
+}
 @media screen and (-webkit-min-device-pixel-ratio: 3) {
   html,
   body {
