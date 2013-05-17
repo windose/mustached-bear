@@ -1,7 +1,7 @@
 /* Device scaling with em */
 html,
 body {
-  font-size: 20px;
+  font-size: 16px;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0.75) {
   html,
@@ -9,28 +9,35 @@ body {
     font-size: 12px;
   }
 }
-/* Low density (120),        ldpi  */
+/* ldpi   */
 @media screen and (-webkit-min-device-pixel-ratio: 1) {
   html,
   body {
     font-size: 16px;
   }
 }
-/* Medium density (160),     mdpi  */
+/* mdpi   */
 @media screen and (-webkit-min-device-pixel-ratio: 1.5) {
   html,
   body {
     font-size: 24px;
   }
 }
-/* High density (240),       hdpi  */
+/* hdpi   */
 @media screen and (-webkit-min-device-pixel-ratio: 2) {
   html,
   body {
     font-size: 32px;
   }
 }
-/* Extra high density (320), xhdpi *//* OOCSS */
+/* xhdpi  */
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  html,
+  body {
+    font-size: 48px;
+  }
+}
+/* xxhdpi *//* OOCSS */
 .fl {
   float: left;
 }
