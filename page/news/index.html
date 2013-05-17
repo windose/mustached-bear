@@ -14,9 +14,12 @@
                 view.find('li').width(view.find('li').width());
             }, 200);
 
-            view[0].addEventListener('touchend', function() {
-            //view.find('li').hammer().on('tap', function() {
-                //view.find('li').on('click', function() {
+            /*
+             * Expend a news item on touch
+             */
+            view.find('li').bind('touchstart', function() {
+            //view.find('li').bind('click', function() {
+            //view[0].ontouchstart = function(e) {
 
                 if (MS.dom.body.hasClass('open-menu')) {
                     return;
@@ -29,11 +32,6 @@
                 } else {
                     self.addClass('open');
                 }
-
-                setTimeout(function() {
-                    //scroll.refresh();
-                    header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
-                }, 500);
             });
         }
     })();
