@@ -17,9 +17,13 @@
             /*
              * Expend a news item on touch
              */
-            view.find('li').bind('touchstart', function() {
-            //view.find('li').bind('click', function() {
-            //view[0].ontouchstart = function(e) {
+            var items = view.find('li'),
+                isTap = false;
+
+            items.bind('touchstart', function() { isTap = true; });
+            items.bind('touchmove', function() { isTap = false; });
+            items.bind('touchend', function() {
+                if (!isTap) { return; }
 
                 if (MS.dom.body.hasClass('open-menu')) {
                     return;
