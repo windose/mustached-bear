@@ -2,7 +2,9 @@
     window.MS = window.MS || {};
 
     (function() {
-        MS.fn = function(view, scroll) {
+        MS.fn = function(header, view, scroll) {
+
+            header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
 
             view[0].addEventListener('touchend', function() {
             //view.find('li').hammer().on('tap', function() {
@@ -22,6 +24,7 @@
 
                 setTimeout(function() {
                     //scroll.refresh();
+                    header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
                 }, 500);
             });
         }
@@ -36,7 +39,7 @@
         <img class="fr openSidebarRight" src="./asset/icon/kalender.png">
     </div>
     <div class="news-cal openSidebarRight">
-        <span class="light fl">noch 30 min&nbsp;</span>
+        <span class="light fl debug">noch 30 min&nbsp;</span>
         <span>Modellbildung und Simulation</span>
     </div>
 </div>

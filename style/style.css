@@ -203,8 +203,14 @@ li {
 .header img {
   /*width: 0.5*@height;*/
 
-  height: 1.8em;
-  margin: 0.9em 0.6em 0;
+  height: 1.4400000000000002em;
+  margin: 1.08em 0.6em 0;
+}
+.header img.fl {
+  margin-left: 5%;
+}
+.header img.fr {
+  margin-right: 5%;
 }
 .news {
   overflow-y: scroll;
@@ -215,11 +221,12 @@ li {
   line-height: 1.3em;
   max-height: 3.9000000000000004em;
   margin: 2.5% 5%;
-  text-overflow: ellipsis;
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
   -webkit-transform: translate3d(0, 0, 0);
   text-align: justify;
+  -webkit-column-count: 1;
+  column-count: 1;
 }
 .news li.long {
   max-height: 6.5em;

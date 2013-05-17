@@ -95,13 +95,13 @@ document.addEventListener('deviceready', function() {
 
                     var dom = $("<div></div>").html(html),
                         newView = dom.find('#view'+pagename).clone().removeAttr('id'),
-                        newHeader = dom.find('#header'+pagename),
+                        newHeader = dom.find('#header'+pagename).clone().removeAttr('id'),
                         scroll;
 
                     MS.dom.content.html(newView);
 
                     if (newHeader.length > 0) {
-                        MS.dom.header.html(newHeader.clone().removeAttr('id'));
+                        MS.dom.header.html(newHeader);
                         MS.navigator.initSidemenu();
                         MS.dimens.header.update();
                     }
@@ -117,7 +117,7 @@ document.addEventListener('deviceready', function() {
                     if(MS.dom.body.hasClass('open-menu')) {
                         MS.navigator.back(function() {
                             if (typeof MS.fn === 'function') {
-                                MS.fn(newView, scroll);
+                                MS.fn(newHeader, newView, scroll);
                             }
                         });
 
@@ -127,7 +127,7 @@ document.addEventListener('deviceready', function() {
                         }
 
                         if (typeof MS.fn === 'function') {
-                            MS.fn(newView, scroll);
+                            MS.fn(newHeader, newView, scroll);
                         }
                     }
                 }
