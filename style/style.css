@@ -55,7 +55,8 @@ body {
     font-size: 48px;
   }
 }
-/* xxhdpi *//* OOCSS */
+/* xxhdpi */
+/* OOCSS */
 .fl {
   float: left;
 }
@@ -159,17 +160,17 @@ li {
   transition-duration: .2s;
 }
 #body.right {
-  -webkit-transform: translate3d(75%, 0, 0);
-  transform: translate3d(75%, 0, 0);
+  -webkit-transform: translate3d(85%, 0, 0);
+  transform: translate3d(85%, 0, 0);
 }
 #body.left {
-  -webkit-transform: translate3d(-75%, 0, 0);
-  transform: translate3d(-75%, 0, 0);
+  -webkit-transform: translate3d(-85%, 0, 0);
+  transform: translate3d(-85%, 0, 0);
 }
 .sidebar {
   position: absolute;
   z-index: 1;
-  width: 75%;
+  width: 85%;
   display: none;
   background-color: #232124;
 }
