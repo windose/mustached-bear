@@ -20,14 +20,19 @@
             var items = view.find('li'),
                 isTap = false;
 
-            items.bind('touchstart', function() { isTap = true; });
-            items.bind('touchmove', function() { isTap = false; });
+            // TODO use event delegation
+
+            items.bind('touchstart', function() {
+                if (MS.dom.body.hasClass('open-menu')) { return; }
+                isTap = true;
+            });
+
+            items.bind('touchmove', function() {
+                isTap = false;
+            });
+            
             items.bind('touchend', function() {
                 if (!isTap) { return; }
-
-                if (MS.dom.body.hasClass('open-menu')) {
-                    return;
-                }
 
                 var self = $(this);
 
