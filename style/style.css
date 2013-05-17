@@ -6,28 +6,28 @@ body {
 @media screen and (-webkit-device-pixel-ratio: 0.75) {
   html,
   body {
-    font-size: 13.5px;
+    font-size: 12px;
   }
 }
 /* Low density (120),        ldpi  */
 @media screen and (-webkit-device-pixel-ratio: 1) {
   html,
   body {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 /* Medium density (160),     mdpi  */
 @media screen and (-webkit-device-pixel-ratio: 1.5) {
   html,
   body {
-    font-size: 27px;
+    font-size: 24px;
   }
 }
 /* High density (240),       hdpi  */
 @media screen and (-webkit-device-pixel-ratio: 2) {
   html,
   body {
-    font-size: 36px;
+    font-size: 32px;
   }
 }
 /* Extra high density (320), xhdpi *//* OOCSS */
@@ -192,10 +192,10 @@ li {
   box-sizing: border-box;
 }
 .header {
-  min-height: 3.6em;
+  min-height: 3em;
 }
 .headerheight {
-  height: 3.6em;
+  height: 3em;
 }
 .header > .view {
   height: 100%;
@@ -203,8 +203,8 @@ li {
 .header img {
   /*width: 0.5*@height;*/
 
-  height: 1.4400000000000002em;
-  margin: 1.08em 0.6em 0;
+  height: 1.2000000000000002em;
+  margin: 0.8999999999999999em 0.6em 0;
 }
 .header img.fl {
   margin-left: 5%;
@@ -250,7 +250,8 @@ li {
 }
 .header .news-cal {
   background-color: #007acc;
-  padding: 5%;
+  padding: 1em 2%;
+  margin: 0 0 0 3%;
   height: 1em;
   line-height: 1em;
   color: rgba(255, 255, 255, 0.9);
