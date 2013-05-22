@@ -270,7 +270,7 @@ li {
 .news li {
   overflow: hidden;
   line-height: 1.4em;
-  max-height: 4.1499999999999995em;
+  max-height: 6.95em;
   margin: 1.4em 5%;
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
@@ -279,12 +279,9 @@ li {
   -webkit-column-count: 1;
   column-count: 1;
 }
-.news li.long {
-  max-height: 6.95em;
-  margin: 1.4em 5%;
-}
 .news li.date {
-  margin-bottom: 0;
+  max-height: 4.1499999999999995em;
+  margin: 1.4em 5% 0;
 }
 .news li.dateDialog {
   margin-top: 0.19999999999999996em;
@@ -293,7 +290,7 @@ li {
 .news li.dateDialog span {
   padding: 0.8em 0;
   display: inline-block;
-  width: 47.22222222222222%;
+  width: 48.611111111111114%;
   height: 1.4em;
   background-color: #6f6d70;
   color: #232124;

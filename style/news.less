@@ -5,8 +5,8 @@
     li {
         overflow: hidden;
         line-height: @line-height;
-        max-height: @line-height*3 - 0.05em;
-        margin: @line-height 5%;
+        max-height: @line-height*5 - 0.05em;
+        margin: @line-height @body-padding;
 
         -webkit-transition: max-height .5s ease-in-out;
                 transition: max-height .5s ease-in-out;
@@ -17,13 +17,9 @@
         -webkit-column-count: 1;
                 column-count: 1;
 
-        &.long {
-            max-height: @line-height*5 - 0.05em;
-            margin: @line-height 5%;
-        }
-
         &.date {
-            margin-bottom: 0;
+            max-height: @line-height*3 - 0.05em;
+            margin: @line-height @body-padding 0;
         }
 
         &.dateDialog {
@@ -33,7 +29,7 @@
             span {
                 padding: 0.5*(@header-height - @line-height) 0;
                 display: inline-block;
-                width: (50% - (100/90*5*0.5));
+                width: (50% - (100/(100 - 2*@body-padding)*0.25*@body-padding));
                 height: @line-height;
                 background-color: @color-bgr-light;
                 color: @color-bgr;
