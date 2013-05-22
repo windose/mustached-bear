@@ -84,7 +84,7 @@ body {
 .tc {
   text-align: center;
 }
-/* Custom Fonts */
+/* Raleway */
 @font-face {
   font-family: "Raleway-Thin";
   src: url("../asset/font/Raleway-Thin.ttf") format("opentype");
@@ -113,6 +113,7 @@ body {
   font-family: "Raleway-Heavy";
   src: url("../asset/font/Raleway-Heavy.ttf") format("opentype");
 }
+/* TitilliumWeb */
 @font-face {
   font-family: "TitilliumWeb-ExtraLight";
   src: url("../asset/font/TitilliumWeb-ExtraLight.ttf") format("opentype");
@@ -150,6 +151,7 @@ ul,
 li {
   list-style-type: none;
 }
+.template,
 .view {
   display: none;
 }
@@ -280,6 +282,19 @@ li {
 .news li.long {
   max-height: 6.95em;
   margin: 1.4em 5%;
+}
+.news li.date {
+  margin-bottom: 0;
+}
+.news li.dateDialog {
+  margin-top: 0.19999999999999996em;
+  text-align: center;
+}
+.news li.dateDialog span {
+  padding: 0.8em 0;
+  display: inline-block;
+  width: 47.22222222222222%;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .news li.open {
   max-height: 42em;

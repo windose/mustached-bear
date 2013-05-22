@@ -96,6 +96,7 @@ document.addEventListener('deviceready', function() {
                     var dom = $("<div></div>").html(html),
                         newView = dom.find('#view'+pagename).clone().removeAttr('id'),
                         newHeader = dom.find('#header'+pagename).clone().removeAttr('id'),
+                        templates = dom.find('.template'),
                         scroll;
 
                     MS.dom.content.html(newView);
@@ -105,6 +106,13 @@ document.addEventListener('deviceready', function() {
                         MS.navigator.initSidemenu();
                         MS.dimens.header.update();
                     }
+
+                    templates.each(function() {
+                        var self = $(this);
+                        if ($('#'+self.attr('id')).length === 0) {
+                            MS.dom.body.append(self);
+                        }
+                    });
 
                     dom.find('script').prependTo(MS.dom.body);
 
