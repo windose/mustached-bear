@@ -1,5 +1,3 @@
-@line-height: 1.3em;
-
 .news {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -8,7 +6,7 @@
         overflow: hidden;
         line-height: @line-height;
         max-height: @line-height*3 - 0.05em;
-        margin: 2.5% 5%;
+        margin: @line-height 5%;
 
         -webkit-transition: max-height .5s ease-in-out;
                 transition: max-height .5s ease-in-out;
@@ -21,7 +19,7 @@
 
         &.long {
             max-height: @line-height*5 - 0.05em;
-            margin: 1.5em 5%;
+            margin: @line-height 5%;
         }
 
         &.open {
@@ -48,14 +46,14 @@
 
 .header .news-cal {
     background-color: @color-main;
-    padding: 1em 2%;
+    padding: 0.5*(@header-height - @line-height) 2%;
     margin: 0 0 0 3%;
-    height: 1em;
-    line-height: 1em;
+    height: @line-height;
+    line-height: @line-height;
     color: @color-font;
 
     span {
-        height: 1.2em;
+        height: @line-height;
         display: block;
         overflow: hidden;
         white-space: nowrap;

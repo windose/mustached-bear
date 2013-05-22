@@ -6,15 +6,14 @@
     background-color: @color-bgr;
 
     ul {
-        padding: 3em 0 0 0;
+        padding: @header-height 0 0 0;
 
         li {
             width: 85%;
-            height: 3.9em;
-            padding: 1em 5%;
-            line-height: 1.3em;
+            height: 3*@line-height;
+            padding: 0.5*@line-height 5%;
+            line-height: @line-height;
             overflow: hidden;
-            margin-bottom: 0.375em;
             color: @color-font-lighter;
 
             &:first-child {

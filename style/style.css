@@ -185,11 +185,10 @@ li {
 }
 .sidebar ul li {
   width: 85%;
-  height: 3.9em;
-  padding: 1em 5%;
-  line-height: 1.3em;
+  height: 4.199999999999999em;
+  padding: 0.7em 5%;
+  line-height: 1.4em;
   overflow: hidden;
-  margin-bottom: 0.375em;
   color: rgba(255, 255, 255, 0.7);
 }
 .sidebar ul li:first-child {
@@ -233,9 +232,8 @@ li {
 }
 .header {
   min-height: 3em;
-}
-.headerheight {
-  height: 3em;
+  /* ToDo, fix this */
+
 }
 .header > .view {
   height: 100%;
@@ -260,15 +258,18 @@ li {
   height: 1.2000000000000002em;
   margin: 0.8999999999999999em 0.6em 0;
 }
+.headerheight {
+  height: 3em;
+}
 .news {
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .news li {
   overflow: hidden;
-  line-height: 1.3em;
-  max-height: 3.8500000000000005em;
-  margin: 2.5% 5%;
+  line-height: 1.4em;
+  max-height: 4.1499999999999995em;
+  margin: 1.4em 5%;
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
   -webkit-transform: translate3d(0, 0, 0);
@@ -277,11 +278,11 @@ li {
   column-count: 1;
 }
 .news li.long {
-  max-height: 6.45em;
-  margin: 1.5em 5%;
+  max-height: 6.95em;
+  margin: 1.4em 5%;
 }
 .news li.open {
-  max-height: 39em;
+  max-height: 42em;
 }
 .news li:first-line {
   font-family: 'Raleway-SemiBold';
@@ -293,19 +294,19 @@ li {
   float: left;
   width: 2.64em;
   height: 2em;
-  margin: 0.30000000000000004em 0.6em 0 0;
+  margin: 0.3999999999999999em 0.6em 0 0;
   padding: 0;
 }
 .header .news-cal {
   background-color: #007acc;
-  padding: 1em 2%;
+  padding: 0.8em 2%;
   margin: 0 0 0 3%;
-  height: 1em;
-  line-height: 1em;
+  height: 1.4em;
+  line-height: 1.4em;
   color: rgba(255, 255, 255, 0.9);
 }
 .header .news-cal span {
-  height: 1.2em;
+  height: 1.4em;
   display: block;
   overflow: hidden;
   white-space: nowrap;

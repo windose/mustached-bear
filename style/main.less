@@ -30,14 +30,14 @@ ul, li {
 
     -webkit-transition-duration: .2s;
             transition-duration: .2s;
-}
 
-#body.right {
-    -webkit-transform: translate3d(@sidebar-width, 0, 0);
-            transform: translate3d(@sidebar-width, 0, 0);
-}
+    &.right {
+        -webkit-transform: translate3d(@sidebar-width, 0, 0);
+                transform: translate3d(@sidebar-width, 0, 0);
+    }
 
-#body.left {
-    -webkit-transform: translate3d(-@sidebar-width, 0, 0);
-            transform: translate3d(-@sidebar-width, 0, 0);
+    &.left {
+        -webkit-transform: translate3d(-@sidebar-width, 0, 0);
+                transform: translate3d(-@sidebar-width, 0, 0);
+    }
 }

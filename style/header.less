@@ -1,36 +1,35 @@
-@height: 3em;
-
 .header {
-    min-height: @height;
+    min-height: @header-height;
+
+    & > .view {
+        height: 100%;
+    }
+
+    .mheader {
+
+        img {
+            margin: 0.3*@header-height 0.6em 0;
+            height: 0.4*@header-height;
+        }
+
+        &.fl {
+            margin-left: 5%;
+            img { margin-left: 0; }
+        }
+
+        &.fr {
+            margin-right: 5%;
+            img { margin-right: 0; }
+        }
+    }
+
+    /* ToDo, fix this */
+    img.mheader {
+        height: 0.4*@header-height;
+        margin: 0.3*@header-height 0.6em 0;
+    }
 }
 
 .headerheight {
-    height: @height;
-}
-
-.header > .view {
-    height: 100%;
-}
-
-.header .mheader {
-
-    img {
-        margin: 0.3*@height 0.6em 0;
-        height: 0.4*@height;
-    }
-
-    &.fl {
-        margin-left: 5%;
-        img { margin-left: 0; }
-    }
-
-    &.fr {
-        margin-right: 5%;
-        img { margin-right: 0; }
-    }
-}
-
-.header img.mheader {
-    height: 0.4*@height;
-    margin: 0.3*@height 0.6em 0;
+    height: @header-height;
 }
