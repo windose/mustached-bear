@@ -198,6 +198,9 @@ li {
   vertical-align: middle;
   margin-right: 0.7em;
 }
+.sidebar ul.calList {
+  padding: 3em 0 0 0;
+}
 .sidebar ul.calList li {
   width: 85%;
   padding: 0.7em 5%;
