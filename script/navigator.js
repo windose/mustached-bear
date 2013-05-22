@@ -87,22 +87,74 @@ document.addEventListener('deviceready', function() {
          * @param pagename
          */
         goTo: function goTo(pagename) {
-            var pagenameLower = pagename.toLowerCase();
+            var pagenameLower = pagename.toLowerCase(),
+                cachedView, cachedHeader;
+
+            cachedView = MS.dom.content.find('#view'+pagename);
+            cachedHeader = MS.dom.header.find('#header'+pagename);
+
+            if (MS.dom.content.attr('data-content') === pagenameLower) {
+                /*
+                 * Load Javascript
+                 */
+                if (typeof MS.page[pagenameLower] !== 'undefined' &&
+                    typeof MS.page[pagenameLower].enter === 'function') {
+                    MS.page[pagenameLower].enter(cachedHeader, cachedView);
+                }
+
+                if(MS.dom.body.hasClass('open-menu')) {
+                    MS.navigator.back();
+                }
+                return;
+            }
+
+            if (cachedView.length > 0) {
+                MS.dom.content.find('.view').hide();
+                MS.dom.header.find('.view').hide();
+
+                MS.dom.content.attr('data-content', pagenameLower);
+                cachedView.show();
+
+                /*
+                 * Load Javascript
+                 */
+                if (typeof MS.page[pagenameLower] !== 'undefined' &&
+                    typeof MS.page[pagenameLower].enter === 'function') {
+                    MS.page[pagenameLower].enter(cachedHeader, cachedView);
+                }
+
+                if (cachedHeader.length > 0) {
+                    MS.dom.header.attr('data-content', pagenameLower);
+                    cachedHeader.show();
+                }
+
+                if(MS.dom.body.hasClass('open-menu')) {
+                    MS.navigator.back();
+                } else {
+                    MS.navigator.history.push(pagename);
+                }
+                return;
+            }
 
             $.ajax({
                 url: './page/'+pagenameLower+'/index.html',
                 success: function(html) {
 
                     var dom = $("<div></div>").html(html),
-                        newView = dom.find('#view'+pagename).clone().removeAttr('id'),
-                        newHeader = dom.find('#header'+pagename).clone().removeAttr('id'),
+                        newView = dom.find('#view'+pagename).clone(),
+                        newHeader = dom.find('#header'+pagename).clone(),
                         templates = dom.find('.template'),
                         scroll;
 
-                    MS.dom.content.html(newView);
+                    MS.dom.content.find('.view').hide();
+
+                    MS.dom.content.prepend(newView);
+                    MS.dom.content.attr('data-content', pagenameLower);
 
                     if (newHeader.length > 0) {
-                        MS.dom.header.html(newHeader);
+                        MS.dom.header.find('.view').hide();
+                        MS.dom.header.prepend(newHeader);
+                        MS.dom.header.attr('data-content', pagenameLower);
                         MS.navigator.initSidemenu();
                         MS.dimens.header.update();
                     }
@@ -114,29 +166,24 @@ document.addEventListener('deviceready', function() {
                         }
                     });
 
-                    dom.find('script').prependTo(MS.dom.body);
+                    /*
+                     * Load Javascript
+                     */
+                    if (typeof MS.page[pagenameLower] !== 'undefined' &&
+                        typeof MS.page[pagenameLower].init === 'function') {
+                        MS.page[pagenameLower].init(newHeader, newView);
+                    }
+                    if (typeof MS.page[pagenameLower] !== 'undefined' &&
+                        typeof MS.page[pagenameLower].enter === 'function') {
+                        MS.page[pagenameLower].enter(cachedHeader, cachedView);
+                    }
 
                     newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
 
-//                    scroll = new iScroll(MS.dom.content.children('.view').first()[0], {
-//                        scrollbarClass: 'scrollbar'
-//                    });
-
                     if(MS.dom.body.hasClass('open-menu')) {
-                        MS.navigator.back(function() {
-                            if (typeof MS.fn === 'function') {
-                                MS.fn(newHeader, newView, scroll);
-                            }
-                        });
-
+                        MS.navigator.back();
                     } else {
-                        if (MS.navigator.history[MS.navigator.history.length-1] !== pagename) {
-                            MS.navigator.history.push(pagename);
-                        }
-
-                        if (typeof MS.fn === 'function') {
-                            MS.fn(newHeader, newView, scroll);
-                        }
+                        MS.navigator.history.push(pagename);
                     }
                 }
             });
