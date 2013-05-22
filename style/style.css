@@ -69,10 +69,10 @@ body {
 .fr {
   float: right;
 }
-.l {
+.l0 {
   left: 0;
 }
-.r {
+.r0 {
   right: 0;
 }
 .tl {
@@ -186,25 +186,36 @@ li {
   padding: 3em 0 0 0;
 }
 .sidebar ul li {
-  width: 85%;
-  height: 4.199999999999999em;
-  padding: 0.7em 5%;
   line-height: 1.4em;
+}
+.sidebar ul.navList li {
+  height: 1.4em;
+  padding: 0.8em 5%;
+}
+.sidebar ul.navList li img {
+  height: 1.4em;
+  vertical-align: middle;
+  margin-right: 0.7em;
+}
+.sidebar ul.calList li {
+  width: 85%;
+  padding: 0.7em 5%;
+  height: 4.199999999999999em;
   overflow: hidden;
   color: rgba(255, 255, 255, 0.7);
 }
-.sidebar ul li:first-child {
+.sidebar ul.calList li:first-child {
   background-color: #007acc;
   color: rgba(255, 255, 255, 0.5);
 }
-.sidebar ul li div {
+.sidebar ul.calList li div {
   overflow: hidden;
   white-space: nowrap;
 }
-.sidebar ul li div:first-child {
+.sidebar ul.calList li div:first-child {
   color: rgba(255, 255, 255, 0.9);
 }
-.sidebar ul li img {
+.sidebar ul.calList li img {
   float: left;
   width: 1.5em;
   height: 1.5em;

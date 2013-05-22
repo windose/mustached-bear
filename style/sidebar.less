@@ -9,34 +9,52 @@
         padding: @header-height 0 0 0;
 
         li {
-            width: 85%;
-            height: 3*@line-height;
-            padding: 0.5*@line-height @body-padding;
             line-height: @line-height;
-            overflow: hidden;
-            color: @color-font-lighter;
+        }
 
-            &:first-child {
-                background-color: @color-main;
-                color: @color-font-light;
-            }
+        &.navList {
+            li {
+                height: @line-height;
+                padding: 0.5*(@header-height - @line-height) @body-padding;
 
-            div {
-                overflow: hidden;
-                white-space: nowrap;
-
-                &:first-child {
-                    color: @color-font;
+                img {
+                    height: @line-height;
+                    vertical-align: middle;
+                    margin-right: 0.5*@line-height;
                 }
             }
+        }
 
-            img {
-                float: left;
-                width: 1.5em;
-                height: 1.5em;
-                margin: 0 0.75em;
-                padding: 0.125em;
-                border: 0 solid rgba(255,255,255,0.2);
+        &.calList {
+            li {
+                width: 85%;
+                padding: 0.5*@line-height @body-padding;
+                height: 3*@line-height;
+                overflow: hidden;
+                color: @color-font-lighter;
+
+                &:first-child {
+                    background-color: @color-main;
+                    color: @color-font-light;
+                }
+
+                div {
+                    overflow: hidden;
+                    white-space: nowrap;
+
+                    &:first-child {
+                        color: @color-font;
+                    }
+                }
+
+                img {
+                    float: left;
+                    width: 1.5em;
+                    height: 1.5em;
+                    margin: 0 0.75em;
+                    padding: 0.125em;
+                    border: 0 solid rgba(255,255,255,0.2);
+                }
             }
         }
     }
