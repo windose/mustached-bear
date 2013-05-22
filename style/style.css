@@ -138,6 +138,7 @@ body {
   position: relative;
   padding: 0;
   margin: 0;
+  line-height: 1.4em;
 }
 html,
 body {
@@ -182,11 +183,11 @@ li {
   display: none;
   background-color: #232124;
 }
-.sidebar ul {
-  padding: 3em 0 0 0;
+.sidebar .heading {
+  padding: 0.8em 5%;
 }
-.sidebar ul li {
-  line-height: 1.4em;
+.sidebar ul.navList {
+  padding: 3em 0 0 0;
 }
 .sidebar ul.navList li {
   height: 1.4em;
@@ -280,7 +281,6 @@ li {
 }
 .news li {
   overflow: hidden;
-  line-height: 1.4em;
   max-height: 6.95em;
   margin: 1.4em 5%;
   -webkit-transition: max-height 0.5s ease-in-out;
@@ -332,7 +332,6 @@ li {
   padding: 0.8em 2%;
   margin: 0 0 0 3%;
   height: 1.4em;
-  line-height: 1.4em;
   color: rgba(255, 255, 255, 0.9);
 }
 .header .news-cal span {
