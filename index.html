@@ -27,11 +27,12 @@
         document.addEventListener('deviceready', function() {
             $('.sidebar').height(MS.dimens.viewport.height);
 
-            if (device.platform === 'Android') {
-                document.addEventListener("backbutton", function backbutton() {
-                    MS.navigator.back();
-                }, false);
-            }
+            // TODO, buggy
+//            if (device.platform === 'Android') {
+//                document.addEventListener("backbutton", function backbutton() {
+//                    MS.navigator.back();
+//                }, false);
+//            }
 
             MS.navigator.goTo('News');
 
