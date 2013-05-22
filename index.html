@@ -40,7 +40,7 @@
 
             MS.navigator.goTo('News');
 
-            MS.dom.sidebarLeft.find('li').bind('touchstart', function() {
+            MS.dom.sidebarLeft.find('li').bind('touchend', function() {
                 MS.navigator.goTo($(this).attr('data-target'));
             });
         }, false);
