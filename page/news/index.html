@@ -21,7 +21,7 @@
                 isTap = false;
 
             // TODO use event delegation
-
+            // TODO BUG: dont open newsitem on closing the sidemenu
             items.bind('touchstart', function() {
                 if (MS.dom.body.hasClass('open-menu')) { return; }
                 isTap = true;
