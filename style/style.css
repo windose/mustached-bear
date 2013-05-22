@@ -294,7 +294,14 @@ li {
   padding: 0.8em 0;
   display: inline-block;
   width: 47.22222222222222%;
-  background-color: rgba(255, 255, 255, 0.3);
+  height: 1.4em;
+  background-color: #6f6d70;
+  color: #232124;
+}
+.news li.dateDialog span img {
+  height: 1.4em;
+  vertical-align: middle;
+  margin-right: 0.7em;
 }
 .news li.open {
   max-height: 42em;
@@ -305,7 +312,7 @@ li {
 .news li .footer {
   margin: 0.25em 0;
 }
-.news li img {
+.news li > img {
   float: left;
   width: 2.64em;
   height: 2em;

@@ -34,7 +34,15 @@
                 padding: 0.5*(@header-height - @line-height) 0;
                 display: inline-block;
                 width: (50% - (100/90*5*0.5));
-                background-color: @color-button;
+                height: @line-height;
+                background-color: @color-bgr-light;
+                color: @color-bgr;
+
+                img {
+                    height: @line-height;
+                    vertical-align: middle;
+                    margin-right: 0.5*@line-height;
+                }
             }
         }
 
@@ -50,7 +58,7 @@
             margin: 0.25em 0;
         }
 
-        img {
+        & > img {
             float: left;
             width: 2em*1.32;
             height: 2em;
