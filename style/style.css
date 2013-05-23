@@ -361,6 +361,36 @@ img {
 .courses ul {
   padding: 1.4em 5%;
 }
+.courses .sem1,
+.courses .sem2,
+.courses .sem3,
+.courses .sem4,
+.courses .sem5,
+.courses .sem6,
+.courses .sem7 {
+  display: none;
+}
+.courses[data-list='1'] .sem1 {
+  display: block;
+}
+.courses[data-list='2'] .sem2 {
+  display: block;
+}
+.courses[data-list='3'] .sem3 {
+  display: block;
+}
+.courses[data-list='4'] .sem4 {
+  display: block;
+}
+.courses[data-list='5'] .sem5 {
+  display: block;
+}
+.courses[data-list='1'] .sem6 {
+  display: block;
+}
+.courses[data-list='7'] .sem7 {
+  display: block;
+}
 .coursesSem span {
   width: 12.5%;
   text-align: center;

@@ -6,6 +6,13 @@ window.MS.page = window.MS.page || {};
     MS.page.courses = {
         init: function(header, view) {
             console.log('init courses');
+            var courses;
+
+            courses = view.find('.courses');
+
+            header.find('.coursesSem').find('span').on('touchend', function() {
+                courses.attr('data-list', $(this).html());
+            });
 
             /*
             view.hammer().on('swipeleft', function() {

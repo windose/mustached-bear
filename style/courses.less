@@ -1,5 +1,23 @@
-.courses ul {
-    padding: @line-height @body-padding;
+.courses {
+    ul {
+        padding: @line-height @body-padding;
+    }
+
+    .sem1,
+    .sem2,
+    .sem3,
+    .sem4,
+    .sem5,
+    .sem6,
+    .sem7 { display: none; }
+
+    &[ data-list='1' ] { .sem1 { display: block; } }
+    &[ data-list='2' ] { .sem2 { display: block; } }
+    &[ data-list='3' ] { .sem3 { display: block; } }
+    &[ data-list='4' ] { .sem4 { display: block; } }
+    &[ data-list='5' ] { .sem5 { display: block; } }
+    &[ data-list='1' ] { .sem6 { display: block; } }
+    &[ data-list='7' ] { .sem7 { display: block; } }
 }
 
 .coursesSem {
