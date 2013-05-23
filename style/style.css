@@ -152,6 +152,10 @@ ul,
 li {
   list-style-type: none;
 }
+img {
+  height: 1.4em;
+  vertical-align: middle;
+}
 .template,
 .view {
   display: none;
