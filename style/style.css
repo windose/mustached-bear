@@ -225,7 +225,7 @@ img {
   box-shadow: none;
   font-size: 1.5em;
   height: 2em;
-  border: 1px solid #6f6d70;
+  border: 0;
 }
 #login form input {
   color: #bbb;
