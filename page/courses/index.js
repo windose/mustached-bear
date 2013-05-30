@@ -13,18 +13,31 @@ window.MS.page = window.MS.page || {};
          */
         init: function(header, view) {
             console.log('init courses');
-            var courses;
 
-            courses = view.find('.courses');
+            var listItems,
+                isTap;
 
             header.find('.coursesSem').find('span').on('touchend', function() {
                 var sem = $(this).html();
-                courses.removeClass('list'+courses.attr('data-list'));
-                courses.attr('data-list', sem);
-                courses.addClass('list'+courses.attr('data-list'), sem);
+                view.removeClass('list'+view.attr('data-list'));
+                view.attr('data-list', sem);
+                view.addClass('list'+view.attr('data-list'), sem);
             });
 
-            view.find('li').on('touchend', function() {
+
+            listItems = view.find('li');
+
+            items.on('touchstart', function() {
+                isTap = true;
+            });
+
+            items.on('touchmove', function() {
+                isTap = false;
+            });
+
+            listItems.on('touchend', function() {
+                if (!isTap) { return; }
+
                 var self = $(this);
                 if (self.hasClass('on')) {
                     self.removeClass('on').addClass('off');
@@ -32,17 +45,6 @@ window.MS.page = window.MS.page || {};
                     self.removeClass('off').addClass('on');
                 }
             });
-
-            /*
-            view.hammer().on('swipeleft', function() {
-                var pos = 80/courses.length*0.8;
-                view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
-            });
-            view.hammer().on('swiperight', function() {
-                var pos = 80/courses.length*0.8;
-                view.css('-webkit-transform', 'translate3d('+pos+'%,0,0)');
-            });
-            */
         },
         enter: function(header, view) {
             console.log('enter courses');
