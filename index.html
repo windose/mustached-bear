@@ -53,7 +53,12 @@
                 //MS.navigator.goTo('Courses');
 
                 MS.dom.sidebarLeft.on('touchend', 'li', function() {
-                    MS.navigator.goTo($(this).attr('data-target'));
+                    var target = $(this).attr('data-target');
+                    if (target === 'Logout') {
+                        MS.dom.login.removeClass('loggedIn');
+                    } else {
+                        MS.navigator.goTo(target);
+                    }
                 });
 
                 MS.dom.window.on('touchmove', function() {
