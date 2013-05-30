@@ -29,6 +29,7 @@
         <script src="./page/courses/index.js"></script>
 
         <script type="text/javascript">
+            window.MS = window.MS || {};
 
             document.addEventListener('deviceready', function() {
                 $('.sidebar').height(MS.dimens.viewport.height);
@@ -44,10 +45,6 @@
                     MS.dom.loginSubmit.addClass('touch');
                 });
 
-                MS.dom.login.on('touchend', function() {
-                    MS.dom.loginSubmit.removeClass('touch');
-                });
-
                 MS.dom.loginSubmit.on('touchend', function() {
                     MS.dom.login.addClass('loggedIn');
                 });
@@ -55,8 +52,23 @@
                 MS.navigator.goTo('News');
                 //MS.navigator.goTo('Courses');
 
-                MS.dom.sidebarLeft.find('li').bind('touchend', function() {
+                MS.dom.sidebarLeft.on('touchend', 'li', function() {
                     MS.navigator.goTo($(this).attr('data-target'));
+                });
+
+                MS.dom.window.on('touchmove', function() {
+                    MS.isMove = true;
+                });
+
+                MS.dom.window.on('touchend', function() {
+                    $('.touch').removeClass('touch');
+                    MS.isMove = false;
+                });
+
+                MS.dom.body.on('touchend', function() {
+                    if(MS.dom.body.hasClass('open-menu')) {
+                        MS.navigator.back();
+                    }
                 });
             }, false);
 

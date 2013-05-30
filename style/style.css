@@ -439,6 +439,9 @@ img {
   padding: 0.8em 2%;
   height: 1.4em;
 }
+.header .newsCal.touch {
+  background-color: #0069bb;
+}
 .header .newsCal .light {
   color: rgba(255, 255, 255, 0.5);
 }

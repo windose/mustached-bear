@@ -5,7 +5,10 @@ window.MS.page = window.MS.page || {};
 
     MS.page.news = {
         init: function(header, view) {
-            console.log('init news');
+
+            MS.dom.header.on('touchstart', '.mheader, .newsCal', function(e) {
+                $(this).addClass('touch');
+            });
 
             header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
 
@@ -20,22 +23,8 @@ window.MS.page = window.MS.page || {};
             /*
              * Expend a news item on touch
              */
-            var items = view.find('li'),
-                isTap = false;
-
-            // TODO use event delegation
-            // TODO BUG: dont open newsitem on closing the sidemenu
-            items.bind('touchstart', function() {
-                if (MS.dom.body.hasClass('open-menu')) { return; }
-                isTap = true;
-            });
-
-            items.bind('touchmove', function() {
-                isTap = false;
-            });
-
-            items.bind('touchend', function() {
-                if (!isTap) { return; }
+            view.on('touchend', 'li', function() {
+                if (MS.isMove) { return; }
 
                 var self = $(this);
 

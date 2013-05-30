@@ -6,18 +6,14 @@ window.MS.page = window.MS.page || {};
     MS.page.courses = {
 
         /**
-         * TODO: Event delegation
+         *
          *
          * @param header
          * @param view
          */
         init: function(header, view) {
-            console.log('init courses');
 
-            var listItems,
-                isTap;
-
-            header.find('.coursesSem').find('span').on('touchend', function() {
+            header.find('.coursesSem').on('touchend', 'span', function() {
                 var sem = $(this).html();
                 view.removeClass('list'+view.attr('data-list'));
                 view.attr('data-list', sem);
@@ -25,18 +21,8 @@ window.MS.page = window.MS.page || {};
             });
 
 
-            listItems = view.find('li');
-
-            listItems.on('touchstart', function() {
-                isTap = true;
-            });
-
-            listItems.on('touchmove', function() {
-                isTap = false;
-            });
-
-            listItems.on('touchend', function() {
-                if (!isTap) { return; }
+            view.on('touchend', 'li', function() {
+                if (MS.isMove) { return; }
 
                 var self = $(this);
                 if (self.hasClass('on')) {

@@ -8,38 +8,30 @@ document.addEventListener('deviceready', function() {
         /**
          *
          */
-        initSidemenu: function initSidemenu() {
+        initSidemenu: function initSidemenu(header) {
             // Event handler
-            MS.dom.header.find('.openSidebarLeft').unbind('touchend').bind('touchend', function() {
+            header.find('.openSidebarLeft').on('touchend', function() {
                 if(!MS.dom.body.hasClass('open-menu')) {
-                    MS.navigator.history.push('sidebarLeft');
-                    MS.dom.sidebarLeft.show();
-                    MS.dom.body.addClass('open-menu');
-                    MS.dom.body.addClass('right');
-                } else {
-                    MS.navigator.back();
+                    setTimeout(function() {
+                        MS.navigator.history.push('sidebarLeft');
+                        MS.dom.sidebarLeft.show();
+                        MS.dom.body.addClass('open-menu');
+                        MS.dom.body.addClass('right');
+                    }, 1);
                 }
-
-                return false;
             });
 
-            MS.dom.header.find('.openSidebarRight').unbind('touchend').bind('touchend', function() {
+            header.find('.openSidebarRight').on('touchend', function() {
+
                 if(!MS.dom.body.hasClass('open-menu')) {
-                    MS.navigator.history.push('sidebarRight');
-                    MS.dom.sidebarRight.show();
-                    MS.dom.body.addClass('open-menu');
-                    MS.dom.body.addClass('left');
-                } else {
-                    MS.navigator.back();
+                    setTimeout(function() {
+                        MS.navigator.history.push('sidebarRight');
+                        MS.dom.sidebarRight.show();
+                        MS.dom.body.addClass('open-menu');
+                        MS.dom.body.addClass('left');
+                    }, 1);
                 }
 
-                return false;
-            });
-
-            MS.dom.body.unbind('touchend').bind('touchend', function() {
-                if(MS.dom.body.hasClass('open-menu')) {
-                    MS.navigator.back();
-                }
             });
         },
 
@@ -143,8 +135,7 @@ document.addEventListener('deviceready', function() {
                     var dom = $("<div></div>").html(html),
                         newView = dom.find('#view'+pagename).clone(),
                         newHeader = dom.find('#header'+pagename).clone(),
-                        templates = dom.find('.template'),
-                        scroll;
+                        templates = dom.find('.template');
 
                     MS.dom.content.find('.view').hide();
 
@@ -155,7 +146,7 @@ document.addEventListener('deviceready', function() {
                         MS.dom.header.find('.view').hide();
                         MS.dom.header.prepend(newHeader);
                         MS.dom.header.attr('data-content', pagenameLower);
-                        MS.navigator.initSidemenu();
+                        MS.navigator.initSidemenu(newHeader);
                         MS.dimens.header.update();
                     }
 
