@@ -377,6 +377,9 @@ img {
 .courses ul li {
   margin-bottom: 1em;
 }
+.courses ul li img {
+  margin-right: 1em;
+}
 .courses ul li input,
 .courses ul li .on,
 .courses ul li .off {
