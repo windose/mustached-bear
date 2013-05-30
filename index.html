@@ -55,6 +55,7 @@
                 MS.dom.sidebarLeft.on('touchend', 'li', function() {
                     var target = $(this).attr('data-target');
                     if (target === 'Logout') {
+                        MS.navigator.back();
                         MS.dom.login.removeClass('loggedIn');
                     } else {
                         MS.navigator.goTo(target);
