@@ -450,3 +450,11 @@ img {
 .coursesSem.fak07 span:nth-child(8) {
   background-color: #14b6dd;
 }
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 3em;
+  width: 94%;
+  margin: 0 3%;
+  background: #007acc;
+}
