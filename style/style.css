@@ -84,11 +84,17 @@ body {
 .tc {
   text-align: center;
 }
-.y {
+.ty {
   color: #7acc00;
 }
-.n {
+.tn {
   color: rgba(255, 255, 255, 0.9);
+}
+.by {
+  background-color: #7acc00;
+}
+.bn {
+  background-color: #6f6d70;
 }
 /* Raleway */
 @font-face {
@@ -347,7 +353,7 @@ img {
 .news li:first-line {
   color: rgba(255, 255, 255, 0.9);
 }
-.news li .footer {
+.news li .bottom {
   margin: 0.25em 0;
 }
 .news li > img {
@@ -421,6 +427,22 @@ img {
 .courses.list7 .sem7 {
   display: block;
 }
+.courses .footer {
+  position: fixed;
+  bottom: 0;
+  height: 3em;
+  width: 94%;
+  margin: 0 3%;
+}
+.courses .footer span {
+  height: 1em;
+  width: 48.611111111111114%;
+  padding: 1em 0;
+  text-align: center;
+}
+.courses .footer span img {
+  margin-right: 1em;
+}
 .coursesSem span {
   width: 12.5%;
   text-align: center;
@@ -449,12 +471,4 @@ img {
 }
 .coursesSem.fak07 span:nth-child(8) {
   background-color: #14b6dd;
-}
-.footer {
-  position: fixed;
-  bottom: 0;
-  height: 3em;
-  width: 94%;
-  margin: 0 3%;
-  background: #007acc;
 }
