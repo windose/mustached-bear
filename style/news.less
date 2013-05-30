@@ -22,16 +22,17 @@
         }
 
         &.dateDialog {
-            margin-top: 0.5*(@line-height - 1em);
+            /*margin-top: 0.5*(@line-height - 1em);*/
+            margin-top: 0;
             text-align: center;
+
+            .y { font-family: "Raleway-SemiBold"; }
 
             span {
                 padding: 0.5*(@header-height - @line-height) 0;
                 display: inline-block;
                 width: (50% - (100/(100 - 2*@body-padding)*0.25*@body-padding));
                 height: @line-height;
-                background-color: @color-bgr-light;
-                color: @color-bgr;
 
                 img {
                     height: @line-height;

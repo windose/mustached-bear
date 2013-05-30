@@ -84,6 +84,12 @@ body {
 .tc {
   text-align: center;
 }
+.y {
+  color: #7acc00;
+}
+.n {
+  color: rgba(255, 255, 255, 0.9);
+}
 /* Raleway */
 @font-face {
   font-family: "Raleway-Thin";
@@ -316,16 +322,19 @@ img {
   margin: 1.4em 5% 0;
 }
 .news li.dateDialog {
-  margin-top: 0.19999999999999996em;
+  /*margin-top: 0.5*(@line-height - 1em);*/
+
+  margin-top: 0;
   text-align: center;
+}
+.news li.dateDialog .y {
+  font-family: "Raleway-SemiBold";
 }
 .news li.dateDialog span {
   padding: 0.8em 0;
   display: inline-block;
   width: 48.611111111111114%;
   height: 1.4em;
-  background-color: #6f6d70;
-  color: #232124;
 }
 .news li.dateDialog span img {
   height: 1.4em;
