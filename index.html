@@ -40,8 +40,20 @@
     //                }, false);
     //            }
 
-                //MS.navigator.goTo('News');
-                MS.navigator.goTo('Courses');
+                MS.dom.loginSubmit.on('touchstart', function() {
+                    MS.dom.loginSubmit.addClass('touch');
+                });
+
+                MS.dom.login.on('touchend', function() {
+                    MS.dom.loginSubmit.removeClass('touch');
+                });
+
+                MS.dom.loginSubmit.on('touchend', function() {
+                    MS.dom.login.addClass('loggedIn');
+                });
+
+                MS.navigator.goTo('News');
+                //MS.navigator.goTo('Courses');
 
                 MS.dom.sidebarLeft.find('li').bind('touchend', function() {
                     MS.navigator.goTo($(this).attr('data-target'));
@@ -63,7 +75,7 @@
                 </ul>
             </div>
 
-            <div id="body" class="full dn">
+            <div id="body" class="full">
                 <div id="header" class="header"></div>
                 <div id="content"></div>
             </div>
@@ -81,7 +93,7 @@
                     </tr>
                     <tr><td colspan="2" class="space">&nbsp;</td></tr>
                     <tr>
-                        <td colspan="2"><button type="submit" id="submit">Einloggen</button></td>
+                        <td colspan="2"><button type="submit" id="loginSubmit">Einloggen</button></td>
                     </tr>
                 </table>
             </div>

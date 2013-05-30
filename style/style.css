@@ -207,6 +207,12 @@ img {
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center;
+  z-index: 3;
+  -webkit-transition-duration: .2s;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+#login.loggedIn {
+  -webkit-transform: translate3d(0, -100%, 0);
 }
 #login table {
   position: absolute;
@@ -251,6 +257,9 @@ img {
   color: rgba(255, 255, 255, 0.5);
   background-color: #7acc00;
   width: 100%;
+}
+#login table button.touch {
+  background-color: #69bb00;
 }
 .sidebar {
   position: absolute;
