@@ -438,11 +438,11 @@ img {
 .courses .footer span {
   height: 1em;
   width: 48.611111111111114%;
-  padding: 1em 0;
+  padding: 0.9em 0 1.1em 0;
   text-align: center;
 }
 .courses .footer span img {
-  margin-right: 1em;
+  margin: -0.19999999999999996em 1em 0 0;
 }
 .coursesSem span {
   width: 12.5%;
