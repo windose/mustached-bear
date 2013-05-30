@@ -7,10 +7,13 @@
 
         li {
             margin-bottom: 1em;
-            input { display: none; }
-            .on, .off { display: none; }
-            input:checked ~ .on { display: inline-block; }
-            input:not(:checked) ~ .off { display: inline-block; }
+            input, .on, .off { display: none; }
+
+//            input:checked ~ .on { display: inline-block; }
+//            input:not(:checked) ~ .off { display: inline-block; }
+
+            &.on .on { display: inline-block; }
+            &.off .off { display: inline-block; }
         }
     }
 

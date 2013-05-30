@@ -4,6 +4,13 @@ window.MS.page = window.MS.page || {};
 (function() {
 
     MS.page.courses = {
+
+        /**
+         * TODO: Event delegation
+         *
+         * @param header
+         * @param view
+         */
         init: function(header, view) {
             console.log('init courses');
             var courses;
@@ -15,6 +22,15 @@ window.MS.page = window.MS.page || {};
                 courses.removeClass('list'+courses.attr('data-list'));
                 courses.attr('data-list', sem);
                 courses.addClass('list'+courses.attr('data-list'), sem);
+            });
+
+            view.find('li').on('touchend', function() {
+                var self = $(this);
+                if (self.hasClass('on')) {
+                    self.removeClass('on').addClass('off');
+                } else {
+                    self.removeClass('off').addClass('on');
+                }
             });
 
             /*

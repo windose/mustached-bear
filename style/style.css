@@ -377,17 +377,15 @@ img {
 .courses ul li {
   margin-bottom: 1em;
 }
-.courses ul li input {
-  display: none;
-}
+.courses ul li input,
 .courses ul li .on,
 .courses ul li .off {
   display: none;
 }
-.courses ul li input:checked ~ .on {
+.courses ul li.on .on {
   display: inline-block;
 }
-.courses ul li input:not(:checked) ~ .off {
+.courses ul li.off .off {
   display: inline-block;
 }
 .courses .sem1,
