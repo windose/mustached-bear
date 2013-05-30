@@ -1,6 +1,17 @@
 .courses {
+    overflow-y: scroll;
+    overflow-x: hidden;
+
     ul {
         padding: @line-height @body-padding;
+
+        li {
+            margin-bottom: 1em;
+            input { display: none; }
+            .on, .off { display: none; }
+            input:checked ~ .on { display: inline-block; }
+            input:not(:checked) ~ .off { display: inline-block; }
+        }
     }
 
     .sem1,
@@ -11,13 +22,13 @@
     .sem6,
     .sem7 { display: none; }
 
-    &[ data-list='1' ] { .sem1 { display: block; } }
-    &[ data-list='2' ] { .sem2 { display: block; } }
-    &[ data-list='3' ] { .sem3 { display: block; } }
-    &[ data-list='4' ] { .sem4 { display: block; } }
-    &[ data-list='5' ] { .sem5 { display: block; } }
-    &[ data-list='6' ] { .sem6 { display: block; } }
-    &[ data-list='7' ] { .sem7 { display: block; } }
+    &.list1 { .sem1 { display: block; } }
+    &.list2 { .sem2 { display: block; } }
+    &.list3 { .sem3 { display: block; } }
+    &.list4 { .sem4 { display: block; } }
+    &.list5 { .sem5 { display: block; } }
+    &.list6 { .sem6 { display: block; } }
+    &.list7 { .sem7 { display: block; } }
 }
 
 .coursesSem {

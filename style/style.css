@@ -367,8 +367,28 @@ img {
 .header .newsCal .light {
   color: rgba(255, 255, 255, 0.5);
 }
+.courses {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .courses ul {
   padding: 1.4em 5%;
+}
+.courses ul li {
+  margin-bottom: 1em;
+}
+.courses ul li input {
+  display: none;
+}
+.courses ul li .on,
+.courses ul li .off {
+  display: none;
+}
+.courses ul li input:checked ~ .on {
+  display: inline-block;
+}
+.courses ul li input:not(:checked) ~ .off {
+  display: inline-block;
 }
 .courses .sem1,
 .courses .sem2,
@@ -379,25 +399,25 @@ img {
 .courses .sem7 {
   display: none;
 }
-.courses[data-list='1'] .sem1 {
+.courses.list1 .sem1 {
   display: block;
 }
-.courses[data-list='2'] .sem2 {
+.courses.list2 .sem2 {
   display: block;
 }
-.courses[data-list='3'] .sem3 {
+.courses.list3 .sem3 {
   display: block;
 }
-.courses[data-list='4'] .sem4 {
+.courses.list4 .sem4 {
   display: block;
 }
-.courses[data-list='5'] .sem5 {
+.courses.list5 .sem5 {
   display: block;
 }
-.courses[data-list='6'] .sem6 {
+.courses.list6 .sem6 {
   display: block;
 }
-.courses[data-list='7'] .sem7 {
+.courses.list7 .sem7 {
   display: block;
 }
 .coursesSem span {

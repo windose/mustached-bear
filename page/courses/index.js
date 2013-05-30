@@ -11,7 +11,10 @@ window.MS.page = window.MS.page || {};
             courses = view.find('.courses');
 
             header.find('.coursesSem').find('span').on('touchend', function() {
-                courses.attr('data-list', $(this).html());
+                var sem = $(this).html();
+                courses.removeClass('list'+courses.attr('data-list'));
+                courses.attr('data-list', sem);
+                courses.addClass('list'+courses.attr('data-list'), sem);
             });
 
             /*
