@@ -206,14 +206,14 @@ img {
   background: url('../asset/img/login.jpg');
   background-repeat: no-repeat;
   background-size: auto 100%;
-  background-position: 18% 0;
+  background-position: center;
 }
 #login form {
   background-color: #232124;
   position: absolute;
   bottom: 0;
   width: 100%;
-  margin: 0 0 30%;
+  margin: 0 0 25%;
   padding: 1em 0;
   text-align: center;
 }
