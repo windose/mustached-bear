@@ -208,17 +208,23 @@ img {
   background-size: auto 100%;
   background-position: center;
 }
-#login form {
-  background-color: #232124;
+#login table {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  margin: 0 0 25%;
+  width: 80%;
+  margin: 0 10% 25%;
   padding: 1em 0;
-  text-align: center;
+  border-spacing: 0;
 }
-#login form input,
-#login form button {
+#login table td {
+  background-color: #eeecef;
+}
+#login table .space {
+  line-height: 0.5em;
+  background-color: transparent;
+}
+#login table input,
+#login table button {
   -webkit-text-shadow: none;
   text-shadow: none;
   -webkit-box-shadow: none;
@@ -227,28 +233,23 @@ img {
   height: 2em;
   border: 0;
 }
-#login form label {
-  display: block;
-  width: 80%;
-  margin: auto;
-  text-align: left;
+#login table .iconBackground {
+  width: 3em;
+  height: 1.4em;
+  padding: 0.8em 0;
+  text-align: center;
+  background-color: #232124;
 }
-#login form label img {
-  width: 6%;
-  margin: 0 4% 0 0;
-  height: auto;
-}
-#login form label input {
+#login table input {
   color: #bbb;
-  margin: 0 0 0.5em;
-  width: 80%;
+  background-color: #eeecef;
   padding: 0 5%;
 }
-#login form button {
+#login table button {
   font-family: 'Raleway-Regular';
   color: rgba(255, 255, 255, 0.5);
   background-color: #7acc00;
-  width: 80%;
+  width: 100%;
 }
 .sidebar {
   position: absolute;

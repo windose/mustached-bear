@@ -4,14 +4,20 @@
     background-size: auto 100%;
     background-position: center;
 
-    form {
-        background-color: @color-bgr;
+    table {
         position: absolute;
         bottom: 0;
-        width: 100%;
-        margin: 0 0 25%;
+        width: 80%;
+        margin: 0 10% 25%;
         padding: 1em 0;
-        text-align: center;
+        border-spacing: 0;
+
+        td { background-color: @color-bgr-white; }
+
+        .space {
+            line-height: 0.5em;
+            background-color: transparent;
+        }
 
         input, button {
             -webkit-text-shadow: none;
@@ -23,31 +29,25 @@
             border: 0;
         }
 
-        label {
-            display: block;
-            width: 80%;
-            margin: auto;
-            text-align: left;
+        .iconBackground {
+            width: 3em;
+            height: 1.4em;
+            padding: 0.8em 0;
+            text-align: center;
+            background-color: @color-bgr;
+        }
 
-            img {
-                width: 6%;
-                margin: 0 4% 0 0;
-                height: auto;
-            }
-
-            input {
-                color: #bbb;
-                margin: 0 0 0.5em;
-                width: 80%;
-                padding: 0 5%;
-            }
+        input {
+            color: #bbb;
+            background-color: @color-bgr-white;
+            padding: 0 5%;
         }
 
         button {
             font-family: 'Raleway-Regular';
             color: @color-font-light;
             background-color: @color-bgr-yes;
-            width: 80%;
+            width: 100%;
         }
     }
 }
