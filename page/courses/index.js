@@ -27,11 +27,11 @@ window.MS.page = window.MS.page || {};
 
             listItems = view.find('li');
 
-            items.on('touchstart', function() {
+            listItems.on('touchstart', function() {
                 isTap = true;
             });
 
-            items.on('touchmove', function() {
+            listItems.on('touchmove', function() {
                 isTap = false;
             });
 
