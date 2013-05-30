@@ -1,94 +1,102 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Mustached bear! What else?</title>
+<html class="h100">
+    <head>
+        <meta charset="utf-8">
+        <title>Mustached bear! What else?</title>
 
-    <meta name="viewport" content="
-        width=device-width,
-        initial-scale=1,
-        maximum-scale=1,
-        user-scalable=no,
-        target-densitydpi=device-dpi">
+        <meta name="viewport" content="
+            width=device-width,
+            initial-scale=1,
+            maximum-scale=1,
+            user-scalable=no,
+            target-densitydpi=device-dpi">
 
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="email=no" />
-    <meta name="format-detection" content="address=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <meta name="format-detection" content="address=no" />
 
-    <script src="./lib/cordova-2.5.0.js"></script>
-    <script src="./lib/jquery-2.0.0.min.js"></script>
-    <script src="./lib/iscroll.js"></script>
+        <script src="./lib/cordova-2.5.0.js"></script>
+        <script src="./lib/jquery-2.0.0.min.js"></script>
+        <script src="./lib/iscroll.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="./style/style.css">
+        <link rel="stylesheet" type="text/css" href="./style/style.css">
 
-    <script src="./script/dom.js"></script>
-    <script src="./script/dimens.js"></script>
-    <script src="./script/navigator.js"></script>
+        <script src="./script/dom.js"></script>
+        <script src="./script/dimens.js"></script>
+        <script src="./script/navigator.js"></script>
 
-    <script src="./page/news/index.js"></script>
-    <script src="./page/courses/index.js"></script>
+        <script src="./page/news/index.js"></script>
+        <script src="./page/courses/index.js"></script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        document.addEventListener('deviceready', function() {
-            $('.sidebar').height(MS.dimens.viewport.height);
+            document.addEventListener('deviceready', function() {
+                $('.sidebar').height(MS.dimens.viewport.height);
 
-            // TODO, buggy
-//            if (device.platform === 'Android') {
-//                document.addEventListener("backbutton", function backbutton() {
-//                    MS.navigator.back();
-//                }, false);
-//            }
+                // TODO, buggy
+    //            if (device.platform === 'Android') {
+    //                document.addEventListener("backbutton", function backbutton() {
+    //                    MS.navigator.back();
+    //                }, false);
+    //            }
 
-            //MS.navigator.goTo('News');
-            MS.navigator.goTo('Courses');
+                //MS.navigator.goTo('News');
+                MS.navigator.goTo('Courses');
 
-            MS.dom.sidebarLeft.find('li').bind('touchend', function() {
-                MS.navigator.goTo($(this).attr('data-target'));
-            });
-        }, false);
+                MS.dom.sidebarLeft.find('li').bind('touchend', function() {
+                    MS.navigator.goTo($(this).attr('data-target'));
+                });
+            }, false);
 
-    </script>
-</head>
+        </script>
+    </head>
 
-<body>
+    <body class="h100">
 
-    <div>
-        <div id="sidebarLeft" class="sidebar l0">
-            <ul class="navList">
-                <li data-target="News"><img src="./asset/icon/einstellungen.png">Nachrichten</li>
-                <li data-target="Courses"><img src="./asset/icon/einstellungen.png">Kursliste</li>
-                <li data-target="Options"><img src="./asset/icon/einstellungen.png">Einstellungen</li>
-                <li data-target="Logout"><img src="./asset/icon/einstellungen.png">Ausloggen</li>
-            </ul>
+        <div class="h100">
+            <div id="sidebarLeft" class="sidebar l0">
+                <ul class="navList">
+                    <li data-target="News"><img src="./asset/icon/einstellungen.png">Nachrichten</li>
+                    <li data-target="Courses"><img src="./asset/icon/einstellungen.png">Kursliste</li>
+                    <li data-target="Options"><img src="./asset/icon/einstellungen.png">Einstellungen</li>
+                    <li data-target="Logout"><img src="./asset/icon/einstellungen.png">Ausloggen</li>
+                </ul>
+            </div>
+
+            <div id="body" class="full dn">
+                <div id="header" class="header"></div>
+                <div id="content"></div>
+            </div>
+
+            <div id="login" class="full">
+                <form>
+                    <input type="text" id="email">
+                    <input type="password" id="pw">
+                    <button type="submit" id="submit">Einloggen</button>
+                </form>
+            </div>
+
+            <div id="sidebarRight" class="sidebar r0">
+                <!--<div class="heading tr">Anstehende Termine</div>-->
+                <ul class="calList">
+                    <li>
+                        <div class="title">Modellbildung und Simulation</div>
+                        <div class="date">noch 30 min (XX.XX.XXXX um 14:30)</div>
+                        <div class="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp</div>
+                    </li>
+                    <li>
+                        <div class="title">Termin 2</div>
+                        <div class="date">noch 1 Std (XX.XX.XXXX um 12:30)</div>
+                        <div class="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp</div>
+                    </li>
+                    <li>
+                        <div class="title">Termin 3</div>
+                        <div class="date">noch 2 Tage (XX.XX.XXXX um 10:30)</div>
+                        <div class="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp</div>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div id="body">
-            <div id="header" class="header"></div>
-            <div id="content"></div>
-        </div>
-
-        <div id="sidebarRight" class="sidebar r0">
-            <!--<div class="heading tr">Anstehende Termine</div>-->
-            <ul class="calList">
-                <li>
-                    <div class="title">Modellbildung und Simulation</div>
-                    <div class="date">noch 30 min (XX.XX.XXXX um 14:30)</div>
-                    <div class="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp</div>
-                </li>
-                <li>
-                    <div class="title">Termin 2</div>
-                    <div class="date">noch 1 Std (XX.XX.XXXX um 12:30)</div>
-                    <div class="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp</div>
-                </li>
-                <li>
-                    <div class="title">Termin 3</div>
-                    <div class="date">noch 2 Tage (XX.XX.XXXX um 10:30)</div>
-                    <div class="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp</div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</body>
+    </body>
 </html>
