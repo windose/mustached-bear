@@ -351,16 +351,26 @@ img {
   height: 1.2000000000000002em;
 }
 .header .mheader.fl {
-  margin-left: 5%;
+  margin-left: 3%;
+  padding-left: 2%;
+  height: 3em;
 }
 .header .mheader.fl img {
   margin-left: 0;
 }
+.header .mheader.fl.touch {
+  background: #23394d;
+}
 .header .mheader.fr {
-  margin-right: 5%;
+  margin-right: 3%;
+  padding-right: 2%;
+  height: 3em;
 }
 .header .mheader.fr img {
   margin-right: 0;
+}
+.header .mheader.fr.touch {
+  background: #23394d;
 }
 .header img.mheader {
   height: 1.2000000000000002em;
@@ -397,6 +407,9 @@ img {
   text-align: justify;
   -webkit-column-count: 1;
   column-count: 1;
+}
+.news li.touch {
+  background: #23394d;
 }
 .news li.date {
   max-height: 4.1499999999999995em;
@@ -458,13 +471,22 @@ img {
 .courses ul {
   padding: 1.4em 5%;
 }
-.courses ul li {
-  margin-bottom: 1em;
+.courses ul li.touch {
+  background: #23394d;
 }
-.courses ul li img {
-  margin-right: 1em;
+.courses ul li label {
+  height: 2.8em;
+  padding: 0.1em 0;
+  display: block;
 }
-.courses ul li input,
+.courses ul li label img {
+  display: block;
+  float: left;
+  margin: 0.25em 1em 0 0;
+}
+.courses ul li label div {
+  float: left;
+}
 .courses ul li .on,
 .courses ul li .off {
   display: none;
@@ -519,6 +541,12 @@ img {
   padding: 0.9em 0 1.1em 0;
   text-align: center;
 }
+.courses .footer span.by.touch {
+  background-color: #69bb00;
+}
+.courses .footer span.bn.touch {
+  background-color: #5e5c5f;
+}
 .courses .footer span img {
   margin: -0.19999999999999996em 1em 0 0;
 }
@@ -530,24 +558,48 @@ img {
 .coursesSem.fak07 span:nth-child(1) {
   background-color: #0093ba;
 }
+.coursesSem.fak07 span:nth-child(1).touch {
+  background-color: #0082a9;
+}
 .coursesSem.fak07 span:nth-child(2) {
   background-color: #0098bf;
+}
+.coursesSem.fak07 span:nth-child(2).touch {
+  background-color: #0087ae;
 }
 .coursesSem.fak07 span:nth-child(3) {
   background-color: #009dc4;
 }
+.coursesSem.fak07 span:nth-child(3).touch {
+  background-color: #008cb3;
+}
 .coursesSem.fak07 span:nth-child(4) {
   background-color: #00a2c9;
+}
+.coursesSem.fak07 span:nth-child(4).touch {
+  background-color: #0091b8;
 }
 .coursesSem.fak07 span:nth-child(5) {
   background-color: #05a7ce;
 }
+.coursesSem.fak07 span:nth-child(5).touch {
+  background-color: #0096bd;
+}
 .coursesSem.fak07 span:nth-child(6) {
   background-color: #0aacd3;
+}
+.coursesSem.fak07 span:nth-child(6).touch {
+  background-color: #009bc2;
 }
 .coursesSem.fak07 span:nth-child(7) {
   background-color: #0fb1d8;
 }
+.coursesSem.fak07 span:nth-child(7).touch {
+  background-color: #00a0c7;
+}
 .coursesSem.fak07 span:nth-child(8) {
   background-color: #14b6dd;
+}
+.coursesSem.fak07 span:nth-child(8).touch {
+  background-color: #03a5cc;
 }

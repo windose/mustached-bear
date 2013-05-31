@@ -13,13 +13,24 @@
         }
 
         &.fl {
-            margin-left: @body-padding;
+            margin-left: 3/5*@body-padding;
+            padding-left: 2/5*@body-padding;
+            height: @header-height;
             img { margin-left: 0; }
+
+            &.touch {
+                background: @color-bgr + @color-main/5;
+            }
         }
 
         &.fr {
-            margin-right: @body-padding;
+            margin-right: 3/5*@body-padding;
+            padding-right: 2/5*@body-padding;
+            height: @header-height;
             img { margin-right: 0; }
+            &.touch {
+                background: @color-bgr + @color-main/5;
+            }
         }
     }
 

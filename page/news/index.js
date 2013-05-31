@@ -6,7 +6,10 @@ window.MS.page = window.MS.page || {};
     MS.page.news = {
         init: function(header, view) {
 
-            MS.dom.header.on('touchstart', '.mheader, .newsCal', function(e) {
+            header.on('touchstart', '.mheader, .newsCal', function() {
+                $(this).addClass('touch');
+            });
+            view.on('touchstart', 'li', function() {
                 $(this).addClass('touch');
             });
 

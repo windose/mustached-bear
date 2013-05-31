@@ -13,6 +13,13 @@ window.MS.page = window.MS.page || {};
          */
         init: function(header, view) {
 
+            header.on('touchstart', '.mheader, .coursesSem span', function() {
+                $(this).addClass('touch');
+            });
+            view.on('touchstart', 'li, .footer span', function() {
+                $(this).addClass('touch');
+            });
+
             header.find('.coursesSem').on('touchend', 'span', function() {
                 var sem = $(this).html();
                 view.removeClass('list'+view.attr('data-list'));

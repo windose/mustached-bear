@@ -6,14 +6,25 @@
         padding: @line-height @body-padding;
 
         li {
-            margin-bottom: 1em;
+            &.touch {
+                background: @color-bgr + @color-main/5;
+            }
 
-            img { margin-right: 1em; }
+            label {
+                height: 2.8em;
+                padding: 0.1em 0;
+                display: block;
 
-            input, .on, .off { display: none; }
-
-//            input:checked ~ .on { display: inline-block; }
-//            input:not(:checked) ~ .off { display: inline-block; }
+                img {
+                    display: block;
+                    float: left;
+                    margin: 0.25em 1em 0 0;
+                }
+                div {
+                    float: left;
+                }
+            }
+            .on, .off { display: none; }
 
             &.on .on { display: inline-block; }
             &.off .off { display: inline-block; }
@@ -50,6 +61,9 @@
             padding: 0.9em 0 1.1em 0;
             text-align: center;
 
+            &.by.touch { background-color: @color-bgr-yes - #111; }
+            &.bn.touch { background-color: @color-bgr-no - #111; }
+
             img {
                 margin: 0.5*(1em - @line-height) 1em 0 0;
             }
@@ -66,13 +80,45 @@
     }
 
     &.fak07 {
-        span:nth-child(1) { background-color: @color-fak07 - 3*#050505; }
-        span:nth-child(2) { background-color: @color-fak07 - 2*#050505; }
-        span:nth-child(3) { background-color: @color-fak07 - 1*#050505; }
-        span:nth-child(4) { background-color: @color-fak07 - 0*#050505; }
-        span:nth-child(5) { background-color: @color-fak07 + 1*#050505; }
-        span:nth-child(6) { background-color: @color-fak07 + 2*#050505; }
-        span:nth-child(7) { background-color: @color-fak07 + 3*#050505; }
-        span:nth-child(8) { background-color: @color-fak07 + 4*#050505; }
+        span:nth-child(1) {
+            @color: @color-fak07 - 3*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        span:nth-child(2) {
+            @color: @color-fak07 - 2*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        span:nth-child(3) {
+            @color: @color-fak07 - 1*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        span:nth-child(4) {
+            @color: @color-fak07 - 0*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        span:nth-child(5) {
+            @color: @color-fak07 + 1*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        span:nth-child(6) {
+            @color: @color-fak07 + 2*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        span:nth-child(7) {
+            @color: @color-fak07 + 3*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        span:nth-child(8) {
+            @color: @color-fak07 + 4*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
     }
 }
