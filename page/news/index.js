@@ -9,10 +9,10 @@ window.MS.page = window.MS.page || {};
             header.on('touchstart', '.mheader, .newsCal', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchstart', 'li', function() {
+            view.on('touchstart', 'li .article, img', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchmove', 'li', function() {
+            view.on('touchmove', 'li .article, img', function() {
                 $(this).removeClass('touch');
             });
 
@@ -21,25 +21,17 @@ window.MS.page = window.MS.page || {};
             /*
              * Expend a news item on touch
              */
-            view.on('touchend', 'li', function() {
+            view.on('touchend', 'li .article', function() {
                 if (MS.isMove) { return; }
 
-                var self = $(this);
+                var listItem = $(this).parents('li');
 
-                if (self.hasClass('open')) {
-                    self.removeClass('open');
+                if (listItem.hasClass('open')) {
+                    listItem.removeClass('open');
                 } else {
-                    self.addClass('open');
+                    listItem.addClass('open');
                 }
             });
-
-            // Add date dialog
-            var template = $('#tDateDialog');
-
-            view.find('.date').each(function() {
-                $(this).after(template.clone().removeClass('template'));
-            });
-
         },
         enter: function(header, view) {
             console.log('enter news');

@@ -4,7 +4,7 @@
 
     li {
         overflow: hidden;
-        max-height: @line-height*5 - 0.05em;
+        max-height: @line-height*4 - 0.05em;
         margin: @line-height @body-padding;
 
         -webkit-transition: max-height .5s ease-in-out;
@@ -16,33 +16,26 @@
         -webkit-column-count: 1;
                 column-count: 1;
 
-        &.touch {
-            background: @color-bgr + @color-main/5;
-        }
+        .icons {
+            float: left;
+            width: 2.75em;
+            height: @line-height*4;
 
-        &.date {
-            max-height: @line-height*4 - 0.05em;
-            margin: @line-height @body-padding 0;
-        }
-
-        &.dateDialog {
-            /*margin-top: 0.5*(@line-height - 1em);*/
-            margin-top: 0;
-            text-align: center;
-
-            .y { font-family: "Raleway-SemiBold"; }
-
-            span {
-                padding: 0.5*(@header-height - @line-height) 0;
-                display: inline-block;
-                width: (50% - (100/(100 - 2*@body-padding)*0.25*@body-padding));
+            img {
+                display: block;
+                width: @line-height;
                 height: @line-height;
+                padding: .2em @line-height @line-height - .2em 0;
 
-                img {
-                    height: @line-height;
-                    vertical-align: middle;
-                    margin-right: 0.5*@line-height;
+                &.touch {
+                    background-color: @color-bgr + @color-main/5;
                 }
+            }
+        }
+
+        .article {
+            &.touch {
+                background: @color-bgr + @color-main/5;
             }
         }
 
