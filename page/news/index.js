@@ -13,14 +13,6 @@ window.MS.page = window.MS.page || {};
             header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
 
             /*
-             * Force reflow after @font-face is loaded.
-             * text-align: justify will cut off text if we dont reflow.
-             */
-            setTimeout(function() {
-                view.find('li').width(view.find('li').width());
-            }, 200);
-
-            /*
              * Expend a news item on touch
              */
             view.on('touchend', 'li', function() {
@@ -45,6 +37,12 @@ window.MS.page = window.MS.page || {};
         },
         enter: function(header, view) {
             console.log('enter news');
+
+            /*
+             * Force reflow after @font-face is loaded.
+             * text-align: justify will cut off text if we dont reflow.
+             */
+            view.find('li').width(view.find('li').width());
         },
         leave: function() {
             console.log('leave news');

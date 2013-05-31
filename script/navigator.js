@@ -80,68 +80,100 @@ document.addEventListener('deviceready', function() {
          */
         goTo: function goTo(pagename) {
             var pagenameLower = pagename.toLowerCase(),
+                lastPagename = MS.dom.content.attr('data-content'),
                 cachedView, cachedHeader;
 
             cachedView = MS.dom.content.find('#view'+pagename);
             cachedHeader = MS.dom.header.find('#header'+pagename);
 
-            if (MS.dom.content.attr('data-content') === pagenameLower) {
-                /*
-                 * Load Javascript
-                 */
+            /* Save desired pagename */
+            MS.dom.content.attr('data-content', pagenameLower);
+
+            /* Stay on the same page, if already loaded, login as special case */
+            if (lastPagename === pagenameLower ||
+                pagenameLower === 'login') {
+
+                /* Call page specific js */
+                if (typeof MS.page[lastPagename] !== 'undefined' &&
+                    typeof MS.page[lastPagename].leave === 'function') {
+                    MS.page[lastPagename].leave();
+                }
+
+                /* Call page specific js */
                 if (typeof MS.page[pagenameLower] !== 'undefined' &&
                     typeof MS.page[pagenameLower].enter === 'function') {
                     MS.page[pagenameLower].enter(cachedHeader, cachedView);
                 }
 
+                /* Close side menu, if open */
                 if(MS.dom.body.hasClass('open-menu')) {
                     MS.navigator.back();
                 }
+
                 return;
             }
 
+            /* Show cached page */
             if (cachedView.length > 0) {
+
+                /* Call page specific js */
+                if (typeof MS.page[lastPagename] !== 'undefined' &&
+                    typeof MS.page[lastPagename].leave === 'function') {
+                    MS.page[lastPagename].leave();
+                }
+
+                /* Hide last view */
                 MS.dom.content.find('.view').hide();
                 MS.dom.header.find('.view').hide();
 
-                MS.dom.content.attr('data-content', pagenameLower);
+                /* Show desired view */
                 cachedView.show();
 
-                /*
-                 * Load Javascript
-                 */
+                /* Call page specific js */
                 if (typeof MS.page[pagenameLower] !== 'undefined' &&
                     typeof MS.page[pagenameLower].enter === 'function') {
                     MS.page[pagenameLower].enter(cachedHeader, cachedView);
                 }
 
+                /* Show page specific header */
                 if (cachedHeader.length > 0) {
                     MS.dom.header.attr('data-content', pagenameLower);
                     cachedHeader.show();
                 }
 
+                /* Close side menu, if open */
                 if(MS.dom.body.hasClass('open-menu')) {
                     MS.navigator.back();
-                } else {
-                    MS.navigator.history.push(pagename);
                 }
+
+                /* add new page to history */
+                MS.navigator.history.push(pagename);
+
                 return;
             }
 
+            /* Get new page */
             $.ajax({
                 url: './page/'+pagenameLower+'/index.html',
                 success: function(html) {
 
+                    /* Find new views and templates */
                     var dom = $("<div></div>").html(html),
                         newView = dom.find('#view'+pagename).clone(),
                         newHeader = dom.find('#header'+pagename).clone(),
                         templates = dom.find('.template');
 
+                    /* Call page specific js */
+                    if (typeof MS.page[lastPagename] !== 'undefined' &&
+                        typeof MS.page[lastPagename].leave === 'function') {
+                        MS.page[lastPagename].leave();
+                    }
+
+                    /* Hide old and show new view */
                     MS.dom.content.find('.view').hide();
-
                     MS.dom.content.prepend(newView);
-                    MS.dom.content.attr('data-content', pagenameLower);
 
+                    /* Hide old and attach new header */
                     if (newHeader.length > 0) {
                         MS.dom.header.find('.view').hide();
                         MS.dom.header.prepend(newHeader);
@@ -150,6 +182,7 @@ document.addEventListener('deviceready', function() {
                         MS.dimens.header.update();
                     }
 
+                    /* Serve templates to the page */
                     templates.each(function() {
                         var self = $(this);
                         if ($('#'+self.attr('id')).length === 0) {
@@ -157,9 +190,7 @@ document.addEventListener('deviceready', function() {
                         }
                     });
 
-                    /*
-                     * Load Javascript
-                     */
+                    /* Call page specific js */
                     if (typeof MS.page[pagenameLower] !== 'undefined' &&
                         typeof MS.page[pagenameLower].init === 'function') {
                         MS.page[pagenameLower].init(newHeader, newView);
@@ -169,13 +200,16 @@ document.addEventListener('deviceready', function() {
                         MS.page[pagenameLower].enter(cachedHeader, cachedView);
                     }
 
+                    /* Set fixed height */
                     newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
 
+                    /* Close side menu, if open */
                     if(MS.dom.body.hasClass('open-menu')) {
                         MS.navigator.back();
-                    } else {
-                        MS.navigator.history.push(pagename);
                     }
+
+                    /* add new page to history */
+                    MS.navigator.history.push(pagename);
                 }
             });
         }

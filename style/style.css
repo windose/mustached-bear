@@ -105,6 +105,12 @@ body {
 .h100 {
   height: 100%;
 }
+.bo {
+  background: black;
+}
+.bo > * {
+  display: none;
+}
 /* Raleway */
 @font-face {
   font-family: "Raleway-Thin";

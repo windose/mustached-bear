@@ -41,28 +41,41 @@
     //                }, false);
     //            }
 
-                /* set background image size to prevent keyboard bug */
-                MS.dom.login.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
+                /*
+                 * Login
+                 */
 
-                MS.dom.loginSubmit.on('touchstart', function() {
-                    MS.dom.loginSubmit.addClass('touch');
-                });
+                MS.page.login = {
+                    init: function() {
+                        console.log('init login');
+                        /* set background image size to prevent keyboard bug */
+                        MS.dom.login.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
 
-                MS.dom.loginSubmit.on('touchend', function() {
-                    MS.dom.login.addClass('loggedIn');
-                });
+                        MS.dom.loginSubmit.on('touchstart', function() {
+                            MS.dom.loginSubmit.addClass('touch');
+                        });
 
-                MS.navigator.goTo('News');
-                //MS.navigator.goTo('Courses');
+                        MS.dom.loginSubmit.on('touchend', function() {
+                            MS.navigator.goTo('News');
+                        });
+                    },
+                    enter: function() {
+                        console.log('enter login');
+
+                        MS.dom.body.addClass('bo');
+                        MS.dom.login.removeClass('loggedIn');
+                    },
+                    leave: function() {
+                        console.log('leave login');
+
+                        MS.dom.body.removeClass('bo');
+                        MS.dom.login.addClass('loggedIn');
+                    }
+                };
+
 
                 MS.dom.sidebarLeft.on('touchend', 'li', function() {
-                    var target = $(this).attr('data-target');
-                    if (target === 'Logout') {
-                        MS.navigator.back();
-                        MS.dom.login.removeClass('loggedIn');
-                    } else {
-                        MS.navigator.goTo(target);
-                    }
+                    MS.navigator.goTo($(this).attr('data-target'));
                 });
 
                 MS.dom.window.on('touchmove', function() {
@@ -79,6 +92,12 @@
                         MS.navigator.back();
                     }
                 });
+
+                //MS.navigator.goTo('Login');
+                //MS.navigator.goTo('News');
+                //MS.navigator.goTo('Courses');
+
+                MS.page.login.init();
             }, false);
 
         </script>
@@ -92,13 +111,13 @@
                     <li data-target="News"><img src="./asset/icon/einstellungen.png">Nachrichten</li>
                     <li data-target="Courses"><img src="./asset/icon/einstellungen.png">Kursliste</li>
                     <li data-target="Options"><img src="./asset/icon/einstellungen.png">Einstellungen</li>
-                    <li data-target="Logout"><img src="./asset/icon/einstellungen.png">Ausloggen</li>
+                    <li data-target="Login"><img src="./asset/icon/einstellungen.png">Ausloggen</li>
                 </ul>
             </div>
 
-            <div id="body" class="full">
+            <div id="body" class="full bo">
                 <div id="header" class="header"></div>
-                <div id="content"></div>
+                <div id="content" data-content="login"></div>
             </div>
 
             <div id="login" class="full">
