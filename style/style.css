@@ -446,11 +446,11 @@ img {
 .news li .article.touch {
   background: #23394d;
 }
+.news li .article:first-line {
+  color: rgba(255, 255, 255, 0.9);
+}
 .news li.open {
   max-height: 42em;
-}
-.news li:first-line {
-  color: rgba(255, 255, 255, 0.9);
 }
 .news li .bottom {
   margin: 0.25em 0;
