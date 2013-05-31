@@ -206,7 +206,7 @@ img {
   background: url('../asset/img/login.jpg');
   background-repeat: no-repeat;
   background-size: auto 100%;
-  background-position: center;
+  background-position: center bottom;
   z-index: 3;
   -webkit-transition-duration: .2s;
   -webkit-transform: translate3d(0, 0, 0);

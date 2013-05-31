@@ -41,6 +41,9 @@
     //                }, false);
     //            }
 
+                /* set background image size to prevent keyboard bug */
+                MS.dom.login.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
+
                 MS.dom.loginSubmit.on('touchstart', function() {
                     MS.dom.loginSubmit.addClass('touch');
                 });
