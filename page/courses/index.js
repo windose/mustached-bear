@@ -19,6 +19,9 @@ window.MS.page = window.MS.page || {};
             view.on('touchstart', 'li, .footer span', function() {
                 $(this).addClass('touch');
             });
+            view.on('touchmove', 'li', function() {
+                $(this).removeClass('touch');
+            });
 
             header.find('.coursesSem').on('touchend', 'span', function() {
                 var sem = $(this).html();
