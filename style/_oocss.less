@@ -14,3 +14,12 @@
 .db { display: block; }
 .h100 { height: 100%; }
 .bo { background: black; & > * { display: none; } }
+
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}

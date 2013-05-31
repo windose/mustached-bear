@@ -12,6 +12,9 @@ window.MS.page = window.MS.page || {};
             view.on('touchstart', 'li', function() {
                 $(this).addClass('touch');
             });
+            view.on('touchmove', 'li', function() {
+                $(this).removeClass('touch');
+            });
 
             header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
 

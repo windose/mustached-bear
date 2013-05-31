@@ -111,6 +111,14 @@ body {
 .bo > * {
   display: none;
 }
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
 /* Raleway */
 @font-face {
   font-family: "Raleway-Thin";
@@ -475,7 +483,7 @@ img {
   background: #23394d;
 }
 .courses ul li label {
-  height: 2.8em;
+  min-height: 2.8em;
   padding: 0.1em 0;
   display: block;
 }
@@ -486,6 +494,7 @@ img {
 }
 .courses ul li label div {
   float: left;
+  width: 85%;
 }
 .courses ul li .on,
 .courses ul li .off {
