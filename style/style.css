@@ -209,8 +209,8 @@ img {
   transition-duration: .2s;
 }
 .full.right {
-  -webkit-transform: translate3d(85%, 0, 0);
-  transform: translate3d(85%, 0, 0);
+  -webkit-transform: translate3d(4em, 0, 0);
+  transform: translate3d(4em, 0, 0);
 }
 .full.left {
   -webkit-transform: translate3d(-85%, 0, 0);
@@ -325,6 +325,19 @@ img {
   margin: 0 0.75em;
   padding: 0.125em;
   border: 0 solid rgba(255, 255, 255, 0.2);
+}
+.sidebar.small {
+  width: 4em;
+  background-color: #6f6d70;
+}
+.sidebar.small ul li {
+  text-align: center;
+}
+.sidebar.small ul li img {
+  margin: 0;
+}
+.sidebar.small ul li.touch {
+  background-color: #5e5c5f;
 }
 /* Vertical Scrollbar */
 .scrollbarV {
