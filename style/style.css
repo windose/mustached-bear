@@ -433,7 +433,7 @@ img {
   background: #23394d;
 }
 .news li.date {
-  max-height: 4.1499999999999995em;
+  max-height: 5.55em;
   margin: 1.4em 5% 0;
 }
 .news li.dateDialog {
@@ -467,10 +467,10 @@ img {
 }
 .news li > img {
   float: left;
-  width: 2.64em;
-  height: 2em;
+  width: 2.6em;
+  height: 2.6em;
   margin: 0.3999999999999999em 0.6em 0 0;
-  padding: 0;
+  padding: 0 0.4em 0.4em 0;
 }
 .header .newsCal {
   background-color: #007acc;
