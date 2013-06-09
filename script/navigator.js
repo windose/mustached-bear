@@ -75,6 +75,33 @@ document.addEventListener('deviceready', function() {
         },
 
         /**
+         * Displays the desired page in the dom. Will be called after
+         * successfull entering the site and execution of his js.
+         * This is a curried function, if you pass the desired page,
+         * you will get a function to execute with the saved argument.
+         *
+         * @param page
+         * @returns {Function}
+         */
+        showPage: function showPage(header, view) {
+            "use strict";
+
+            if (header || view) {
+                return function() {
+                    MS.navigator.showPage.apply({
+                        header: header,
+                        view: view
+                    });
+                };
+            }
+
+            console.log('show', this);
+            this.header.show();
+            this.view.show();
+            // ToDo: hide loading screen
+        },
+
+        /**
          *
          * @param pagename
          */
@@ -82,6 +109,8 @@ document.addEventListener('deviceready', function() {
             var pagenameLower = pagename.toLowerCase(),
                 lastPagename = MS.dom.content.attr('data-content'),
                 cachedView, cachedHeader;
+
+            // ToDo Show loading screen
 
             cachedView = MS.dom.content.find('#view'+pagename);
             cachedHeader = MS.dom.header.find('#header'+pagename);
@@ -102,7 +131,11 @@ document.addEventListener('deviceready', function() {
                 /* Call page specific js */
                 if (typeof MS.page[pagenameLower] !== 'undefined' &&
                     typeof MS.page[pagenameLower].enter === 'function') {
-                    MS.page[pagenameLower].enter(cachedHeader, cachedView);
+
+                    MS.page[pagenameLower].enter(
+                        MS.navigator.showPage(cachedHeader, cachedView),
+                        cachedHeader, cachedView
+                    );
                 }
 
                 /* Close side menu, if open */
@@ -132,7 +165,11 @@ document.addEventListener('deviceready', function() {
                 /* Call page specific js */
                 if (typeof MS.page[pagenameLower] !== 'undefined' &&
                     typeof MS.page[pagenameLower].enter === 'function') {
-                    MS.page[pagenameLower].enter(cachedHeader, cachedView);
+                    
+                    MS.page[pagenameLower].enter(
+                        MS.navigator.showPage(cachedHeader, cachedView),
+                        cachedHeader, cachedView
+                    );
                 }
 
                 /* Show page specific header */
@@ -159,8 +196,8 @@ document.addEventListener('deviceready', function() {
 
                     /* Find new views and templates */
                     var dom = $("<div></div>").html(html),
-                        newView = dom.find('#view'+pagename).clone(),
-                        newHeader = dom.find('#header'+pagename).clone(),
+                        newView = dom.find('#view'+pagename).clone().hide(),
+                        newHeader = dom.find('#header'+pagename).clone().hide(),
                         templates = dom.find('.template');
 
                     /* Call page specific js */
@@ -197,7 +234,11 @@ document.addEventListener('deviceready', function() {
                     }
                     if (typeof MS.page[pagenameLower] !== 'undefined' &&
                         typeof MS.page[pagenameLower].enter === 'function') {
-                        MS.page[pagenameLower].enter(cachedHeader, cachedView);
+
+                        MS.page[pagenameLower].enter(
+                            MS.navigator.showPage(newHeader, newView),
+                            newHeader, newView
+                        );
                     }
 
                     /* Set fixed height */

@@ -60,11 +60,12 @@
                             MS.navigator.goTo('News');
                         });
                     },
-                    enter: function() {
+                    enter: function(done) {
                         console.log('enter login');
 
                         MS.dom.body.addClass('bo');
                         MS.dom.login.removeClass('loggedIn');
+                        done();
                     },
                     leave: function() {
                         console.log('leave login');

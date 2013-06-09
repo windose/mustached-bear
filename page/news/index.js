@@ -33,7 +33,7 @@ window.MS.page = window.MS.page || {};
                 }
             });
         },
-        enter: function(header, view) {
+        enter: function(done, header, view) {
             var self = this;
 
             console.log('enter news');
@@ -62,13 +62,15 @@ window.MS.page = window.MS.page || {};
 
             MS.db.get('SELECT * from nachrichten', function(err, result) {
                 console.log(err, result);
-            });
 
-            /*
-             * Force reflow after @font-face is loaded.
-             * text-align: justify will cut off text if we dont reflow.
-             */
-            view.find('li').width(view.find('li').width());
+                done();
+
+                /*
+                 * Force reflow after @font-face is loaded.
+                 * text-align: justify will cut off text if we dont reflow.
+                 */
+                view.find('li').width(view.find('li').width());
+            });
         },
         leave: function() {
             console.log('leave news');

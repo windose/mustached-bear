@@ -42,8 +42,9 @@ window.MS.page = window.MS.page || {};
                 }
             });
         },
-        enter: function(header, view) {
+        enter: function(done, header, view) {
             console.log('enter courses');
+            done();
         },
         leave: function() {
             console.log('leave courses');
