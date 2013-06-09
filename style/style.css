@@ -463,14 +463,12 @@ img {
   background: #23394d;
 }
 .content .courses ul li label img {
-  float: left;
+  vertical-align: baseline;
 }
-.content .courses ul li label div {
-  float: left;
-  width: 80%;
+.content .courses ul li label .label {
   padding: 0.65em 0.8em 0.15em;
 }
-.content .courses ul li label div:first-line {
+.content .courses ul li label .label:first-line {
   color: rgba(255, 255, 255, 0.9);
 }
 .content .courses ul li .on,
