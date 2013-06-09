@@ -12,7 +12,7 @@ document.addEventListener('deviceready', function() {
      */
     MS.db.obj.transaction(function(tx) {
 
-        var drop = true;
+        var drop = false;
 
         // fach
         drop && tx.executeSql('DROP TABLE IF EXISTS fach');

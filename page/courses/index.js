@@ -55,8 +55,8 @@ window.MS.page = window.MS.page || {};
                 }
             });
 
-            MS.dbDummy.insertFach1();
-            MS.dbDummy.insertFach2();
+            //MS.dbDummy.insertFach1();
+            //MS.dbDummy.insertFach2();
         },
         enter: function(done, header, view) {
             log('enter courses');
