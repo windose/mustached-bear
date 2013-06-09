@@ -499,6 +499,9 @@ img {
   float: left;
   width: 85%;
 }
+.courses ul li label div:first-line {
+  color: rgba(255, 255, 255, 0.9);
+}
 .courses ul li .on,
 .courses ul li .off {
   display: none;
