@@ -12,7 +12,10 @@ document.addEventListener('deviceready', function() {
      */
     MS.db.obj.transaction(function(tx) {
 
+        var drop = true;
+
         // fach
+        drop && tx.executeSql('DROP TABLE IF EXISTS fach');
         tx.executeSql('CREATE TABLE IF NOT EXISTS fach ('+
             'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
             'name VARCHAR(255), ' +
@@ -21,12 +24,15 @@ document.addEventListener('deviceready', function() {
             ')');
 
         // fakultaet
+        drop && tx.executeSql('DROP TABLE IF EXISTS fakultaet');
         tx.executeSql('CREATE TABLE IF NOT EXISTS fakultaet ('+
-            'nummer INTEGER NOT NULL PRIMARY KEY, ' +
+            'id INTEGER NOT NULL PRIMARY KEY, ' +
+            'name VARCHAR(255), ' +
             'last_update TIMESTAMP(8)' +
             ')');
 
         // studiengang
+        drop && tx.executeSql('DROP TABLE IF EXISTS studiengang');
         tx.executeSql('CREATE TABLE IF NOT EXISTS studiengang ('+
             'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
             'name VARCHAR(255), ' +
@@ -34,15 +40,17 @@ document.addEventListener('deviceready', function() {
             ')');
 
         // studiengruppe
+        drop && tx.executeSql('DROP TABLE IF EXISTS studiengruppe');
         tx.executeSql('CREATE TABLE IF NOT EXISTS studiengruppe ('+
             'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
             'name VARCHAR(255), ' +
-            'semester VARCHAR(255), ' +
+            'semester INTEGER, ' +
             'studiengang_id INTEGER, ' +
             'last_update TIMESTAMP(8)' +
             ')');
 
         // user
+        drop && tx.executeSql('DROP TABLE IF EXISTS user');
         tx.executeSql('CREATE TABLE IF NOT EXISTS user ('+
             'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
             'email VARCHAR(255), ' +
@@ -52,25 +60,28 @@ document.addEventListener('deviceready', function() {
             ')');
 
         // vorlesung
+        drop && tx.executeSql('DROP TABLE IF EXISTS vorlesung');
         tx.executeSql('CREATE TABLE IF NOT EXISTS vorlesung ('+
             'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
             'type INTEGER, ' +
             'raum VARCHAR(255), ' +
             'dozent VARCHAR(255), ' +
-            'end DATE, ' +
-            'start DATE, ' +
+            'end TIMESTAMP(8), ' +
+            'start TIMESTAMP(8), ' +
             'last_update TIMESTAMP(8), ' +
             'fach_id INTEGER, ' +
             'studiengruppe_id INTEGER' +
             ')');
 
         // type
+        drop && tx.executeSql('DROP TABLE IF EXISTS type');
         tx.executeSql('CREATE TABLE IF NOT EXISTS type ('+
             'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
             'name VARCHAR(255)' +
             ')');
 
         // nachrichten
+        drop && tx.executeSql('DROP TABLE IF EXISTS nachrichten');
         tx.executeSql('CREATE TABLE IF NOT EXISTS nachrichten ('+
             'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
             'fakultaet_id INTEGER, ' +
@@ -83,6 +94,7 @@ document.addEventListener('deviceready', function() {
             ')');
 
         // link fach <-> studiengang
+        drop && tx.executeSql('DROP TABLE IF EXISTS fach_studiengang');
         tx.executeSql('CREATE TABLE IF NOT EXISTS fach_studiengang ('+
             'fach_id INTEGER NOT NULL, ' +
             'studiengang_id INTEGER NOT NULL, ' +
@@ -90,6 +102,7 @@ document.addEventListener('deviceready', function() {
             ')');
 
         // link fakultät <-> studiengang
+        drop && tx.executeSql('DROP TABLE IF EXISTS fakultaet_studiengang');
         tx.executeSql('CREATE TABLE IF NOT EXISTS fakultaet_studiengang ('+
             'fakultaet_id INTEGER NOT NULL, ' +
             'studiengang_id INTEGER NOT NULL, ' +
@@ -97,6 +110,7 @@ document.addEventListener('deviceready', function() {
             ')');
 
         // link user <-> vorlesung
+        drop && tx.executeSql('DROP TABLE IF EXISTS user_vorlesung');
         tx.executeSql('CREATE TABLE IF NOT EXISTS user_vorlesung ('+
             'user_id INTEGER NOT NULL, ' +
             'vorlesung_id INTEGER NOT NULL, ' +
