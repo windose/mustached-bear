@@ -377,6 +377,7 @@ img {
   white-space: nowrap;
   overflow: hidden;
   text-align: left;
+  max-width: 52%;
   padding: 0.8em 0.8em;
   display: inline-block;
 }
@@ -462,6 +463,9 @@ img {
 .content .courses ul li label.touch {
   background: #23394d;
 }
+.content .courses ul li label td {
+  vertical-align: top;
+}
 .content .courses ul li label img {
   vertical-align: baseline;
 }
@@ -528,6 +532,7 @@ img {
 .content .courses .footer .button label {
   display: inline-block;
   padding: 0.8em 0.8em 0.8em 0;
+  max-width: 50%;
 }
 .content .courses .footer .button.by.touch {
   background-color: #69bb00;
