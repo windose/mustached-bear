@@ -187,6 +187,11 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
 }
+select {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 0;
+}
 ul,
 li {
   list-style-type: none;
