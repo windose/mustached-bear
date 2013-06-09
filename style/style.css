@@ -383,12 +383,12 @@ img {
 .header .addition {
   margin: 0 1em 0 1em;
   height: 3em;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .header .addition span {
   height: 1.4em;
   display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
 }
 .headerheight {
   height: 3em;
@@ -402,7 +402,7 @@ img {
 }
 .content .news li {
   overflow: hidden;
-  max-height: 6.1499999999999995em;
+  max-height: 6.199999999999999em;
   margin: 0.5999999999999999em 1em 0em;
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
@@ -418,7 +418,7 @@ img {
   background-color: #23394d;
 }
 .content .news li .article {
-  padding: 0.6000000000000001em 0.8em 0.8em;
+  padding: 0.65em 0.8em 0.8em;
 }
 .content .news li .article.touch {
   background: #23394d;
@@ -453,7 +453,7 @@ img {
   padding: 0 1em;
 }
 .content .courses ul li {
-  margin-top: 0.6000000000000001em;
+  margin-top: 0.65em;
 }
 .content .courses ul li label {
   min-height: 2.8em;
@@ -468,7 +468,7 @@ img {
 .content .courses ul li label div {
   float: left;
   width: 80%;
-  padding: 0.6000000000000001em 0.8em 0.2em;
+  padding: 0.65em 0.8em 0.15em;
 }
 .content .courses ul li label div:first-line {
   color: rgba(255, 255, 255, 0.9);
