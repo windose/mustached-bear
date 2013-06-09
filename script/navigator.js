@@ -165,7 +165,7 @@ document.addEventListener('deviceready', function() {
                 /* Call page specific js */
                 if (typeof MS.page[pagenameLower] !== 'undefined' &&
                     typeof MS.page[pagenameLower].enter === 'function') {
-                    
+
                     MS.page[pagenameLower].enter(
                         MS.navigator.showPage(cachedHeader, cachedView),
                         cachedHeader, cachedView

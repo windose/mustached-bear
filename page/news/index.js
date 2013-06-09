@@ -61,7 +61,14 @@ window.MS.page = window.MS.page || {};
 //            }
 
             MS.db.get('SELECT * from nachrichten', function(err, result) {
-                console.log(err, result);
+                if (err) { return console.log(err) && done(); }
+
+                var i, l;
+
+                view.find('ul').empty();
+                for (i=0, l=result.length; i<l; i++) {
+                    MS.page.news.insertNews(view, result[i]);
+                }
 
                 done();
 
@@ -72,8 +79,28 @@ window.MS.page = window.MS.page || {};
                 view.find('li').width(view.find('li').width());
             });
         },
-        leave: function() {
+        leave: function leave() {
             console.log('leave news');
+        },
+
+        /**
+         * ToDo: Use template engine (mustache?)
+         *
+         * @param view
+         * @param item
+         */
+        insertNews: function insertNews(view, item) {
+            var template;
+
+            template = '<li><table><tr>' +
+                '<td class="icons">' +
+                    '<img src="asset/icon/news_2.png">' +
+                    '<img src="asset/icon/iconmoon-eeecef/share.png">' +
+                '</td>' +
+                '<td class="article">'+item.content+'</td>' +
+            '</tr></table></li>';
+
+            view.find('ul').append(template);
         }
     };
 
