@@ -63,6 +63,8 @@ window.MS.page = window.MS.page || {};
             MS.db.get('SELECT * from nachrichten', function(err, result) {
                 if (err) { return log(err) && done(); }
 
+                log('got '+result.length+' news');
+
                 var i, l;
 
                 view.find('ul').empty();
@@ -72,11 +74,15 @@ window.MS.page = window.MS.page || {};
 
                 done();
 
+
                 /*
                  * Force reflow after @font-face is loaded.
                  * text-align: justify will cut off text if we dont reflow.
                  */
-                view.find('li').width(view.find('li').width());
+                setTimeout(function() {
+                    log('force reflow');
+                    view.find('li').width(view.find('li').width());
+                }, 100);
             });
         },
         leave: function leave() {

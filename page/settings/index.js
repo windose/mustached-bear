@@ -5,8 +5,11 @@ window.MS.page = window.MS.page || {};
 
     MS.page.settings = {
         init: function(header, view) {
+            log('init settings');
         },
         enter: function(done, header, view) {
+            log('enter settings');
+
             var i, l, list;
 
             list = view.find('ul');

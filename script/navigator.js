@@ -189,7 +189,6 @@ document.addEventListener('deviceready', function() {
             }
 
             /* Get new page */
-            log('get new page');
             $.ajax({
                 url: './page/'+pagenameLower+'/index.html',
                 success: function(html) {
