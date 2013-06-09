@@ -451,10 +451,7 @@ img {
   overflow-x: hidden;
 }
 .content .courses ul {
-  padding: 0 1em;
-}
-.content .courses ul li {
-  margin-top: 0.65em;
+  padding: 0.6em 1em 3.6em;
 }
 .content .courses ul li label {
   min-height: 2.8em;
@@ -470,7 +467,7 @@ img {
   vertical-align: baseline;
 }
 .content .courses ul li label .label {
-  padding: 0.65em 0.8em 0.15em;
+  padding: 0.65em 0.8em 0;
 }
 .content .courses ul li label .label:first-line {
   color: rgba(255, 255, 255, 0.9);
