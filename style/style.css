@@ -475,6 +475,12 @@ img {
 .header .newsCal .light {
   color: rgba(255, 255, 255, 0.5);
 }
+.header .newsCal .title {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 7em;
+  text-align: left;
+}
 .courses {
   overflow-y: scroll;
   overflow-x: hidden;
