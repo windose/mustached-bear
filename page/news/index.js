@@ -36,7 +36,7 @@ window.MS.page = window.MS.page || {};
         enter: function(done, header, view) {
             var self = this;
 
-            console.log('enter news');
+            log('enter news');
 
             // Insert dummy data
 //            for (var i=0; i<10; i++) {
@@ -56,12 +56,12 @@ window.MS.page = window.MS.page || {};
 //                    'tlukacs',
 //                    '1'
 //                ], function(err) {
-//                    console.log('insert news', err);
+//                    log('insert news', err);
 //                });
 //            }
 
             MS.db.get('SELECT * from nachrichten', function(err, result) {
-                if (err) { return console.log(err) && done(); }
+                if (err) { return log(err) && done(); }
 
                 var i, l;
 
@@ -80,7 +80,7 @@ window.MS.page = window.MS.page || {};
             });
         },
         leave: function leave() {
-            console.log('leave news');
+            log('leave news');
         },
 
         /**

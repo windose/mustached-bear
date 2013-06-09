@@ -104,19 +104,19 @@ document.addEventListener('deviceready', function() {
             ')');
 
     }, function(err) {
-        console.log(err);
+        log(err);
     }, function() {
         MS.db.isCreated = true;
-        console.log('db success');
+        log('db success');
     });
 
     MS.db.obj.transaction(function(tx) {
         tx.executeSql('INSERT INTO type (id, name) VALUES (1, "vorlesung")');
         tx.executeSql('INSERT INTO type (id, name) VALUES (2, "praktikum")');
     }, function(err) {
-        console.log('enum failed', err);
+        log('enum failed', err);
     }, function() {
-        console.log('enum success');
+        log('enum success');
     });
 
     /**

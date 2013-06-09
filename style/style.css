@@ -615,3 +615,7 @@ img {
 .coursesSem.fak07 span:nth-child(8).touch {
   background-color: #03a5cc;
 }
+.settings ul li {
+  display: block;
+  padding: 0 5%;
+}

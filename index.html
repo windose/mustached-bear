@@ -21,6 +21,7 @@
 
         <link rel="stylesheet" type="text/css" href="./style/style.css">
 
+        <script src="./script/console.js"></script>
         <script src="./script/dom.js"></script>
         <script src="./script/dimens.js"></script>
         <script src="./script/navigator.js"></script>
@@ -28,6 +29,7 @@
 
         <script src="./page/news/index.js"></script>
         <script src="./page/courses/index.js"></script>
+        <script src="./page/settings/index.js"></script>
 
         <script type="text/javascript">
             window.MS = window.MS || {};
@@ -48,7 +50,7 @@
 
                 MS.page.login = {
                     init: function() {
-                        console.log('init login');
+                        log('init login');
                         /* set background image size to prevent keyboard bug */
                         MS.dom.login.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
 
@@ -61,14 +63,14 @@
                         });
                     },
                     enter: function(done) {
-                        console.log('enter login');
+                        log('enter login');
 
                         MS.dom.body.addClass('bo');
                         MS.dom.login.removeClass('loggedIn');
                         done();
                     },
                     leave: function() {
-                        console.log('leave login');
+                        log('leave login');
 
                         MS.dom.body.removeClass('bo');
                         MS.dom.login.addClass('loggedIn');
@@ -115,7 +117,7 @@
                 <ul class="navList">
                     <li data-target="News"><img src="./asset/icon/iconmoon-232124/paragraph-right.png"></li>
                     <li data-target="Courses"><img src="./asset/icon/iconmoon-232124/list.png"></li>
-                    <li data-target="Options"><img src="./asset/icon/iconmoon-232124/cog.png"></li>
+                    <li data-target="Settings"><img src="./asset/icon/iconmoon-232124/cog.png"></li>
                     <li data-target="Login"><img src="./asset/icon/iconmoon-232124/exit.png"></li>
                 </ul>
             </div>

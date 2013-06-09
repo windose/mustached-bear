@@ -95,7 +95,6 @@ document.addEventListener('deviceready', function() {
                 };
             }
 
-            console.log('show', this);
             this.header.show();
             this.view.show();
             // ToDo: hide loading screen
@@ -190,6 +189,7 @@ document.addEventListener('deviceready', function() {
             }
 
             /* Get new page */
+            log('get new page');
             $.ajax({
                 url: './page/'+pagenameLower+'/index.html',
                 success: function(html) {
