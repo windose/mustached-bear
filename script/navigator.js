@@ -98,6 +98,11 @@ document.addEventListener('deviceready', function() {
             this.header.show();
             this.view.show();
             // ToDo: hide loading screen
+
+            MS.dimens.header.update();
+
+            /* Set fixed height */
+            this.view.height(MS.dimens.viewport.height-MS.dimens.header.height);
         },
 
         /**
@@ -215,7 +220,6 @@ document.addEventListener('deviceready', function() {
                         MS.dom.header.prepend(newHeader);
                         MS.dom.header.attr('data-content', pagenameLower);
                         MS.navigator.initSidemenu(newHeader);
-                        MS.dimens.header.update();
                     }
 
                     /* Serve templates to the page */
@@ -239,9 +243,6 @@ document.addEventListener('deviceready', function() {
                             newHeader, newView
                         );
                     }
-
-                    /* Set fixed height */
-                    newView.height(MS.dimens.viewport.height-MS.dimens.header.height);
 
                     /* Close side menu, if open */
                     if(MS.dom.body.hasClass('open-menu')) {
