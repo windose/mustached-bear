@@ -13,6 +13,7 @@ window.MS.page = window.MS.page || {};
             var i, l, list;
 
             list = view.find('ul');
+            list.empty();
             for (i=0, l=MS.logdata.length; i<l; i++) {
                 list.append('<li>'+MS.logdata[i].join()+'</li>');
             }
