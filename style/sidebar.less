@@ -12,16 +12,8 @@
     ul {
         &.navList {
             padding: @header-height 0 0 0;
-
-            li {
-                height: @line-height;
-                padding: 0.5*(@header-height - @line-height) @body-padding;
-
-                img {
-                    height: @line-height;
-                    vertical-align: middle;
-                    margin-right: 0.5*@line-height;
-                }
+            li img {
+                margin: 0 auto;
             }
         }
 
@@ -63,12 +55,8 @@
     &.small {
         width: @sidebar-width-small;
         background-color: @color-bgr-light;
-        ul li {
-            text-align: center;
-            img { margin: 0; }
-            &.touch {
-                background-color: @color-bgr-light - #111;
-            }
+        ul li.touch {
+            background-color: @color-bgr-light - #111;
         }
     }
 }

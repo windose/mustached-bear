@@ -1,28 +1,27 @@
-.courses {
+.content .courses {
     overflow-y: scroll;
     overflow-x: hidden;
 
     ul {
-        padding: @line-height @body-padding;
+        padding: 0 @body-padding;
 
         li {
-            &.touch {
-                background: @color-bgr + @color-main/5;
-            }
+            margin-top: @item-padding - 0.2em;
 
             label {
-                min-height: 2.8em;
-                padding: 0.1em 0;
+                min-height: 2*@line-height;
                 display: block;
 
+                &.touch {
+                    background: @color-bgr + @color-main/5;
+                }
                 img {
-                    display: block;
                     float: left;
-                    margin: 0.25em 1em 0 0;
                 }
                 div {
                     float: left;
-                    width: 85%;
+                    width: 80%;
+                    padding: @item-padding - 0.2em @item-padding 0.2em;
 
                     &:first-line {
                         color: @color-font;
@@ -56,74 +55,85 @@
         position: fixed;
         bottom: 0;
         height: @header-height;
-        width: 100% - 2*3%;
-        margin: 0 3%;
+        width: 100%;
+        padding: 0 @body-padding;
         background-color: @color-bgr;
+        box-sizing:border-box;
 
-        span {
-            height: 1em;
-            width: (50% - (100/(100 - 2*@body-padding)*0.25*@body-padding));
-            padding: 0.9em 0 1.1em 0;
+        .button {
+            height: @header-height;
+            width: 49%;
             text-align: center;
+
+            label {
+                display: inline-block;
+                padding: @item-padding @item-padding @item-padding 0;
+            }
 
             &.by.touch { background-color: @color-bgr-yes - #111; }
             &.bn.touch { background-color: @color-bgr-no - #111; }
 
             img {
-                margin: 0.5*(1em - @line-height) 1em 0 0;
+                display: inline-block;
             }
         }
     }
 }
 
-.coursesSem {
+.header .courses {
+    .coursesSem {
 
-    span {
-        width: 12.5%;
-        text-align: center;
-        padding: 0.5*(@header-height - @line-height) 0;
-    }
+        li {
+            float: left;
+            width: 12.5%;
+            text-align: center;
+            padding: 0.5*(@header-height - @line-height) 0;
+            &:last-child {
+                padding: 0;
+            }
+        }
 
-    &.fak07 {
-        span:nth-child(1) {
-            @color: @color-fak07 - 3*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
-        }
-        span:nth-child(2) {
-            @color: @color-fak07 - 2*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
-        }
-        span:nth-child(3) {
-            @color: @color-fak07 - 1*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
-        }
-        span:nth-child(4) {
-            @color: @color-fak07 - 0*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
-        }
-        span:nth-child(5) {
-            @color: @color-fak07 + 1*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
-        }
-        span:nth-child(6) {
-            @color: @color-fak07 + 2*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
-        }
-        span:nth-child(7) {
-            @color: @color-fak07 + 3*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
-        }
-        span:nth-child(8) {
-            @color: @color-fak07 + 4*#050505;
-            background-color: @color;
-            &.touch { background-color: @color - #111; }
+        &.fak07 {
+            li:nth-child(1) {
+                @color: @color-fak07 - 3*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
+            li:nth-child(2) {
+                @color: @color-fak07 - 2*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
+            li:nth-child(3) {
+                @color: @color-fak07 - 1*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
+            li:nth-child(4) {
+                @color: @color-fak07 - 0*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
+            li:nth-child(5) {
+                @color: @color-fak07 + 1*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
+            li:nth-child(6) {
+                @color: @color-fak07 + 2*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
+            li:nth-child(7) {
+                @color: @color-fak07 + 3*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
+            li:nth-child(8) {
+                @color: @color-fak07 + 4*#050505;
+                background-color: @color;
+                &.touch { background-color: @color - #111; }
+            }
         }
     }
 }

@@ -6,47 +6,33 @@
     }
 
     .mheader {
-
-        img {
-            margin: 0.3*@header-height 0.6em 0;
-            height: 0.4*@header-height;
-        }
+        height: @header-height;
 
         &.fl {
-            margin-left: 3/5*@body-padding;
-            padding-left: 2/5*@body-padding;
-            height: @header-height;
-            img { margin-left: 0; }
-
+            margin-left: @body-padding;
             &.touch {
                 background: @color-bgr + @color-main/5;
             }
         }
 
         &.fr {
-            margin-right: 3/5*@body-padding;
-            padding-right: 2/5*@body-padding;
-            height: @header-height;
-            img { margin-right: 0; }
+            margin-right: @body-padding;
             &.touch {
                 background: @color-bgr + @color-main/5;
             }
         }
     }
 
-    /* ToDo, fix this */
-    img.mheader {
-        height: 0.4*@header-height;
-        margin: 0.3*@header-height 0.6em 0;
-    }
-
     .title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: left;
+        padding: 0.5*(@header-height - @line-height) @item-padding;
         display: inline-block;
-        margin-top: 0.5*(@header-height - @line-height);
     }
 
     .addition {
-        margin: 0 3/5*@body-padding 0 3/5*@body-padding;
+        margin: 0 @body-padding 0 @body-padding;
         height: @header-height;
 
         span {

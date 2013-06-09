@@ -13,23 +13,23 @@ window.MS.page = window.MS.page || {};
          */
         init: function(header, view) {
 
-            header.on('touchstart', '.mheader, .coursesSem span', function() {
+            header.on('touchstart', '.mheader, .coursesSem li', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchstart', 'li, .footer span', function() {
+
+            view.on('touchstart', 'label, .footer span', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchmove', 'li', function() {
+            view.on('touchmove', 'label', function() {
                 $(this).removeClass('touch');
             });
 
-            header.find('.coursesSem').on('touchend', 'span', function() {
+            header.find('.coursesSem').on('touchend', 'li', function() {
                 var sem = $(this).html();
                 view.removeClass('list'+view.attr('data-list'));
                 view.attr('data-list', sem);
                 view.addClass('list'+view.attr('data-list'), sem);
             });
-
 
             view.on('touchend', 'li', function() {
                 if (MS.isMove) { return; }

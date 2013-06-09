@@ -14,13 +14,21 @@ html,body {
             tap-highlight-color: rgba(0,0,0,0);
 }
 
+table {
+    border-spacing:0;
+    border-collapse:collapse;
+}
+
 ul, li {
   list-style-type: none;
 }
 
 img {
-    height: @line-height;
+    display: block;
     vertical-align: middle;
+    height: @line-height;
+    width: @line-height;
+    padding: 0.5*(@header-height - @line-height);
 }
 
 .template,

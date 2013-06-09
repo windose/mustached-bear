@@ -1,43 +1,35 @@
-.news {
+.content .news {
     overflow-y: scroll;
     overflow-x: hidden;
 
+    ul {
+        padding-bottom: @line-height;
+    }
+
     li {
         overflow: hidden;
-        max-height: @line-height*4 - 0.05em;
-        margin: @line-height @body-padding;
+        max-height: @line-height*4 - 0.05em + @item-padding;
+        margin: @line-height - @item-padding @body-padding 0em;
 
         -webkit-transition: max-height .5s ease-in-out;
                 transition: max-height .5s ease-in-out;
-
         -webkit-transform: translate3d(0,0,0);
-
         text-align: justify;
         -webkit-column-count: 1;
                 column-count: 1;
 
         .icons {
             float: left;
-            width: 2.75em;
-            height: @line-height*4;
-
-            img {
-                display: block;
-                width: @line-height;
-                height: @line-height;
-                padding: .2em @line-height @line-height - .2em 0;
-
-                &.touch {
-                    background-color: @color-bgr + @color-main/5;
-                }
+            img.touch {
+                background-color: @color-bgr + @color-main/5;
             }
         }
 
         .article {
+            padding: @item-padding;
             &.touch {
                 background: @color-bgr + @color-main/5;
             }
-
             &:first-line {
                 color: @color-font;
             }
@@ -46,40 +38,26 @@
         &.open {
             max-height: @line-height*30;
         }
-
-        .bottom {
-            margin: 0.25em 0;
-        }
-
-        & > img {
-            float: left;
-            width: 2.6em;
-            height: 2.6em;
-            margin: (@line-height - 1em) 0.6em 0 0;
-            padding: 0 0.4em 0.4em 0;
-        }
     }
 }
 
-.header .newsCal {
-    background-color: @color-main;
-    color: @color-font;
-    margin-right: 0;
-    padding: 0.5*(@header-height - @line-height) 2/5*@body-padding;
-    height: @line-height;
-
-    &.touch {
-        background-color: @color-main - #111;
-    }
-
-    .light {
-        color: @color-font-light;
-    }
-
+.header .news {
     .title {
-        white-space: nowrap;
-        overflow: hidden;
         width: 7em;
-        text-align: left;
+    }
+    .newsCal {
+        background-color: @color-main;
+        color: @color-font;
+        margin-right: 0;
+        padding: 0.5*(@header-height - @line-height) @item-padding;
+        height: @line-height;
+
+        &.touch {
+            background-color: @color-main - #111;
+        }
+
+        .light {
+            color: @color-font-light;
+        }
     }
 }
