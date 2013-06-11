@@ -13,10 +13,12 @@ window.MS.page = window.MS.page || {};
          */
         init: function(header, view) {
 
+            /*
+             * Touch highlighting
+             */
             header.on('touchstart', '.mheader, .coursesSem li', function() {
                 $(this).addClass('touch');
             });
-
             view.on('touchstart', 'label, .footer span', function() {
                 $(this).addClass('touch');
             });
@@ -24,26 +26,32 @@ window.MS.page = window.MS.page || {};
                 $(this).removeClass('touch');
             });
 
+            /*
+             * Switch between faculty
+             */
             header.find('select').on('change', function() {
                 var fak = header.find('select').val();
 
-                view.removeClass('fak'+view.attr('data-fak'));
-                view.attr('data-fak', fak);
-                view.addClass('fak'+view.attr('data-fak'), fak);
-
-                header.removeClass('fak'+header.attr('data-fak'));
-                header.attr('data-fak', fak);
-                header.addClass('fak'+header.attr('data-fak'), fak);
+                $.fn.add.call(view,header)
+                    .removeClass('fak'+view.attr('data-fak'))
+                    .attr('data-fak', fak)
+                    .addClass('fak'+view.attr('data-fak'), fak);
             });
 
+            /*
+             * Switch between semester
+             */
             header.find('.coursesSem').on('touchend', 'li', function() {
                 var sem = $(this).attr('data-target');
 
-                view.removeClass('sem'+view.attr('data-sem'));
-                view.attr('data-sem', sem);
-                view.addClass('sem'+view.attr('data-sem'), sem);
+                view.removeClass('sem'+view.attr('data-sem'))
+                    .attr('data-sem', sem)
+                    .addClass('sem'+view.attr('data-sem'), sem);
             });
 
+            /*
+             * Toggle state of course on touch
+             */
             view.on('touchend', 'li', function() {
                 if (MS.isMove) { return; }
 
@@ -55,62 +63,84 @@ window.MS.page = window.MS.page || {};
                 }
             });
 
-            //MS.dbDummy.insertFach1();
-            //MS.dbDummy.insertFach2();
         },
+
+        /**
+         *
+         * @param done
+         * @param header
+         * @param view
+         */
         enter: function(done, header, view) {
-            log('enter courses');
-            var fakList;
+
+            var fakList,
+                fakTemplate;
 
             fakList = header.find('select');
+            fakTemplate = '<option value={{id}}>{{name}}</option>'; // ToDo, save templates in files
 
+            /*
+             * Get and insert faculties from database
+             */
             MS.db.get(
                 'SELECT id, name FROM fakultaet',
                 function(err, result) {
                     var i, l;
-
                     for (i=0, l=result.length; i<l; i++) {
-                        fakList.append('<option value="'+result[i].id+'">'+result[i].name+'</option>');
+                        fakList.append(Mustache.render(fakTemplate, result[i]));
                     }
                 }
             );
 
-            var getCourses = function(callback) {
-                MS.db.get(
-                    'SELECT f.name, v.dozent, v.raum, v.studiengruppe_id, s.name AS studiengang, faks.fakultaet_id AS fakultaet, sg.semester FROM vorlesung AS v ' +
-                        'JOIN fach AS f ON f.id = v.fach_id ' +
-                        'JOIN fach_studiengang AS fs ON f.id = fs.fach_id ' +
-                        'JOIN studiengang AS s ON fs.studiengang_id = s.id ' +
-                        'JOIN fakultaet_studiengang AS faks ON faks.studiengang_id = s.id ' +
-                        'JOIN studiengruppe AS sg ON sg.id = v.studiengruppe_id', callback);
-            };
-
+            /*
+             * Get and insert course list
+             */
             view.find('ul').empty();
-
-            getCourses(function(err, result) {
+            MS.page.courses.getCourseList(function(err, result) {
                 var i, l;
                 for (i=0, l=result.length; i<l; i++) {
                     MS.page.courses.insertCourse(view, result[i]);
                 }
                 done();
             });
-        },
-        leave: function() {
-            log('leave courses');
+
         },
 
+        /**
+         *
+         */
+        leave: function() {},
+
+        /**
+         *
+         * @param view
+         * @param data
+         */
         insertCourse: function(view, data) {
-            console.log(data);
-
             var template;
 
             template = '<li class="off"><label class="cf"><table><tr>'+
                 '<td><img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png"><img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png"></td>'+
-                '<td class="label">'+data.name+'<br>, '+data.raum+' bei '+data.dozent+'</td>'+
-                '</tr></table></label></li>';
+                '<td class="label">{{name}}<br>, {{raum}} bei {{dozent}}</td>'+
+                '</tr></table></label></li>'; // ToDo, save templates in files
 
-            view.find('.fak'+data.fakultaet).find('.sem'+data.semester).append(template);
+            view.find('.fak'+data.fakultaet)
+                .find('.sem'+data.semester)
+                .append(Mustache.render(template, data));
+        },
 
+        /**
+         *
+         * @param callback
+         */
+        getCourseList: function(callback) {
+            MS.db.get(
+                'SELECT f.name, v.dozent, v.raum, v.studiengruppe_id, s.name AS studiengang, faks.fakultaet_id AS fakultaet, sg.semester FROM vorlesung AS v ' +
+                    'JOIN fach AS f ON f.id = v.fach_id ' +
+                    'JOIN fach_studiengang AS fs ON f.id = fs.fach_id ' +
+                    'JOIN studiengang AS s ON fs.studiengang_id = s.id ' +
+                    'JOIN fakultaet_studiengang AS faks ON faks.studiengang_id = s.id ' +
+                    'JOIN studiengruppe AS sg ON sg.id = v.studiengruppe_id', callback);
         }
     };
 

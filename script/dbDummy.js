@@ -4,6 +4,77 @@ window.MS = window.MS || {};
 
     window.MS.dbDummy = {
 
+        insertFaculties: function() {
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [1, 'Architektur'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [2, 'Bauingenieurwesen'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [3, 'Maschinenbau, Fahrzeugtechnik, Flugzeugtechnik'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [4, 'Elektrotechnik und Informationstechnik'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [5, 'Versorgungs- und Gebäudetechnik, Verfahrenstechnik Papier und Verpackung, Druck- und Medientechnik'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [6, 'Angewandte Naturwissenschaften und Mechatronik'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [7, 'Informatik und Mathematik'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [8, 'Geoinformation'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [9, 'Wirtschaftsingenieurwesen'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [10, 'Betriebswirtschaft'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [11, 'Angewandte Sozialwissenschaften'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [12, 'Design'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [13, 'Studium Generale und Interdisziplinäre Studien'],
+                function(err) { log('insert fakultät', err); });
+
+            MS.db.insert('fakultaet',
+                ['id', 'name'],
+                [14, 'Tourismus'],
+                function(err) { log('insert fakultät', err); });
+        },
         insertFach1: function insertFach() {
             MS.db.insert('fach',
                 ['name'],
@@ -30,11 +101,6 @@ window.MS = window.MS || {};
                 ['name'],
                 ['Scientific Computing'],
                 function(err) { log('insert studiengang', err); });
-
-            MS.db.insert('fakultaet',
-                ['id', 'name'],
-                [7, 'Informatik und Mathematik'],
-                function(err) { log('insert fakultät', err); });
 
             MS.db.insert('fakultaet_studiengang',
                 ['fakultaet_id', 'studiengang_id'],
@@ -73,11 +139,6 @@ window.MS = window.MS || {};
                 ['name'],
                 ['Architektur'],
                 function(err) { log('insert studiengang', err); });
-
-            MS.db.insert('fakultaet',
-                ['id', 'name'],
-                [1, 'Architektur'],
-                function(err) { log('insert fakultät', err); });
 
             MS.db.insert('fakultaet_studiengang',
                 ['fakultaet_id', 'studiengang_id'],

@@ -118,98 +118,50 @@
 
         li {
             float: left;
-            width: 12.5%;
+            width: 100% / 7;
             text-align: center;
             padding: 0.5*(@header-height - @line-height) 0;
-            &:last-child {
-                padding: 0;
-            }
         }
 
-        &.fak1 {
+        .generateColors(@targetcolor) {
             li:nth-child(1) {
-                @color: @color-fak01 - 3*#050505;
+                @color: @targetcolor - 2*#050505;
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }
             li:nth-child(2) {
-                @color: @color-fak01 - 2*#050505;
+                @color: @targetcolor - 1*#050505;
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }
             li:nth-child(3) {
-                @color: @color-fak01 - 1*#050505;
+                @color: @targetcolor + 0*#050505;
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }
             li:nth-child(4) {
-                @color: @color-fak01 - 0*#050505;
+                @color: @targetcolor + 1*#050505;
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }
             li:nth-child(5) {
-                @color: @color-fak01 + 1*#050505;
+                @color: @targetcolor + 2*#050505;
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }
             li:nth-child(6) {
-                @color: @color-fak01 + 2*#050505;
+                @color: @targetcolor + 3*#050505;
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }
             li:nth-child(7) {
-                @color: @color-fak01 + 3*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(8) {
-                @color: @color-fak01 + 4*#050505;
+                @color: @targetcolor + 4*#050505;
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }
         }
 
-        &.fak7 {
-            li:nth-child(1) {
-                @color: @color-fak07 - 3*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(2) {
-                @color: @color-fak07 - 2*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(3) {
-                @color: @color-fak07 - 1*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(4) {
-                @color: @color-fak07 - 0*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(5) {
-                @color: @color-fak07 + 1*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(6) {
-                @color: @color-fak07 + 2*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(7) {
-                @color: @color-fak07 + 3*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-            li:nth-child(8) {
-                @color: @color-fak07 + 4*#050505;
-                background-color: @color;
-                &.touch { background-color: @color - #111; }
-            }
-        }
+        &.fak1 { .generateColors(@color-fak01); }
+        &.fak7 { .generateColors(@color-fak07); }
     }
 }

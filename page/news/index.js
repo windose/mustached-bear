@@ -21,7 +21,7 @@ window.MS.page = window.MS.page || {};
             /*
              * Expend a news item on touch
              */
-            view.on('touchend', 'li .article', function() {
+            view.on('touchend', 'li .openNews', function() {
                 if (MS.isMove) { return; }
 
                 var listItem = $(this).parents('li');
@@ -94,10 +94,10 @@ window.MS.page = window.MS.page || {};
 
             template = '<li><table><tr>' +
                 '<td class="icons">' +
-                    '<img src="asset/icon/news_2.png">' +
+                    '<img class="openNews" src="asset/icon/news_2.png">' +
                     '<img src="asset/icon/iconmoon-eeecef/share.png">' +
                 '</td>' +
-                '<td class="article">'+item.content+'</td>' +
+                '<td class="article openNews">'+item.content+'</td>' +
             '</tr></table></li>';
 
             view.find('ul').append(template);
