@@ -1,0 +1,5 @@
+{
+    "user_id": "INTEGER NOT NULL",
+    "vorlesung_id": "INTEGER NOT NULL",
+    "last_update": "TIMESTAMP(8)"
+}

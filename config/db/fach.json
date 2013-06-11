@@ -1,0 +1,6 @@
+{
+    "id": "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT",
+    "name": "VARCHAR(255)",
+    "info": "LONGTEXT",
+    "last_update": "TIMESTAMP(8)"
+}

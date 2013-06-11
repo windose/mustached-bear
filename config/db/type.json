@@ -1,0 +1,4 @@
+{
+    "id": "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT",
+    "name": "VARCHAR(255)"
+}

@@ -1,0 +1,7 @@
+{
+    "id": "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT",
+    "email": "VARCHAR(255)",
+    "password": "VARCHAR(255)",
+    "last_update": "TIMESTAMP(8)",
+    "validcookie": "VARCHAR(255)"
+}

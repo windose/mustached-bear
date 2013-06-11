@@ -82,6 +82,7 @@ window.MS.page = window.MS.page || {};
             /*
              * Get and insert faculties from database
              */
+            fakList.empty();
             MS.db.get(
                 'SELECT id, name FROM fakultaet',
                 function(err, result) {

@@ -1,0 +1,9 @@
+{
+    "id": "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT",
+    "fakultaet_id": "INTEGER",
+    "title": "VARCHAR(4096)",
+    "content": "TEXT",
+    "date": "TIMESTAMP",
+    "author": "VARCHAR(4096)",
+    "last_update": "TIMESTAMP(8)"
+}

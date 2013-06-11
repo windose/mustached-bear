@@ -9,120 +9,107 @@ document.addEventListener('deviceready', function() {
 
     /**
      *
+     * @param name
+     * @param json
      * @param drop
+     * @param callback
      */
-    MS.db.createTables = function createTables(drop) {
+    MS.db.createTable = function createTable(name, json, drop, callback) {
+        var sql, columns, key;
+
+        sql = 'CREATE TABLE IF NOT EXISTS '+name+' (';
+        columns = [];
+        for (key in json) {
+            columns.push(key+' '+json[key]);
+        }
+        sql += columns.join(', ')+')';
+
+        log('createtable', sql);
         MS.db.obj.transaction(function(tx) {
 
-            // fach
-            drop && tx.executeSql('DROP TABLE IF EXISTS fach');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS fach ('+
-                'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                'name VARCHAR(255), ' +
-                'info LONGTEXT, ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
-
-            // fakultaet
-            drop && tx.executeSql('DROP TABLE IF EXISTS fakultaet');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS fakultaet ('+
-                'id INTEGER NOT NULL PRIMARY KEY, ' +
-                'name VARCHAR(255), ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
-
-            // studiengang
-            drop && tx.executeSql('DROP TABLE IF EXISTS studiengang');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS studiengang ('+
-                'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                'name VARCHAR(255), ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
-
-            // studiengruppe
-            drop && tx.executeSql('DROP TABLE IF EXISTS studiengruppe');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS studiengruppe ('+
-                'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                'name VARCHAR(255), ' +
-                'semester INTEGER, ' +
-                'studiengang_id INTEGER, ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
-
-            // user
-            drop && tx.executeSql('DROP TABLE IF EXISTS user');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS user ('+
-                'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                'email VARCHAR(255), ' +
-                'password VARCHAR(255), ' +
-                'last_update TIMESTAMP(8), ' +
-                'validcookie VARCHAR(255)' +
-                ')');
-
-            // vorlesung
-            drop && tx.executeSql('DROP TABLE IF EXISTS vorlesung');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS vorlesung ('+
-                'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                'type INTEGER, ' +
-                'raum VARCHAR(255), ' +
-                'dozent VARCHAR(255), ' +
-                'end TIMESTAMP(8), ' +
-                'start TIMESTAMP(8), ' +
-                'last_update TIMESTAMP(8), ' +
-                'fach_id INTEGER, ' +
-                'studiengruppe_id INTEGER' +
-                ')');
-
-            // type
-            drop && tx.executeSql('DROP TABLE IF EXISTS type');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS type ('+
-                'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                'name VARCHAR(255)' +
-                ')');
-
-            // nachrichten
-            drop && tx.executeSql('DROP TABLE IF EXISTS nachrichten');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS nachrichten ('+
-                'id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                'fakultaet_id INTEGER, ' +
-                'title VARCHAR(4096), ' +
-                'content TEXT, ' +
-                'date TIMESTAMP, ' +
-                'author VARCHAR(4096), ' +
-                'msg_type VARCHAR(5), ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
-
-            // link fach <-> studiengang
-            drop && tx.executeSql('DROP TABLE IF EXISTS fach_studiengang');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS fach_studiengang ('+
-                'fach_id INTEGER NOT NULL, ' +
-                'studiengang_id INTEGER NOT NULL, ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
-
-            // link fakultät <-> studiengang
-            drop && tx.executeSql('DROP TABLE IF EXISTS fakultaet_studiengang');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS fakultaet_studiengang ('+
-                'fakultaet_id INTEGER NOT NULL, ' +
-                'studiengang_id INTEGER NOT NULL, ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
-
-            // link user <-> vorlesung
-            drop && tx.executeSql('DROP TABLE IF EXISTS user_vorlesung');
-            tx.executeSql('CREATE TABLE IF NOT EXISTS user_vorlesung ('+
-                'user_id INTEGER NOT NULL, ' +
-                'vorlesung_id INTEGER NOT NULL, ' +
-                'last_update TIMESTAMP(8)' +
-                ')');
+            drop && tx.executeSql('DROP TABLE IF EXISTS '+name);
+            tx.executeSql(sql);
 
         }, function(err) {
-            log(err);
+            if (typeof callback === 'function') {
+                callback(err);
+            }
+
         }, function() {
-            MS.db.isCreated = true;
-            log('db success');
+            if (typeof callback === 'function') {
+                callback();
+            }
         });
+    };
+
+    /**
+     *
+     * @param name
+     * @param callback
+     */
+    MS.db.loadDbConfig = function loadDbConfig(name, callback) {
+
+        $.ajax({
+            url: './config/db/'+name+'.json',
+            success: function(json) {
+                if (typeof callback === 'function') {
+                    callback(undefined, {
+                        name: name,
+                        table: json
+                    });
+                }
+            },
+            error: function(err) {
+                if (typeof callback === 'function') {
+                    callback(err);
+                }
+            }
+        });
+    };
+
+    /**
+     *
+     * @param drop
+     */
+    MS.db.createTables = function createTables(drop, callback) {
+        var tables, i, group;
+
+        tables = [
+            'fach',
+            'fach_studiengang',
+            'fakultaet',
+            'fakultaet_studiengang',
+            'nachrichten',
+            'studiengang',
+            'studiengruppe',
+            'type',
+            'user',
+            'user_vorlesung',
+            'vorlesung'
+        ];
+
+        Step(
+            function getConfigFiles() {
+                group = this.group();
+                for (i=tables.length; i--;) {
+                    MS.db.loadDbConfig(tables[i], group());
+                }
+            },
+            function createTables(err, data) {
+                if (err) { return console.log(err); }
+
+                group = this.group();
+                for (i=data.length; i--;) {
+                    MS.db.createTable(data[i].name, data[i].table, drop, group());
+                }
+            },
+            function done() {
+                MS.db.isCreated = true;
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            }
+        );
     };
 
     /**
@@ -163,15 +150,9 @@ document.addEventListener('deviceready', function() {
         });
     };
 
+    /*
+     * Initialize database
+     */
+
     MS.db.createTables();
-
-    MS.db.obj.transaction(function(tx) {
-        tx.executeSql('INSERT INTO type (id, name) VALUES (1, "vorlesung")');
-        tx.executeSql('INSERT INTO type (id, name) VALUES (2, "praktikum")');
-    }, function(err) {
-        log('enum failed', err);
-    }, function() {
-        log('enum success');
-    });
-
 });
