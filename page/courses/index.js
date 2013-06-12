@@ -11,48 +11,48 @@ window.MS.page = window.MS.page || {};
          * @param header
          * @param view
          */
-        init: function(header, view) {
+        init: function(scope) {
 
             /*
              * Touch highlighting
              */
-            header.on('touchstart', '.mheader, .coursesSem li', function() {
+            scope.header.on('touchstart', '.mheader, .coursesSem li', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchstart', 'label, .footer span', function() {
+            scope.view.on('touchstart', 'label, .footer span', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchmove', 'label', function() {
+            scope.view.on('touchmove', 'label', function() {
                 $(this).removeClass('touch');
             });
 
             /*
              * Switch between faculty
              */
-            header.find('select').on('change', function() {
+            scope.header.find('select').on('change', function() {
                 var fak = header.find('select').val();
 
-                $.fn.add.call(view,header)
-                    .removeClass('fak'+view.attr('data-fak'))
+                $.fn.add.call(scope.view,scope.header)
+                    .removeClass('fak'+scope.view.attr('data-fak'))
                     .attr('data-fak', fak)
-                    .addClass('fak'+view.attr('data-fak'), fak);
+                    .addClass('fak'+scope.view.attr('data-fak'), fak);
             });
 
             /*
              * Switch between semester
              */
-            header.find('.coursesSem').on('touchend', 'li', function() {
+            scope.header.find('.coursesSem').on('touchend', 'li', function() {
                 var sem = $(this).attr('data-target');
 
-                view.removeClass('sem'+view.attr('data-sem'))
+                scope.view.removeClass('sem'+scope.view.attr('data-sem'))
                     .attr('data-sem', sem)
-                    .addClass('sem'+view.attr('data-sem'), sem);
+                    .addClass('sem'+scope.view.attr('data-sem'), sem);
             });
 
             /*
              * Toggle state of course on touch
              */
-            view.on('touchend', 'li', function() {
+            scope.view.on('touchend', 'li', function() {
                 if (MS.isMove) { return; }
 
                 var self = $(this);
@@ -71,12 +71,12 @@ window.MS.page = window.MS.page || {};
          * @param header
          * @param view
          */
-        enter: function(done, header, view) {
+        enter: function(done, scope) {
 
             var fakList,
                 fakTemplate;
 
-            fakList = header.find('select');
+            fakList = scope.header.find('select');
             fakTemplate = '<option value={{id}}>{{name}}</option>'; // ToDo, save templates in files
 
             /*
@@ -96,11 +96,11 @@ window.MS.page = window.MS.page || {};
             /*
              * Get and insert course list
              */
-            view.find('ul').empty();
+            scope.view.find('ul').empty();
             MS.page.courses.getCourseList(function(err, result) {
                 var i, l;
                 for (i=0, l=result.length; i<l; i++) {
-                    MS.page.courses.insertCourse(view, result[i]);
+                    MS.page.courses.insertCourse(scope.view, result[i]);
                 }
                 done();
             });

@@ -29,6 +29,7 @@
         <script src="./script/db.js"></script>
         <script src="./script/dbDummy.js"></script>
 
+        <script src="./page/login/index.js"></script>
         <script src="./page/news/index.js"></script>
         <script src="./page/courses/index.js"></script>
         <script src="./page/settings/index.js"></script>
@@ -45,39 +46,6 @@
     //                    MS.navigator.back();
     //                }, false);
     //            }
-
-                /*
-                 * Login
-                 */
-
-                MS.page.login = {
-                    init: function() {
-                        log('init login');
-                        /* set background image size to prevent keyboard bug */
-                        MS.dom.login.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
-
-                        MS.dom.loginSubmit.on('touchstart', function() {
-                            MS.dom.loginSubmit.addClass('touch');
-                        });
-
-                        MS.dom.loginSubmit.on('touchend', function() {
-                            MS.navigator.goTo('News');
-                        });
-                    },
-                    enter: function(done) {
-                        log('enter login');
-
-                        MS.dom.body.addClass('bo');
-                        MS.dom.login.removeClass('loggedIn');
-                        done();
-                    },
-                    leave: function() {
-                        log('leave login');
-
-                        MS.dom.body.removeClass('bo');
-                        MS.dom.login.addClass('loggedIn');
-                    }
-                };
 
                 MS.dom.sidebarLeft.on('touchstart', 'li', function() {
                     $(this).addClass('touch');
@@ -102,11 +70,7 @@
                     }
                 });
 
-                //MS.navigator.goTo('Login');
-                //MS.navigator.goTo('News');
-                //MS.navigator.goTo('Courses');
-
-                MS.page.login.init();
+                MS.navigator.goTo('Login');
             }, false);
 
         </script>
@@ -114,7 +78,9 @@
 
     <body class="h100">
 
-        <div class="h100">
+        <div id="wrapper" class="h100">
+            <div id="overlay" class="full overlay"></div>
+
             <div id="sidebarLeft" class="sidebar small l0">
                 <ul class="navList">
                     <li data-target="News"><img src="./asset/icon/iconmoon-232124/paragraph-right.png"></li>
@@ -127,24 +93,6 @@
             <div id="body" class="full bo">
                 <div id="header" class="header"></div>
                 <div id="content" class="content" data-content="login"></div>
-            </div>
-
-            <div id="login" class="full">
-                <table>
-                    <tr>
-                        <td class="iconBackground"><img src="./asset/icon/iconmoon-eeecef/user.png"></td>
-                        <td><input type="text" id="email"></td>
-                    </tr>
-                    <tr><td colspan="2" class="space">&nbsp;</td></tr>
-                    <tr>
-                        <td class="iconBackground"><img src="./asset/icon/iconmoon-eeecef/lock.png"></td>
-                        <td><input type="password" id="pw"></td>
-                    </tr>
-                    <tr><td colspan="2" class="space">&nbsp;</td></tr>
-                    <tr>
-                        <td colspan="2"><button type="submit" id="loginSubmit">Anmelden</button></td>
-                    </tr>
-                </table>
             </div>
 
             <div id="sidebarRight" class="sidebar r0">

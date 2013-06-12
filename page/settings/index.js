@@ -4,15 +4,15 @@ window.MS.page = window.MS.page || {};
 (function() {
 
     MS.page.settings = {
-        init: function(header, view) {
+        init: function(scope) {
             log('init settings');
         },
-        enter: function(done, header, view) {
+        enter: function(done, scope) {
             log('enter settings');
 
             var i, l, list;
 
-            list = view.find('ul');
+            list = scope.view.find('ul');
             list.empty();
             for (i=0, l=MS.logdata.length; i<l; i++) {
                 list.append('<li>'+MS.logdata[i].join()+'</li>');

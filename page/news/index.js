@@ -4,24 +4,24 @@ window.MS.page = window.MS.page || {};
 (function() {
 
     MS.page.news = {
-        init: function(header, view) {
+        init: function(scope) {
 
-            header.on('touchstart', '.mheader, .newsCal', function() {
+            scope.header.on('touchstart', '.mheader, .newsCal', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchstart', 'li .article, img', function() {
+            scope.view.on('touchstart', 'li .article, img', function() {
                 $(this).addClass('touch');
             });
-            view.on('touchmove', 'li .article, img', function() {
+            scope.view.on('touchmove', 'li .article, img', function() {
                 $(this).removeClass('touch');
             });
 
-            header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
+            scope.header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
 
             /*
              * Expend a news item on touch
              */
-            view.on('touchend', 'li .openNews', function() {
+            scope.view.on('touchend', 'li .openNews', function() {
                 if (MS.isMove) { return; }
 
                 var listItem = $(this).parents('li');
@@ -33,7 +33,7 @@ window.MS.page = window.MS.page || {};
                 }
             });
         },
-        enter: function(done, header, view) {
+        enter: function(done, scope) {
             log('enter news');
 
             MS.db.get('SELECT * from nachrichten', function(err, result) {
@@ -45,23 +45,23 @@ window.MS.page = window.MS.page || {};
                     MS.dbDummy.insertNews();
                     setTimeout(function() {
                         var i, l;
-                        view.find('ul').empty();
+                        scope.view.find('ul').empty();
                         for (i=0, l=result.length; i<l; i++) {
-                            MS.page.news.insertNews(view, result[i]);
+                            MS.page.news.insertNews(scope.view, result[i]);
                         }
                         done();
                         setTimeout(function() {
                             log('force reflow');
-                            view.find('li').width(view.find('li').width());
+                            scope.view.find('li').width(scope.view.find('li').width());
                         }, 100);
                     }, 500);
                 } else {
 
                     var i, l;
 
-                    view.find('ul').empty();
+                    scope.view.find('ul').empty();
                     for (i=0, l=result.length; i<l; i++) {
-                        MS.page.news.insertNews(view, result[i]);
+                        MS.page.news.insertNews(scope.view, result[i]);
                     }
 
                     done();
@@ -73,7 +73,7 @@ window.MS.page = window.MS.page || {};
                      */
                     setTimeout(function() {
                         log('force reflow');
-                        view.find('li').width(view.find('li').width());
+                        scope.view.find('li').width(scope.view.find('li').width());
                     }, 100);
 
                 }

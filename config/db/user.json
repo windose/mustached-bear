@@ -2,6 +2,12 @@
     "id": "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT",
     "email": "VARCHAR(255)",
     "password": "VARCHAR(255)",
+    "studiengang_id": "INTEGER",
+    "Semester": "INTEGER",
+    "isPush": "INTEGEER",
+    "isSync": "INTEGER",
+    "isDarkTheme": "INTEGER",
+    "isBackup": "INTEGER",
     "last_update": "TIMESTAMP(8)",
     "validcookie": "VARCHAR(255)"
 }

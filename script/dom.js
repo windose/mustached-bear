@@ -4,13 +4,13 @@ document.addEventListener('deviceready', function() {
 
     MS.dom = {
         window: $(window),
+        wrapper: $('#wrapper'),
         body: $('#body'),
-        login: $('#login'),
-        loginSubmit: $('#loginSubmit'),
         sidebarLeft: $('#sidebarLeft'),
         sidebarRight: $('#sidebarRight'),
         header: $('#header'),
-        content: $('#content')
+        content: $('#content'),
+        overlay: $('#overlay')
     }
 
 }, false);

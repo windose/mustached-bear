@@ -41,8 +41,12 @@ img {
 .template,
 .view { display: none; }
 
+#overlay .view,
 #content .view,
-#header .view { display: block; }
+#header .view {
+    display: block;
+    height: 100%;
+}
 
 .full {
     position: absolute;
@@ -62,5 +66,13 @@ img {
     &.left {
         -webkit-transform: translate3d(-@sidebar-width, 0, 0);
                 transform: translate3d(-@sidebar-width, 0, 0);
+    }
+}
+.overlay {
+    z-index: 10;
+    -webkit-transition-duration: .2s;
+    -webkit-transform: translate3d(0,0,0);
+    &.out {
+        -webkit-transform: translate3d(0,-100%,0);
     }
 }

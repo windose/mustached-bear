@@ -83,18 +83,23 @@ document.addEventListener('deviceready', function() {
          * @param page
          * @returns {Function}
          */
-        showPage: function showPage(header, view) {
+        showPage: function showPage(scope) {
             "use strict";
 
-            if (header || view) {
+            if (scope) {
                 return function() {
                     MS.navigator.showPage.apply({
-                        header: header,
-                        view: view
+                        overlay: scope.overlay,
+                        header: scope.header,
+                        view: scope.view
                     });
                 };
             }
 
+            if (this.overlay.length > 0) {
+                this.overlay.show();
+                MS.dom.overlay.removeClass('out');
+            }
             this.header.show();
             this.view.show();
             // ToDo: hide loading screen
@@ -111,38 +116,37 @@ document.addEventListener('deviceready', function() {
          */
         goTo: function goTo(pagename) {
             var pagenameLower = pagename.toLowerCase(),
-                lastPagename = MS.dom.content.attr('data-content'),
-                cachedView, cachedHeader;
+                lastPagename = MS.dom.wrapper.attr('data-page'),
+                scope;
 
             // ToDo Show loading screen
 
-            cachedView = MS.dom.content.find('#view'+pagename);
-            cachedHeader = MS.dom.header.find('#header'+pagename);
+            scope = {
+                view: MS.dom.content.find('#view'+pagename),
+                header: MS.dom.header.find('#header'+pagename),
+                overlay: MS.dom.overlay.find('#overlay'+pagename)
+            };
 
-            /* Save desired pagename */
-            MS.dom.content.attr('data-content', pagenameLower);
+            // Save desired pagename
+            MS.dom.wrapper.attr('data-page', pagenameLower);
 
-            /* Stay on the same page, if already loaded, login as special case */
-            if (lastPagename === pagenameLower ||
-                pagenameLower === 'login') {
+            // Stay on the same page, if already loaded
+            if (lastPagename === pagenameLower) {
 
-                /* Call page specific js */
+                // Call page specific js
                 if (typeof MS.page[lastPagename] !== 'undefined' &&
                     typeof MS.page[lastPagename].leave === 'function') {
                     MS.page[lastPagename].leave();
                 }
 
-                /* Call page specific js */
+                // Call page specific js
                 if (typeof MS.page[pagenameLower] !== 'undefined' &&
                     typeof MS.page[pagenameLower].enter === 'function') {
 
-                    MS.page[pagenameLower].enter(
-                        MS.navigator.showPage(cachedHeader, cachedView),
-                        cachedHeader, cachedView
-                    );
+                    MS.page[pagenameLower].enter(MS.navigator.showPage(scope), scope);
                 }
 
-                /* Close side menu, if open */
+                // Close side menu, if open
                 if(MS.dom.body.hasClass('open-menu')) {
                     MS.navigator.back();
                 }
@@ -150,79 +154,101 @@ document.addEventListener('deviceready', function() {
                 return;
             }
 
-            /* Show cached page */
-            if (cachedView.length > 0) {
+            // Show cached page
+            if (scope.view.length > 0 ||
+                scope.header.length > 0 ||
+                scope.overlay.length > 0) {
 
-                /* Call page specific js */
+                // Call page specific js
                 if (typeof MS.page[lastPagename] !== 'undefined' &&
                     typeof MS.page[lastPagename].leave === 'function') {
                     MS.page[lastPagename].leave();
                 }
 
-                /* Hide last view */
-                MS.dom.content.find('.view').hide();
-                MS.dom.header.find('.view').hide();
+                // Show cached overlay
+                if (scope.overlay.length > 0) {
+                    MS.dom.overlay.find('.view').hide();
+                    MS.dom.overlay.attr('data-content', pagenameLower);
+                } else {
+                    MS.dom.overlay.addClass('out');
+                }
 
-                /* Show desired view */
-                cachedView.show();
+                // Show cached content
+                if (scope.view.length > 0) {
+                    MS.dom.content.find('.view').hide();
+                    MS.dom.content.attr('data-content', pagenameLower);
+                }
 
-                /* Call page specific js */
+                // Show cached header
+                if (scope.header.length > 0) {
+                    MS.dom.header.find('.view').hide();
+                    MS.dom.header.attr('data-content', pagenameLower);
+                }
+
+                // Call page specific js
                 if (typeof MS.page[pagenameLower] !== 'undefined' &&
                     typeof MS.page[pagenameLower].enter === 'function') {
 
-                    MS.page[pagenameLower].enter(
-                        MS.navigator.showPage(cachedHeader, cachedView),
-                        cachedHeader, cachedView
-                    );
+                    MS.page[pagenameLower].enter(MS.navigator.showPage(scope), scope);
                 }
 
-                /* Show page specific header */
-                if (cachedHeader.length > 0) {
-                    MS.dom.header.attr('data-content', pagenameLower);
-                    cachedHeader.show();
-                }
-
-                /* Close side menu, if open */
+                // Close side menu, if open
                 if(MS.dom.body.hasClass('open-menu')) {
                     MS.navigator.back();
                 }
 
-                /* add new page to history */
+                // add new page to history
                 MS.navigator.history.push(pagename);
 
                 return;
             }
 
-            /* Get new page */
+            // Get new page
             $.ajax({
                 url: './page/'+pagenameLower+'/index.html',
                 success: function(html) {
 
-                    /* Find new views and templates */
+                    // Find new views and templates
                     var dom = $("<div></div>").html(html),
-                        newView = dom.find('#view'+pagename).clone().hide(),
-                        newHeader = dom.find('#header'+pagename).clone().hide(),
                         templates = dom.find('.template');
 
-                    /* Call page specific js */
+                    scope = {
+                        view: dom.find('#view'+pagename).clone().hide(),
+                        header: dom.find('#header'+pagename).clone().hide(),
+                        overlay: dom.find('#overlay'+pagename).clone().hide()
+                    };
+
+                    // Call page specific js
                     if (typeof MS.page[lastPagename] !== 'undefined' &&
                         typeof MS.page[lastPagename].leave === 'function') {
                         MS.page[lastPagename].leave();
                     }
 
-                    /* Hide old and show new view */
-                    MS.dom.content.find('.view').hide();
-                    MS.dom.content.prepend(newView);
-
-                    /* Hide old and attach new header */
-                    if (newHeader.length > 0) {
-                        MS.dom.header.find('.view').hide();
-                        MS.dom.header.prepend(newHeader);
-                        MS.dom.header.attr('data-content', pagenameLower);
-                        MS.navigator.initSidemenu(newHeader);
+                    // Hide old and attach new Overlay
+                    if (scope.overlay.length > 0) {
+                        MS.dom.overlay.find('.view').hide();
+                        MS.dom.overlay.prepend(scope.overlay);
+                        MS.dom.overlay.attr('data-content', pagenameLower);
+                    } else {
+                        MS.dom.overlay.addClass('out');
                     }
 
-                    /* Serve templates to the page */
+                    // Hide old and attach new view
+                    if (scope.view.length > 0) {
+                        MS.dom.content.find('.view').hide();
+                        MS.dom.content.prepend(scope.view);
+                        MS.dom.content.attr('data-content', pagenameLower);
+                    }
+
+                    // Hide old and attach new header
+                    if (scope.header.length > 0) {
+                        MS.dom.header.find('.view').hide();
+                        MS.dom.header.prepend(scope.header);
+                        MS.dom.header.attr('data-content', pagenameLower);
+                        MS.navigator.initSidemenu(scope.header);
+                    }
+
+                    // Serve templates to the page
                     templates.each(function() {
                         var self = $(this);
                         if ($('#'+self.attr('id')).length === 0) {
@@ -230,26 +256,23 @@ document.addEventListener('deviceready', function() {
                         }
                     });
 
-                    /* Call page specific js */
+                    // Call page specific js
                     if (typeof MS.page[pagenameLower] !== 'undefined' &&
                         typeof MS.page[pagenameLower].init === 'function') {
-                        MS.page[pagenameLower].init(newHeader, newView);
+                        MS.page[pagenameLower].init(scope);
                     }
                     if (typeof MS.page[pagenameLower] !== 'undefined' &&
                         typeof MS.page[pagenameLower].enter === 'function') {
 
-                        MS.page[pagenameLower].enter(
-                            MS.navigator.showPage(newHeader, newView),
-                            newHeader, newView
-                        );
+                        MS.page[pagenameLower].enter(MS.navigator.showPage(scope), scope);
                     }
 
-                    /* Close side menu, if open */
+                    // Close side menu, if open
                     if(MS.dom.body.hasClass('open-menu')) {
                         MS.navigator.back();
                     }
 
-                    /* add new page to history */
+                    // add new page to history
                     MS.navigator.history.push(pagename);
                 }
             });

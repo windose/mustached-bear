@@ -208,9 +208,11 @@ img {
 .view {
   display: none;
 }
+#overlay .view,
 #content .view,
 #header .view {
   display: block;
+  height: 100%;
 }
 .full {
   position: absolute;
@@ -229,19 +231,22 @@ img {
   -webkit-transform: translate3d(-85%, 0, 0);
   transform: translate3d(-85%, 0, 0);
 }
-#login {
+.overlay {
+  z-index: 10;
+  -webkit-transition-duration: .2s;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.overlay.out {
+  -webkit-transform: translate3d(0, -100%, 0);
+}
+.overlay .login {
   background: url('../asset/img/login.jpg');
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center bottom;
   z-index: 3;
-  -webkit-transition-duration: .2s;
-  -webkit-transform: translate3d(0, 0, 0);
 }
-#login.loggedIn {
-  -webkit-transform: translate3d(0, -100%, 0);
-}
-#login table {
+.overlay .login table {
   position: absolute;
   bottom: 0;
   width: 80%;
@@ -249,15 +254,15 @@ img {
   padding: 1em 0;
   border-spacing: 0;
 }
-#login table td {
+.overlay .login table td {
   background-color: #eeecef;
 }
-#login table .space {
+.overlay .login table .space {
   line-height: 0.5em;
   background-color: transparent;
 }
-#login table input,
-#login table button {
+.overlay .login table input,
+.overlay .login table button {
   -webkit-text-shadow: none;
   text-shadow: none;
   -webkit-box-shadow: none;
@@ -266,24 +271,24 @@ img {
   height: 2em;
   border: 0;
 }
-#login table .iconBackground {
+.overlay .login table .iconBackground {
   width: 3em;
   text-align: center;
   background-color: #232124;
 }
-#login table input {
+.overlay .login table input {
   color: #bbb;
   background-color: #eeecef;
   padding: 0 5%;
   width: 80%;
 }
-#login table button {
+.overlay .login table button {
   font-family: 'Raleway-Regular';
   color: rgba(255, 255, 255, 0.5);
   background-color: #7acc00;
   width: 100%;
 }
-#login table button.touch {
+.overlay .login table button.touch {
   background-color: #69bb00;
 }
 .sidebar {
@@ -360,9 +365,6 @@ img {
 }
 .header {
   min-height: 3em;
-}
-.header > .view {
-  height: 100%;
 }
 .header .mheader {
   height: 3em;
