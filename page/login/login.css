@@ -19,6 +19,15 @@
 .overlay .login .wrapper .whitey {
   background-color: #eeecef;
 }
+.overlay .login .wrapper .desc {
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  color: #232124;
+  font-family: "Raleway-SemiBold";
+}
+.overlay .login .wrapper .desc p {
+  text-decoration: underline;
+}
 .overlay .login .wrapper .space {
   line-height: 0.5rem;
   background-color: transparent;
