@@ -14,13 +14,13 @@
   background-color: rgba(255, 255, 255, 0.5);
 }
 .overlay .login .wrapper table {
-  margin: 0.8em;
+  margin: 0.8rem;
 }
-.overlay .login .wrapper td {
+.overlay .login .wrapper .whitey {
   background-color: #eeecef;
 }
 .overlay .login .wrapper .space {
-  line-height: 0.5em;
+  line-height: 0.5rem;
   background-color: transparent;
 }
 .overlay .login .wrapper input,
@@ -29,12 +29,12 @@
   text-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  font-size: 1.5em;
-  height: 2em;
+  font-size: 1.5rem;
+  height: 3rem;
   border: 0;
 }
 .overlay .login .wrapper .iconBackground {
-  width: 3em;
+  width: 3rem;
   text-align: center;
   background-color: #232124;
 }

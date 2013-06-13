@@ -3,10 +3,10 @@
   overflow-x: hidden;
 }
 .content .courses ul {
-  padding: 0.6em 1em 3.6em;
+  padding: 0.6rem 1rem 3.6rem;
 }
 .content .courses ul li label {
-  min-height: 2.8em;
+  min-height: 2.8rem;
   display: block;
 }
 .content .courses ul li label.touch {
@@ -19,7 +19,7 @@
   vertical-align: baseline;
 }
 .content .courses ul li label .label {
-  padding: 0.65em 0.8em 0;
+  padding: 0.65rem 0.8rem 0;
 }
 .content .courses ul li label .label:first-line {
   color: rgba(255, 255, 255, 0.9);
@@ -95,20 +95,20 @@
 .content .courses .footer {
   position: absolute;
   bottom: 0;
-  height: 3em;
+  height: 3rem;
   width: 100%;
-  padding: 0 1em;
+  padding: 0 1rem;
   background-color: #232124;
   box-sizing: border-box;
 }
 .content .courses .footer .button {
-  height: 3em;
+  height: 3rem;
   width: 49%;
   text-align: center;
 }
 .content .courses .footer .button label {
   display: inline-block;
-  padding: 0.8em 0.8em 0.8em 0;
+  padding: 0.8rem 0.8rem 0.8rem 0;
   max-width: 50%;
 }
 .content .courses .footer .button.by.touch {
@@ -154,7 +154,7 @@
   float: left;
   width: 14.285714285714286%;
   text-align: center;
-  padding: 0.8em 0;
+  padding: 0.8rem 0;
 }
 .header .courses .coursesSem.fak1 li:nth-child(1) {
   background-color: #003069;
