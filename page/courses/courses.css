@@ -1,0 +1,242 @@
+.content .courses {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.content .courses ul {
+  padding: 0.6em 1em 3.6em;
+}
+.content .courses ul li label {
+  min-height: 2.8em;
+  display: block;
+}
+.content .courses ul li label.touch {
+  background: #23394d;
+}
+.content .courses ul li label td {
+  vertical-align: top;
+}
+.content .courses ul li label img {
+  vertical-align: baseline;
+}
+.content .courses ul li label .label {
+  padding: 0.65em 0.8em 0;
+}
+.content .courses ul li label .label:first-line {
+  color: rgba(255, 255, 255, 0.9);
+}
+.content .courses ul li .on,
+.content .courses ul li .off {
+  display: none;
+}
+.content .courses ul li.on .on {
+  display: inline-block;
+}
+.content .courses ul li.off .off {
+  display: inline-block;
+}
+.content .courses .fak1,
+.content .courses .fak2,
+.content .courses .fak3,
+.content .courses .fak4,
+.content .courses .fak5,
+.content .courses .fak6,
+.content .courses .fak7,
+.content .courses .sem1,
+.content .courses .sem2,
+.content .courses .sem3,
+.content .courses .sem4,
+.content .courses .sem5,
+.content .courses .sem6,
+.content .courses .sem7 {
+  display: none;
+}
+.content .courses.fak1 .fak1 {
+  display: block;
+}
+.content .courses.fak2 .fak2 {
+  display: block;
+}
+.content .courses.fak3 .fak3 {
+  display: block;
+}
+.content .courses.fak4 .fak4 {
+  display: block;
+}
+.content .courses.fak5 .fak5 {
+  display: block;
+}
+.content .courses.fak6 .fak6 {
+  display: block;
+}
+.content .courses.fak7 .fak7 {
+  display: block;
+}
+.content .courses.sem1 .sem1 {
+  display: block;
+}
+.content .courses.sem2 .sem2 {
+  display: block;
+}
+.content .courses.sem3 .sem3 {
+  display: block;
+}
+.content .courses.sem4 .sem4 {
+  display: block;
+}
+.content .courses.sem5 .sem5 {
+  display: block;
+}
+.content .courses.sem6 .sem6 {
+  display: block;
+}
+.content .courses.sem7 .sem7 {
+  display: block;
+}
+.content .courses .footer {
+  position: absolute;
+  bottom: 0;
+  height: 3em;
+  width: 100%;
+  padding: 0 1em;
+  background-color: #232124;
+  box-sizing: border-box;
+}
+.content .courses .footer .button {
+  height: 3em;
+  width: 49%;
+  text-align: center;
+}
+.content .courses .footer .button label {
+  display: inline-block;
+  padding: 0.8em 0.8em 0.8em 0;
+  max-width: 50%;
+}
+.content .courses .footer .button.by.touch {
+  background-color: #69bb00;
+}
+.content .courses .footer .button.bn.touch {
+  background-color: #5e5c5f;
+}
+.content .courses .footer .button img {
+  display: inline-block;
+}
+.header .courses .fak1,
+.header .courses .fak2,
+.header .courses .fak3,
+.header .courses .fak4,
+.header .courses .fak5,
+.header .courses .fak6,
+.header .courses .fak7 {
+  display: none;
+}
+.header .courses.fak1 .fak1 {
+  display: block;
+}
+.header .courses.fak2 .fak2 {
+  display: block;
+}
+.header .courses.fak3 .fak3 {
+  display: block;
+}
+.header .courses.fak4 .fak4 {
+  display: block;
+}
+.header .courses.fak5 .fak5 {
+  display: block;
+}
+.header .courses.fak6 .fak6 {
+  display: block;
+}
+.header .courses.fak7 .fak7 {
+  display: block;
+}
+.header .courses .coursesSem li {
+  float: left;
+  width: 14.285714285714286%;
+  text-align: center;
+  padding: 0.8em 0;
+}
+.header .courses .coursesSem.fak1 li:nth-child(1) {
+  background-color: #003069;
+}
+.header .courses .coursesSem.fak1 li:nth-child(1).touch {
+  background-color: #001f58;
+}
+.header .courses .coursesSem.fak1 li:nth-child(2) {
+  background-color: #02356e;
+}
+.header .courses .coursesSem.fak1 li:nth-child(2).touch {
+  background-color: #00245d;
+}
+.header .courses .coursesSem.fak1 li:nth-child(3) {
+  background-color: #073a73;
+}
+.header .courses .coursesSem.fak1 li:nth-child(3).touch {
+  background-color: #002962;
+}
+.header .courses .coursesSem.fak1 li:nth-child(4) {
+  background-color: #0c3f78;
+}
+.header .courses .coursesSem.fak1 li:nth-child(4).touch {
+  background-color: #002e67;
+}
+.header .courses .coursesSem.fak1 li:nth-child(5) {
+  background-color: #11447d;
+}
+.header .courses .coursesSem.fak1 li:nth-child(5).touch {
+  background-color: #00336c;
+}
+.header .courses .coursesSem.fak1 li:nth-child(6) {
+  background-color: #164982;
+}
+.header .courses .coursesSem.fak1 li:nth-child(6).touch {
+  background-color: #053871;
+}
+.header .courses .coursesSem.fak1 li:nth-child(7) {
+  background-color: #1b4e87;
+}
+.header .courses .coursesSem.fak1 li:nth-child(7).touch {
+  background-color: #0a3d76;
+}
+.header .courses .coursesSem.fak7 li:nth-child(1) {
+  background-color: #0098bf;
+}
+.header .courses .coursesSem.fak7 li:nth-child(1).touch {
+  background-color: #0087ae;
+}
+.header .courses .coursesSem.fak7 li:nth-child(2) {
+  background-color: #009dc4;
+}
+.header .courses .coursesSem.fak7 li:nth-child(2).touch {
+  background-color: #008cb3;
+}
+.header .courses .coursesSem.fak7 li:nth-child(3) {
+  background-color: #00a2c9;
+}
+.header .courses .coursesSem.fak7 li:nth-child(3).touch {
+  background-color: #0091b8;
+}
+.header .courses .coursesSem.fak7 li:nth-child(4) {
+  background-color: #05a7ce;
+}
+.header .courses .coursesSem.fak7 li:nth-child(4).touch {
+  background-color: #0096bd;
+}
+.header .courses .coursesSem.fak7 li:nth-child(5) {
+  background-color: #0aacd3;
+}
+.header .courses .coursesSem.fak7 li:nth-child(5).touch {
+  background-color: #009bc2;
+}
+.header .courses .coursesSem.fak7 li:nth-child(6) {
+  background-color: #0fb1d8;
+}
+.header .courses .coursesSem.fak7 li:nth-child(6).touch {
+  background-color: #00a0c7;
+}
+.header .courses .coursesSem.fak7 li:nth-child(7) {
+  background-color: #14b6dd;
+}
+.header .courses .coursesSem.fak7 li:nth-child(7).touch {
+  background-color: #03a5cc;
+}

@@ -203,11 +203,36 @@ document.addEventListener('deviceready', function() {
                 return;
             }
 
-            // Get new page
-            $.ajax({
-                url: './page/'+pagenameLower+'/index.html',
-                success: function(html) {
-
+            var html;
+            Step(
+                function getCSSFile() {
+                    $('<link/>', {
+                        rel: 'stylesheet',
+                        type: 'text/css',
+                        href: './page/'+pagenameLower+'/'+pagenameLower+'.css'
+                    }).appendTo('head');
+                    return true;
+                },
+                function getHtmlFile() {
+                    var self = this;
+                    $.ajax({
+                            url: './page/'+pagenameLower+'/'+pagenameLower+'.html',
+                            success: function(data) {
+                                html = data;
+                                self();
+                            }, error: function(err) {
+                                self(err);
+                            }
+                    });
+                },
+                function getJSFile() {
+                    $.ajax({
+                        url: './page/'+pagenameLower+'/'+pagenameLower+'.js',
+                        dataType: "script",
+                        success: this
+                    });
+                },
+                function buildPage() {
                     // Find new views and templates
                     var dom = $("<div></div>").html(html),
                         templates = dom.find('.template');
@@ -275,7 +300,7 @@ document.addEventListener('deviceready', function() {
                     // add new page to history
                     MS.navigator.history.push(pagename);
                 }
-            });
+            );
         }
     };
 

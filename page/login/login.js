@@ -14,7 +14,7 @@ window.MS.page = window.MS.page || {};
             });
 
             scope.overlay.find('.submit').on('touchend', function() {
-                MS.navigator.goTo('News');
+                MS.navigator.goTo('Intro');
             });
         },
         enter: function(done, scope) {

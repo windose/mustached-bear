@@ -1,3 +1,6 @@
+@import "../../style/_colors.less";
+@import "../../style/_dimens.less";
+
 .content .courses {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -141,6 +144,7 @@
             }
             li:nth-child(4) {
                 @color: @targetcolor + 1*#050505;
+
                 background-color: @color;
                 &.touch { background-color: @color - #111; }
             }

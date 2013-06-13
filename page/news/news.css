@@ -1,0 +1,52 @@
+.content .news {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.content .news ul {
+  padding-bottom: 1.4em;
+}
+.content .news li {
+  overflow: hidden;
+  max-height: 6.199999999999999em;
+  margin: 0.5999999999999999em 1em 0em;
+  -webkit-transition: max-height 0.5s ease-in-out;
+  transition: max-height 0.5s ease-in-out;
+  -webkit-transform: translate3d(0, 0, 0);
+  text-align: justify;
+  -webkit-column-count: 1;
+  column-count: 1;
+}
+.content .news li .icons {
+  float: left;
+}
+.content .news li .icons img.touch {
+  background-color: #23394d;
+}
+.content .news li .article {
+  padding: 0.65em 0.8em 0.8em;
+}
+.content .news li .article.touch {
+  background: #23394d;
+}
+.content .news li .article:first-line {
+  color: rgba(255, 255, 255, 0.9);
+}
+.content .news li.open {
+  max-height: 42em;
+}
+.header .news .title {
+  width: 7em;
+}
+.header .news .newsCal {
+  background-color: #007acc;
+  color: rgba(255, 255, 255, 0.9);
+  margin-right: 0;
+  padding: 0.8em 0.8em;
+  height: 1.4em;
+}
+.header .news .newsCal.touch {
+  background-color: #0069bb;
+}
+.header .news .newsCal .light {
+  color: rgba(255, 255, 255, 0.5);
+}
