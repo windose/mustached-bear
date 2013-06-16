@@ -20,6 +20,15 @@ document.addEventListener('deviceready', function() {
                 MS.dimens.header.height = MS.dom.header.outerHeight();
                 MS.dimens.header.width = MS.dom.header.outerWidth();
             }
+        },
+        footer: {
+            height: MS.dom.footer.outerHeight(),
+            width: MS.dom.footer.outerWidth(),
+
+            update: function update() {
+                MS.dimens.header.height = MS.dom.footer.outerHeight();
+                MS.dimens.header.width = MS.dom.footer.outerWidth();
+            }
         }
     };
 

@@ -8,12 +8,99 @@
 
 <div id="viewSettings" class="view settings">
 
-    <button onclick="MS.dbDummy.insertFaculties()">insert Faculties</button>
-    <button onclick="MS.dbDummy.insertFach1()">insert Fach1</button>
-    <button onclick="MS.dbDummy.insertFach2()">insert Fach2</button>
-    <button onclick="MS.dbDummy.insertNews()">insert News</button>
-    <button onclick="MS.db.createTables(true)">Reload tables</button>
+    <table>
+        <tr>
+            <td>Notifications</td>
+            <td><div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changePush" checked>
+                <label class="onoffswitch-label" for="changePush">
+                    <div class="onoffswitch-inner">
+                        <div class="onoffswitch-active"><div class="onoffswitch-switch">AN</div></div>
+                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">AUS</div></div>
+                    </div>
+                </label>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Synchronisierung</td>
+            <td><div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changeSync" checked>
+                <label class="onoffswitch-label" for="changeSync">
+                    <div class="onoffswitch-inner">
+                        <div class="onoffswitch-active"><div class="onoffswitch-switch">AN</div></div>
+                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">AUS</div></div>
+                    </div>
+                </label>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Daten auf Server sichern</td>
+            <td><div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changeBackup" checked>
+                <label class="onoffswitch-label" for="changeBackup">
+                    <div class="onoffswitch-inner">
+                        <div class="onoffswitch-active"><div class="onoffswitch-switch">JA</div></div>
+                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">NEIN</div></div>
+                    </div>
+                </label>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Theme</td>
+            <td><div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changeTheme">
+                <label class="onoffswitch-label" for="changeTheme">
+                    <div class="onoffswitch-inner">
+                        <div class="onoffswitch-active"><div class="onoffswitch-switch">HELL</div></div>
+                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">DUNKEL</div></div>
+                    </div>
+                </label>
+            </div></td>
+        </tr>
+        <tr class="heading"><td colspan="2">Passwort ändern</td></tr>
+        <tr>
+            <td colspan="2"><input type="text" id="changePw" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="text" id="changePwSec" /></td>
+        </tr>
+        <tr class="heading"><td colspan="2">Fakultät festlegen</td></tr>
+        <tr>
+            <td colspan="2"><select id="changeFakulty"></select></td>
+        </tr>
+        <tr class="heading"><td colspan="2">Studiengang ändern</td></tr>
+        <tr>
+            <td colspan="2"><select id="changeStudiengang">
+                <option value="1">Scientific Computing</option>
+            </select></td>
+        </tr>
+        <tr class="heading"><td colspan="2">Semester auswählen</td></tr>
+        <tr class="space"><td colspan="2">&nbsp;</td></tr>
+        <tr>
+            <td colspan="2">
+                <ul class="semList fak1" data-fak="1">
+                    <li data-target="1">1</li>
+                    <li data-target="2">2</li>
+                    <li data-target="3">3</li>
+                    <li data-target="4">4</li>
+                    <li data-target="5">5</li>
+                    <li data-target="6">6</li>
+                    <li data-target="7">7</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
 
-    <ul>
-    </ul>
+<div id="footerSettings" class="view">
+    <div class="cf">
+        <div class="button fl by">
+            <img src="asset/icon/iconmoon-eeecef/download.png">
+            <label>Speichern</label>
+        </div>
+        <div class="button fr bn">
+            <img src="asset/icon/iconmoon-eeecef/close.png">
+            <label>Verwerfen</label>
+        </div>
+    </div>
 </div>

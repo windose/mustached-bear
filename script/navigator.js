@@ -88,11 +88,7 @@ document.addEventListener('deviceready', function() {
 
             if (scope) {
                 return function() {
-                    MS.navigator.showPage.apply({
-                        overlay: scope.overlay,
-                        header: scope.header,
-                        view: scope.view
-                    });
+                    MS.navigator.showPage.apply(scope);
                 };
             }
 
@@ -101,13 +97,15 @@ document.addEventListener('deviceready', function() {
                 MS.dom.overlay.removeClass('out');
             }
             this.header.show();
+            this.footer.show();
             this.view.show();
             // ToDo: hide loading screen
 
             MS.dimens.header.update();
+            MS.dimens.footer.update();
 
             /* Set fixed height */
-            this.view.height(MS.dimens.viewport.height-MS.dimens.header.height);
+            this.view.height(MS.dimens.viewport.height-MS.dimens.header.height-MS.dimens.footer.height);
         },
 
         /**
@@ -124,6 +122,7 @@ document.addEventListener('deviceready', function() {
             scope = {
                 view: MS.dom.content.find('#view'+pagename),
                 header: MS.dom.header.find('#header'+pagename),
+                footer: MS.dom.footer.find('#footer'+pagename),
                 overlay: MS.dom.overlay.find('#overlay'+pagename)
             };
 
@@ -157,6 +156,7 @@ document.addEventListener('deviceready', function() {
             // Show cached page
             if (scope.view.length > 0 ||
                 scope.header.length > 0 ||
+                scope.footer.length > 0 ||
                 scope.overlay.length > 0) {
 
                 // Call page specific js
@@ -183,6 +183,16 @@ document.addEventListener('deviceready', function() {
                 if (scope.header.length > 0) {
                     MS.dom.header.find('.view').hide();
                     MS.dom.header.attr('data-content', pagenameLower);
+                }
+
+                // Show cached footer
+                if (scope.footer.length > 0) {
+                    MS.dom.footer.find('.view').hide();
+                    MS.dom.footer.attr('data-content', pagenameLower);
+                    MS.dom.footer.show();
+                } else {
+                    MS.dom.footer.attr('data-content', 'none');
+                    MS.dom.footer.hide();
                 }
 
                 // Call page specific js
@@ -240,6 +250,7 @@ document.addEventListener('deviceready', function() {
                     scope = {
                         view: dom.find('#view'+pagename).clone().hide(),
                         header: dom.find('#header'+pagename).clone().hide(),
+                        footer: dom.find('#footer'+pagename).clone().hide(),
                         overlay: dom.find('#overlay'+pagename).clone().hide()
                     };
 
@@ -271,6 +282,17 @@ document.addEventListener('deviceready', function() {
                         MS.dom.header.prepend(scope.header);
                         MS.dom.header.attr('data-content', pagenameLower);
                         MS.navigator.initSidemenu(scope.header);
+                    }
+
+                    // Hide old and attach new footer
+                    if (scope.footer.length > 0) {
+                        MS.dom.footer.find('.view').hide();
+                        MS.dom.footer.prepend(scope.footer);
+                        MS.dom.footer.attr('data-content', pagenameLower);
+                        MS.dom.footer.show();
+                    } else {
+                        MS.dom.footer.attr('data-content', 'none');
+                        MS.dom.footer.hide();
                     }
 
                     // Serve templates to the page

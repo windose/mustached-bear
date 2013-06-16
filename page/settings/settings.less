@@ -1,11 +1,40 @@
 @import "../../style/_colors.less";
 @import "../../style/_dimens.less";
 
-.settings {
-    ul {
-        li {
-            display: block;
-            padding: 0 5%;
+.content .settings {
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    table {
+        margin: 0 0 1/6*@header-height;
+        width: 100%;
+        tr {
+            height: @header-height;
+            &.heading {
+                font-family: 'Raleway-SemiBold';
+                height: 1/2*@header-height;
+                font-size: .7rem;
+                background-color: @color-bgr + #111;
+            }
+            &.space {
+                height: 1/6*@header-height;
+                td { line-height: 1/6*@header-height; }
+            }
+
+            td:last-child {
+                padding-right: @body-padding;
+                text-align: right;
+            }
+            td:first-child {
+                padding-left: @body-padding;
+                text-align: left;
+            }
+
+            input,select {
+                width: 100%;
+                height: 2/3*@header-height;
+                box-sizing: border-box;
+            }
         }
     }
 }

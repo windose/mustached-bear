@@ -16,7 +16,7 @@ window.MS.page = window.MS.page || {};
             /*
              * Touch highlighting
              */
-            scope.header.on('touchstart', '.mheader, .coursesSem li', function() {
+            scope.header.on('touchstart', '.mheader, .semList li', function() {
                 $(this).addClass('touch');
             });
             scope.view.on('touchstart', 'label, .footer span', function() {
@@ -30,7 +30,7 @@ window.MS.page = window.MS.page || {};
              * Switch between faculty
              */
             scope.header.find('select').on('change', function() {
-                var fak = header.find('select').val();
+                var fak = $(this).val();
 
                 $.fn.add.call(scope.view,scope.header)
                     .removeClass('fak'+scope.view.attr('data-fak'))
@@ -41,7 +41,7 @@ window.MS.page = window.MS.page || {};
             /*
              * Switch between semester
              */
-            scope.header.find('.coursesSem').on('touchend', 'li', function() {
+            scope.header.find('.semList').on('touchend', 'li', function() {
                 var sem = $(this).attr('data-target');
 
                 scope.view.removeClass('sem'+scope.view.attr('data-sem'))

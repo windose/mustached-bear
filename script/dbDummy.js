@@ -98,8 +98,8 @@ window.MS = window.MS || {};
                 function(err) { log('insert link', err); });
 
             MS.db.insert('studiengang',
-                ['name'],
-                ['Scientific Computing'],
+                ['name', 'semesterAnzahl'],
+                ['Scientific Computing', 7],
                 function(err) { log('insert studiengang', err); });
 
             MS.db.insert('fakultaet_studiengang',
@@ -136,8 +136,8 @@ window.MS = window.MS || {};
                 function(err) { log('insert link', err); });
 
             MS.db.insert('studiengang',
-                ['name'],
-                ['Architektur'],
+                ['name', 'semesterAnzahl'],
+                ['Architektur', 7],
                 function(err) { log('insert studiengang', err); });
 
             MS.db.insert('fakultaet_studiengang',

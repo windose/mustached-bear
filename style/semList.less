@@ -1,0 +1,51 @@
+.semList {
+
+    li {
+        float: left;
+        width: 100% / 7;
+        text-align: center;
+        padding: 0.5*(@header-height - @line-height) 0;
+    }
+
+    .generateColors(@targetcolor) {
+        li:nth-child(1) {
+            @color: @targetcolor - 2*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(2) {
+            @color: @targetcolor - 1*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(3) {
+            @color: @targetcolor + 0*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(4) {
+            @color: @targetcolor + 1*#050505;
+
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(5) {
+            @color: @targetcolor + 2*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(6) {
+            @color: @targetcolor + 3*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(7) {
+            @color: @targetcolor + 4*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+    }
+
+    &.fak1 { .generateColors(@color-fak01); }
+    &.fak7 { .generateColors(@color-fak07); }
+}

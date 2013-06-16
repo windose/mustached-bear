@@ -9,6 +9,7 @@ document.addEventListener('deviceready', function() {
         sidebarLeft: $('#sidebarLeft'),
         sidebarRight: $('#sidebarRight'),
         header: $('#header'),
+        footer: $('#footer'),
         content: $('#content'),
         overlay: $('#overlay')
     }

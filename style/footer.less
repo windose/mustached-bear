@@ -1,0 +1,28 @@
+.footer {
+    height: @header-height;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 0 @body-padding;
+    background-color: @color-bgr;
+    box-sizing:border-box;
+
+    .button {
+        height: @header-height;
+        width: 49%;
+        text-align: center;
+
+        label {
+            display: inline-block;
+            padding: @item-padding @item-padding @item-padding 0;
+            max-width: 50%;
+        }
+
+        &.by.touch { background-color: @color-bgr-yes - #111; }
+        &.bn.touch { background-color: @color-bgr-no - #111; }
+
+        img {
+            display: inline-block;
+        }
+    }
+}

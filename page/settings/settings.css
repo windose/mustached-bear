@@ -1,4 +1,37 @@
-.settings ul li {
-  display: block;
-  padding: 0 5%;
+.content .settings {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.content .settings table {
+  margin: 0 0 0.5rem;
+  width: 100%;
+}
+.content .settings table tr {
+  height: 3rem;
+}
+.content .settings table tr.heading {
+  font-family: 'Raleway-SemiBold';
+  height: 1.5rem;
+  font-size: .7rem;
+  background-color: #343235;
+}
+.content .settings table tr.space {
+  height: 0.5rem;
+}
+.content .settings table tr.space td {
+  line-height: 0.5rem;
+}
+.content .settings table tr td:last-child {
+  padding-right: 1rem;
+  text-align: right;
+}
+.content .settings table tr td:first-child {
+  padding-left: 1rem;
+  text-align: left;
+}
+.content .settings table tr input,
+.content .settings table tr select {
+  width: 100%;
+  height: 2rem;
+  box-sizing: border-box;
 }

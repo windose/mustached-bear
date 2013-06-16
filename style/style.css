@@ -349,3 +349,219 @@ img {
 .headerheight {
   height: 3rem;
 }
+/*
+ * Source: http://proto.io/freebies/onoff/
+ * Edited by: Tamas-Imre Lukacs
+ */
+.onoffswitch {
+  position: relative;
+  width: 6rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+  display: none;
+}
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0 solid #999999;
+  border-radius: 0;
+}
+.onoffswitch-inner {
+  width: 200%;
+  margin-left: -100%;
+  -moz-transition: margin 0.3s ease-in 0s;
+  -webkit-transition: margin 0.3s ease-in 0s;
+  -o-transition: margin 0.3s ease-in 0s;
+  transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner > div {
+  float: left;
+  position: relative;
+  width: 50%;
+  height: 2rem;
+  padding: 0;
+  line-height: 2rem;
+  font-size: 1rem;
+  color: white;
+  font-family: 'Raleway-SemiBold', Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.onoffswitch-inner .onoffswitch-active {
+  /* padding-left: 15px; */
+
+  background-color: #C2C2C2;
+  color: #FFFFFF;
+}
+.onoffswitch-inner .onoffswitch-inactive {
+  /* padding-right: 15px; */
+
+  background-color: #C2C2C2;
+  color: #FFFFFF;
+  text-align: right;
+}
+.onoffswitch-switch {
+  width: 3rem;
+  margin: 0px;
+  text-align: center;
+  border: 0px solid #999999;
+  border-radius: 0px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  line-height: 2rem;
+  font-size: .7rem;
+}
+.onoffswitch-active .onoffswitch-switch {
+  background: #27A1CA;
+  left: 0;
+}
+.onoffswitch-inactive .onoffswitch-switch {
+  background: #A1A1A1;
+  right: 0;
+}
+.onoffswitch-active .onoffswitch-switch:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  border-style: solid;
+  border-color: #27A1CA transparent transparent #27A1CA;
+  border-width: 1rem 0.75rem;
+}
+.onoffswitch-inactive .onoffswitch-switch:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  border-style: solid;
+  border-color: transparent #A1A1A1 #A1A1A1 transparent;
+  border-width: 1rem 0.75rem;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+.semList li {
+  float: left;
+  width: 14.285714285714286%;
+  text-align: center;
+  padding: 0.8rem 0;
+}
+.semList.fak1 li:nth-child(1) {
+  background-color: #003069;
+}
+.semList.fak1 li:nth-child(1).touch {
+  background-color: #001f58;
+}
+.semList.fak1 li:nth-child(2) {
+  background-color: #02356e;
+}
+.semList.fak1 li:nth-child(2).touch {
+  background-color: #00245d;
+}
+.semList.fak1 li:nth-child(3) {
+  background-color: #073a73;
+}
+.semList.fak1 li:nth-child(3).touch {
+  background-color: #002962;
+}
+.semList.fak1 li:nth-child(4) {
+  background-color: #0c3f78;
+}
+.semList.fak1 li:nth-child(4).touch {
+  background-color: #002e67;
+}
+.semList.fak1 li:nth-child(5) {
+  background-color: #11447d;
+}
+.semList.fak1 li:nth-child(5).touch {
+  background-color: #00336c;
+}
+.semList.fak1 li:nth-child(6) {
+  background-color: #164982;
+}
+.semList.fak1 li:nth-child(6).touch {
+  background-color: #053871;
+}
+.semList.fak1 li:nth-child(7) {
+  background-color: #1b4e87;
+}
+.semList.fak1 li:nth-child(7).touch {
+  background-color: #0a3d76;
+}
+.semList.fak7 li:nth-child(1) {
+  background-color: #0098bf;
+}
+.semList.fak7 li:nth-child(1).touch {
+  background-color: #0087ae;
+}
+.semList.fak7 li:nth-child(2) {
+  background-color: #009dc4;
+}
+.semList.fak7 li:nth-child(2).touch {
+  background-color: #008cb3;
+}
+.semList.fak7 li:nth-child(3) {
+  background-color: #00a2c9;
+}
+.semList.fak7 li:nth-child(3).touch {
+  background-color: #0091b8;
+}
+.semList.fak7 li:nth-child(4) {
+  background-color: #05a7ce;
+}
+.semList.fak7 li:nth-child(4).touch {
+  background-color: #0096bd;
+}
+.semList.fak7 li:nth-child(5) {
+  background-color: #0aacd3;
+}
+.semList.fak7 li:nth-child(5).touch {
+  background-color: #009bc2;
+}
+.semList.fak7 li:nth-child(6) {
+  background-color: #0fb1d8;
+}
+.semList.fak7 li:nth-child(6).touch {
+  background-color: #00a0c7;
+}
+.semList.fak7 li:nth-child(7) {
+  background-color: #14b6dd;
+}
+.semList.fak7 li:nth-child(7).touch {
+  background-color: #03a5cc;
+}
+.footer {
+  height: 3rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 0 1rem;
+  background-color: #232124;
+  box-sizing: border-box;
+}
+.footer .button {
+  height: 3rem;
+  width: 49%;
+  text-align: center;
+}
+.footer .button label {
+  display: inline-block;
+  padding: 0.8rem 0.8rem 0.8rem 0;
+  max-width: 50%;
+}
+.footer .button.by.touch {
+  background-color: #69bb00;
+}
+.footer .button.bn.touch {
+  background-color: #5e5c5f;
+}
+.footer .button img {
+  display: inline-block;
+}
