@@ -55,7 +55,7 @@ document.addEventListener('deviceready', function() {
                 if (typeof callback === 'function') {
                     callback(undefined, {
                         name: name,
-                        table: json
+                        table: JSON.parse(json)
                     });
                 }
             },

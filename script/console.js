@@ -7,6 +7,5 @@ window.MS = window.MS || {};
     window.log = function log() {
         var args = Array.prototype.slice.call(arguments);
         MS.logdata.push(args);
-        console.log.apply(console, args);
     };
 })();
