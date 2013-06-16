@@ -43,7 +43,7 @@
   padding-left: 0.8rem;
 }
 .footer .settings img {
-  display: block;
+  display: inline-block;
   vertical-align: middle;
   height: 1.4rem;
   width: 1.4rem;
