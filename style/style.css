@@ -493,6 +493,216 @@ img {
 .semList.fak1 li:nth-child(7).touch {
   background-color: #0a3d76;
 }
+.semList.fak2 li:nth-child(1) {
+  background-color: #0081a0;
+}
+.semList.fak2 li:nth-child(1).touch {
+  background-color: #00708f;
+}
+.semList.fak2 li:nth-child(2) {
+  background-color: #0086a5;
+}
+.semList.fak2 li:nth-child(2).touch {
+  background-color: #007594;
+}
+.semList.fak2 li:nth-child(3) {
+  background-color: #008baa;
+}
+.semList.fak2 li:nth-child(3).touch {
+  background-color: #007a99;
+}
+.semList.fak2 li:nth-child(4) {
+  background-color: #0590af;
+}
+.semList.fak2 li:nth-child(4).touch {
+  background-color: #007f9e;
+}
+.semList.fak2 li:nth-child(5) {
+  background-color: #0a95b4;
+}
+.semList.fak2 li:nth-child(5).touch {
+  background-color: #0084a3;
+}
+.semList.fak2 li:nth-child(6) {
+  background-color: #0f9ab9;
+}
+.semList.fak2 li:nth-child(6).touch {
+  background-color: #0089a8;
+}
+.semList.fak2 li:nth-child(7) {
+  background-color: #149fbe;
+}
+.semList.fak2 li:nth-child(7).touch {
+  background-color: #038ead;
+}
+.semList.fak3 li:nth-child(1) {
+  background-color: #007bb5;
+}
+.semList.fak3 li:nth-child(1).touch {
+  background-color: #006aa4;
+}
+.semList.fak3 li:nth-child(2) {
+  background-color: #0080ba;
+}
+.semList.fak3 li:nth-child(2).touch {
+  background-color: #006fa9;
+}
+.semList.fak3 li:nth-child(3) {
+  background-color: #0085bf;
+}
+.semList.fak3 li:nth-child(3).touch {
+  background-color: #0074ae;
+}
+.semList.fak3 li:nth-child(4) {
+  background-color: #058ac4;
+}
+.semList.fak3 li:nth-child(4).touch {
+  background-color: #0079b3;
+}
+.semList.fak3 li:nth-child(5) {
+  background-color: #0a8fc9;
+}
+.semList.fak3 li:nth-child(5).touch {
+  background-color: #007eb8;
+}
+.semList.fak3 li:nth-child(6) {
+  background-color: #0f94ce;
+}
+.semList.fak3 li:nth-child(6).touch {
+  background-color: #0083bd;
+}
+.semList.fak3 li:nth-child(7) {
+  background-color: #1499d3;
+}
+.semList.fak3 li:nth-child(7).touch {
+  background-color: #0388c2;
+}
+.semList.fak4 li:nth-child(1) {
+  background-color: #118ba0;
+}
+.semList.fak4 li:nth-child(1).touch {
+  background-color: #007a8f;
+}
+.semList.fak4 li:nth-child(2) {
+  background-color: #1690a5;
+}
+.semList.fak4 li:nth-child(2).touch {
+  background-color: #057f94;
+}
+.semList.fak4 li:nth-child(3) {
+  background-color: #1b95aa;
+}
+.semList.fak4 li:nth-child(3).touch {
+  background-color: #0a8499;
+}
+.semList.fak4 li:nth-child(4) {
+  background-color: #209aaf;
+}
+.semList.fak4 li:nth-child(4).touch {
+  background-color: #0f899e;
+}
+.semList.fak4 li:nth-child(5) {
+  background-color: #259fb4;
+}
+.semList.fak4 li:nth-child(5).touch {
+  background-color: #148ea3;
+}
+.semList.fak4 li:nth-child(6) {
+  background-color: #2aa4b9;
+}
+.semList.fak4 li:nth-child(6).touch {
+  background-color: #1993a8;
+}
+.semList.fak4 li:nth-child(7) {
+  background-color: #2fa9be;
+}
+.semList.fak4 li:nth-child(7).touch {
+  background-color: #1e98ad;
+}
+.semList.fak5 li:nth-child(1) {
+  background-color: #00529d;
+}
+.semList.fak5 li:nth-child(1).touch {
+  background-color: #00418c;
+}
+.semList.fak5 li:nth-child(2) {
+  background-color: #0057a2;
+}
+.semList.fak5 li:nth-child(2).touch {
+  background-color: #004691;
+}
+.semList.fak5 li:nth-child(3) {
+  background-color: #005ca7;
+}
+.semList.fak5 li:nth-child(3).touch {
+  background-color: #004b96;
+}
+.semList.fak5 li:nth-child(4) {
+  background-color: #0561ac;
+}
+.semList.fak5 li:nth-child(4).touch {
+  background-color: #00509b;
+}
+.semList.fak5 li:nth-child(5) {
+  background-color: #0a66b1;
+}
+.semList.fak5 li:nth-child(5).touch {
+  background-color: #0055a0;
+}
+.semList.fak5 li:nth-child(6) {
+  background-color: #0f6bb6;
+}
+.semList.fak5 li:nth-child(6).touch {
+  background-color: #005aa5;
+}
+.semList.fak5 li:nth-child(7) {
+  background-color: #1470bb;
+}
+.semList.fak5 li:nth-child(7).touch {
+  background-color: #035faa;
+}
+.semList.fak6 li:nth-child(1) {
+  background-color: #004594;
+}
+.semList.fak6 li:nth-child(1).touch {
+  background-color: #003483;
+}
+.semList.fak6 li:nth-child(2) {
+  background-color: #014a99;
+}
+.semList.fak6 li:nth-child(2).touch {
+  background-color: #003988;
+}
+.semList.fak6 li:nth-child(3) {
+  background-color: #064f9e;
+}
+.semList.fak6 li:nth-child(3).touch {
+  background-color: #003e8d;
+}
+.semList.fak6 li:nth-child(4) {
+  background-color: #0b54a3;
+}
+.semList.fak6 li:nth-child(4).touch {
+  background-color: #004392;
+}
+.semList.fak6 li:nth-child(5) {
+  background-color: #1059a8;
+}
+.semList.fak6 li:nth-child(5).touch {
+  background-color: #004897;
+}
+.semList.fak6 li:nth-child(6) {
+  background-color: #155ead;
+}
+.semList.fak6 li:nth-child(6).touch {
+  background-color: #044d9c;
+}
+.semList.fak6 li:nth-child(7) {
+  background-color: #1a63b2;
+}
+.semList.fak6 li:nth-child(7).touch {
+  background-color: #0952a1;
+}
 .semList.fak7 li:nth-child(1) {
   background-color: #0098bf;
 }
@@ -534,6 +744,300 @@ img {
 }
 .semList.fak7 li:nth-child(7).touch {
   background-color: #03a5cc;
+}
+.semList.fak8 li:nth-child(1) {
+  background-color: #007576;
+}
+.semList.fak8 li:nth-child(1).touch {
+  background-color: #006465;
+}
+.semList.fak8 li:nth-child(2) {
+  background-color: #007a7b;
+}
+.semList.fak8 li:nth-child(2).touch {
+  background-color: #00696a;
+}
+.semList.fak8 li:nth-child(3) {
+  background-color: #007f80;
+}
+.semList.fak8 li:nth-child(3).touch {
+  background-color: #006e6f;
+}
+.semList.fak8 li:nth-child(4) {
+  background-color: #058485;
+}
+.semList.fak8 li:nth-child(4).touch {
+  background-color: #007374;
+}
+.semList.fak8 li:nth-child(5) {
+  background-color: #0a898a;
+}
+.semList.fak8 li:nth-child(5).touch {
+  background-color: #007879;
+}
+.semList.fak8 li:nth-child(6) {
+  background-color: #0f8e8f;
+}
+.semList.fak8 li:nth-child(6).touch {
+  background-color: #007d7e;
+}
+.semList.fak8 li:nth-child(7) {
+  background-color: #149394;
+}
+.semList.fak8 li:nth-child(7).touch {
+  background-color: #038283;
+}
+.semList.fak9 li:nth-child(1) {
+  background-color: #007a54;
+}
+.semList.fak9 li:nth-child(1).touch {
+  background-color: #006943;
+}
+.semList.fak9 li:nth-child(2) {
+  background-color: #017f59;
+}
+.semList.fak9 li:nth-child(2).touch {
+  background-color: #006e48;
+}
+.semList.fak9 li:nth-child(3) {
+  background-color: #06845e;
+}
+.semList.fak9 li:nth-child(3).touch {
+  background-color: #00734d;
+}
+.semList.fak9 li:nth-child(4) {
+  background-color: #0b8963;
+}
+.semList.fak9 li:nth-child(4).touch {
+  background-color: #007852;
+}
+.semList.fak9 li:nth-child(5) {
+  background-color: #108e68;
+}
+.semList.fak9 li:nth-child(5).touch {
+  background-color: #007d57;
+}
+.semList.fak9 li:nth-child(6) {
+  background-color: #15936d;
+}
+.semList.fak9 li:nth-child(6).touch {
+  background-color: #04825c;
+}
+.semList.fak9 li:nth-child(7) {
+  background-color: #1a9872;
+}
+.semList.fak9 li:nth-child(7).touch {
+  background-color: #098761;
+}
+.semList.fak10 li:nth-child(1) {
+  background-color: #138d82;
+}
+.semList.fak10 li:nth-child(1).touch {
+  background-color: #027c71;
+}
+.semList.fak10 li:nth-child(2) {
+  background-color: #189287;
+}
+.semList.fak10 li:nth-child(2).touch {
+  background-color: #078176;
+}
+.semList.fak10 li:nth-child(3) {
+  background-color: #1d978c;
+}
+.semList.fak10 li:nth-child(3).touch {
+  background-color: #0c867b;
+}
+.semList.fak10 li:nth-child(4) {
+  background-color: #229c91;
+}
+.semList.fak10 li:nth-child(4).touch {
+  background-color: #118b80;
+}
+.semList.fak10 li:nth-child(5) {
+  background-color: #27a196;
+}
+.semList.fak10 li:nth-child(5).touch {
+  background-color: #169085;
+}
+.semList.fak10 li:nth-child(6) {
+  background-color: #2ca69b;
+}
+.semList.fak10 li:nth-child(6).touch {
+  background-color: #1b958a;
+}
+.semList.fak10 li:nth-child(7) {
+  background-color: #31aba0;
+}
+.semList.fak10 li:nth-child(7).touch {
+  background-color: #209a8f;
+}
+.semList.fak11 li:nth-child(1) {
+  background-color: #e5710a;
+}
+.semList.fak11 li:nth-child(1).touch {
+  background-color: #d46000;
+}
+.semList.fak11 li:nth-child(2) {
+  background-color: #ea760f;
+}
+.semList.fak11 li:nth-child(2).touch {
+  background-color: #d96500;
+}
+.semList.fak11 li:nth-child(3) {
+  background-color: #ef7b14;
+}
+.semList.fak11 li:nth-child(3).touch {
+  background-color: #de6a03;
+}
+.semList.fak11 li:nth-child(4) {
+  background-color: #f48019;
+}
+.semList.fak11 li:nth-child(4).touch {
+  background-color: #e36f08;
+}
+.semList.fak11 li:nth-child(5) {
+  background-color: #f9851e;
+}
+.semList.fak11 li:nth-child(5).touch {
+  background-color: #e8740d;
+}
+.semList.fak11 li:nth-child(6) {
+  background-color: #fe8a23;
+}
+.semList.fak11 li:nth-child(6).touch {
+  background-color: #ed7912;
+}
+.semList.fak11 li:nth-child(7) {
+  background-color: #ff8f28;
+}
+.semList.fak11 li:nth-child(7).touch {
+  background-color: #f27e17;
+}
+.semList.fak12 li:nth-child(1) {
+  background-color: #35ae4f;
+}
+.semList.fak12 li:nth-child(1).touch {
+  background-color: #249d3e;
+}
+.semList.fak12 li:nth-child(2) {
+  background-color: #3ab354;
+}
+.semList.fak12 li:nth-child(2).touch {
+  background-color: #29a243;
+}
+.semList.fak12 li:nth-child(3) {
+  background-color: #3fb859;
+}
+.semList.fak12 li:nth-child(3).touch {
+  background-color: #2ea748;
+}
+.semList.fak12 li:nth-child(4) {
+  background-color: #44bd5e;
+}
+.semList.fak12 li:nth-child(4).touch {
+  background-color: #33ac4d;
+}
+.semList.fak12 li:nth-child(5) {
+  background-color: #49c263;
+}
+.semList.fak12 li:nth-child(5).touch {
+  background-color: #38b152;
+}
+.semList.fak12 li:nth-child(6) {
+  background-color: #4ec768;
+}
+.semList.fak12 li:nth-child(6).touch {
+  background-color: #3db657;
+}
+.semList.fak12 li:nth-child(7) {
+  background-color: #53cc6d;
+}
+.semList.fak12 li:nth-child(7).touch {
+  background-color: #42bb5c;
+}
+.semList.fak13 li:nth-child(1) {
+  background-color: #aa1772;
+}
+.semList.fak13 li:nth-child(1).touch {
+  background-color: #990661;
+}
+.semList.fak13 li:nth-child(2) {
+  background-color: #af1c77;
+}
+.semList.fak13 li:nth-child(2).touch {
+  background-color: #9e0b66;
+}
+.semList.fak13 li:nth-child(3) {
+  background-color: #b4217c;
+}
+.semList.fak13 li:nth-child(3).touch {
+  background-color: #a3106b;
+}
+.semList.fak13 li:nth-child(4) {
+  background-color: #b92681;
+}
+.semList.fak13 li:nth-child(4).touch {
+  background-color: #a81570;
+}
+.semList.fak13 li:nth-child(5) {
+  background-color: #be2b86;
+}
+.semList.fak13 li:nth-child(5).touch {
+  background-color: #ad1a75;
+}
+.semList.fak13 li:nth-child(6) {
+  background-color: #c3308b;
+}
+.semList.fak13 li:nth-child(6).touch {
+  background-color: #b21f7a;
+}
+.semList.fak13 li:nth-child(7) {
+  background-color: #c83590;
+}
+.semList.fak13 li:nth-child(7).touch {
+  background-color: #b7247f;
+}
+.semList.fak14 li:nth-child(1) {
+  background-color: #821a3d;
+}
+.semList.fak14 li:nth-child(1).touch {
+  background-color: #71092c;
+}
+.semList.fak14 li:nth-child(2) {
+  background-color: #871f42;
+}
+.semList.fak14 li:nth-child(2).touch {
+  background-color: #760e31;
+}
+.semList.fak14 li:nth-child(3) {
+  background-color: #8c2447;
+}
+.semList.fak14 li:nth-child(3).touch {
+  background-color: #7b1336;
+}
+.semList.fak14 li:nth-child(4) {
+  background-color: #91294c;
+}
+.semList.fak14 li:nth-child(4).touch {
+  background-color: #80183b;
+}
+.semList.fak14 li:nth-child(5) {
+  background-color: #962e51;
+}
+.semList.fak14 li:nth-child(5).touch {
+  background-color: #851d40;
+}
+.semList.fak14 li:nth-child(6) {
+  background-color: #9b3356;
+}
+.semList.fak14 li:nth-child(6).touch {
+  background-color: #8a2245;
+}
+.semList.fak14 li:nth-child(7) {
+  background-color: #a0385b;
+}
+.semList.fak14 li:nth-child(7).touch {
+  background-color: #8f274a;
 }
 .footer {
   height: 3rem;
