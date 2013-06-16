@@ -14,10 +14,8 @@
             <td><div class="onoffswitch">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changePush" checked>
                 <label class="onoffswitch-label" for="changePush">
-                    <div class="onoffswitch-inner">
-                        <div class="onoffswitch-active"><div class="onoffswitch-switch">AN</div></div>
-                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">AUS</div></div>
-                    </div>
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
                 </label>
             </div></td>
         </tr>
@@ -26,10 +24,8 @@
             <td><div class="onoffswitch">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changeSync" checked>
                 <label class="onoffswitch-label" for="changeSync">
-                    <div class="onoffswitch-inner">
-                        <div class="onoffswitch-active"><div class="onoffswitch-switch">AN</div></div>
-                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">AUS</div></div>
-                    </div>
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
                 </label>
             </div></td>
         </tr>
@@ -38,10 +34,8 @@
             <td><div class="onoffswitch">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changeBackup" checked>
                 <label class="onoffswitch-label" for="changeBackup">
-                    <div class="onoffswitch-inner">
-                        <div class="onoffswitch-active"><div class="onoffswitch-switch">JA</div></div>
-                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">NEIN</div></div>
-                    </div>
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
                 </label>
             </div></td>
         </tr>
@@ -50,19 +44,20 @@
             <td><div class="onoffswitch">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="changeTheme">
                 <label class="onoffswitch-label" for="changeTheme">
-                    <div class="onoffswitch-inner">
-                        <div class="onoffswitch-active"><div class="onoffswitch-switch">HELL</div></div>
-                        <div class="onoffswitch-inactive"><div class="onoffswitch-switch">DUNKEL</div></div>
-                    </div>
+                    <div class="onoffswitch-inner helldunkel"></div>
+                    <div class="onoffswitch-switch helldunkel"></div>
                 </label>
             </div></td>
         </tr>
         <tr class="heading"><td colspan="2">Passwort ändern</td></tr>
         <tr>
-            <td colspan="2"><input type="password" id="changePw" /></td>
+            <td colspan="2"><input type="password" id="changePwOld" placeholder="Altes Passwort"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="password" id="changePwSec" /></td>
+            <td colspan="2"><input type="password" id="changePw" placeholder="Neues Passwort"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="password" id="changePwSec" placeholder="Neues Passwort wiederholen"/></td>
         </tr>
         <tr class="heading"><td colspan="2">Fakultät festlegen</td></tr>
         <tr>

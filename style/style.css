@@ -349,14 +349,9 @@ img {
 .headerheight {
   height: 3rem;
 }
-/*
- * Source: http://proto.io/freebies/onoff/
- * Edited by: Tamas-Imre Lukacs
- */
 .onoffswitch {
-  float: right;
   position: relative;
-  width: 6.8rem;
+  width: 6rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -368,7 +363,7 @@ img {
   display: block;
   overflow: hidden;
   cursor: pointer;
-  border: 0 solid #999999;
+  border: .125rem solid #FFFFF;
   border-radius: 0;
 }
 .onoffswitch-inner {
@@ -379,74 +374,75 @@ img {
   -o-transition: margin 0.2s ease-in 0s;
   transition: margin 0.2s ease-in 0s;
 }
-.onoffswitch-inner > div {
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
   float: left;
-  position: relative;
   width: 50%;
-  height: 2rem;
+  height: 3rem;
   padding: 0;
-  line-height: 2rem;
+  line-height: 3rem;
   font-size: 1rem;
   color: white;
-  font-family: 'Raleway-SemiBold', Trebuchet, Arial, sans-serif;
+  font-family: Trebuchet, Arial, sans-serif;
   font-weight: bold;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.onoffswitch-inner .onoffswitch-active {
-  /* padding-left: 15px; */
-
-  background-color: #C2C2C2;
+.onoffswitch-inner:before {
+  content: "AN";
+  padding-left: 1rem;
+  background-color: #2FCCFF;
   color: #FFFFFF;
+  text-align: left;
 }
-.onoffswitch-inner .onoffswitch-inactive {
-  /* padding-right: 15px; */
-
-  background-color: #C2C2C2;
+.onoffswitch-inner:after {
+  content: "AUS";
+  padding-right: 1rem;
+  background-color: #EEEEEE;
+  color: #999999;
+  text-align: right;
+}
+.onoffswitch-inner.helldunkel:before {
+  content: "HELL";
+  padding-left: .5rem;
+  background-color: #2FCCFF;
   color: #FFFFFF;
+  text-align: left;
+}
+.onoffswitch-inner.helldunkel:after {
+  content: "DUNKEL";
+  padding-right: .5rem;
+  background-color: #EEEEEE;
+  color: #999999;
   text-align: right;
 }
 .onoffswitch-switch {
-  width: 3.4rem;
-  margin: 0px;
-  text-align: center;
-  border: 0px solid #999999;
-  border-radius: 0px;
+  width: 2rem;
+  margin: .5rem;
+  background: #FFFFFF;
+  border: .125rem solid #FFFFF;
+  border-radius: 0;
   position: absolute;
   top: 0;
   bottom: 0;
-  line-height: 2rem;
-  font-size: .7rem;
+  right: 3rem;
+  -moz-transition: all 0.2s ease-in 0s;
+  -webkit-transition: all 0.2s ease-in 0s;
+  -o-transition: all 0.2s ease-in 0s;
+  transition: all 0.2s ease-in 0s;
 }
-.onoffswitch-active .onoffswitch-switch {
-  background: #27A1CA;
-  left: 0;
-}
-.onoffswitch-inactive .onoffswitch-switch {
-  background: #A1A1A1;
-  right: 0;
-}
-.onoffswitch-active .onoffswitch-switch:before {
-  content: " ";
+.onoffswitch-switch.helldunkel {
   position: absolute;
   top: 0;
-  left: 3.4rem;
-  border-style: solid;
-  border-color: #27A1CA transparent transparent #27A1CA;
-  border-width: 1rem 0.75rem;
-}
-.onoffswitch-inactive .onoffswitch-switch:before {
-  content: " ";
-  position: absolute;
-  top: 0;
-  right: 3.4rem;
-  border-style: solid;
-  border-color: transparent #A1A1A1 #A1A1A1 transparent;
-  border-width: 1rem 0.75rem;
+  bottom: 0;
+  right: 6rem;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
   margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0;
 }
 .semList li {
   float: left;

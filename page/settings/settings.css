@@ -7,19 +7,18 @@
   width: 100%;
 }
 .content .settings table tr {
-  height: 3rem;
+  height: 4.6rem;
 }
 .content .settings table tr.heading {
-  font-family: 'Raleway-SemiBold';
-  height: 1.5rem;
-  font-size: .7rem;
+  height: 1.7999999999999998rem;
+  font-size: 0.3 rem;
   background-color: #343235;
 }
 .content .settings table tr.space {
-  height: 0.5rem;
+  height: 0rem;
 }
 .content .settings table tr.space td {
-  line-height: 0.5rem;
+  line-height: 0rem;
 }
 .content .settings table tr td:last-child {
   padding-right: 1rem;
@@ -32,6 +31,6 @@
 .content .settings table tr input,
 .content .settings table tr select {
   width: 100%;
-  height: 2rem;
+  height: 3rem;
   box-sizing: border-box;
 }

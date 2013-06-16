@@ -9,16 +9,15 @@
         margin: 0 0 1/6*@header-height;
         width: 100%;
         tr {
-            height: @header-height;
+            height: @header-height + 2*@item-padding;
             &.heading {
-                font-family: 'Raleway-SemiBold';
-                height: 1/2*@header-height;
-                font-size: .7rem;
+                height: 3/5*@header-height;
+                font-size: 3/10*rem;
                 background-color: @color-bgr + #111;
             }
             &.space {
-                height: 1/6*@header-height;
-                td { line-height: 1/6*@header-height; }
+                height: 0*@header-height;
+                td { line-height: 0*@header-height; }
             }
 
             td:last-child {
@@ -32,7 +31,7 @@
 
             input,select {
                 width: 100%;
-                height: 2/3*@header-height;
+                height: @header-height;
                 box-sizing: border-box;
             }
         }
