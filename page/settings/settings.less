@@ -27,12 +27,22 @@
             td:first-child {
                 padding-left: @body-padding;
                 text-align: left;
+
+                font-size: .8rem;
+                line-height: .9rem;
+
+                &:first-line {
+                    font-family: 'Raleway-SemiBold';
+                    font-size: 1rem;
+                    line-height: 1.4rem;
+                }
             }
 
             input,select {
                 width: 100%;
                 height: @header-height;
                 box-sizing: border-box;
+                padding-left: @item-padding;
             }
         }
     }
