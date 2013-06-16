@@ -349,6 +349,102 @@ img {
 .headerheight {
   height: 3rem;
 }
+.onoffswitch {
+  float: right;
+  position: relative;
+  width: 6rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+  display: none;
+}
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: .125rem solid #FFFFF;
+  border-radius: 0;
+}
+.onoffswitch-inner {
+  width: 200%;
+  margin-left: -100%;
+  -moz-transition: margin 0.2s ease-in 0s;
+  -webkit-transition: margin 0.2s ease-in 0s;
+  -o-transition: margin 0.2s ease-in 0s;
+  transition: margin 0.2s ease-in 0s;
+}
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+  float: left;
+  width: 50%;
+  height: 3rem;
+  padding: 0;
+  line-height: 3rem;
+  font-size: 1rem;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+  content: "AN";
+  padding-left: 1rem;
+  background-color: #2FCCFF;
+  color: #FFFFFF;
+  text-align: left;
+}
+.onoffswitch-inner:after {
+  content: "AUS";
+  padding-right: 1rem;
+  background-color: #EEEEEE;
+  color: #999999;
+  text-align: right;
+}
+.onoffswitch-inner.helldunkel:before {
+  content: "HELL";
+  padding-left: .5rem;
+  background-color: #2FCCFF;
+  color: #FFFFFF;
+  text-align: left;
+}
+.onoffswitch-inner.helldunkel:after {
+  content: "DUNKEL";
+  padding-right: .5rem;
+  background-color: #EEEEEE;
+  color: #999999;
+  text-align: right;
+}
+.onoffswitch-switch {
+  width: 2rem;
+  margin: .5rem;
+  background: #FFFFFF;
+  border: .125rem solid #FFFFF;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 3rem;
+  -moz-transition: all 0.2s ease-in 0s;
+  -webkit-transition: all 0.2s ease-in 0s;
+  -o-transition: all 0.2s ease-in 0s;
+  transition: all 0.2s ease-in 0s;
+}
+.onoffswitch-switch.helldunkel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 6rem;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0;
+}
 .semList li {
   float: left;
   width: 14.285714285714286%;
