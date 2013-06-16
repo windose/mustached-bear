@@ -15,10 +15,6 @@
                 font-size: 3/10*rem;
                 background-color: @color-bgr + #111;
             }
-            &.space {
-                height: 0*@header-height;
-                td { line-height: 0*@header-height; }
-            }
 
             td:last-child {
                 padding-right: @body-padding;
@@ -49,9 +45,9 @@
 }
 
 .footer .settings img {
-    display: inline-block;
-    vertical-align: middle;
-    height: @line-height;
-    width: @line-height;
-    padding: 0.5*(@header-height - @line-height);
+    display: inline-block !important;
+    vertical-align: middle !important;
+    height: @line-height !important;
+    width: @line-height !important;
+    padding: 0.5*(@header-height - @line-height) !important;
 }

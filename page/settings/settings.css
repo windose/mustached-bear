@@ -14,12 +14,6 @@
   font-size: 0.3 rem;
   background-color: #343235;
 }
-.content .settings table tr.space {
-  height: 0rem;
-}
-.content .settings table tr.space td {
-  line-height: 0rem;
-}
 .content .settings table tr td:last-child {
   padding-right: 1rem;
   text-align: right;
@@ -43,9 +37,9 @@
   padding-left: 0.8rem;
 }
 .footer .settings img {
-  display: inline-block;
-  vertical-align: middle;
-  height: 1.4rem;
-  width: 1.4rem;
-  padding: 0.8rem;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  height: 1.4rem !important;
+  width: 1.4rem !important;
+  padding: 0.8rem !important;
 }
