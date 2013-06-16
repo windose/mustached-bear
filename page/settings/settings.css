@@ -36,10 +36,3 @@
   box-sizing: border-box;
   padding-left: 0.8rem;
 }
-.footer .settings img {
-  display: inline-block !important;
-  vertical-align: middle !important;
-  height: 1.4rem !important;
-  width: 1.4rem !important;
-  padding: 0.8rem !important;
-}
