@@ -4,7 +4,8 @@
  */
 
 .onoffswitch {
-    position: relative; width: 6rem;
+    float: right;
+    position: relative; width: 6.8rem;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 
@@ -19,8 +20,8 @@
 
 .onoffswitch-inner {
     width: 200%; margin-left: -100%;
-    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
-    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+    -moz-transition: margin 0.2s ease-in 0s; -webkit-transition: margin 0.2s ease-in 0s;
+    -o-transition: margin 0.2s ease-in 0s; transition: margin 0.2s ease-in 0s;
 }
 
 .onoffswitch-inner > div {
@@ -41,7 +42,7 @@
 }
 
 .onoffswitch-switch {
-    width: 3rem; margin: 0px; text-align: center;
+    width: 3.4rem; margin: 0px; text-align: center;
     border: 0px solid #999999;border-radius: 0px;
     position: absolute; top: 0; bottom: 0;
     line-height: 2rem;
@@ -55,13 +56,13 @@
 }
 
 .onoffswitch-active .onoffswitch-switch:before {
-    content: " "; position: absolute; top: 0; left: 3rem;
+    content: " "; position: absolute; top: 0; left: 3.4rem;
     border-style: solid; border-color: #27A1CA transparent transparent #27A1CA; border-width: 1rem 0.75rem;
 }
 
 
 .onoffswitch-inactive .onoffswitch-switch:before {
-    content: " "; position: absolute; top: 0; right: 3rem;
+    content: " "; position: absolute; top: 0; right: 3.4rem;
     border-style: solid; border-color: transparent #A1A1A1 #A1A1A1 transparent; border-width: 1rem 0.75rem;
 }
 

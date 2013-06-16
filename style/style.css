@@ -354,8 +354,9 @@ img {
  * Edited by: Tamas-Imre Lukacs
  */
 .onoffswitch {
+  float: right;
   position: relative;
-  width: 6rem;
+  width: 6.8rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -373,10 +374,10 @@ img {
 .onoffswitch-inner {
   width: 200%;
   margin-left: -100%;
-  -moz-transition: margin 0.3s ease-in 0s;
-  -webkit-transition: margin 0.3s ease-in 0s;
-  -o-transition: margin 0.3s ease-in 0s;
-  transition: margin 0.3s ease-in 0s;
+  -moz-transition: margin 0.2s ease-in 0s;
+  -webkit-transition: margin 0.2s ease-in 0s;
+  -o-transition: margin 0.2s ease-in 0s;
+  transition: margin 0.2s ease-in 0s;
 }
 .onoffswitch-inner > div {
   float: left;
@@ -407,7 +408,7 @@ img {
   text-align: right;
 }
 .onoffswitch-switch {
-  width: 3rem;
+  width: 3.4rem;
   margin: 0px;
   text-align: center;
   border: 0px solid #999999;
@@ -430,7 +431,7 @@ img {
   content: " ";
   position: absolute;
   top: 0;
-  left: 3rem;
+  left: 3.4rem;
   border-style: solid;
   border-color: #27A1CA transparent transparent #27A1CA;
   border-width: 1rem 0.75rem;
@@ -439,7 +440,7 @@ img {
   content: " ";
   position: absolute;
   top: 0;
-  right: 3rem;
+  right: 3.4rem;
   border-style: solid;
   border-color: transparent #A1A1A1 #A1A1A1 transparent;
   border-width: 1rem 0.75rem;
