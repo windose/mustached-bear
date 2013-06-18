@@ -4,8 +4,18 @@ window.MS.page = window.MS.page || {};
 (function() {
 
     MS.page.news = {
+
+        /**
+         * Basic functionality, touch highlighting and event handlers.
+         * Will be called once.
+         *
+         * @param scope
+         */
         init: function(scope) {
 
+            /*
+             * Touch highlighting.
+             */
             scope.header.on('touchstart', '.mheader, .newsCal', function() {
                 $(this).addClass('touch');
             });
@@ -16,10 +26,8 @@ window.MS.page = window.MS.page || {};
                 $(this).removeClass('touch');
             });
 
-            scope.header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
-
             /*
-             * Expend a news item on touch
+             * Expend a news item on touch.
              */
             scope.view.on('touchend', 'li .openNews', function() {
                 if (MS.isMove) { return; }
@@ -33,30 +41,22 @@ window.MS.page = window.MS.page || {};
                 }
             });
         },
-        enter: function(done, scope) {
-            log('enter news');
 
+        /**
+         * Get desired news from the database and insert them with <insertNews>.
+         *
+         * @param done
+         * @param scope
+         */
+        enter: function(done, scope) {
+
+            /*
+             * Get desired news from the database.
+             */
             MS.db.get('SELECT * from nachrichten', function(err, result) {
                 if (err) { return log(err) && done(); }
 
-                log('got '+result.length+' news');
-
-                if (result.length === 0) {
-                    MS.dbDummy.insertNews();
-                    setTimeout(function() {
-                        var i, l;
-                        scope.view.find('ul').empty();
-                        for (i=0, l=result.length; i<l; i++) {
-                            MS.page.news.insertNews(scope.view, result[i]);
-                        }
-                        done();
-                        setTimeout(function() {
-                            log('force reflow');
-                            scope.view.find('li').width(scope.view.find('li').width());
-                        }, 100);
-                    }, 500);
-                } else {
-
+                if (result.length !== 0) {
                     var i, l;
 
                     scope.view.find('ul').empty();
@@ -64,27 +64,29 @@ window.MS.page = window.MS.page || {};
                         MS.page.news.insertNews(scope.view, result[i]);
                     }
 
-                    done();
-
-
                     /*
                      * Force reflow after @font-face is loaded.
                      * text-align: justify will cut off text if we dont reflow.
                      */
                     setTimeout(function() {
-                        log('force reflow');
                         scope.view.find('li').width(scope.view.find('li').width());
                     }, 100);
-
                 }
+
+                done();
             });
-        },
-        leave: function leave() {
-            log('leave news');
+
+            MS.page.news.insertDateInfo(scope);
         },
 
         /**
-         * ToDo: Use template engine (mustache?)
+         * Do nothing yet.
+         */
+        leave: function leave() {},
+
+        /**
+         * Insert a news item into the DOM.
+         * ToDo: Use template engine, save templates in files.
          *
          * @param view
          * @param item
@@ -101,6 +103,15 @@ window.MS.page = window.MS.page || {};
             '</tr></table></li>';
 
             view.find('ul').append(template);
+        },
+
+        /**
+         * Insert information about the next date for the user.
+         *
+         * @param scope
+         */
+        insertDateInfo: function insertDateInfo(scope) {
+            scope.header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
         }
     };
 

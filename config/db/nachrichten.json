@@ -3,7 +3,10 @@
     "fakultaet_id": "INTEGER",
     "title": "VARCHAR(4096)",
     "content": "TEXT",
-    "date": "TIMESTAMP",
+    "date": "TIMESTAMP(8)",
     "author": "VARCHAR(4096)",
+    "msg_type": "INTEGER",
+    "start": "TIMESTAMP(8)",
+    "end": "TIMESTAMP(8)",
     "last_update": "TIMESTAMP(8)"
 }

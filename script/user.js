@@ -4,29 +4,126 @@ document.addEventListener('deviceready', function() {
 
     window.MS.user = {
         current: null,
-        authorize: function authorize(email, pw, callback) {
-            var sql;
 
-            sql = 'SELECT * FROM user WHERE email = "'+MS.db.escape(email)+'" AND password = "'+md5(pw)+'"';
+        /**
+         *
+         * @param email
+         * @param pw
+         * @param callback
+         * @param autoLoginId
+         */
+        login: function login(email, pw, callback, autoLoginId) {
+            var sql, user;
 
-            MS.db.get(sql, function(err, data) {
+            Step(
+                /*
+                 *
+                 */
+                function authenticate() {
+                    sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
+                        'FROM user AS u ' +
+                        'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
+                        'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
+                        (!autoLoginId?
+                            'WHERE email = "'+MS.db.escape(email)+'" ' +
+                                'AND password = "'+md5(pw)+'"' :
 
-                if (data.length === 0) {
-                    callback('User not found');
-                } else {
+                            'WHERE u.id = '+MS.db.escape(autoLoginId));
+
+                    MS.db.get(sql, this);
+
+                },
+
+                /*
+                 *
+                 */
+                function getFakulties(err, data) {
+                    if (err) { throw err; }
+                    if (data.length === 0) { throw 'User not found' }
+
+                    user = data[0];
+
                     // Save id of the user in the cache, to prevent repeated login
-                    localStorage.setItem('user_id', data[0].id);
+                    localStorage.setItem('user_id', user.id);
 
-                    MS.user.current = data[0];
-                    callback(undefined, data[0]);
+                    sql = 'SELECT fakultaet_id ' +
+                        'FROM fakultaet_studiengang ' +
+                        'WHERE studiengang_id = '+MS.db.escape(user.studiengang_id);
+
+                    MS.db.get(sql, this);
+
+                },
+
+                /*
+                 *
+                 */
+                function getCurrentCourses(err, faculties) {
+                    if (err) { throw err; }
+
+                    var facultyList = [], i;
+                    for (i=faculties.length; i--;) {
+                        facultyList.push(faculties[i].fakultaet_id);
+                    }
+
+                    user.faculties = facultyList;
+
+                    sql = 'SELECT vorlesung_id FROM user_vorlesung ' +
+                        'WHERE user_id = '+user.id;
+
+                    MS.db.get(sql, this);
+                },
+
+                /*
+                 *
+                 */
+                function saveCourses(err, courseIds) {
+                    if (err) { throw err; }
+
+                    var courseList = [], i;
+                    for (i=courseIds.length; i--;) {
+                        courseList.push(courseIds[i].vorlesung_id);
+                    }
+
+                    user.courses = courseList;
+
+                    return true;
+                },
+
+                /*
+                 *
+                 */
+                function final(err) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        MS.user.current = user;
+                        callback(undefined, user);
+                    }
                 }
-            })
+            );
+
         },
 
+        /**
+         * Convenience function, wraps login.
+         *
+         * @param id
+         * @param callback
+         */
         autoLogIn: function autoLogIn(id, callback) {
+            MS.user.login(undefined, undefined, callback, id);
+        },
+
+        /**
+         *
+         *
+         * @param callback
+         */
+        update: function update(callback) {
             var sql;
 
-            sql = 'SELECT * FROM user WHERE id = '+MS.db.escape(id);
+            callback = callback || function() {};
+            sql = 'SELECT * FROM user WHERE id="'+MS.db.escape(MS.user.current.id+'')+'"';
 
             MS.db.get(sql, function(err, data) {
                 if (data.length === 0) {
@@ -35,9 +132,12 @@ document.addEventListener('deviceready', function() {
                     MS.user.current = data[0];
                     callback(undefined, data[0]);
                 }
-            })
+            });
         },
 
+        /**
+         *
+         */
         logOut: function logOut() {
             MS.user.current = null;
             localStorage.setItem('user_id', null);

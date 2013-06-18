@@ -6,15 +6,15 @@ window.MS.page = window.MS.page || {};
     MS.page.courses = {
 
         /**
+         * Basic functionality, touch highlighting and event handlers.
+         * Will be called once.
          *
-         *
-         * @param header
-         * @param view
+         * @param scope
          */
         init: function(scope) {
 
             /*
-             * Touch highlighting
+             * Touch highlighting.
              */
             scope.header.on('touchstart', '.mheader, .semList li', function() {
                 $(this).addClass('touch');
@@ -27,35 +27,60 @@ window.MS.page = window.MS.page || {};
             });
 
             /*
-             * Switch between faculty
+             * Switch between faculty.
              */
             scope.header.find('select').on('change', function() {
                 var self = $(this),
                     fak = self.val(),
                     text = self.find(':selected').text(),
-                    valueField = self.parent().find('.selectContent');
+                    valueField = self.parent().find('.selectContent'),
+                    sem = scope.view.find('ul').attr('data-sem');
 
-                $.fn.add.call(scope.view,scope.header)
-                    .removeClass('fak'+scope.view.attr('data-fak'))
-                    .attr('data-fak', fak)
-                    .addClass('fak'+scope.view.attr('data-fak'), fak);
+                MS.page.courses.getMaxSemesterCount(fak, function(err, count) {
+                    if (err) {
+                        return console.log(err.message);
+                    }
+                    MS.page.courses.drawSemList(scope, fak, count);
+                });
+
+                MS.page.courses.getCourses(fak,
+                    (sem || MS.user.current.semester),
+                    true, function(err, courses) {
+                    if (err) {
+                        return console.log(err.message);
+                    }
+                    MS.page.courses.drawCourseList(scope, courses);
+                });
 
                 valueField.html(text);
             });
 
             /*
-             * Switch between semester
+             * Switch between semester.
              */
             scope.header.find('.semList').on('touchend', 'li', function() {
-                var sem = $(this).attr('data-target');
+                var self = $(this),
+                    sem = $(this).attr('data-target');
 
-                scope.view.removeClass('sem'+scope.view.attr('data-sem'))
+                scope.view.find('ul')
+                    .removeClass('sem'+sem)
                     .attr('data-sem', sem)
-                    .addClass('sem'+scope.view.attr('data-sem'), sem);
+                    .addClass('sem'+sem);
+
+                self.parent().find('.active').removeClass('active');
+                self.addClass('active');
+
+                MS.page.courses.getCourses(fak, sem, true,
+                    function(err, courses) {
+                        if (err) {
+                            return console.log(err.message);
+                        }
+                        MS.page.courses.drawCourseList(scope, courses);
+                    });
             });
 
             /*
-             * Toggle state of course on touch
+             * Toggle state of course on touch.
              */
             scope.view.on('touchend', 'li', function() {
                 if (MS.isMove) { return; }
@@ -68,92 +93,204 @@ window.MS.page = window.MS.page || {};
                 }
             });
 
-            scope.header.on('touchstart', 'select', function() {
-                console.log('touchstart');
-            });
-            scope.header.on('touchend', 'select', function() {
-                console.log('touchend');
-            });
 
-        },
-
-        /**
-         *
-         * @param done
-         * @param header
-         * @param view
-         */
-        enter: function(done, scope) {
-
+            /*
+             * Get and insert faculties from database.
+             */
             var fakList,
                 fakTemplate;
 
             fakList = scope.header.find('select');
-            fakTemplate = '<option value={{id}}>{{name}}</option>'; // ToDo, save templates in files
+            fakTemplate = '<option value={{id}}>{{name}}</option>';
 
-            /*
-             * Get and insert faculties from database
-             */
-            fakList.empty();
             MS.db.get(
                 'SELECT id, name FROM fakultaet',
                 function(err, result) {
                     var i, l;
+                    fakList.empty();
                     for (i=0, l=result.length; i<l; i++) {
                         fakList.append(Mustache.render(fakTemplate, result[i]));
                     }
                 }
             );
 
-            /*
-             * Get and insert course list
-             */
-            scope.view.find('ul').empty();
-            MS.page.courses.getCourseList(function(err, result) {
-                var i, l;
-                for (i=0, l=result.length; i<l; i++) {
-                    MS.page.courses.insertCourse(scope.view, result[i]);
-                }
-                done();
-            });
+            Step(
+                /*
+                 * Draw the top list of every semester dynamically.
+                 */
+                function insertSemList() {
+                    var done = this;
+                    MS.page.courses.getMaxSemesterCount(MS.user.current.faculties[0], function(err, count) {
+                        if (err) {
+                            return console.log(err.message);
+                        }
 
+                        MS.page.courses.drawSemList(scope, MS.user.current.faculties[0], count);
+                        done();
+                    });
+                },
+
+                /*
+                 * Draw the list with desired courses dynamically.
+                 */
+                function insertCourseData() {
+                    var done = this;
+
+                    scope.view.find('li:nth-child('+(MS.user.current.semester-1)+')').addClass('active');
+
+                    MS.page.courses.getCourses(
+                        MS.user.current.faculties[0],
+                        MS.user.current.semester,
+                        true, function(err, courses) {
+                        if (err) {
+                            return console.log(err.message);
+                        }
+
+                        MS.page.courses.drawCourseList(scope, courses);
+                        done();
+                    });
+                }
+            );
         },
 
         /**
+         * Do nothing yet.
          *
+         * @param done
+         * @param scope
+         */
+        enter: function(done) {
+            done();
+        },
+
+        /**
+         * Do nothing yet.
          */
         leave: function() {},
 
         /**
+         * Retrieves every course of a faculty. If the <isOwnFaculty> flag
+         * is set, it will retrieve only the courses of the studiengruppe
+         * of the logged in user.
          *
-         * @param view
-         * @param data
+         * @param facultyId
+         * @param isOwnFaculty
+         * @param callback
          */
-        insertCourse: function(view, data) {
-            var template;
+        getCourses: function getCourses(facultyId, semester, isOwnFaculty, callback) {
+            var sql;
 
-            template = '<li class="off"><label class="cf"><table><tr>'+
-                '<td><img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png"><img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png"></td>'+
-                '<td class="label">{{name}}<br>, {{raum}} bei {{dozent}}</td>'+
-                '</tr></table></label></li>'; // ToDo, save templates in files
+            sql =
+                'SELECT v.*, f.name, f.info, sgr.semester, fs.fakultaet_id ' +
+                'FROM vorlesung AS v ' +
+                'JOIN fach AS f ON v.fach_id = f.id ' +
+                'JOIN studiengruppe AS sgr ON sgr.id = v.studiengruppe_id ' +
+                'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
+                'JOIN fakultaet_studiengang AS fs ON fs.studiengang_id = sga.id ' +
+            (isOwnFaculty?
+                'JOIN user_vorlesung AS uv ON uv.vorlesung_id = v.id '+
+                'JOIN user AS u ON uv.user_id = u.id ':'')+
+                'WHERE fs.fakultaet_id = ' + facultyId + ' ' +
+                'AND sgr.semester = ' + semester + ' ' +
+            (isOwnFaculty?
+                'AND v.studiengruppe_id = u.studiengruppe_id '+
+                'AND u.id = '+ MS.user.current.id :'');
 
-            view.find('.fak'+data.fakultaet)
-                .find('.sem'+data.semester)
-                .append(Mustache.render(template, data));
+            MS.db.get(sql, callback);
         },
 
         /**
+         * Retrieves the biggest semester count of one faculty.
          *
+         * @param facultyId
          * @param callback
          */
-        getCourseList: function(callback) {
-            MS.db.get(
-                'SELECT f.name, v.dozent, v.raum, v.studiengruppe_id, s.name AS studiengang, faks.fakultaet_id AS fakultaet, sg.semester FROM vorlesung AS v ' +
-                    'JOIN fach AS f ON f.id = v.fach_id ' +
-                    'JOIN fach_studiengang AS fs ON f.id = fs.fach_id ' +
-                    'JOIN studiengang AS s ON fs.studiengang_id = s.id ' +
-                    'JOIN fakultaet_studiengang AS faks ON faks.studiengang_id = s.id ' +
-                    'JOIN studiengruppe AS sg ON sg.id = v.studiengruppe_id', callback);
+        getMaxSemesterCount: function getMaxSemesterCount(facultyId, callback) {
+            var sql;
+
+            sql = 'SELECT MAX( s.semesterCount ) AS count ' +
+            'FROM studiengang AS s ' +
+            'JOIN fakultaet_studiengang AS fs ON s.id = fs.studiengang_id ' +
+            'WHERE fs.fakultaet_id = ' + facultyId + ' ' +
+            'GROUP BY fs.fakultaet_id ' +
+            'LIMIT 0 , 30';
+
+            MS.db.get(sql, function(err, data) {
+                if (err) {
+                    callback(err);
+                } else {
+                    if (data.length === 0) {
+                        callback(undefined, 7);
+                    } else {
+                        callback(undefined, data[0].count);
+                    }
+                }
+            });
+        },
+
+        /**
+         * Insert the semester list (for tab navigation) dynamically
+         * into the header and manage the css classes.
+         *
+         * @param scope
+         * @param facultyId
+         * @param count
+         */
+        drawSemList: function drawSemList(scope, facultyId, count) {
+            var semList,
+                template;
+
+            semList = scope.header.find('.semList');
+
+            semList
+                .removeClass('w'+semList.attr('data-w'))
+                .removeClass('fak'+semList.attr('data-fak'))
+                .addClass('w'+count)
+                .addClass('fak'+facultyId)
+                .attr('data-w', count)
+                .attr('data-fak', facultyId);
+
+            template = '<li data-target="{{i}}">{{i}}</li>';
+
+            semList.empty();
+            for (;count--;) {
+                semList.prepend(Mustache.render(template, {i:count+1}));
+            }
+        },
+
+        /**
+         * Inserts the course list dynamically into the content body.
+         *
+         * @param scope
+         * @param courses
+         */
+        drawCourseList: function drawCourseList(scope, courses) {
+            var courseList, template, i, weekdays;
+
+            courseList = scope.view.find('ul');
+
+            weekdays = [
+                'Montag',
+                'Dienstag',
+                'Mittwoch',
+                'Donnerstag',
+                'Freitag',
+                'Samstag',
+                'Sonntag',
+            ];
+
+            template = '<li class="off"><label class="cf"><table><tr>'+
+                '<td><img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png"><img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png"></td>' +
+                '<td class="label">{{c.name}}<br>Jeden {{weekday}} {{c.start}}-{{c.end}}, {{c.raum}} bei {{c.dozent}}</td>' +
+                '</tr></table></label></li>';
+
+            courseList.empty();
+            for (i=courses.length; i--;) {
+                courseList.prepend(Mustache.render(template, {
+                    weekday: weekdays[courses[i].weekday],
+                    c: courses[i]
+                }));
+            }
         }
     };
 

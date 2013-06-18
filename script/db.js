@@ -115,7 +115,9 @@ document.addEventListener('deviceready', function() {
     /**
      *
      * @param table
+     * @param keys
      * @param values
+     * @param callback
      */
     MS.db.insert = function insert(table, keys, values, callback) {
         MS.db.obj.transaction(function(tx) {
@@ -124,6 +126,62 @@ document.addEventListener('deviceready', function() {
             callback(err);
         }, function() {
             callback(undefined);
+        });
+    };
+
+    /**
+     * Simple wrapper to execute sql statements.
+     * Used in dummy data insertion.
+     *
+     * @param sql
+     * @param callback
+     */
+    MS.db.sql = function sql(sql, callback) {
+        sql = $.isArray(sql)? sql : [sql];
+
+        MS.db.obj.transaction(function(tx) {
+            var i, l;
+            for (i=0, l=sql.length; i<l; i++) {
+                tx.executeSql(sql[i]);
+            }
+        }, function(err) {
+            callback(err);
+        }, function() {
+            callback();
+        });
+    };
+
+    /**
+     * ToDo: make where argument gscheit.
+     *
+     * @param table
+     * @param keys
+     * @param values
+     * @param where
+     * @param callback
+     */
+    MS.db.set = function set(table, keys, values, where, callback) {
+        MS.db.obj.transaction(function(tx) {
+            var sets, sql;
+
+            sets = [];
+            for (var i=keys.length; i--;) {
+
+                if (typeof values[i] === 'number') {
+                    sets.push(keys[i]+'='+values[i]+'');
+                } else {
+                    sets.push(keys[i]+'="'+values[i]+'"');
+                }
+
+            }
+
+            sql = 'UPDATE '+table+' SET '+sets.join(',')+' WHERE '+where;
+
+            tx.executeSql(sql);
+        }, function(err) {
+            callback(err);
+        }, function() {
+            callback();
         });
     };
 
@@ -156,6 +214,7 @@ document.addEventListener('deviceready', function() {
      * @returns {string}
      */
     MS.db.escape = function escape(str) {
+        if (typeof str !== 'string') { return str; }
         return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
             switch (char) {
                 case "\0":

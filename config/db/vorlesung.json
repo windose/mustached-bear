@@ -3,8 +3,9 @@
     "type": "INTEGER",
     "raum": "VARCHAR(255)",
     "dozent": "VARCHAR(255)",
-    "end": "TIMESTAMP(8)",
-    "start": "TIMESTAMP(8)",
+    "start": "VARCHAR(5)",
+    "end": "VARCHAR(5)",
+    "weekday": "INTEGER",
     "last_update": "TIMESTAMP(8)",
     "fach_id": "INTEGER",
     "studiengruppe_id": "INTEGER"

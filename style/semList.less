@@ -1,10 +1,16 @@
 .semList {
 
-    li {
-        float: left;
-        width: 100% / 7;
-        text-align: center;
-        padding: 0.5*(@header-height - @line-height) 0;
+    .generateStyle(@count) {
+        li {
+            float: left;
+            width: 100% / @count;
+            text-align: center;
+            padding: 0.5*(@header-height - @line-height) 0;
+
+            &.active {
+                border: 3px solid black;
+            }
+        }
     }
 
     .generateColors(@targetcolor) {
@@ -44,7 +50,29 @@
             background-color: @color;
             &.touch { background-color: @color - #111; }
         }
+        li:nth-child(8) {
+            @color: @targetcolor + 5*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(9) {
+            @color: @targetcolor + 6*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
+        li:nth-child(10) {
+            @color: @targetcolor + 7*#050505;
+            background-color: @color;
+            &.touch { background-color: @color - #111; }
+        }
     }
+
+    &.w5 { .generateStyle(5); }
+    &.w6 { .generateStyle(6); }
+    &.w7 { .generateStyle(7); }
+    &.w8 { .generateStyle(8); }
+    &.w9 { .generateStyle(9); }
+    &.w10 { .generateStyle(10); }
 
     &.fak1 { .generateColors(@color-fak01); }
     &.fak2 { .generateColors(@color-fak02); }
@@ -60,4 +88,5 @@
     &.fak12 { .generateColors(@color-fak12); }
     &.fak13 { .generateColors(@color-fak13); }
     &.fak14 { .generateColors(@color-fak14); }
+
 }

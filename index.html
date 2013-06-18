@@ -30,66 +30,7 @@
         <script src="./script/db.js"></script>
         <script src="./script/user.js"></script>
         <script src="./script/dbDummy.js"></script>
-
-        <script type="text/javascript">
-            window.MS = window.MS || {};
-
-            document.addEventListener('deviceready', function() {
-                $('.sidebar').height(MS.dimens.viewport.height);
-
-                // TODO, buggy
-    //            if (device.platform === 'Android') {
-    //                document.addEventListener("backbutton", function backbutton() {
-    //                    MS.navigator.back();
-    //                }, false);
-    //            }
-
-                MS.dom.sidebarLeft.on('touchstart', 'li', function() {
-                    $(this).addClass('touch');
-                });
-
-                MS.dom.sidebarLeft.on('touchend', 'li', function() {
-                    MS.navigator.goTo($(this).attr('data-target'));
-                });
-
-                MS.dom.window.on('touchmove', function() {
-                    MS.isMove = true;
-                });
-
-                MS.dom.window.on('touchend', function() {
-                    $('.touch').removeClass('touch');
-                    MS.isMove = false;
-                });
-
-                MS.dom.body.on('touchend', function() {
-                    if(MS.dom.body.hasClass('open-menu')) {
-                        MS.navigator.back();
-                    }
-                });
-
-                MS.db.createTables(true, function() {
-                    // Insert dummy data
-                    MS.dbDummy.run(function() {
-
-                        var loggedInUser = localStorage.getItem('user_id');
-
-                        if (loggedInUser === 'null') {
-                            MS.navigator.goTo('Login');
-
-                        } else {
-                            MS.user.autoLogIn(loggedInUser, function(err) {
-                                if (err) {
-                                    return; // TODO
-                                }
-
-                                MS.navigator.goTo('News');
-                            });
-                        }
-                    });
-                });
-            }, false);
-
-        </script>
+        <script src="./script/main.js"></script>
     </head>
 
     <body class="h100">
