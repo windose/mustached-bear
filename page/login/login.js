@@ -5,7 +5,6 @@ window.MS.page = window.MS.page || {};
 
     MS.page.login = {
         init: function(scope) {
-            log('init login');
             /* set background image size to prevent keyboard bug */
             scope.overlay.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
 
@@ -14,7 +13,23 @@ window.MS.page = window.MS.page || {};
             });
 
             scope.overlay.find('.submit').on('touchend', function() {
-                MS.navigator.goTo('News');
+                var email,
+                    pw;
+
+                email = scope.overlay.find('#email').val();
+                pw = scope.overlay.find('#pw').val();
+
+                // Save last entered email for convenience
+                localStorage.setItem('last_email', email);
+
+                MS.user.authorize(email, pw, function(err) {
+                    if (err) {
+                        return; //TODO show error
+                    }
+
+                    MS.navigator.goTo('News');
+                });
+
             });
             scope.overlay.find('p').on('touchend', function() {
                 var target = $(this).attr('data-target');
@@ -22,14 +37,24 @@ window.MS.page = window.MS.page || {};
             });
         },
         enter: function(done, scope) {
-            log('enter login');
-
             MS.dom.body.addClass('bo');
+
+            // log out existing user
+            MS.user.logOut();
+
+            // get last email adress for convenience
+            var lastEmail = localStorage.getItem('last_email');
+            if (lastEmail) {
+                scope.overlay.find('#email').val(lastEmail);
+            }
+
+            // clear password field
+            scope.overlay.find('#pw').val('');
+
+            // show page
             done();
         },
         leave: function() {
-            log('leave login');
-
             MS.dom.body.removeClass('bo');
         }
     };

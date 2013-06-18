@@ -10,7 +10,7 @@ document.addEventListener('deviceready', function() {
          */
         initSidemenu: function initSidemenu(header) {
             // Event handler
-            header.find('.openSidebarLeft').on('touchend', function() {
+            header.find('.openSidebarLeft').on('touchend', function(ev) {
                 if(!MS.dom.body.hasClass('open-menu')) {
                     setTimeout(function() {
                         MS.navigator.history.push('sidebarLeft');
@@ -21,8 +21,7 @@ document.addEventListener('deviceready', function() {
                 }
             });
 
-            header.find('.openSidebarRight').on('touchend', function() {
-
+            header.find('.openSidebarRight').on('touchend', function(ev) {
                 if(!MS.dom.body.hasClass('open-menu')) {
                     setTimeout(function() {
                         MS.navigator.history.push('sidebarRight');
@@ -53,6 +52,13 @@ document.addEventListener('deviceready', function() {
                     setTimeout(function() {
                         MS.dom.sidebarLeft.hide();
 
+                        // Ugly hack, to prevent activation of select fields
+                        // on sidebar closing
+                        MS.dom.header.find('select').hide();
+                        setTimeout(function() {
+                            MS.dom.header.find('select').show();
+                        }, 300);
+
                         if (typeof callback === 'function') {
                             callback();
                         }
@@ -63,6 +69,13 @@ document.addEventListener('deviceready', function() {
                     MS.dom.body.removeClass('left');
                     setTimeout(function() {
                         MS.dom.sidebarRight.hide();
+
+                        // Ugly hack, to prevent activation of select fields
+                        // on sidebar closing
+                        MS.dom.header.find('select').hide();
+                        setTimeout(function() {
+                            MS.dom.header.find('select').show();
+                        }, 300);
 
                         if (typeof callback === 'function') {
                             callback();

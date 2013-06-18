@@ -137,13 +137,13 @@ body {
   color: #7acc00;
 }
 .tn {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 .by {
   background-color: #7acc00;
 }
 .bn {
-  background-color: #6f6d70;
+  background-color: #a2a0a3;
 }
 .dn {
   display: none;
@@ -173,7 +173,7 @@ body {
   z-index: 1;
   width: 85%;
   display: none;
-  background-color: #232124;
+  background-color: #eeecef;
 }
 .sidebar .heading {
   padding: 0.8rem 1rem;
@@ -192,18 +192,18 @@ body {
   padding: 0.7rem 1rem;
   height: 4.199999999999999rem;
   overflow: hidden;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 .sidebar ul.calList li:first-child {
   background-color: #007acc;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 .sidebar ul.calList li div {
   overflow: hidden;
   white-space: nowrap;
 }
 .sidebar ul.calList li div:first-child {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 .sidebar ul.calList li img {
   float: left;
@@ -215,10 +215,10 @@ body {
 }
 .sidebar.small {
   width: 4rem;
-  background-color: #6f6d70;
+  background-color: #a2a0a3;
 }
 .sidebar.small ul li.touch {
-  background-color: #5e5c5f;
+  background-color: #918f92;
 }
 /* Vertical Scrollbar */
 .scrollbarV {
@@ -250,13 +250,13 @@ body {
   margin-left: 1rem;
 }
 .header .mheader.fl.touch {
-  background: #23394d;
+  background: #eeffff;
 }
 .header .mheader.fr {
   margin-right: 1rem;
 }
 .header .mheader.fr.touch {
-  background: #23394d;
+  background: #eeffff;
 }
 .header .title {
   white-space: nowrap;
@@ -325,14 +325,14 @@ body {
   content: "AN";
   padding-left: 1rem;
   background-color: #7acc00;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   text-align: left;
 }
 .onoffswitch-inner:after {
   content: "AUS";
   padding-right: 1rem;
-  background-color: #6f6d70;
-  color: rgba(255, 255, 255, 0.5);
+  background-color: #a2a0a3;
+  color: rgba(0, 0, 0, 0.5);
   text-align: right;
 }
 .onoffswitch-inner.helldunkel:before {
@@ -968,7 +968,7 @@ body {
   position: absolute;
   bottom: 0;
   padding: 0 1rem;
-  background-color: #232124;
+  background-color: #eeecef;
   box-sizing: border-box;
 }
 .footer .button {
@@ -985,7 +985,7 @@ body {
   background-color: #69bb00;
 }
 .footer .button.bn.touch {
-  background-color: #5e5c5f;
+  background-color: #918f92;
 }
 .footer .button img {
   display: inline-block;
@@ -998,8 +998,8 @@ body {
 }
 html,
 body {
-  background: #232124;
-  color: rgba(255, 255, 255, 0.7);
+  background: #eeecef;
+  color: rgba(0, 0, 0, 0.7);
   font-family: "Raleway-Regular";
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   tap-highlight-color: rgba(0, 0, 0, 0);
@@ -1068,7 +1068,7 @@ img {
   z-index: 2;
   width: 100%;
   height: 100%;
-  background-color: #232124;
+  background-color: #eeecef;
   -webkit-transition-duration: .2s;
   transition-duration: .2s;
 }

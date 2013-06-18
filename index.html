@@ -19,14 +19,16 @@
         <script src="./lib/jquery-2.0.0.min.js"></script>
         <script src="./lib/mustache.js"></script>
         <script src="./lib/step.js"></script>
+        <script src="./lib/md5.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="./style/style.css">
+        <link rel="stylesheet" type="text/css" href="./style/style.css" id="theme">
 
         <script src="./script/console.js"></script>
         <script src="./script/dom.js"></script>
         <script src="./script/dimens.js"></script>
         <script src="./script/navigator.js"></script>
         <script src="./script/db.js"></script>
+        <script src="./script/user.js"></script>
         <script src="./script/dbDummy.js"></script>
 
         <script type="text/javascript">
@@ -67,13 +69,23 @@
 
                 MS.db.createTables(true, function() {
                     // Insert dummy data
-                    MS.dbDummy.insertFaculties();
-                    MS.dbDummy.insertMisc();
-                    MS.dbDummy.insertNews();
-                    MS.dbDummy.insertFach1();
-                    MS.dbDummy.insertFach2();
+                    MS.dbDummy.run(function() {
 
-                    MS.navigator.goTo('Login');
+                        var loggedInUser = localStorage.getItem('user_id');
+
+                        if (loggedInUser === 'null') {
+                            MS.navigator.goTo('Login');
+
+                        } else {
+                            MS.user.autoLogIn(loggedInUser, function(err) {
+                                if (err) {
+                                    return; // TODO
+                                }
+
+                                MS.navigator.goTo('News');
+                            });
+                        }
+                    });
                 });
             }, false);
 
@@ -101,7 +113,6 @@
             </div>
 
             <div id="sidebarRight" class="sidebar r0">
-                <!--<div class="heading tr">Anstehende Termine</div>-->
                 <ul class="calList">
                     <li>
                         <div class="title">Modellbildung und Simulation</div>

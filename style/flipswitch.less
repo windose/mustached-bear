@@ -21,36 +21,30 @@
 
 .onoffswitch-inner:before, .onoffswitch-inner:after {
     float: left; width: 50%; height: 3rem; padding: 0; line-height: 3rem;
-    font-size: 1rem; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    font-size: 1rem; color: white; font-family: 'Raleway-Regular', Trebuchet, Arial, sans-serif; font-weight: bold;
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
 .onoffswitch-inner:before {
     content: "AN";
     padding-left: 1rem;
-    background-color: #2FCCFF; color: #FFFFFF;
+    background-color: @color-bgr-yes; color: @color-font-light;
     text-align: left;
 }
 
 .onoffswitch-inner:after {
     content: "AUS";
     padding-right: 1rem;
-    background-color: #EEEEEE; color: #999999;
+    background-color: @color-bgr-no; color: @color-font-light;
     text-align: right;
 }
 
 .onoffswitch-inner.helldunkel:before {
     content: "HELL";
-    padding-left: .5rem;
-    background-color: #2FCCFF; color: #FFFFFF;
-    text-align: left;
 }
 
 .onoffswitch-inner.helldunkel:after {
     content: "DUNKEL";
-    padding-right: .5rem;
-    background-color: #EEEEEE; color: #999999;
-    text-align: right;
 }
 
 .onoffswitch-switch {

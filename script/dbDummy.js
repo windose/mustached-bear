@@ -4,6 +4,21 @@ window.MS = window.MS || {};
 
     window.MS.dbDummy = {
 
+        run: function(callback) {
+            MS.dbDummy.insertFaculties();
+            MS.dbDummy.insertMisc();
+            MS.dbDummy.insertNews();
+            MS.dbDummy.insertFach1();
+            MS.dbDummy.insertFach2();
+            MS.dbDummy.insertUser(callback);
+        },
+
+        insertUser: function(callback) {
+            MS.db.insert('user',
+            ['email', 'password', 'studiengang_id', 'semester', 'isPush', 'isSync', 'isDarkTheme', 'isBackup'],
+            ['riplexus@gmail.com', 'fc5e038d38a57032085441e7fe7010b0', 1, 7, 0, 0, 1, 0],
+            function(err) { log('insert user', err); callback() });
+        },
         insertFaculties: function() {
             MS.db.insert('fakultaet',
                 ['id', 'name'],

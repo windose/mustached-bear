@@ -1,10 +1,11 @@
 {
     "id": "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT",
+    "state": "INTEGER",
     "email": "VARCHAR(255)",
     "password": "VARCHAR(255)",
     "studiengang_id": "INTEGER",
-    "Semester": "INTEGER",
-    "isPush": "INTEGEER",
+    "semester": "INTEGER",
+    "isPush": "INTEGER",
     "isSync": "INTEGER",
     "isDarkTheme": "INTEGER",
     "isBackup": "INTEGER",

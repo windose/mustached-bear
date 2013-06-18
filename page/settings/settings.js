@@ -3,6 +3,7 @@ window.MS.page = window.MS.page || {};
 
 (function() {
 
+
     MS.page.settings = {
         init: function(scope) {
             log('init settings');
@@ -14,7 +15,7 @@ window.MS.page = window.MS.page || {};
             /*
              * Get and insert faculties from database
              */
-            list = scope.view.find('#changeFakulty');
+            list = scope.view.find('#changeFaculty');
             list.empty();
             MS.db.get(
                 'SELECT id, name FROM fakultaet',
@@ -30,17 +31,47 @@ window.MS.page = window.MS.page || {};
              * Switch between faculty
              */
             list.on('change', function() {
-                var fak = $(this).val(),
-                    list = scope.view.find('.semList');
+                var self = $(this),
+                    fak = self.val(),
+                    list = scope.view.find('.semList'),
+                    text = self.find(':selected').text(),
+                    valueField = self.parent().find('.selectContent');
 
                 list.removeClass('fak'+list.attr('data-fak'))
                     .attr('data-fak', fak)
                     .addClass('fak'+list.attr('data-fak'), fak);
+
+                valueField.html(text);
+            });
+
+            /*
+             * Hide / Show footer to prevent buggy position absolute
+             */
+            document.addEventListener("showkeyboard", function() {
+                MS.dom.footer.hide();
+            }, false);
+
+            document.addEventListener("hidekeyboard", function() {
+                setTimeout(function() {
+                    MS.dom.footer.show();
+                }, 200);
+            }, false);
+
+            scope.view.find('#changeTheme').on('change', function() {
+                var checked = $(this).is(':checked'),
+                    oldLink, newLInk;
+
+                oldLink = document.getElementById("theme");
+                newLink = document.createElement("link")
+                newLink.setAttribute("rel", "stylesheet");
+                newLink.setAttribute("type", "text/css");
+                newLink.setAttribute("id", "theme");
+                newLink.setAttribute("href", './style/style'+(checked?'_light':'')+'.css');
+                document.getElementsByTagName("head").item(0).replaceChild(newLink, oldLink);
             });
         },
         enter: function(done, scope) {
             log('enter settings');
-
             done();
         },
         leave: function leave() {

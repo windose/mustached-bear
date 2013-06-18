@@ -30,12 +30,17 @@ window.MS.page = window.MS.page || {};
              * Switch between faculty
              */
             scope.header.find('select').on('change', function() {
-                var fak = $(this).val();
+                var self = $(this),
+                    fak = self.val(),
+                    text = self.find(':selected').text(),
+                    valueField = self.parent().find('.selectContent');
 
                 $.fn.add.call(scope.view,scope.header)
                     .removeClass('fak'+scope.view.attr('data-fak'))
                     .attr('data-fak', fak)
                     .addClass('fak'+scope.view.attr('data-fak'), fak);
+
+                valueField.html(text);
             });
 
             /*
@@ -61,6 +66,13 @@ window.MS.page = window.MS.page || {};
                 } else {
                     self.removeClass('off').addClass('on');
                 }
+            });
+
+            scope.header.on('touchstart', 'select', function() {
+                console.log('touchstart');
+            });
+            scope.header.on('touchend', 'select', function() {
+                console.log('touchend');
             });
 
         },

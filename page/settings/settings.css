@@ -9,11 +9,6 @@
 .content .settings table tr {
   height: 4.6rem;
 }
-.content .settings table tr.heading {
-  height: 1.7999999999999998rem;
-  font-size: 0.3 rem;
-  background-color: #343235;
-}
 .content .settings table tr td:last-child {
   padding-right: 1rem;
   text-align: right;
@@ -24,15 +19,34 @@
   font-size: .8rem;
   line-height: .9rem;
 }
-.content .settings table tr td:first-child:first-line {
+.content .settings table tr.heading {
+  height: 1.5rem;
+  font-size: .8rem;
+  line-height: .9rem;
+  background-color: #343235;
+}
+.content .settings table tr:not(.heading) td:first-child:first-line {
   font-family: 'Raleway-SemiBold';
   font-size: 1rem;
   line-height: 1.4rem;
 }
-.content .settings table tr input,
-.content .settings table tr select {
+.content .settings table input[type=text],
+.content .settings table input[type=password],
+.content .settings table .select {
+  display: block;
   width: 100%;
   height: 3rem;
+  line-height: 3rem;
   box-sizing: border-box;
-  padding-left: 0.8rem;
+  padding: 0.8rem;
+  background-color: #282629;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  border: 0;
+  border-bottom: 1px solid;
+}
+.footer .settings img {
+  padding: 0;
+  margni: 0;
 }
