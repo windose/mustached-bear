@@ -11,7 +11,7 @@ window.MS.page = window.MS.page || {};
          *
          * @param scope
          */
-        init: function(scope) {
+        init: function(done, scope) {
             // set background image size to prevent keyboard bug
             scope.overlay.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
 
@@ -54,6 +54,8 @@ window.MS.page = window.MS.page || {};
                 var target = $(this).attr('data-target');
                 MS.navigator.goTo(target);
             });
+
+            done();
         },
 
         /**

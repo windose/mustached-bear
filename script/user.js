@@ -30,6 +30,8 @@ document.addEventListener('deviceready', function() {
 
                             'WHERE u.id = '+MS.db.escape(autoLoginId));
 
+                    console.log(sql);
+
                     MS.db.get(sql, this);
 
                 },
@@ -37,8 +39,11 @@ document.addEventListener('deviceready', function() {
                 /*
                  *
                  */
-                function getFakulties(err, data) {
+                function getFaculties(err, data) {
                     if (err) { throw err; }
+
+                    console.log(JSON.stringify(data));
+
                     if (data.length === 0) { throw 'User not found' }
 
                     user = data[0];

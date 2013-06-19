@@ -24,7 +24,6 @@ document.addEventListener('deviceready', function() {
         }
         sql += columns.join(', ')+')';
 
-        log('createtable', sql);
         MS.db.obj.transaction(function(tx) {
 
             drop && tx.executeSql('DROP TABLE IF EXISTS '+name);

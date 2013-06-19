@@ -316,24 +316,28 @@ document.addEventListener('deviceready', function() {
                         }
                     });
 
-                    // Call page specific js
+                    // Call init function
                     if (typeof MS.page[pagenameLower] !== 'undefined' &&
                         typeof MS.page[pagenameLower].init === 'function') {
-                        MS.page[pagenameLower].init(scope);
-                    }
-                    if (typeof MS.page[pagenameLower] !== 'undefined' &&
-                        typeof MS.page[pagenameLower].enter === 'function') {
+                        MS.page[pagenameLower].init(function() {
 
-                        MS.page[pagenameLower].enter(MS.navigator.showPage(scope), scope);
-                    }
+                            // Call enter function
+                            if (typeof MS.page[pagenameLower] !== 'undefined' &&
+                                typeof MS.page[pagenameLower].enter === 'function') {
 
-                    // Close side menu, if open
-                    if(MS.dom.body.hasClass('open-menu')) {
-                        MS.navigator.back();
-                    }
+                                MS.page[pagenameLower].enter(MS.navigator.showPage(scope), scope);
+                            }
 
-                    // add new page to history
-                    MS.navigator.history.push(pagename);
+                            // Close side menu, if open
+                            if(MS.dom.body.hasClass('open-menu')) {
+                                MS.navigator.back();
+                            }
+
+                            // add new page to history
+                            MS.navigator.history.push(pagename);
+
+                        }, scope);
+                    }
                 }
             );
         }

@@ -9,7 +9,9 @@ window.MS.page = window.MS.page || {};
          *
          * @param scope
          */
-        init: function(scope) {},
+        init: function(done, scope) {
+            done();
+        },
 
         /**
          *

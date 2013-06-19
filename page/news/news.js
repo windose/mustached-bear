@@ -11,7 +11,7 @@ window.MS.page = window.MS.page || {};
          *
          * @param scope
          */
-        init: function(scope) {
+        init: function(done, scope) {
 
             /*
              * Touch highlighting.
@@ -40,6 +40,8 @@ window.MS.page = window.MS.page || {};
                     listItem.addClass('open');
                 }
             });
+
+            done();
         },
 
         /**
@@ -99,7 +101,7 @@ window.MS.page = window.MS.page || {};
                     '<img class="openNews" src="asset/icon/news_2.png">' +
                     '<img src="asset/icon/iconmoon-eeecef/share.png">' +
                 '</td>' +
-                '<td class="article openNews">'+item.content+'</td>' +
+                '<td class="article openNews"><span class="title">'+item.title+'.</span> '+item.content+'</td>' +
             '</tr></table></li>';
 
             view.find('ul').append(template);

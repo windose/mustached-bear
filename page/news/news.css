@@ -28,8 +28,9 @@
 .content .news li .article.touch {
   background: #23394d;
 }
-.content .news li .article:first-line {
+.content .news li .article .title {
   color: rgba(255, 255, 255, 0.9);
+  font-family: 'Raleway-SemiBold';
 }
 .content .news li.open {
   max-height: 42rem;

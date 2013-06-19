@@ -38,7 +38,11 @@ window.MS = window.MS || {};
             "(7, 3, '0000-00-00 00:00:00');");
 
         sql.push("INSERT INTO `nachrichten` (`id`, `fakultaet_id`, `title`, `content`, `date`, `author`, `msg_type`, `start`, `end`, `last_update`) VALUES" +
-            "(1, NULL, 'Sprechstunde am Mittwoch, den 29.05.2013', 'Die Sprechstunde am Mittwoch, den 29.05.2013 um 12:30 Uhr wird auf 14:00 Uhr verschoben.', '0000-00-00 00:00:00', 'Kirch Ulla', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);");
+            "(1, NULL, 'Sprechstunde am Mittwoch, den 29.05.2013', 'Die Sprechstunde am Mittwoch, den 29.05.2013 um 12:30 Uhr wird auf 14:00 Uhr verschoben.', '0000-00-00 00:00:00', 'Kirch Ulla', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL)," +
+            "(2, NULL, 'Prüfungstermine Netzwerke II', 'Die mündlichen Prüfungen zur Vorlesung Netzwerke II (Prof. Soceanu) finden statt am Donnerstag 4.7.2013 und Freitag 5.7.2013 in R3.014. Die Zeiten für die Einzelprüfungen finden Sie in Moodle.', '0000-00-00 00:00:00', 'Köhler Klaus', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL)," +
+            "(3, NULL, 'Funktionale Programmierung entfällt heute', 'Die Vorlesung \"Funktionale Programmierung\" muss heute leider aus gesundheitlichen Gründen entfallen. Bitte nutzen Sie die Zeit um sich schon einmal in das nächste Kapitel einzulesen (siehe URL) Bei Fragen zum bevorstehenden Vortrag nehmen Sie bitte per E-Mail mit mir Verbindung auf.', '0000-00-00 00:00:00', 'Braun Oliver', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL)," +
+            "(4, NULL, 'Übung zur Vorlesung \"Statistik und OR\"', 'Wie vereinbart entfällt am Freitag, den 21.06.13, die Übung. Diese wurde bereits vorgeholt.', '0000-00-00 00:00:00', 'Schwenkert Rainer', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL)," +
+            "(5, NULL, 'Sprechstunde Hof entfällt am 19.06', 'Meine Sprechstunde am 19.06. entfällt.', '0000-00-00 00:00:00', 'Hof Hans-Joachim', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);");
 
         sql.push("INSERT INTO `studiengang` (`id`, `name`, `semesterCount`, `last_update`) VALUES" +
             "(1, 'Informatik', 7, NULL)," +
@@ -48,7 +52,7 @@ window.MS = window.MS || {};
         sql.push("INSERT INTO `studiengruppe` (`id`, `name`, `semester`, `studiengang_id`, `last_update`) VALUES" +
             "(5, 'if4b', '4', 1, '2013-06-15 00:12:17')," +
             "(6, 'DES01', '1', 2, '0000-00-00 00:00:00')," +
-            "(7, 'ic4b', '7', 3, '2013-06-15 00:12:17');");
+            "(7, 'ic7b', '7', 3, '2013-06-15 00:12:17');");
 
         sql.push("INSERT INTO `type` (`id`, `name`) VALUES" +
             "(1, 'Vorlesung')," +
@@ -78,11 +82,13 @@ window.MS = window.MS || {};
         MS.db.sql(sql, function(err) {
             if (err) { console.log(err.message); }
 
-            MS.db.get('SELECT * FROM vorlesung', function(err, data) {
-                if (err) { console.log(err.message); }
+            callback();
 
-                callback();
-            });
+//            MS.db.get('SELECT * FROM user', function(err, data) {
+//                if (err) { console.log(err.message); }
+//
+//                callback();
+//            });
         });
     };
 

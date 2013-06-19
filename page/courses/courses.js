@@ -9,9 +9,10 @@ window.MS.page = window.MS.page || {};
          * Basic functionality, touch highlighting and event handlers.
          * Will be called once.
          *
+         * @param done
          * @param scope
          */
-        init: function(scope) {
+        init: function(done, scope) {
 
             /*
              * Touch highlighting.
@@ -36,16 +37,19 @@ window.MS.page = window.MS.page || {};
                     valueField = self.parent().find('.selectContent'),
                     sem = scope.view.find('ul').attr('data-sem');
 
-                MS.page.courses.getMaxSemesterCount(fak, function(err, count) {
+                MS.courses.getMaxSemesterCount(fak, function(err, count) {
                     if (err) {
                         return console.log(err.message);
                     }
                     MS.page.courses.drawSemList(scope, fak, count);
                 });
 
-                MS.page.courses.getCourses(fak,
-                    (sem || MS.user.current.semester),
-                    true, function(err, courses) {
+                if (!sem) {
+                    sem = MS.user.current.semester;
+                }
+
+                MS.courses.getCoursesBySem(fak, sem,
+                    function(err, courses) {
                     if (err) {
                         return console.log(err.message);
                     }
@@ -60,6 +64,7 @@ window.MS.page = window.MS.page || {};
              */
             scope.header.find('.semList').on('touchend', 'li', function() {
                 var self = $(this),
+                    fak = scope.header.find('select').val(),
                     sem = $(this).attr('data-target');
 
                 scope.view.find('ul')
@@ -70,7 +75,7 @@ window.MS.page = window.MS.page || {};
                 self.parent().find('.active').removeClass('active');
                 self.addClass('active');
 
-                MS.page.courses.getCourses(fak, sem, true,
+                MS.courses.getCoursesBySem(fak, sem,
                     function(err, courses) {
                         if (err) {
                             return console.log(err.message);
@@ -120,7 +125,7 @@ window.MS.page = window.MS.page || {};
                  */
                 function insertSemList() {
                     var done = this;
-                    MS.page.courses.getMaxSemesterCount(MS.user.current.faculties[0], function(err, count) {
+                    MS.courses.getMaxSemesterCount(MS.user.current.faculties[0], function(err, count) {
                         if (err) {
                             return console.log(err.message);
                         }
@@ -136,19 +141,33 @@ window.MS.page = window.MS.page || {};
                 function insertCourseData() {
                     var done = this;
 
-                    scope.view.find('li:nth-child('+(MS.user.current.semester-1)+')').addClass('active');
+                    // Highlight current semester
+                    scope.header.find('.semList')
+                        .find('li:eq('+(MS.user.current.semester-1)+')')
+                        .addClass('active');
 
-                    MS.page.courses.getCourses(
+                    MS.courses.getCoursesBySem(
                         MS.user.current.faculties[0],
                         MS.user.current.semester,
-                        true, function(err, courses) {
+                        function(err, courses) {
                         if (err) {
                             return console.log(err.message);
                         }
 
                         MS.page.courses.drawCourseList(scope, courses);
+
+
                         done();
                     });
+                },
+
+                /*
+                 * Go to the next phase.
+                 */
+                function finishLoad(err) {
+                    if (err) { console.log(err); }
+
+                    done();
                 }
             );
         },
@@ -168,65 +187,7 @@ window.MS.page = window.MS.page || {};
          */
         leave: function() {},
 
-        /**
-         * Retrieves every course of a faculty. If the <isOwnFaculty> flag
-         * is set, it will retrieve only the courses of the studiengruppe
-         * of the logged in user.
-         *
-         * @param facultyId
-         * @param isOwnFaculty
-         * @param callback
-         */
-        getCourses: function getCourses(facultyId, semester, isOwnFaculty, callback) {
-            var sql;
 
-            sql =
-                'SELECT v.*, f.name, f.info, sgr.semester, fs.fakultaet_id ' +
-                'FROM vorlesung AS v ' +
-                'JOIN fach AS f ON v.fach_id = f.id ' +
-                'JOIN studiengruppe AS sgr ON sgr.id = v.studiengruppe_id ' +
-                'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
-                'JOIN fakultaet_studiengang AS fs ON fs.studiengang_id = sga.id ' +
-            (isOwnFaculty?
-                'JOIN user_vorlesung AS uv ON uv.vorlesung_id = v.id '+
-                'JOIN user AS u ON uv.user_id = u.id ':'')+
-                'WHERE fs.fakultaet_id = ' + facultyId + ' ' +
-                'AND sgr.semester = ' + semester + ' ' +
-            (isOwnFaculty?
-                'AND v.studiengruppe_id = u.studiengruppe_id '+
-                'AND u.id = '+ MS.user.current.id :'');
-
-            MS.db.get(sql, callback);
-        },
-
-        /**
-         * Retrieves the biggest semester count of one faculty.
-         *
-         * @param facultyId
-         * @param callback
-         */
-        getMaxSemesterCount: function getMaxSemesterCount(facultyId, callback) {
-            var sql;
-
-            sql = 'SELECT MAX( s.semesterCount ) AS count ' +
-            'FROM studiengang AS s ' +
-            'JOIN fakultaet_studiengang AS fs ON s.id = fs.studiengang_id ' +
-            'WHERE fs.fakultaet_id = ' + facultyId + ' ' +
-            'GROUP BY fs.fakultaet_id ' +
-            'LIMIT 0 , 30';
-
-            MS.db.get(sql, function(err, data) {
-                if (err) {
-                    callback(err);
-                } else {
-                    if (data.length === 0) {
-                        callback(undefined, 7);
-                    } else {
-                        callback(undefined, data[0].count);
-                    }
-                }
-            });
-        },
 
         /**
          * Insert the semester list (for tab navigation) dynamically
