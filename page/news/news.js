@@ -122,7 +122,7 @@ window.MS.page = window.MS.page || {};
 
                     self = this;
 
-                    MS.timeline.getLastDates(function(err, dates) {
+                    MS.timeline.getFutureDates(function(err, dates) {
                         if (err) {
                             return console.log(err);
                         }

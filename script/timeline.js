@@ -5,7 +5,7 @@ window.MS = window.MS || {};
     window.MS.timeline = {
 
          /**
-         *
+         * German weekdays.
          */
         weekdays: [
             'Montag',
@@ -18,7 +18,7 @@ window.MS = window.MS || {};
         ],
 
         /**
-         *
+         * Initializes momentjs with the german notation.
          */
         init: function() {
             /*
@@ -70,10 +70,13 @@ window.MS = window.MS || {};
         },
 
         /**
+         * Retrieves the dates in the future. It limits the db request to 20.
+         * This is a potential problem, if the user has too much dates on a single
+         * day. ToDo
          *
          * @param {Function} callback
          */
-        getLastDates: function(callback) {
+        getFutureDates: function getFutureDates(callback) {
             var sql, absDatetime, i, l, date, now;
 
             now = moment();
@@ -89,6 +92,10 @@ window.MS = window.MS || {};
                     return console.log(err.message);
                 }
 
+                /*
+                 * Generate an absolute date object from the
+                 * relative time data for further calculations.
+                 */
                 for (i=0, l=dates.length; i<l; i++) {
                     date = dates[i];
                     absDatetime = moment()
@@ -104,6 +111,9 @@ window.MS = window.MS || {};
                     date.absDatetime = absDatetime;
                 }
 
+                /*
+                 * Sort the dates, closest one first.
+                 */
                 dates = dates.sort(function(a, b) {
                     return b.absDatetime.isBefore(a.absDatetime);
                 });
@@ -114,7 +124,7 @@ window.MS = window.MS || {};
         },
 
         /**
-         *
+         * A mustache template for a date item in the timeline.
          */
         template: '<li>' +
             '<div class="title">{{name}}</div>' +
@@ -123,6 +133,7 @@ window.MS = window.MS || {};
             '</li>',
 
         /**
+         * Inserts a single date into a timeline container.
          *
          * @param {Object} $timeline
          * @param {Object} date
