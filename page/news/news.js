@@ -41,6 +41,30 @@ window.MS.page = window.MS.page || {};
                 }
             });
 
+            /*
+             * Share news button
+             */
+            scope.view.on('touchend', 'li .share', function() {
+                if (MS.isMove) { return; }
+
+                var self = $(this),
+                    id = self.attr('data-id'),
+                    share = new Share(),
+                    article = MS.page.news.articles[id];
+
+                if (!article) { return console.log('Article not found'); }
+                
+                share.show({
+                        subject: article.title,
+                        text: article.content
+                    },
+                    function() {},
+                    function() {
+                        console.log('Share failed')
+                    }
+                );
+            });
+
             done();
         },
 
@@ -63,6 +87,7 @@ window.MS.page = window.MS.page || {};
 
                     scope.view.find('ul').empty();
                     for (i=0, l=result.length; i<l; i++) {
+                        MS.page.news.articles[result[i].id] = result[i];
                         MS.page.news.insertNews(scope.view, result[i]);
                     }
 
@@ -99,13 +124,15 @@ window.MS.page = window.MS.page || {};
             template = '<li><table><tr>' +
                 '<td class="icons">' +
                     '<img class="openNews" src="asset/icon/news_2.png">' +
-                    '<img src="asset/icon/iconmoon-eeecef/share.png">' +
+                    '<img class="share" data-id="{{id}}" src="asset/icon/iconmoon-eeecef/share.png">' +
                 '</td>' +
-                '<td class="article openNews"><span class="title">'+item.title+'.</span> '+item.content+'</td>' +
+                '<td class="article openNews"><span class="title">{{title}}.</span> {{content}}</td>' +
             '</tr></table></li>';
 
-            view.find('ul').append(template);
+            view.find('ul').append(Mustache.render(template, item));
         },
+
+        articles: {},
 
         /**
          * Insert information about the next date for the user.
