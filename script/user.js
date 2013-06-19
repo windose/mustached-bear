@@ -7,10 +7,10 @@ document.addEventListener('deviceready', function() {
 
         /**
          *
-         * @param email
-         * @param pw
-         * @param callback
-         * @param autoLoginId
+         * @param {String} email
+         * @param {String} pw
+         * @param {Function} callback
+         * @param {number} [autoLoginId]
          */
         login: function login(email, pw, callback, autoLoginId) {
             var sql, user;
@@ -30,8 +30,6 @@ document.addEventListener('deviceready', function() {
 
                             'WHERE u.id = '+MS.db.escape(autoLoginId));
 
-                    console.log(sql);
-
                     MS.db.get(sql, this);
 
                 },
@@ -41,8 +39,6 @@ document.addEventListener('deviceready', function() {
                  */
                 function getFaculties(err, data) {
                     if (err) { throw err; }
-
-                    console.log(JSON.stringify(data));
 
                     if (data.length === 0) { throw 'User not found' }
 

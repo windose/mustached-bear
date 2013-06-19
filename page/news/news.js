@@ -9,7 +9,8 @@ window.MS.page = window.MS.page || {};
          * Basic functionality, touch highlighting and event handlers.
          * Will be called once.
          *
-         * @param scope
+         * @param {Function} done
+         * @param {Object} scope
          */
         init: function(done, scope) {
 
@@ -27,7 +28,7 @@ window.MS.page = window.MS.page || {};
             });
 
             /*
-             * Expend a news item on touch.
+             * Expend a single news item on touch.
              */
             scope.view.on('touchend', 'li .openNews', function() {
                 if (MS.isMove) { return; }
@@ -42,27 +43,29 @@ window.MS.page = window.MS.page || {};
             });
 
             /*
-             * Share news button
+             * Share news button.
              */
             scope.view.on('touchend', 'li .share', function() {
-                if (MS.isMove) { return; }
+                if (MS.isMove) { return false; }
 
                 var self = $(this),
                     id = self.attr('data-id'),
                     share = new Share(),
                     article = MS.page.news.articles[id];
 
-                if (!article) { return console.log('Article not found'); }
-                
+                if (!article) {
+                    return console.log('Article not found');
+                }
+
                 share.show({
                         subject: article.title,
                         text: article.content
                     },
                     function() {},
-                    function() {
-                        console.log('Share failed')
-                    }
+                    function() { console.log('Share failed') }
                 );
+
+                return true;
             });
 
             done();
@@ -70,9 +73,10 @@ window.MS.page = window.MS.page || {};
 
         /**
          * Get desired news from the database and insert them with <insertNews>.
+         * ToDo Limit
          *
-         * @param done
-         * @param scope
+         * @param {Function} done
+         * @param {Object} scope
          */
         enter: function(done, scope) {
 
@@ -80,27 +84,29 @@ window.MS.page = window.MS.page || {};
              * Get desired news from the database.
              */
             MS.db.get('SELECT * from nachrichten', function(err, result) {
-                if (err) { return log(err) && done(); }
+                if (err) { return console.log(err) && done(); }
 
                 if (result.length !== 0) {
-                    var i, l;
+                    var i, l, articleList;
 
-                    scope.view.find('ul').empty();
+                    articleList = scope.view.find('.articleList');
+
+                    articleList.empty();
                     for (i=0, l=result.length; i<l; i++) {
                         MS.page.news.articles[result[i].id] = result[i];
-                        MS.page.news.insertNews(scope.view, result[i]);
+                        MS.page.news.insertNews(articleList, result[i]);
                     }
 
                     /*
-                     * Force reflow after @font-face is loaded.
-                     * text-align: justify will cut off text if we dont reflow.
+                     * Hack, force reflow after @font-face is loaded.
+                     * text-align: justify will cut off text if we don't reflow.
                      */
                     setTimeout(function() {
                         scope.view.find('li').width(scope.view.find('li').width());
                     }, 100);
                 }
 
-                done();
+                return done();
             });
 
             MS.page.news.insertDateInfo(scope);
@@ -112,13 +118,12 @@ window.MS.page = window.MS.page || {};
         leave: function leave() {},
 
         /**
-         * Insert a news item into the DOM.
-         * ToDo: Use template engine, save templates in files.
+         * Insert a single news item into the DOM.
          *
-         * @param view
-         * @param item
+         * @param {Object} $articleList
+         * @param {Object} article
          */
-        insertNews: function insertNews(view, item) {
+        insertNews: function insertNews($articleList, article) {
             var template;
 
             template = '<li><table><tr>' +
@@ -129,7 +134,7 @@ window.MS.page = window.MS.page || {};
                 '<td class="article openNews"><span class="title">{{title}}.</span> {{content}}</td>' +
             '</tr></table></li>';
 
-            view.find('ul').append(Mustache.render(template, item));
+            $articleList.append(Mustache.render(template, article));
         },
 
         articles: {},
@@ -137,7 +142,7 @@ window.MS.page = window.MS.page || {};
         /**
          * Insert information about the next date for the user.
          *
-         * @param scope
+         * @param {Object} scope
          */
         insertDateInfo: function insertDateInfo(scope) {
             scope.header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');

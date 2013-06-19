@@ -12,8 +12,8 @@ window.MS.page = window.MS.page || {};
          * Will be called once.
          * ToDo save only by click on the save button.
          *
-         * @param {function} done
-         * @param {object} scope
+         * @param {Function} done
+         * @param {Object} scope
          */
         init: function(done, scope) {
             var list, itemTemplate;
@@ -29,16 +29,16 @@ window.MS.page = window.MS.page || {};
 
                     self = this;
                     list = scope.view.find('#changeFaculty');
-                    list.empty();
 
                     MS.courses.getFaculties(function(err, result) {
 
+                        list.empty();
                         for (i=0, l=result.length; i<l; i++) {
                             list.append(Mustache.render(itemTemplate, result[i]));
                         }
 
-                        MS.shim.select.showSelectItem(
-                            scope.view.find('#changeFaculty'),
+                        // Show the current users setting
+                        MS.shim.select.showSelectItem(list,
                             MS.user.current.faculties[0]);
 
                         self();
@@ -83,6 +83,8 @@ window.MS.page = window.MS.page || {};
                         var self = $(this),
                             fak = self.val(),
                             text = self.find(':selected').text(),
+                            semList = scope.view.find('.semList'),
+                            sem = semList.find('.active').attr('data-target'),
                             valueField = self.parent().find('.selectContent');
 
                         valueField.html(text);
@@ -97,13 +99,25 @@ window.MS.page = window.MS.page || {};
                             MS.page.settings.drawSemList(scope, fak, count);
 
                             /*
+                             * Stay at the old sem value or set
+                             * semester to the current users setting.
+                             */
+                            if (!sem) {
+                                sem = MS.user.current.semester;
+                            }
+
+                            semList
+                                .find('li[data-target='+sem+']')
+                                .addClass('active');
+
+                            /*
                              * Update studies and studygroups.
                              */
                             MS.page.settings.drawStudies(scope, fak, function() {
                                 var studyId, sem;
 
                                 studyId = scope.view.find('#changeStudy').val();
-                                sem = scope.view.find('.semList').find('.active').attr('data-target');
+                                sem = semList.find('.active').attr('data-target');
                                 if (!sem) {
                                     sem = MS.user.current.semester;
                                 }
@@ -263,8 +277,8 @@ window.MS.page = window.MS.page || {};
          * Basically just updates the settings view to
          * match the current users setting on enter.
          *
-         * @param {function} done
-         * @param {object} scope
+         * @param {Function} done
+         * @param {Object} scope
          */
         enter: function(done, scope) {
             var user;
@@ -296,10 +310,10 @@ window.MS.page = window.MS.page || {};
         /**
          * Inserts studygroups into the DOM.
          *
-         * @param {object} scope
+         * @param {Object} scope
          * @param {number} studyId
          * @param {number} sem
-         * @param {function} [callback]
+         * @param {Function} [callback]
          */
         drawStudygroups: function drawStudygroups(scope, studyId, sem, callback) {
             var itemTemplate;
@@ -333,9 +347,9 @@ window.MS.page = window.MS.page || {};
         /**
          * Inserts study list into the DOM.
          *
-         * @param {object} scope
+         * @param {Object} scope
          * @param {number} facultyId
-         * @param {function} [callback]
+         * @param {Function} [callback]
          */
         drawStudies: function drawStudies(scope, facultyId, callback) {
             var itemTemplate;
@@ -371,7 +385,7 @@ window.MS.page = window.MS.page || {};
          * into the header and manages the css classes.
          * Todo: merge with courses
          *
-         * @param {object} scope
+         * @param {Object} scope
          * @param {number} facultyId
          * @param {number} count
          */
@@ -387,11 +401,11 @@ window.MS.page = window.MS.page || {};
                 .addClass('w'+count)
                 .addClass('fak'+facultyId)
                 .attr('data-w', count)
-                .attr('data-fak', facultyId);
+                .attr('data-fak', facultyId)
+                .empty();
 
             template = '<li data-target="{{i}}">{{i}}</li>';
 
-            semList.empty();
             for (;count--;) {
                 semList.prepend(Mustache.render(template, {i:count+1}));
             }

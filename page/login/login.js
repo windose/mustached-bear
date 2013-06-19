@@ -9,21 +9,23 @@ window.MS.page = window.MS.page || {};
          * Basic functionality, touch highlighting and event handlers.
          * Will be called once.
          *
-         * @param scope
+         * @param {Function} done
+         * @param {Object} scope
          */
         init: function(done, scope) {
             // set background image size to prevent keyboard bug
             scope.overlay.css('background-size', 'auto '+MS.dimens.viewport.height+'px');
 
             /*
-             * Touch highlighting.
+             * UI Handler, touch highlighting.
              */
             scope.overlay.find('.submit').on('touchstart', function() {
                 $(this).addClass('touch');
             });
 
             /*
-             * try to log in with the supported data of the input fields.
+             * UI Handler, try to log in with the supported
+             * data of the input fields.
              */
             scope.overlay.find('.submit').on('touchend', function() {
                 var email,
@@ -44,11 +46,14 @@ window.MS.page = window.MS.page || {};
 
                     // Go to the news page, in case of a successful authorization
                     MS.navigator.goTo('News');
+
+                    return true;
                 });
             });
 
             /*
-             * Navigate to the register or lost password view.
+             * UI Handler, navigate to the register or lost
+             * password view.
              */
             scope.overlay.find('p').on('touchend', function() {
                 var target = $(this).attr('data-target');
@@ -59,6 +64,8 @@ window.MS.page = window.MS.page || {};
         },
 
         /**
+         * A user will enter this fragment on first load and logout.
+         * Resets the input fields.
          *
          * @param done
          * @param scope
@@ -72,7 +79,7 @@ window.MS.page = window.MS.page || {};
             MS.user.logOut();
 
             /*
-             * get last email adress for convenience.
+             * get last email address for convenience.
              */
             var lastEmail = localStorage.getItem('last_email');
             if (lastEmail) {
@@ -87,7 +94,8 @@ window.MS.page = window.MS.page || {};
         },
 
         /**
-         *
+         * Remove the blackout class to show the body container.
+         * ToDo move to navigator for every overlay.
          */
         leave: function() {
             MS.dom.body.removeClass('bo');

@@ -6,11 +6,11 @@ window.MS.page = window.MS.page || {};
     MS.page.courses = {
 
         /**
-         * Basic functionality, touch highlighting and event handlers.
+         * Basic functionality, touch highlighting and ui event handlers.
          * Will be called once.
          *
-         * @param done
-         * @param scope
+         * @param {Function} done
+         * @param {Object} scope
          */
         init: function(done, scope) {
 
@@ -27,123 +27,56 @@ window.MS.page = window.MS.page || {};
                 $(this).removeClass('touch');
             });
 
-            /*
-             * Switch between faculty.
-             */
-            scope.header.find('select').on('change', function() {
-                var self = $(this),
-                    fak = self.val(),
-                    text = self.find(':selected').text(),
-                    valueField = self.parent().find('.selectContent'),
-                    sem = scope.view.find('ul').attr('data-sem');
-
-                MS.courses.getMaxSemesterCount(fak, function(err, count) {
-                    if (err) {
-                        return console.log(err.message);
-                    }
-                    MS.page.courses.drawSemList(scope, fak, count);
-                });
-
-                if (!sem) {
-                    sem = MS.user.current.semester;
-                }
-
-                MS.courses.getCoursesBySem(fak, sem,
-                    function(err, courses) {
-                    if (err) {
-                        return console.log(err.message);
-                    }
-                    MS.page.courses.drawCourseList(scope, courses);
-                });
-
-                valueField.html(text);
-            });
-
-            /*
-             * Switch between semester.
-             */
-            scope.header.find('.semList').on('touchend', 'li', function() {
-                var self = $(this),
-                    fak = scope.header.find('select').val(),
-                    sem = $(this).attr('data-target');
-
-                scope.view.find('ul')
-                    .removeClass('sem'+sem)
-                    .attr('data-sem', sem)
-                    .addClass('sem'+sem);
-
-                self.parent().find('.active').removeClass('active');
-                self.addClass('active');
-
-                MS.courses.getCoursesBySem(fak, sem,
-                    function(err, courses) {
-                        if (err) {
-                            return console.log(err.message);
-                        }
-                        MS.page.courses.drawCourseList(scope, courses);
-                    });
-            });
-
-            /*
-             * Toggle state of course on touch.
-             */
-            scope.view.on('touchend', 'li', function() {
-                if (MS.isMove) { return; }
-
-                var self = $(this);
-                if (self.hasClass('on')) {
-                    self.removeClass('on').addClass('off');
-                } else {
-                    self.removeClass('off').addClass('on');
-                }
-            });
-
-
-            /*
-             * Get and insert faculties from database.
-             */
-            var fakList,
-                fakTemplate;
-
-            fakList = scope.header.find('select');
-            fakTemplate = '<option value={{id}}>{{name}}</option>';
-
-            MS.db.get(
-                'SELECT id, name FROM fakultaet',
-                function(err, result) {
-                    var i, l;
-                    fakList.empty();
-                    for (i=0, l=result.length; i<l; i++) {
-                        fakList.append(Mustache.render(fakTemplate, result[i]));
-                    }
-                }
-            );
-
             Step(
+                /*
+                 * Get and draw faculties from database.
+                 */
+                function drawFaculties() {
+                    var i, l, self, list, template;
+
+                    self = this;
+                    list = scope.header.find('select');
+                    template = '<option value={{id}}>{{name}}</option>';
+
+                    MS.courses.getFaculties(function(err, result) {
+
+                        list.empty();
+                        for (i=0, l=result.length; i<l; i++) {
+                            list.append(Mustache.render(template, result[i]));
+                        }
+
+                        // Show the current users setting
+                        MS.shim.select.showSelectItem(list,
+                            MS.user.current.faculties[0]);
+
+                        self();
+                    });
+                },
+
                 /*
                  * Draw the top list of every semester dynamically.
                  */
-                function insertSemList() {
-                    var done = this;
+                function drawSemList() {
+                    var self = this;
                     MS.courses.getMaxSemesterCount(MS.user.current.faculties[0], function(err, count) {
                         if (err) {
                             return console.log(err.message);
                         }
 
                         MS.page.courses.drawSemList(scope, MS.user.current.faculties[0], count);
-                        done();
+                        self();
                     });
                 },
 
                 /*
                  * Draw the list with desired courses dynamically.
                  */
-                function insertCourseData() {
-                    var done = this;
+                function drawCourseList() {
+                    var self = this;
 
                     // Highlight current semester
                     scope.header.find('.semList')
-                        .find('li:eq('+(MS.user.current.semester-1)+')')
+                        .find('li').eq(MS.user.current.semester-1)
                         .addClass('active');
 
                     MS.courses.getCoursesBySem(
@@ -156,9 +89,113 @@ window.MS.page = window.MS.page || {};
 
                         MS.page.courses.drawCourseList(scope, courses);
 
-
-                        done();
+                        self();
                     });
+                },
+
+                /*
+                 * UI Handler, switch between faculty.
+                 */
+                function facultyHandler(err) {
+                    if (err) { console.log(err); }
+
+                    scope.header.find('select').on('change', function() {
+                        var self = $(this),
+                            fak = self.val(),
+                            text = self.find(':selected').text(),
+                            valueField = self.parent().find('.selectContent'),
+                            semList = scope.header.find('.semList'),
+                            sem = semList.find('.active').attr('data-target');
+
+                        valueField.html(text);
+
+                        /*
+                         * Update semester list.
+                         */
+                        MS.courses.getMaxSemesterCount(fak, function(err, count) {
+                            if (err) {
+                                return console.log(err.message);
+                            }
+                            MS.page.courses.drawSemList(scope, fak, count);
+
+                            /*
+                             * Indicate current semester selection.
+                             */
+                            if (!sem) {
+                                sem = MS.user.current.semester;
+                            }
+
+                            semList
+                                .find('li[data-target='+sem+']')
+                                .addClass('active');
+
+
+                            /*
+                             * Get and insert the corresponding courses.
+                             */
+                            MS.courses.getCoursesBySem(fak, sem,
+                                function(err, courses) {
+                                    if (err) {
+                                        return console.log(err.message);
+                                    }
+                                    MS.page.courses.drawCourseList(scope, courses);
+                                });
+                        });
+                    });
+
+                    return true;
+                },
+
+                /*
+                 * UI Handler, switch between semester.
+                 */
+                function semesterHandler(err) {
+                    if (err) { console.log(err); }
+
+                    scope.header.find('.semList').on('touchend', 'li', function() {
+                        var self = $(this),
+                            fak = scope.header.find('select').val(),
+                            sem = self.attr('data-target');
+
+                        /*
+                         * Mark this element as active.
+                         */
+                        self.parent().find('.active').removeClass('active');
+                        self.addClass('active');
+
+                        /*
+                         * Update course list.
+                         */
+                        MS.courses.getCoursesBySem(fak, sem,
+                            function(err, courses) {
+                                if (err) {
+                                    return console.log(err.message);
+                                }
+                                MS.page.courses.drawCourseList(scope, courses);
+                            });
+                    });
+
+                    return true;
+                },
+
+                /*
+                 * UI Handler, toggle state of course on touch.
+                 */
+                function checkboxHandler(err) {
+                    if (err) { console.log(err); }
+
+                    scope.view.on('touchend', 'li', function() {
+                        if (MS.isMove) { return; }
+
+                        var self = $(this);
+                        if (self.hasClass('on')) {
+                            self.removeClass('on').addClass('off');
+                        } else {
+                            self.removeClass('off').addClass('on');
+                        }
+                    });
+
+                    return true;
                 },
 
                 /*
@@ -175,8 +212,7 @@ window.MS.page = window.MS.page || {};
         /**
          * Do nothing yet.
          *
-         * @param done
-         * @param scope
+         * @param {Function} done
          */
         enter: function(done) {
             done();
@@ -193,9 +229,9 @@ window.MS.page = window.MS.page || {};
          * Insert the semester list (for tab navigation) dynamically
          * into the header and manage the css classes.
          *
-         * @param scope
-         * @param facultyId
-         * @param count
+         * @param {Object} scope
+         * @param {number} facultyId
+         * @param {number} count
          */
         drawSemList: function drawSemList(scope, facultyId, count) {
             var semList,
@@ -222,8 +258,8 @@ window.MS.page = window.MS.page || {};
         /**
          * Inserts the course list dynamically into the content body.
          *
-         * @param scope
-         * @param courses
+         * @param {Object} scope
+         * @param {Array} courses
          */
         drawCourseList: function drawCourseList(scope, courses) {
             var courseList, template, i, weekdays;

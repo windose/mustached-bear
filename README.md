@@ -15,3 +15,17 @@ user state
 
  user_id: current id of the logged in user
  last_email: email address of the last login
+
+
+ToDos
+-------------
+- IDs entfernen, nur mit Klassen in lokalem scope hantieren.
+- Touch highlight.
+
+Aussichten
+--------------
+- Lokale DOM Knoten cachen.
+  Bessere Performance durch höheren Speicherverbrauch durch das Vorhalten der Elemente im DOM.
+- DOM Operationen globalisieren
+  Mehrere pages verwenden ähnliche routinen um Daten aus der Datenbank in das DOM zu packen. Das kann man
+  unabhängig vom Ziel globalisieren.
