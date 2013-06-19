@@ -67,6 +67,8 @@ document.addEventListener('deviceready', function() {
                         MS.dom.overlay.find('#email').blur();
                         MS.dom.overlay.find('#pw').blur();
 
+                        MS.timeline.init();
+
                         MS.navigator.goTo('News');
                     }
                 });

@@ -266,16 +266,6 @@ window.MS.page = window.MS.page || {};
 
             courseList = scope.view.find('ul');
 
-            weekdays = [
-                'Montag',
-                'Dienstag',
-                'Mittwoch',
-                'Donnerstag',
-                'Freitag',
-                'Samstag',
-                'Sonntag',
-            ];
-
             template = '<li class="off"><label class="cf"><table><tr>'+
                 '<td><img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png"><img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png"></td>' +
                 '<td class="label">{{c.name}}<br>Jeden {{weekday}} {{c.start}}-{{c.end}}, {{c.raum}} bei {{c.dozent}}</td>' +
@@ -284,7 +274,7 @@ window.MS.page = window.MS.page || {};
             courseList.empty();
             for (i=courses.length; i--;) {
                 courseList.prepend(Mustache.render(template, {
-                    weekday: weekdays[courses[i].weekday],
+                    weekday: MS.timeline.weekdays[courses[i].weekday],
                     c: courses[i]
                 }));
             }

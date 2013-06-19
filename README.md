@@ -21,9 +21,11 @@ ToDos
 -------------
 - IDs entfernen, nur mit Klassen in lokalem scope hantieren.
 - Touch highlight.
+- Back button.
 
 Aussichten
 --------------
+- Dependency Injection
 - Lokale DOM Knoten cachen.
   Bessere Performance durch höheren Speicherverbrauch durch das Vorhalten der Elemente im DOM.
 - DOM Operationen globalisieren

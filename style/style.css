@@ -184,28 +184,28 @@ body {
 .sidebar ul.navList li img {
   margin: 0 auto;
 }
-.sidebar ul.calList {
+.sidebar ul.timeline {
   padding: 3rem 0 0 0;
 }
-.sidebar ul.calList li {
+.sidebar ul.timeline li {
   width: 85%;
   padding: 0.7rem 1rem;
   height: 4.199999999999999rem;
   overflow: hidden;
   color: rgba(255, 255, 255, 0.7);
 }
-.sidebar ul.calList li:first-child {
+.sidebar ul.timeline li:first-child {
   background-color: #007acc;
   color: rgba(255, 255, 255, 0.5);
 }
-.sidebar ul.calList li div {
+.sidebar ul.timeline li div {
   overflow: hidden;
   white-space: nowrap;
 }
-.sidebar ul.calList li div:first-child {
+.sidebar ul.timeline li div:first-child {
   color: rgba(255, 255, 255, 0.9);
 }
-.sidebar ul.calList li img {
+.sidebar ul.timeline li img {
   float: left;
   width: 1.5rem;
   height: 1.5rem;

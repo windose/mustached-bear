@@ -79,37 +79,76 @@ window.MS.page = window.MS.page || {};
          * @param {Object} scope
          */
         enter: function(done, scope) {
+            var self;
 
-            /*
-             * Get desired news from the database.
-             */
-            MS.db.get('SELECT * from nachrichten', function(err, result) {
-                if (err) { return console.log(err) && done(); }
+            Step(
+                /*
+                 * Get desired news from the database.
+                 */
+                function drawNews() {
+                    self = this;
+                    MS.db.get('SELECT * from nachrichten', function(err, result) {
+                        if (err) { return console.log(err) && done(); }
 
-                if (result.length !== 0) {
-                    var i, l, articleList;
+                        if (result.length !== 0) {
+                            var i, l, articleList;
 
-                    articleList = scope.view.find('.articleList');
+                            articleList = scope.view.find('.articleList');
 
-                    articleList.empty();
-                    for (i=0, l=result.length; i<l; i++) {
-                        MS.page.news.articles[result[i].id] = result[i];
-                        MS.page.news.insertNews(articleList, result[i]);
-                    }
+                            articleList.empty();
+                            for (i=0, l=result.length; i<l; i++) {
+                                MS.page.news.articles[result[i].id] = result[i];
+                                MS.page.news.insertNews(articleList, result[i]);
+                            }
 
-                    /*
-                     * Hack, force reflow after @font-face is loaded.
-                     * text-align: justify will cut off text if we don't reflow.
-                     */
-                    setTimeout(function() {
-                        scope.view.find('li').width(scope.view.find('li').width());
-                    }, 100);
+                            /*
+                             * Hack, force reflow after @font-face is loaded.
+                             * text-align: justify will cut off text if we don't reflow.
+                             */
+                            setTimeout(function() {
+                                scope.view.find('li').width(scope.view.find('li').width());
+                            }, 100);
+                        }
+
+                        return self();
+                    });
+                },
+
+                /*
+                 * Update the timeline and insert peek info.
+                 */
+                function drawTimeline(err) {
+                    if (err) { console.log(err); }
+
+                    self = this;
+
+                    MS.timeline.getLastDates(function(err, dates) {
+                        if (err) {
+                            return console.log(err);
+                        }
+
+                        var i, l, timeline;
+
+                        timeline = MS.dom.sidebarRight.find('.timeline');
+
+                        timeline.empty();
+                        for (i=0, l=dates.length; i<l; i++) {
+                            MS.timeline.insertDate(timeline, dates[i]);
+                        }
+
+                        MS.page.news.insertDateInfo(scope, dates[0]);
+                        self();
+                    });
+                },
+
+                /*
+                 * Show the page.
+                 */
+                function finishLoad(err) {
+                    if (err) { console.log(err); }
+                    done();
                 }
-
-                return done();
-            });
-
-            MS.page.news.insertDateInfo(scope);
+            );
         },
 
         /**
@@ -143,9 +182,15 @@ window.MS.page = window.MS.page || {};
          * Insert information about the next date for the user.
          *
          * @param {Object} scope
+         * @param {Object} date
          */
-        insertDateInfo: function insertDateInfo(scope) {
-            scope.header.find('.debug').html('noch '+window.devicePixelRatio+' min&nbsp;');
+        insertDateInfo: function insertDateInfo(scope, date) {
+            var template;
+
+            template = '<span class="light fl">{{until}}&nbsp;</span> {{name}}';
+            template = Mustache.render(template, date);
+
+            scope.header.find('.timelinePeek').html(template);
         }
     };
 
