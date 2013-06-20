@@ -1,8 +1,6 @@
 mustached-bear
 ==============
 
-
-
 user state
 -----------------
 -1 - deactivated
@@ -10,11 +8,35 @@ user state
  1 - confirmed, without intro
  2 - confirmed, with intro
 
- W3C Storage (local storage, key-value pairs) used for cache, will not be synchronised
- Values:
+W3C Storage (local storage, key-value pairs) used for cache, will not be synchronised
+Values:
 
- user_id: current id of the logged in user
- last_email: email address of the last login
+user_id: current id of the logged in user
+last_email: email address of the last login
+
+Verwendete Bibliotheken
+------------
+- jquery
+  Eine weit verbreitete Bibliothek, erleichtert DOM Manipulationen und bietet
+  viele convenience functions.
+
+- mustache
+  Damit neue Elemente leicht mit Daten befüllt und in das DOM gesetzt werden können,
+  wird diese templating engine verwendet. Dabei wurde die Entscheidung gefällt mustache
+  zu verwenden, da diese Bibliothek auf die nötigsten Funktionen reduziert und nicht
+  zu groß ist.
+
+- step.js
+
+
+- moment.js
+
+
+- md5
+
+
+- share
+
 
 
 ToDos
@@ -22,6 +44,7 @@ ToDos
 - IDs entfernen, nur mit Klassen in lokalem scope hantieren.
 - Touch highlight.
 - Back button.
+- Loading Screen
 
 Aussichten
 --------------

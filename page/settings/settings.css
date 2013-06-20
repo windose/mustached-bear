@@ -16,13 +16,13 @@
 .content .settings table tr td:first-child {
   padding-left: 1rem;
   text-align: left;
-  font-size: .8rem;
-  line-height: .9rem;
+  font-size: 0.8rem;
+  line-height: 0.9rem;
 }
 .content .settings table tr.heading {
   height: 1.5rem;
-  font-size: .8rem;
-  line-height: .9rem;
+  font-size: 0.8rem;
+  line-height: 0.9rem;
   background-color: #343235;
 }
 .content .settings table tr:not(.heading) td:first-child:first-line {

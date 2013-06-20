@@ -24,13 +24,14 @@
 }
 .content .news li .article {
   padding: 0.65rem 0.8rem 0.8rem;
+  font-size: 0.8rem;
 }
 .content .news li .article.touch {
   background: #23394d;
 }
-.content .news li .article .title {
-  color: rgba(255, 255, 255, 0.9);
+.content .news li .article:first-line {
   font-family: 'Raleway-SemiBold';
+  font-size: 1rem;
 }
 .content .news li.open {
   max-height: 42rem;

@@ -6,13 +6,13 @@
     overflow-x: hidden;
 
     ul {
-        padding-bottom: @line-height;
+        padding-bottom: @font-regular-lineheight;
     }
 
     li {
         overflow: hidden;
-        max-height: @line-height*4 - 0.05rem + @item-padding - 0.15rem;
-        margin: @line-height - @item-padding @body-padding 0rem;
+        max-height: @font-regular-lineheight*4 - 0.05rem + @item-padding - 0.15rem;
+        margin: @font-regular-lineheight - @item-padding @body-padding 0rem;
 
         -webkit-transition: max-height .5s ease-in-out;
                 transition: max-height .5s ease-in-out;
@@ -35,13 +35,19 @@
             }
 
             .title {
-                color: @color-font;
+                //color: @color-font;
+                //font-family: 'Raleway-SemiBold';
+            }
+
+            font-size: @font-small-size;
+            &:first-line {
                 font-family: 'Raleway-SemiBold';
+                font-size: @font-regular-size;
             }
         }
 
         &.open {
-            max-height: @line-height*30;
+            max-height: @font-regular-lineheight*30;
         }
     }
 }
@@ -54,8 +60,8 @@
         background-color: @color-main;
         color: @color-font;
         margin-right: 0;
-        padding: 0.5*(@header-height - @line-height) @item-padding;
-        height: @line-height;
+        padding: 0.5*(@header-height - @font-regular-lineheight) @item-padding;
+        height: @font-regular-lineheight;
 
         &.touch {
             background-color: @color-main - #111;
