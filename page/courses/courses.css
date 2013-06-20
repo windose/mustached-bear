@@ -38,3 +38,11 @@
 .content .courses ul li.off .off {
   display: inline-block;
 }
+.header .courses .title {
+  padding: 0.4rem 0;
+  height: 1.7999999999999998rem;
+  max-width: 60%;
+}
+.header .courses .title select ~ .select {
+  background-color: transparent;
+}

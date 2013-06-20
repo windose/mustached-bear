@@ -38,13 +38,9 @@
   height: 3rem;
   line-height: 3rem;
   box-sizing: border-box;
-  padding: 0.8rem;
-  background-color: #282629;
   border-radius: 0;
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
-  border: 0;
-  border-bottom: 1px solid;
 }
 .footer .settings img {
   padding: 0;
