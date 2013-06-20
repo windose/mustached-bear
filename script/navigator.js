@@ -111,14 +111,14 @@ document.addEventListener('deviceready', function() {
             }
             this.header.show();
             this.footer.show();
-            this.view.show();
+            this.content.show();
             // ToDo: hide loading screen
 
             MS.dimens.header.update();
             MS.dimens.footer.update();
 
             /* Set fixed height */
-            this.view.height(MS.dimens.viewport.height-MS.dimens.header.height-MS.dimens.footer.height);
+            this.content.height(MS.dimens.viewport.height-MS.dimens.header.height-MS.dimens.footer.height);
         },
 
         /**
@@ -133,7 +133,7 @@ document.addEventListener('deviceready', function() {
             // ToDo Show loading screen
 
             scope = {
-                view: MS.dom.content.find('#view'+pagename),
+                content: MS.dom.content.find('#content'+pagename),
                 header: MS.dom.header.find('#header'+pagename),
                 footer: MS.dom.footer.find('#footer'+pagename),
                 overlay: MS.dom.overlay.find('#overlay'+pagename)
@@ -167,7 +167,7 @@ document.addEventListener('deviceready', function() {
             }
 
             // Show cached page
-            if (scope.view.length > 0 ||
+            if (scope.content.length > 0 ||
                 scope.header.length > 0 ||
                 scope.footer.length > 0 ||
                 scope.overlay.length > 0) {
@@ -180,27 +180,27 @@ document.addEventListener('deviceready', function() {
 
                 // Show cached overlay
                 if (scope.overlay.length > 0) {
-                    MS.dom.overlay.find('.view').hide();
+                    MS.dom.overlay.find('.fragment').hide();
                     MS.dom.overlay.attr('data-content', pagenameLower);
                 } else {
                     MS.dom.overlay.addClass('out');
                 }
 
                 // Show cached content
-                if (scope.view.length > 0) {
-                    MS.dom.content.find('.view').hide();
+                if (scope.content.length > 0) {
+                    MS.dom.content.find('.fragment').hide();
                     MS.dom.content.attr('data-content', pagenameLower);
                 }
 
                 // Show cached header
                 if (scope.header.length > 0) {
-                    MS.dom.header.find('.view').hide();
+                    MS.dom.header.find('.fragment').hide();
                     MS.dom.header.attr('data-content', pagenameLower);
                 }
 
                 // Show cached footer
                 if (scope.footer.length > 0) {
-                    MS.dom.footer.find('.view').hide();
+                    MS.dom.footer.find('.fragment').hide();
                     MS.dom.footer.attr('data-content', pagenameLower);
                     MS.dom.footer.show();
                 } else {
@@ -261,7 +261,7 @@ document.addEventListener('deviceready', function() {
                         templates = dom.find('.template');
 
                     scope = {
-                        view: dom.find('#view'+pagename).clone().hide(),
+                        content: dom.find('#content'+pagename).clone().hide(),
                         header: dom.find('#header'+pagename).clone().hide(),
                         footer: dom.find('#footer'+pagename).clone().hide(),
                         overlay: dom.find('#overlay'+pagename).clone().hide()
@@ -275,7 +275,7 @@ document.addEventListener('deviceready', function() {
 
                     // Hide old and attach new Overlay
                     if (scope.overlay.length > 0) {
-                        MS.dom.overlay.find('.view').hide();
+                        MS.dom.overlay.find('.fragment').hide();
                         MS.dom.overlay.prepend(scope.overlay);
                         MS.dom.overlay.attr('data-content', pagenameLower);
                     } else {
@@ -283,15 +283,15 @@ document.addEventListener('deviceready', function() {
                     }
 
                     // Hide old and attach new view
-                    if (scope.view.length > 0) {
-                        MS.dom.content.find('.view').hide();
-                        MS.dom.content.prepend(scope.view);
+                    if (scope.content.length > 0) {
+                        MS.dom.content.find('.fragment').hide();
+                        MS.dom.content.prepend(scope.content);
                         MS.dom.content.attr('data-content', pagenameLower);
                     }
 
                     // Hide old and attach new header
                     if (scope.header.length > 0) {
-                        MS.dom.header.find('.view').hide();
+                        MS.dom.header.find('.fragment').hide();
                         MS.dom.header.prepend(scope.header);
                         MS.dom.header.attr('data-content', pagenameLower);
                         MS.navigator.initSidemenu(scope.header);
@@ -299,7 +299,7 @@ document.addEventListener('deviceready', function() {
 
                     // Hide old and attach new footer
                     if (scope.footer.length > 0) {
-                        MS.dom.footer.find('.view').hide();
+                        MS.dom.footer.find('.fragment').hide();
                         MS.dom.footer.prepend(scope.footer);
                         MS.dom.footer.attr('data-content', pagenameLower);
                         MS.dom.footer.show();

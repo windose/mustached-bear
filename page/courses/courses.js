@@ -20,10 +20,10 @@ window.MS.page = window.MS.page || {};
             scope.header.on('touchstart', '.mheader, .semList li', function() {
                 $(this).addClass('touch');
             });
-            scope.view.on('touchstart', 'label, .footer span', function() {
+            scope.content.on('touchstart', 'label, .footer span', function() {
                 $(this).addClass('touch');
             });
-            scope.view.on('touchmove', 'label', function() {
+            scope.content.on('touchmove', 'label', function() {
                 $(this).removeClass('touch');
             });
 
@@ -184,7 +184,7 @@ window.MS.page = window.MS.page || {};
                 function checkboxHandler(err) {
                     if (err) { console.log(err); }
 
-                    scope.view.on('touchend', 'li', function() {
+                    scope.content.on('touchend', 'li', function() {
                         if (MS.isMove) { return; }
 
                         var self = $(this);
@@ -264,7 +264,7 @@ window.MS.page = window.MS.page || {};
         drawCourseList: function drawCourseList(scope, courses) {
             var courseList, template, i, weekdays;
 
-            courseList = scope.view.find('ul');
+            courseList = scope.content.find('ul');
 
             template = '<li class="off"><label class="cf"><table><tr>'+
                 '<td><img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png"><img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png"></td>' +

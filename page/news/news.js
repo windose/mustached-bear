@@ -20,17 +20,17 @@ window.MS.page = window.MS.page || {};
             scope.header.on('touchstart', '.mheader, .newsCal', function() {
                 $(this).addClass('touch');
             });
-            scope.view.on('touchstart', 'li .article, img', function() {
+            scope.content.on('touchstart', 'li .article, img', function() {
                 $(this).addClass('touch');
             });
-            scope.view.on('touchmove', 'li .article, img', function() {
+            scope.content.on('touchmove', 'li .article, img', function() {
                 $(this).removeClass('touch');
             });
 
             /*
              * Expend a single news item on touch.
              */
-            scope.view.on('touchend', 'li .openNews', function() {
+            scope.content.on('touchend', 'li .openNews', function() {
                 if (MS.isMove) { return; }
 
                 var listItem = $(this).parents('li');
@@ -45,7 +45,7 @@ window.MS.page = window.MS.page || {};
             /*
              * Share news button.
              */
-            scope.view.on('touchend', 'li .share', function() {
+            scope.content.on('touchend', 'li .share', function() {
                 if (MS.isMove) { return false; }
 
                 var self = $(this),
@@ -93,7 +93,7 @@ window.MS.page = window.MS.page || {};
                         if (result.length !== 0) {
                             var i, l, articleList;
 
-                            articleList = scope.view.find('.articleList');
+                            articleList = scope.content.find('.articleList');
 
                             articleList.empty();
                             for (i=0, l=result.length; i<l; i++) {
@@ -106,7 +106,7 @@ window.MS.page = window.MS.page || {};
                              * text-align: justify will cut off text if we don't reflow.
                              */
                             setTimeout(function() {
-                                scope.view.find('li').width(scope.view.find('li').width());
+                                scope.content.find('li').width(scope.content.find('li').width());
                             }, 100);
                         }
 

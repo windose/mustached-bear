@@ -73,19 +73,19 @@ img {
             white-space: nowrap;
         }
     }
-}
-.selectWrapper.small {
-    select {
-        font-size: 2/5*@header-height;
+    &.small {
+        select {
+            font-size: 2/5*@header-height;
+        }
     }
 }
 
 .template,
-.view { display: none; }
+.fragment { display: none; }
 
-#overlay .view,
-#content .view,
-#header .view {
+#overlay .fragment,
+#content .fragment,
+#header .fragment {
     display: block;
     height: 100%;
 }

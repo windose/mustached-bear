@@ -28,7 +28,7 @@ window.MS.page = window.MS.page || {};
                     var i, l, self;
 
                     self = this;
-                    list = scope.view.find('#changeFaculty');
+                    list = scope.content.find('#changeFaculty');
 
                     MS.courses.getFaculties(function(err, result) {
 
@@ -78,12 +78,12 @@ window.MS.page = window.MS.page || {};
                 function facultyHandler(err) {
                     if (err) { console.log(err); }
 
-                    list = scope.view.find('#changeFaculty');
+                    list = scope.content.find('#changeFaculty');
                     list.on('change', function() {
                         var self = $(this),
                             fak = self.val(),
                             text = self.find(':selected').text(),
-                            semList = scope.view.find('.semList'),
+                            semList = scope.content.find('.semList'),
                             sem = semList.find('.active').attr('data-target'),
                             valueField = self.parent().find('.selectContent');
 
@@ -116,7 +116,7 @@ window.MS.page = window.MS.page || {};
                             MS.page.settings.drawStudies(scope, fak, function() {
                                 var studyId, sem;
 
-                                studyId = scope.view.find('#changeStudy').val();
+                                studyId = scope.content.find('#changeStudy').val();
                                 sem = semList.find('.active').attr('data-target');
                                 if (!sem) {
                                     sem = MS.user.current.semester;
@@ -136,11 +136,11 @@ window.MS.page = window.MS.page || {};
                 function studyHandler(err) {
                     if (err) { console.log(err); }
 
-                    list = scope.view.find('#changeStudy');
+                    list = scope.content.find('#changeStudy');
                     list.on('change', function() {
                         var self = $(this),
                             studyId = self.val(),
-                            sem = scope.view.find('.semList').find('.active').attr('data-target'),
+                            sem = scope.content.find('.semList').find('.active').attr('data-target'),
                             text = self.find(':selected').text(),
                             valueField = self.parent().find('.selectContent');
 
@@ -161,9 +161,9 @@ window.MS.page = window.MS.page || {};
                 function semListHandler(err) {
                     if (err) { console.log(err); }
 
-                    scope.view.find('.semList').on('touchend', 'li', function() {
+                    scope.content.find('.semList').on('touchend', 'li', function() {
                         var self = $(this),
-                            studyId = scope.view.find('#changeStudy').val(),
+                            studyId = scope.content.find('#changeStudy').val(),
                             sem = $(this).attr('data-target');
 
                         self.parent().find('.active').removeClass('active');
@@ -180,7 +180,7 @@ window.MS.page = window.MS.page || {};
                 function studygroupHandler(err) {
                     if (err) { console.log(err); }
 
-                    list = scope.view.find('#changeStudygroup');
+                    list = scope.content.find('#changeStudygroup');
                     list.on('change', function() {
                         var self = $(this),
                             text = self.find(':selected').text(),
@@ -200,7 +200,7 @@ window.MS.page = window.MS.page || {};
                     /*
                      * Switch Theme button. Replaces css with a new theme file.
                      */
-                    scope.view.find('#changeTheme').on('change', function() {
+                    scope.content.find('#changeTheme').on('change', function() {
                         var checked = $(this).is(':checked'),
                             oldLink, newLink;
 
@@ -221,7 +221,7 @@ window.MS.page = window.MS.page || {};
                 function toggleButtonHandler(err) {
                     if (err) { console.log(err); }
 
-                    scope.view.on('change', '.onoffswitch-checkbox', function() {
+                    scope.content.on('change', '.onoffswitch-checkbox', function() {
                         var self = $(this),
                             checked = self.is(':checked')? 1 : 0,
                             fieldMap = {
@@ -286,16 +286,16 @@ window.MS.page = window.MS.page || {};
             user = MS.user.current;
 
             if (user) {
-                scope.view.find('#changePush').attr('checked', !!user.isPush);
-                scope.view.find('#changeSync').attr('checked', !!user.isSync);
-                scope.view.find('#changeBackup').attr('checked', !!user.isBackup);
-                scope.view.find('#changeTheme').attr('checked', !!user.isLightTheme);
+                scope.content.find('#changePush').attr('checked', !!user.isPush);
+                scope.content.find('#changeSync').attr('checked', !!user.isSync);
+                scope.content.find('#changeBackup').attr('checked', !!user.isBackup);
+                scope.content.find('#changeTheme').attr('checked', !!user.isLightTheme);
 
                 MS.courses.getMaxSemesterCount(user.faculties[0], function(err, count) {
                     MS.page.settings.drawSemList(scope, user.faculties[0], count);
 
                     // Select current users semester
-                    scope.view.find('.semList').find('li[data-target='+user.semester+']').addClass('active');
+                    scope.content.find('.semList').find('li[data-target='+user.semester+']').addClass('active');
                 });
             }
 
@@ -329,7 +329,7 @@ window.MS.page = window.MS.page || {};
 
                     var list, i;
 
-                    list = scope.view.find('#changeStudygroup');
+                    list = scope.content.find('#changeStudygroup');
                     list.empty();
 
                     for (i=groups.length; i--;) {
@@ -337,7 +337,7 @@ window.MS.page = window.MS.page || {};
                     }
 
                     MS.shim.select.showSelectItem(
-                        scope.view.find('#changeStudygroup'),
+                        scope.content.find('#changeStudygroup'),
                         MS.user.current.studiengruppe_id);
 
                     return callback(undefined, groups);
@@ -365,7 +365,7 @@ window.MS.page = window.MS.page || {};
 
                     var list, i;
 
-                    list = scope.view.find('#changeStudy');
+                    list = scope.content.find('#changeStudy');
                     list.empty();
 
                     for (i=studies.length; i--;) {
@@ -373,7 +373,7 @@ window.MS.page = window.MS.page || {};
                     }
 
                     MS.shim.select.showSelectItem(
-                        scope.view.find('#changeStudy'),
+                        scope.content.find('#changeStudy'),
                         MS.user.current.studiengang_id);
 
                     return callback(undefined, studies);
@@ -393,7 +393,7 @@ window.MS.page = window.MS.page || {};
             var semList,
                 template;
 
-            semList = scope.view.find('.semList');
+            semList = scope.content.find('.semList');
 
             semList
                 .removeClass('w'+semList.attr('data-w'))

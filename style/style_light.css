@@ -171,7 +171,7 @@ body {
 .sidebar {
   position: absolute;
   z-index: 1;
-  width: 85%;
+  width: 86%;
   display: none;
   background-color: #eeecef;
 }
@@ -1476,12 +1476,12 @@ img {
   font-size: 1.2000000000000002rem;
 }
 .template,
-.view {
+.fragment {
   display: none;
 }
-#overlay .view,
-#content .view,
-#header .view {
+#overlay .fragment,
+#content .fragment,
+#header .fragment {
   display: block;
   height: 100%;
 }
