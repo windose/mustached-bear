@@ -11,7 +11,7 @@
 
     li {
         overflow: hidden;
-        max-height: @font-regular-lineheight*4 - 0.05rem + @item-padding - 0.15rem;
+        max-height: @font-regular-lineheight + @font-small-lineheight*4 - 0.05rem + @item-padding - 0.2rem;
         margin: @font-regular-lineheight - @item-padding @body-padding 0rem;
 
         -webkit-transition: max-height .5s ease-in-out;
@@ -29,25 +29,24 @@
         }
 
         .article {
-            padding: @item-padding - 0.15rem @item-padding @item-padding;
+            padding: @item-padding - 0.2rem @item-padding @item-padding;
+            vertical-align: top;
+
             &.touch {
                 background: @color-bgr + @color-main/5;
             }
 
-            .title {
-                //color: @color-font;
-                //font-family: 'Raleway-SemiBold';
-            }
-
             font-size: @font-small-size;
+            line-height: @font-small-lineheight;
             &:first-line {
                 font-family: 'Raleway-SemiBold';
                 font-size: @font-regular-size;
+                line-height: @font-regular-lineheight;
             }
         }
 
         &.open {
-            max-height: @font-regular-lineheight*30;
+            max-height: @font-regular-lineheight + @font-small-lineheight*30;
         }
     }
 }

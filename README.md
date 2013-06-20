@@ -14,6 +14,10 @@ Values:
 user_id: current id of the logged in user
 last_email: email address of the last login
 
+Verwendete Technologien
+------------
+- less preprocessor
+
 Verwendete Bibliotheken
 ------------
 - jquery
@@ -49,8 +53,17 @@ ToDos
 Aussichten
 --------------
 - Dependency Injection
+
+- Dependency Managment
+  z.b. mit requirejs
+
+- Tests
+
 - Lokale DOM Knoten cachen.
   Bessere Performance durch höheren Speicherverbrauch durch das Vorhalten der Elemente im DOM.
+
 - DOM Operationen globalisieren
   Mehrere pages verwenden ähnliche routinen um Daten aus der Datenbank in das DOM zu packen. Das kann man
   unabhängig vom Ziel globalisieren.
+
+- SQL Queries entJOINen

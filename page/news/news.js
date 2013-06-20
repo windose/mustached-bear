@@ -170,7 +170,7 @@ window.MS.page = window.MS.page || {};
                     '<img class="openNews" src="asset/icon/news_2.png">' +
                     '<img class="share" data-id="{{id}}" src="asset/icon/iconmoon-eeecef/share.png">' +
                 '</td>' +
-                '<td class="article openNews"><span class="title">{{title}}.</span> {{content}}</td>' +
+                '<td class="article openNews">{{title}}. {{content}}</td>' +
             '</tr></table></li>';
 
             $articleList.append(Mustache.render(template, article));
