@@ -10,6 +10,25 @@ document.addEventListener('deviceready', function() {
          * @param {String} email
          * @param {String} pw
          * @param {Function} callback
+         */
+        authenticate: function authenticate(email, pw, callback) {
+            var sql;
+
+            sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
+                'FROM user AS u ' +
+                'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
+                'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
+                'WHERE email = "'+MS.db.escape(email)+'" ' +
+                'AND password = "'+md5(pw)+'"';
+
+            MS.db.get(sql, callback);
+        },
+
+        /**
+         *
+         * @param {String} email
+         * @param {String} pw
+         * @param {Function} callback
          * @param {number} [autoLoginId]
          */
         login: function login(email, pw, callback, autoLoginId) {
@@ -20,18 +39,17 @@ document.addEventListener('deviceready', function() {
                  *
                  */
                 function authenticate() {
-                    sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
-                        'FROM user AS u ' +
-                        'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
-                        'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
-                        (!autoLoginId?
-                            'WHERE email = "'+MS.db.escape(email)+'" ' +
-                                'AND password = "'+md5(pw)+'"' :
+                    if (email && pw) {
+                        MS.user.authenticate(email, pw, this);
+                    } else {
+                        sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
+                            'FROM user AS u ' +
+                            'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
+                            'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
+                            'WHERE u.id = ' + MS.db.escape(autoLoginId);
 
-                            'WHERE u.id = '+MS.db.escape(autoLoginId));
-
-                    MS.db.get(sql, this);
-
+                        MS.db.get(sql, this);
+                    }
                 },
 
                 /*
@@ -93,7 +111,7 @@ document.addEventListener('deviceready', function() {
                 /*
                  *
                  */
-                function final(err) {
+                function execCallback(err) {
                     if (err) {
                         callback(err);
                     } else {
@@ -112,28 +130,7 @@ document.addEventListener('deviceready', function() {
          * @param callback
          */
         autoLogIn: function autoLogIn(id, callback) {
-            MS.user.login(undefined, undefined, callback, id);
-        },
-
-        /**
-         *
-         *
-         * @param callback
-         */
-        update: function update(callback) {
-            var sql;
-
-            callback = callback || function() {};
-            sql = 'SELECT * FROM user WHERE id="'+MS.db.escape(MS.user.current.id+'')+'"';
-
-            MS.db.get(sql, function(err, data) {
-                if (data.length === 0) {
-                    callback('User not found');
-                } else {
-                    MS.user.current = data[0];
-                    callback(undefined, data[0]);
-                }
-            });
+            MS.user.login(null, null, callback, id);
         },
 
         /**
@@ -142,6 +139,33 @@ document.addEventListener('deviceready', function() {
         logOut: function logOut() {
             MS.user.current = null;
             localStorage.setItem('user_id', null);
+        },
+
+        /**
+         * Writes a settings value into the user table
+         * for the current user.
+         *
+         * @param {String} key
+         * @param {String|number} value
+         * @param {Function} [callback]
+         */
+        setSetting: function setSetting(key, value, callback) {
+
+            callback = callback || function() {};
+
+            MS.db.set('user',
+                [key],
+                [value],
+                'id="'+MS.user.current.id+'"',
+                function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    MS.user.current[key] = value;
+                    callback();
+                });
+
         }
     };
 

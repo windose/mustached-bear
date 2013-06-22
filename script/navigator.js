@@ -36,11 +36,11 @@ document.addEventListener('deviceready', function() {
 
         /**
          *
-         * @param callback
+         * @param {Function} [callback]
          */
         back: function back(callback) {
             if (MS.navigator.history.length === 1) {
-                navigator.app.exitApp();
+                window.navigator.app.exitApp();
             }
 
             var undo = MS.navigator.history.pop();
@@ -172,6 +172,8 @@ document.addEventListener('deviceready', function() {
                 scope.footer.length > 0 ||
                 scope.overlay.length > 0) {
 
+                console.log('show cached page');
+
                 // Call page specific js
                 if (typeof MS.page[lastPagename] !== 'undefined' &&
                     typeof MS.page[lastPagename].leave === 'function') {
@@ -282,7 +284,7 @@ document.addEventListener('deviceready', function() {
                         MS.dom.overlay.addClass('out');
                     }
 
-                    // Hide old and attach new view
+                    // Hide old and attach new content view
                     if (scope.content.length > 0) {
                         MS.dom.content.find('.fragment').hide();
                         MS.dom.content.prepend(scope.content);

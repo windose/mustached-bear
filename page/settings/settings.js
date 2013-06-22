@@ -201,16 +201,9 @@ window.MS.page = window.MS.page || {};
                      * Switch Theme button. Replaces css with a new theme file.
                      */
                     scope.content.find('#changeTheme').on('change', function() {
-                        var checked = $(this).is(':checked'),
-                            oldLink, newLink;
+                        var checked = $(this).is(':checked');
 
-                        oldLink = document.getElementById("theme");
-                        newLink = document.createElement("link");
-                        newLink.setAttribute("rel", "stylesheet");
-                        newLink.setAttribute("type", "text/css");
-                        newLink.setAttribute("id", "theme");
-                        newLink.setAttribute("href", './style/style'+(checked?'_light':'')+'.css');
-                        document.getElementsByTagName("head").item(0).replaceChild(newLink, oldLink);
+                        MS.page.settings.setTheme(checked);
                     });
                     return true;
                 },
@@ -232,18 +225,21 @@ window.MS.page = window.MS.page || {};
                             },
                             field = fieldMap[self.attr('id')];
 
-                        MS.db.set('user',
-                            [field],
-                            [checked],
-                            'id="'+MS.user.current.id+'"',
-                            function(err) {
-                                if (err) {
-                                    console.log(err);
-                                }
-
-                                MS.user.update();
-                            });
+                        MS.user.setSetting(field, checked);
                     });
+                    return true;
+                },
+
+                /*
+                 * UI Handler, updates the current users password.
+                 */
+                function saveButtonHandler(err) {
+                    if (err) { console.log(err); }
+
+                    scope.footer.find('.button.by').on('touchend', function() {
+                        MS.page.settings.changePassword(scope);
+                    });
+
                     return true;
                 },
 
@@ -409,6 +405,56 @@ window.MS.page = window.MS.page || {};
             for (;count--;) {
                 semList.prepend(Mustache.render(template, {i:count+1}));
             }
+        },
+
+        /**
+         *
+         * @param isLightTheme
+         */
+        setTheme: function setTheme(isLightTheme) {
+            var oldLink, newLink;
+
+            oldLink = document.getElementById("theme");
+            newLink = document.createElement("link");
+            newLink.setAttribute("rel", "stylesheet");
+            newLink.setAttribute("type", "text/css");
+            newLink.setAttribute("id", "theme");
+            newLink.setAttribute("href", './style/style'+(isLightTheme?'_light':'')+'.css');
+            document.getElementsByTagName("head").item(0).replaceChild(newLink, oldLink);
+        },
+
+        /**
+         *
+         *
+         * @param scope
+         */
+        changePassword: function changePassword(scope) {
+            var $oldPw = scope.content.find('.changeOldPw'),
+                $newPw = scope.content.find('.changeNewPw'),
+                $newPwSec = scope.content.find('.changeNewPwSec'),
+                oldPw = $oldPw.val(),
+                newPw = $newPw.val(),
+                newPwSec = $newPwSec.val();
+
+            if (newPw !== newPwSec) {
+                console.log('Passwörter stimmen nicht überein');
+                return;
+            }
+
+            MS.user.authenticate(MS.user.current.email, oldPw, function(err, data) {
+                if (data.length === 0) {
+                    console.log('Derzeitiges Passwort ungültig');
+                    return;
+                }
+
+                MS.user.setSetting('password', md5(newPw), function() {
+                    console.log('Passwort erfolgreich geändert!');
+
+                    $oldPw.val('');
+                    $newPw.val('');
+                    $newPwSec.val('');
+                });
+            });
         }
     };
 
