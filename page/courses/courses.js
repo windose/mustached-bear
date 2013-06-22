@@ -63,7 +63,8 @@ window.MS.page = window.MS.page || {};
                     var self = this;
                     MS.courses.getMaxSemesterCount(MS.user.current.faculties[0], function(err, count) {
                         if (err) {
-                            return console.log(err.message);
+                            Toast.longshow(err.message);
+                            return
                         }
 
                         MS.page.courses.drawSemList(scope, MS.user.current.faculties[0], count);
@@ -87,7 +88,8 @@ window.MS.page = window.MS.page || {};
                         MS.user.current.semester,
                         function(err, courses) {
                         if (err) {
-                            return console.log(err.message);
+                            Toast.longshow(err.message);
+                            return;
                         }
 
                         MS.page.courses.drawCourseList(scope, courses);
@@ -100,7 +102,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between faculty.
                  */
                 function facultyHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { Toast.longshow(err); }
 
                     scope.header.find('select').on('change', function() {
                         var self = $(this),
@@ -117,7 +119,8 @@ window.MS.page = window.MS.page || {};
                          */
                         MS.courses.getMaxSemesterCount(fak, function(err, count) {
                             if (err) {
-                                return console.log(err.message);
+                                Toast.longshow(err.message);
+                                return;
                             }
                             MS.page.courses.drawSemList(scope, fak, count);
 
@@ -139,7 +142,8 @@ window.MS.page = window.MS.page || {};
                             MS.courses.getCoursesBySem(fak, sem,
                                 function(err, courses) {
                                     if (err) {
-                                        return console.log(err.message);
+                                        Toast.longshow(err.message);
+                                        return;
                                     }
                                     MS.page.courses.drawCourseList(scope, courses);
                                 });
@@ -153,7 +157,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between semester.
                  */
                 function semesterHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { Toast.longshow(err); }
 
                     scope.header.find('.semList').on('touchend', 'li', function() {
                         var self = $(this),
@@ -172,7 +176,8 @@ window.MS.page = window.MS.page || {};
                         MS.courses.getCoursesBySem(fak, sem,
                             function(err, courses) {
                                 if (err) {
-                                    return console.log(err.message);
+                                    Toast.longshow(err.message);
+                                    return;
                                 }
                                 MS.page.courses.drawCourseList(scope, courses);
                             });
@@ -185,7 +190,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, toggle state of course on touch.
                  */
                 function checkboxHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { Toast.longshow(err); }
 
                     scope.content.on('touchend', 'li', function() {
                         if (MS.isMove) { return; }
@@ -205,7 +210,7 @@ window.MS.page = window.MS.page || {};
                  * Go to the next phase.
                  */
                 function finishLoad(err) {
-                    if (err) { console.log(err); }
+                    if (err) { Toast.longshow(err); }
 
                     done();
                 }

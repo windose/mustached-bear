@@ -41,7 +41,8 @@ window.MS.page = window.MS.page || {};
                 // Try to log in
                 MS.user.login(email, pw, function(err) {
                     if (err) {
-                        return console.log(err);
+                        Toast.longshow(err);
+                        return;
                     }
 
                     // Go to the news page, in case of a successful authorization

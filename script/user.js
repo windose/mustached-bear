@@ -58,7 +58,7 @@ document.addEventListener('deviceready', function() {
                 function getFaculties(err, data) {
                     if (err) { throw err; }
 
-                    if (data.length === 0) { throw 'User not found' }
+                    if (data.length === 0) { throw 'Benutzer nicht gefunden' }
 
                     user = data[0];
 
@@ -159,7 +159,7 @@ document.addEventListener('deviceready', function() {
                 'id="'+MS.user.current.id+'"',
                 function(err) {
                     if (err) {
-                        console.log(err);
+                        Toast.longshow(err);
                     }
 
                     MS.user.current[key] = value;

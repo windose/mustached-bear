@@ -87,15 +87,11 @@ window.MS = window.MS || {};
             "(5, 1, 'R0.012', 'Prof. Eich-Soellner', '11:30', '10:00', 0, '2013-06-18 17:24:23', 1, 7);");
 
         MS.db.sql(sql, function(err) {
-            if (err) { console.log(err.message); }
+            if (err) {
+                Toast.longshow(err.message);
+            }
 
             callback();
-
-//            MS.db.get('SELECT * FROM user', function(err, data) {
-//                if (err) { console.log(err.message); }
-//
-//                callback();
-//            });
         });
     };
 

@@ -41,6 +41,9 @@ Verwendete Bibliotheken
 
 - share
 
+- toast
+https://github.com/giver/cordova-android-toast-plugin
+
 
 
 ToDos

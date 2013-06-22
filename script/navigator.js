@@ -162,24 +162,26 @@ document.addEventListener('deviceready', function() {
          */
         goTo: function goTo(pagename) {
             var lastPagename = MS.dom.wrapper.attr('data-page'),
+                capPagename = capitalizeFirst(pagename),
+                capLastPagename = capitalizeFirst(lastPagename),
                 scope, lastScope;
 
             // ToDo Show loading screen
 
             scope = {
                 name: pagename,
-                content: MS.dom.content.find('#content'+capitalizeFirst(pagename)),
-                header: MS.dom.header.find('#header'+capitalizeFirst(pagename)),
-                footer: MS.dom.footer.find('#footer'+capitalizeFirst(pagename)),
-                overlay: MS.dom.overlay.find('#overlay'+capitalizeFirst(pagename))
+                content: MS.dom.content.find('#content'+capPagename),
+                header: MS.dom.header.find('#header'+capPagename),
+                footer: MS.dom.footer.find('#footer'+capPagename),
+                overlay: MS.dom.overlay.find('#overlay'+capPagename)
             };
 
             lastScope = {
                 name: lastPagename,
-                content: MS.dom.content.find('#content'+capitalizeFirst(lastPagename)),
-                header: MS.dom.header.find('#header'+capitalizeFirst(lastPagename)),
-                footer: MS.dom.footer.find('#footer'+capitalizeFirst(lastPagename)),
-                overlay: MS.dom.overlay.find('#overlay'+capitalizeFirst(lastPagename))
+                content: MS.dom.content.find('#content'+capLastPagename),
+                header: MS.dom.header.find('#header'+capLastPagename),
+                footer: MS.dom.footer.find('#footer'+capLastPagename),
+                overlay: MS.dom.overlay.find('#overlay'+capLastPagename)
             };
 
             // Save desired pagename
@@ -290,13 +292,10 @@ document.addEventListener('deviceready', function() {
                     var dom = $("<div></div>").html(html),
                         templates = dom.find('.template');
 
-                    scope = {
-                        name: pagename,
-                        content: dom.find('#content'+capitalizeFirst(pagename)).clone().hide(),
-                        header: dom.find('#header'+capitalizeFirst(pagename)).clone().hide(),
-                        footer: dom.find('#footer'+capitalizeFirst(pagename)).clone().hide(),
-                        overlay: dom.find('#overlay'+capitalizeFirst(pagename)).clone().hide()
-                    };
+                    scope.content = dom.find('#content'+capPagename).clone().hide();
+                    scope.header = dom.find('#header'+capPagename).clone().hide();
+                    scope.footer = dom.find('#footer'+capPagename).clone().hide();
+                    scope.overlay = dom.find('#overlay'+capPagename).clone().hide();
 
                     // Call page specific js
                     if (typeof MS.page[lastPagename] !== 'undefined' &&

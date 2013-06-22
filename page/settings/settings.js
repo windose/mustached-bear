@@ -31,6 +31,9 @@ window.MS.page = window.MS.page || {};
                     list = scope.content.find('#changeFaculty');
 
                     MS.courses.getFaculties(function(err, result) {
+                        if (err) {
+                            return self(err);
+                        }
 
                         list.empty();
                         for (i=0, l=result.length; i<l; i++) {
@@ -41,7 +44,7 @@ window.MS.page = window.MS.page || {};
                         MS.shim.select.showSelectItem(list,
                             MS.user.current.faculties[0]);
 
-                        self();
+                        return self();
                     });
                 },
 
@@ -50,7 +53,7 @@ window.MS.page = window.MS.page || {};
                  * the current users settings.
                  */
                 function drawStudies(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     MS.page.settings.drawStudies(
                         scope,
@@ -63,7 +66,7 @@ window.MS.page = window.MS.page || {};
                  * the current users settings.
                  */
                 function drawStudygroups(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     MS.page.settings.drawStudygroups(
                         scope,
@@ -76,7 +79,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between faculties.
                  */
                 function facultyHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     list = scope.content.find('#changeFaculty');
                     list.on('change', function() {
@@ -94,7 +97,8 @@ window.MS.page = window.MS.page || {};
                          */
                         MS.courses.getMaxSemesterCount(fak, function(err, count) {
                             if (err) {
-                                return console.log(err);
+                                Toast.longshow(err);
+                                return;
                             }
                             MS.page.settings.drawSemList(scope, fak, count);
 
@@ -124,7 +128,6 @@ window.MS.page = window.MS.page || {};
 
                                 MS.page.settings.drawStudygroups(scope, studyId, sem);
                             });
-                            return true;
                         });
                     });
                     return true;
@@ -134,7 +137,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between studies.
                  */
                 function studyHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     list = scope.content.find('#changeStudy');
                     list.on('change', function() {
@@ -159,7 +162,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between semester.
                  */
                 function semListHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     scope.content.find('.semList').on('touchend', 'li', function() {
                         var self = $(this),
@@ -178,7 +181,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between studygroups.
                  */
                 function studygroupHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     list = scope.content.find('#changeStudygroup');
                     list.on('change', function() {
@@ -195,7 +198,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, toggle theme.
                  */
                 function toggleThemeHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     /*
                      * Switch Theme button. Replaces css with a new theme file.
@@ -212,7 +215,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, save user settings on toggle buttons change.
                  */
                 function toggleButtonHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     scope.content.on('change', '.onoffswitch-checkbox', function() {
                         var self = $(this),
@@ -234,7 +237,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, updates the current users password.
                  */
                 function saveButtonHandler(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     scope.footer.find('.button.by').on('touchend', function() {
                         MS.page.settings.changePassword(scope);
@@ -247,7 +250,9 @@ window.MS.page = window.MS.page || {};
                  * Finished, go to the next phase.
                  */
                 function finishLoad(err) {
-                    if (err) { console.log(err); }
+                    if (err) {
+                        Toast.longshow(err);
+                    }
 
                     done();
                 }
@@ -334,27 +339,27 @@ window.MS.page = window.MS.page || {};
             itemTemplate = '<option value={{id}}>{{name}}</option>';
             callback = callback || function() {};
 
-            MS.courses.getStudygroupsBySem(studyId, sem,
-                function(err, groups) {
-                    if (err) {
-                        return console.log(err);
-                    }
+            MS.courses.getStudygroupsBySem(studyId, sem, function(err, groups) {
+                if (err) {
+                    Toast.longshow(err);
+                    return;
+                }
 
-                    var list, i;
+                var list, i;
 
-                    list = scope.content.find('#changeStudygroup');
-                    list.empty();
+                list = scope.content.find('#changeStudygroup');
+                list.empty();
 
-                    for (i=groups.length; i--;) {
-                        list.append(Mustache.render(itemTemplate, groups[i]));
-                    }
+                for (i=groups.length; i--;) {
+                    list.append(Mustache.render(itemTemplate, groups[i]));
+                }
 
-                    MS.shim.select.showSelectItem(
-                        scope.content.find('#changeStudygroup'),
-                        MS.user.current.studiengruppe_id);
+                MS.shim.select.showSelectItem(
+                    scope.content.find('#changeStudygroup'),
+                    MS.user.current.studiengruppe_id);
 
-                    return callback(undefined, groups);
-                });
+                callback(undefined, groups);
+            });
         },
 
         /**
@@ -447,25 +452,35 @@ window.MS.page = window.MS.page || {};
          */
         changePassword: function changePassword(scope) {
             var $oldPw = scope.content.find('.changeOldPw'),
-                $newPw = scope.content.find('.changeNewPw'),
+                oldPw = $oldPw.val();
+
+            if (!oldPw) {
+                return;
+            }
+
+            var $newPw = scope.content.find('.changeNewPw'),
                 $newPwSec = scope.content.find('.changeNewPwSec'),
-                oldPw = $oldPw.val(),
                 newPw = $newPw.val(),
                 newPwSec = $newPwSec.val();
 
             if (newPw !== newPwSec) {
-                console.log('Passwörter stimmen nicht überein');
+                Toast.longshow('Passwörter stimmen nicht überein');
                 return;
             }
 
             MS.user.authenticate(MS.user.current.email, oldPw, function(err, data) {
                 if (data.length === 0) {
-                    console.log('Derzeitiges Passwort ungültig');
+                    Toast.longshow('Altes Passwort ungültig');
+                    return;
+                }
+
+                if (!newPw) {
+                    Toast.longshow('Bitte neues Passwort eingeben');
                     return;
                 }
 
                 MS.user.setSetting('password', md5(newPw), function() {
-                    console.log('Passwort erfolgreich geändert!');
+                    Toast.longshow('Passwort erfolgreich geändert');
 
                     $oldPw.val('');
                     $newPw.val('');

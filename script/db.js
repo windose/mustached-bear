@@ -95,7 +95,10 @@ document.addEventListener('deviceready', function() {
                 }
             },
             function createTables(err, data) {
-                if (err) { return console.log(err); }
+                if (err) {
+                    Toast.longshow(err);
+                    return;
+                }
 
                 group = this.group();
                 for (i=data.length; i--;) {

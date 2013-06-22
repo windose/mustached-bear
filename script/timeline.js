@@ -89,7 +89,7 @@ window.MS = window.MS || {};
 
             MS.db.get(sql, function(err, dates) {
                 if (err) {
-                    return console.log(err.message);
+                    Toast.longshow(err.message);
                 }
 
                 /*
@@ -119,7 +119,6 @@ window.MS = window.MS || {};
                 });
 
                 callback(undefined, dates);
-                return true;
             });
         },
 

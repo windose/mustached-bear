@@ -54,7 +54,8 @@ window.MS.page = window.MS.page || {};
                     article = MS.page.news.articles[id];
 
                 if (!article) {
-                    return console.log('Article not found');
+                    Toast.longshow('Artikel nicht gefunden');
+                    return;
                 }
 
                 share.show({
@@ -62,7 +63,9 @@ window.MS.page = window.MS.page || {};
                         text: article.content
                     },
                     function() {},
-                    function() { console.log('Share failed') }
+                    function() {
+                        Toast.longshow('Sharing Fehler');
+                    }
                 );
 
                 return true;
@@ -88,7 +91,9 @@ window.MS.page = window.MS.page || {};
                 function drawNews() {
                     self = this;
                     MS.db.get('SELECT * from nachrichten', function(err, result) {
-                        if (err) { return console.log(err) && done(); }
+                        if (err) {
+                            return self(err.message);
+                        }
 
                         if (result.length !== 0) {
                             var i, l, articleList;
@@ -118,13 +123,13 @@ window.MS.page = window.MS.page || {};
                  * Update the timeline and insert peek info.
                  */
                 function drawTimeline(err) {
-                    if (err) { console.log(err); }
+                    if (err) { throw err; }
 
                     self = this;
 
                     MS.timeline.getFutureDates(function(err, dates) {
                         if (err) {
-                            return console.log(err);
+                            return self(err);
                         }
 
                         var i, l, timeline;
@@ -137,7 +142,8 @@ window.MS.page = window.MS.page || {};
                         }
 
                         MS.page.news.insertDateInfo(scope, dates[0]);
-                        self();
+
+                        return self();
                     });
                 },
 
@@ -145,7 +151,9 @@ window.MS.page = window.MS.page || {};
                  * Show the page.
                  */
                 function finishLoad(err) {
-                    if (err) { console.log(err); }
+                    if (err) {
+                        Toast.longshow(err);
+                    }
                     done();
                 }
             );
