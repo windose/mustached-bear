@@ -159,7 +159,7 @@ document.addEventListener('deviceready', function() {
                 'id="'+MS.user.current.id+'"',
                 function(err) {
                     if (err) {
-                        Toast.longshow(err);
+                        MS.tools.toast.long(err);
                     }
 
                     MS.user.current[key] = value;

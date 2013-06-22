@@ -63,7 +63,7 @@ window.MS.page = window.MS.page || {};
                     var self = this;
                     MS.courses.getMaxSemesterCount(MS.user.current.faculties[0], function(err, count) {
                         if (err) {
-                            Toast.longshow(err.message);
+                            MS.tools.toast.long(err.message);
                             return
                         }
 
@@ -88,7 +88,7 @@ window.MS.page = window.MS.page || {};
                         MS.user.current.semester,
                         function(err, courses) {
                         if (err) {
-                            Toast.longshow(err.message);
+                            MS.tools.toast.long(err.message);
                             return;
                         }
 
@@ -102,7 +102,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between faculty.
                  */
                 function facultyHandler(err) {
-                    if (err) { Toast.longshow(err); }
+                    if (err) { MS.tools.toast.long(err); }
 
                     scope.header.find('select').on('change', function() {
                         var self = $(this),
@@ -119,7 +119,7 @@ window.MS.page = window.MS.page || {};
                          */
                         MS.courses.getMaxSemesterCount(fak, function(err, count) {
                             if (err) {
-                                Toast.longshow(err.message);
+                                MS.tools.toast.long(err.message);
                                 return;
                             }
                             MS.page.courses.drawSemList(scope, fak, count);
@@ -142,7 +142,7 @@ window.MS.page = window.MS.page || {};
                             MS.courses.getCoursesBySem(fak, sem,
                                 function(err, courses) {
                                     if (err) {
-                                        Toast.longshow(err.message);
+                                        MS.tools.toast.long(err.message);
                                         return;
                                     }
                                     MS.page.courses.drawCourseList(scope, courses);
@@ -157,7 +157,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between semester.
                  */
                 function semesterHandler(err) {
-                    if (err) { Toast.longshow(err); }
+                    if (err) { MS.tools.toast.long(err); }
 
                     scope.header.find('.semList').on('touchend', 'li', function() {
                         var self = $(this),
@@ -176,7 +176,7 @@ window.MS.page = window.MS.page || {};
                         MS.courses.getCoursesBySem(fak, sem,
                             function(err, courses) {
                                 if (err) {
-                                    Toast.longshow(err.message);
+                                    MS.tools.toast.long(err.message);
                                     return;
                                 }
                                 MS.page.courses.drawCourseList(scope, courses);
@@ -190,7 +190,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, toggle state of course on touch.
                  */
                 function checkboxHandler(err) {
-                    if (err) { Toast.longshow(err); }
+                    if (err) { MS.tools.toast.long(err); }
 
                     scope.content.on('touchend', 'li', function() {
                         if (MS.isMove) { return; }
@@ -210,7 +210,7 @@ window.MS.page = window.MS.page || {};
                  * Go to the next phase.
                  */
                 function finishLoad(err) {
-                    if (err) { Toast.longshow(err); }
+                    if (err) { MS.tools.toast.long(err); }
 
                     done();
                 }

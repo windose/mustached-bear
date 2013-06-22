@@ -88,7 +88,7 @@ window.MS = window.MS || {};
 
         MS.db.sql(sql, function(err) {
             if (err) {
-                Toast.longshow(err.message);
+                MS.tools.toast.long(err.message);
             }
 
             callback();

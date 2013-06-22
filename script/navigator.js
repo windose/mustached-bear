@@ -162,8 +162,8 @@ document.addEventListener('deviceready', function() {
          */
         goTo: function goTo(pagename) {
             var lastPagename = MS.dom.wrapper.attr('data-page'),
-                capPagename = capitalizeFirst(pagename),
-                capLastPagename = capitalizeFirst(lastPagename),
+                capPagename = MS.tools.capitalizeFirst(pagename),
+                capLastPagename = MS.tools.capitalizeFirst(lastPagename),
                 scope, lastScope;
 
             // ToDo Show loading screen

@@ -97,7 +97,7 @@ window.MS.page = window.MS.page || {};
                          */
                         MS.courses.getMaxSemesterCount(fak, function(err, count) {
                             if (err) {
-                                Toast.longshow(err);
+                                MS.tools.toast.long(err);
                                 return;
                             }
                             MS.page.settings.drawSemList(scope, fak, count);
@@ -251,7 +251,7 @@ window.MS.page = window.MS.page || {};
                  */
                 function finishLoad(err) {
                     if (err) {
-                        Toast.longshow(err);
+                        MS.tools.toast.long(err);
                     }
 
                     done();
@@ -341,7 +341,7 @@ window.MS.page = window.MS.page || {};
 
             MS.courses.getStudygroupsBySem(studyId, sem, function(err, groups) {
                 if (err) {
-                    Toast.longshow(err);
+                    MS.tools.toast.long(err);
                     return;
                 }
 
@@ -464,23 +464,23 @@ window.MS.page = window.MS.page || {};
                 newPwSec = $newPwSec.val();
 
             if (newPw !== newPwSec) {
-                Toast.longshow('Passwörter stimmen nicht überein');
+                MS.tools.toast.long('Passwörter stimmen nicht überein');
                 return;
             }
 
             MS.user.authenticate(MS.user.current.email, oldPw, function(err, data) {
                 if (data.length === 0) {
-                    Toast.longshow('Altes Passwort ungültig');
+                    MS.tools.toast.long('Altes Passwort ungültig');
                     return;
                 }
 
                 if (!newPw) {
-                    Toast.longshow('Bitte neues Passwort eingeben');
+                    MS.tools.toast.long('Bitte neues Passwort eingeben');
                     return;
                 }
 
                 MS.user.setSetting('password', md5(newPw), function() {
-                    Toast.longshow('Passwort erfolgreich geändert');
+                    MS.tools.toast.long('Passwort erfolgreich geändert');
 
                     $oldPw.val('');
                     $newPw.val('');

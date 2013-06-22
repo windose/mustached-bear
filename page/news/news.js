@@ -54,7 +54,7 @@ window.MS.page = window.MS.page || {};
                     article = MS.page.news.articles[id];
 
                 if (!article) {
-                    Toast.longshow('Artikel nicht gefunden');
+                    MS.tools.toast.long('Artikel nicht gefunden');
                     return;
                 }
 
@@ -64,7 +64,7 @@ window.MS.page = window.MS.page || {};
                     },
                     function() {},
                     function() {
-                        Toast.longshow('Sharing Fehler');
+                        MS.tools.toast.long('Sharing Fehler');
                     }
                 );
 
@@ -152,7 +152,7 @@ window.MS.page = window.MS.page || {};
                  */
                 function finishLoad(err) {
                     if (err) {
-                        Toast.longshow(err);
+                        MS.tools.toast.long(err);
                     }
                     done();
                 }

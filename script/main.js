@@ -59,7 +59,7 @@ document.addEventListener('deviceready', function() {
             } else {
                 MS.user.autoLogIn(loggedInUser, function(err) {
                     if (err) {
-                        Toast.longshow(err);
+                        MS.tools.toast.long(err);
                         MS.navigator.goTo('login');
                     } else {
 

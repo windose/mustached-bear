@@ -2,7 +2,7 @@ window.MS = window.MS || {};
 
 (function() {
 
-    window.MS.timeline = {
+    MS.timeline = {
 
          /**
          * German weekdays.
@@ -89,7 +89,7 @@ window.MS = window.MS || {};
 
             MS.db.get(sql, function(err, dates) {
                 if (err) {
-                    Toast.longshow(err.message);
+                    MS.tools.toast.long(err.message);
                 }
 
                 /*

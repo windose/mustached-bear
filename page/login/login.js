@@ -38,17 +38,20 @@ window.MS.page = window.MS.page || {};
                 // Save last entered email for convenience
                 localStorage.setItem('last_email', email);
 
+                if (pw === '') {
+                    MS.tools.toast.short('Bitte Passwort eingeben');
+                    return;
+                }
+
                 // Try to log in
                 MS.user.login(email, pw, function(err) {
                     if (err) {
-                        Toast.longshow(err);
+                        MS.tools.toast.long(err);
                         return;
                     }
 
                     // Go to the news page, in case of a successful authorization
                     MS.navigator.goTo('news');
-
-                    return true;
                 });
             });
 

@@ -96,7 +96,7 @@ document.addEventListener('deviceready', function() {
             },
             function createTables(err, data) {
                 if (err) {
-                    Toast.longshow(err);
+                    MS.tools.toast.long(err);
                     return;
                 }
 
