@@ -6,12 +6,14 @@ window.MS = window.MS || {};
  */
 document.addEventListener('deviceready', function() {
 
-    // TODO, buggy
-    //            if (device.platform === 'Android') {
-    //                document.addEventListener("backbutton", function backbutton() {
-    //                    MS.navigator.back();
-    //                }, false);
-    //            }
+    /*
+     * Back navigation
+     */
+    if (device.platform === 'Android') {
+        document.addEventListener("backbutton", function backbutton() {
+            MS.navigator.back();
+        }, false);
+    }
 
     /*
      * Sidebar. Height hack, touch highlighting and navigation event handlers.

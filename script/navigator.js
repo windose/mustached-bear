@@ -82,7 +82,7 @@ document.addEventListener('deviceready', function() {
                     }, 200);
                     break;
                 default:
-                    MS.navigator.goTo(MS.navigator.history[MS.navigator.history.length-1]);
+                    MS.navigator.goTo(MS.navigator.history.pop());
             }
         },
 
