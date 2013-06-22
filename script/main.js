@@ -48,10 +48,28 @@ document.addEventListener('deviceready', function() {
      * Create tables in case of empty database.
      * Get the logged in user and show start page.
      */
-    MS.db.createTables(true, function() {
-
-        // Insert dummy data
-        MS.dbDummy(function() {
+    var isNotFresh;
+    Step(
+        function checkFlag() {
+            isNotFresh = localStorage.getItem('isFresh');
+            return true;
+        },
+        function createTables() {
+            if (!isNotFresh) {
+                MS.db.createTables(!isNotFresh, this);
+            } else {
+                return true;
+            }
+        },
+        function insertDummyData() {
+            if (!isNotFresh) {
+                MS.dbDummy(this);
+            } else {
+                return true;
+            }
+        },
+        function manageLogin() {
+            localStorage.setItem('isFresh', true);
 
             var loggedInUser = localStorage.getItem('user_id');
 
@@ -75,7 +93,7 @@ document.addEventListener('deviceready', function() {
                     }
                 });
             }
-        });
-    });
+        }
+    );
 
 }, false);
