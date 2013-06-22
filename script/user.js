@@ -14,10 +14,8 @@ document.addEventListener('deviceready', function() {
         authenticate: function authenticate(email, pw, callback) {
             var sql;
 
-            sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
-                'FROM user AS u ' +
-                'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
-                'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
+            sql = 'SELECT id ' +
+                'FROM user ' +
                 'WHERE email = "'+MS.db.escape(email)+'" ' +
                 'AND password = "'+md5(pw)+'"';
 
@@ -26,30 +24,27 @@ document.addEventListener('deviceready', function() {
 
         /**
          *
-         * @param {String} email
-         * @param {String} pw
-         * @param {Function} callback
-         * @param {number} [autoLoginId]
+         * @param {Function} [callback]
          */
-        login: function login(email, pw, callback, autoLoginId) {
-            var sql, user;
+        updateData: function updateData(callback) {
+            var user, sql;
+
+            user = MS.user.current;
+            callback = callback || function() {};
 
             Step(
+
                 /*
                  *
                  */
-                function authenticate() {
-                    if (email && pw) {
-                        MS.user.authenticate(email, pw, this);
-                    } else {
-                        sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
-                            'FROM user AS u ' +
-                            'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
-                            'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
-                            'WHERE u.id = ' + MS.db.escape(autoLoginId);
+                function getStudy() {
+                    sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
+                        'FROM user AS u ' +
+                        'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
+                        'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
+                        'WHERE u.id = ' + MS.db.escape(user.id);
 
-                        MS.db.get(sql, this);
-                    }
+                    MS.db.get(sql, this);
                 },
 
                 /*
@@ -58,19 +53,17 @@ document.addEventListener('deviceready', function() {
                 function getFaculties(err, data) {
                     if (err) { throw err; }
 
-                    if (data.length === 0) { throw 'Benutzer nicht gefunden' }
+                    if (data.length === 0) {
+                        throw 'Benutzer nicht gefunden';
+                    }
 
                     user = data[0];
-
-                    // Save id of the user in the cache, to prevent repeated login
-                    localStorage.setItem('user_id', user.id);
 
                     sql = 'SELECT fakultaet_id ' +
                         'FROM fakultaet_studiengang ' +
                         'WHERE studiengang_id = '+MS.db.escape(user.studiengang_id);
 
                     MS.db.get(sql, this);
-
                 },
 
                 /*
@@ -83,11 +76,10 @@ document.addEventListener('deviceready', function() {
                     for (i=faculties.length; i--;) {
                         facultyList.push(faculties[i].fakultaet_id);
                     }
-
                     user.faculties = facultyList;
 
                     sql = 'SELECT vorlesung_id FROM user_vorlesung ' +
-                        'WHERE user_id = '+user.id;
+                        'WHERE user_id = '+MS.db.escape(user.id);
 
                     MS.db.get(sql, this);
                 },
@@ -102,7 +94,6 @@ document.addEventListener('deviceready', function() {
                     for (i=courseIds.length; i--;) {
                         courseList.push(courseIds[i].vorlesung_id);
                     }
-
                     user.courses = courseList;
 
                     return true;
@@ -120,6 +111,51 @@ document.addEventListener('deviceready', function() {
                     }
                 }
             );
+        },
+
+        /**
+         *
+         * @param {String} email
+         * @param {String} pw
+         * @param {Function} callback
+         * @param {number} [autoLoginId]
+         */
+        login: function login(email, pw, callback, autoLoginId) {
+            Step(
+                /*
+                 *
+                 */
+                function authenticate() {
+                    var done = this;
+
+                    if (email && pw) {
+                        MS.user.authenticate(email, pw, function(err, data) {
+                            if (err || data.length === 0) {
+                                done('Benutzer nicht gefunden');
+                            } else {
+                                MS.user.current = {
+                                    id: data[0].id
+                                };
+                                done();
+                            }
+                        });
+                    } else {
+                        MS.user.current = {
+                            id: autoLoginId
+                        };
+                        done();
+                    }
+                },
+
+                /*
+                 *
+                 */
+                function getUserData(err) {
+                    MS.user.updateData(function(err2) {
+                        callback(err || err2);
+                    });
+                }
+            );
 
         },
 
@@ -134,7 +170,8 @@ document.addEventListener('deviceready', function() {
         },
 
         /**
-         *
+         * Removes reference to the current logged-in user from
+         * local storage. Thus resulting in a logged out state.
          */
         logOut: function logOut() {
             MS.user.current = null;

@@ -207,6 +207,7 @@ window.MS.page = window.MS.page || {};
                         var checked = $(this).is(':checked');
 
                         MS.page.settings.setTheme(checked);
+                        MS.user.setSetting('isLightTheme', checked);
                     });
                     return true;
                 },
@@ -240,7 +241,8 @@ window.MS.page = window.MS.page || {};
                     if (err) { throw err; }
 
                     scope.footer.find('.button.by').on('touchend', function() {
-                        MS.page.settings.changePassword(scope);
+                        MS.page.settings.savePassword(scope);
+                        MS.page.settings.saveStudygroup(scope);
                     });
 
                     return true;
@@ -347,7 +349,7 @@ window.MS.page = window.MS.page || {};
 
                 var list, i;
 
-                list = scope.content.find('#changeStudygroup');
+                list = scope.content.find('.changeStudygroup');
                 list.empty();
 
                 for (i=groups.length; i--;) {
@@ -355,7 +357,7 @@ window.MS.page = window.MS.page || {};
                 }
 
                 MS.shim.select.showSelectItem(
-                    scope.content.find('#changeStudygroup'),
+                    list,
                     MS.user.current.studiengruppe_id);
 
                 callback(undefined, groups);
@@ -430,8 +432,9 @@ window.MS.page = window.MS.page || {};
         },
 
         /**
+         * Switch the included css style file to the desired theme.
          *
-         * @param isLightTheme
+         * @param {boolean} isLightTheme
          */
         setTheme: function setTheme(isLightTheme) {
             var oldLink, newLink;
@@ -446,11 +449,12 @@ window.MS.page = window.MS.page || {};
         },
 
         /**
+         * Validates the form data of password input fields
+         * and updates the current users password.
          *
-         *
-         * @param scope
+         * @param {Object} scope
          */
-        changePassword: function changePassword(scope) {
+        savePassword: function savePassword(scope) {
             var $oldPw = scope.content.find('.changeOldPw'),
                 oldPw = $oldPw.val();
 
@@ -464,18 +468,18 @@ window.MS.page = window.MS.page || {};
                 newPwSec = $newPwSec.val();
 
             if (newPw !== newPwSec) {
-                MS.tools.toast.long('Passwörter stimmen nicht überein');
+                MS.tools.toast.short('Passwörter stimmen nicht überein');
                 return;
             }
 
             MS.user.authenticate(MS.user.current.email, oldPw, function(err, data) {
                 if (data.length === 0) {
-                    MS.tools.toast.long('Altes Passwort ungültig');
+                    MS.tools.toast.short('Altes Passwort ungültig');
                     return;
                 }
 
                 if (!newPw) {
-                    MS.tools.toast.long('Bitte neues Passwort eingeben');
+                    MS.tools.toast.shprt('Bitte neues Passwort eingeben');
                     return;
                 }
 
@@ -487,7 +491,33 @@ window.MS.page = window.MS.page || {};
                     $newPwSec.val('');
                 });
             });
+        },
+
+        /**
+         *
+         *
+         * @param scope
+         */
+        saveStudygroup: function saveStudygroup(scope) {
+            var $studyg = scope.content.find('.changeStudygroup'),
+                studygId = $studyg.val();
+
+            if (studygId === null) {
+                return;
+            }
+
+            MS.user.setSetting('studiengruppe_id', studygId, function() {
+                MS.user.updateData(function(err) {
+                    if (err) {
+                        MS.tools.toast.short(err);
+                    }
+
+                    MS.tools.toast.long('Einstellungen erfolgreich gespeichert');
+                });
+            });
+
         }
+
     };
 
 })();

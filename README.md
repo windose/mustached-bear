@@ -49,8 +49,6 @@ https://github.com/giver/cordova-android-toast-plugin
 ToDos
 -------------
 - IDs entfernen, nur mit Klassen in lokalem scope hantieren.
-- Touch highlight.
-- Back button.
 - Loading Screen
 
 Aussichten

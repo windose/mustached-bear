@@ -46,9 +46,12 @@ window.MS.page = window.MS.page || {};
                 // Try to log in
                 MS.user.login(email, pw, function(err) {
                     if (err) {
-                        MS.tools.toast.long(err);
+                        MS.tools.toast.short(err);
                         return;
                     }
+
+                    // Save userid for autologin
+                    localStorage.setItem('user_id', MS.user.current.id);
 
                     // Go to the news page, in case of a successful authorization
                     MS.navigator.goTo('news');

@@ -39,8 +39,11 @@ document.addEventListener('deviceready', function() {
          * @param {Function} [callback]
          */
         back: function back(callback) {
-            if (MS.navigator.history.length === 1) {
+            if (MS.navigator.history.length === 1 ||
+               (MS.navigator.history.length === 2 &&
+                MS.navigator.history[0] === 'login')) {
                 window.navigator.app.exitApp();
+                return;
             }
 
             var undo;
