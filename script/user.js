@@ -196,13 +196,49 @@ document.addEventListener('deviceready', function() {
                 'id="'+MS.user.current.id+'"',
                 function(err) {
                     if (err) {
-                        MS.tools.toast.long(err);
+                        MS.tools.toast.short(err);
                     }
 
                     MS.user.current[key] = value;
                     callback();
                 });
 
+        },
+
+        /**
+         *
+         * @param entryList
+         * @param callback
+         */
+        setCourses: function setCourses(entryList, callback) {
+            var sql, i;
+
+            callback = callback || function() {};
+
+            sql = 'DELETE FROM user_vorlesung ' +
+                'WHERE user_id = '+MS.user.current.id;
+
+            MS.db.sql(sql, function(err) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+
+                sql = [];
+                for (i=entryList.length; i--;) {
+                    sql.push('INSERT INTO user_vorlesung (user_id, vorlesung_id) ' +
+                        'VALUES ('+MS.user.current.id+','+entryList[i]+');');
+                }
+
+                MS.db.sql(sql, function(err) {
+                    if (err) {
+                        callback(err);
+                        return;
+                    }
+
+                    MS.user.updateData(callback);
+                });
+            });
         }
     };
 

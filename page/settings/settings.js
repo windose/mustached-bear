@@ -235,7 +235,7 @@ window.MS.page = window.MS.page || {};
                 },
 
                 /*
-                 * UI Handler, updates the current users password.
+                 * UI Handler, updates the current users password and studygroup.
                  */
                 function saveButtonHandler(err) {
                     if (err) { throw err; }

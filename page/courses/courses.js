@@ -63,7 +63,7 @@ window.MS.page = window.MS.page || {};
                     var self = this;
                     MS.courses.getMaxSemesterCount(MS.user.current.faculties[0], function(err, count) {
                         if (err) {
-                            MS.tools.toast.long(err.message);
+                            MS.tools.toast.short(err.message);
                             return
                         }
 
@@ -73,36 +73,10 @@ window.MS.page = window.MS.page || {};
                 },
 
                 /*
-                 * Draw the list with desired courses dynamically.
-                 */
-                function drawCourseList() {
-                    var self = this;
-
-                    // Highlight current semester
-                    scope.header.find('.semList')
-                        .find('li').eq(MS.user.current.semester-1)
-                        .addClass('active');
-
-                    MS.courses.getCoursesBySem(
-                        MS.user.current.faculties[0],
-                        MS.user.current.semester,
-                        function(err, courses) {
-                        if (err) {
-                            MS.tools.toast.long(err.message);
-                            return;
-                        }
-
-                        MS.page.courses.drawCourseList(scope, courses);
-
-                        self();
-                    });
-                },
-
-                /*
                  * UI Handler, switch between faculty.
                  */
                 function facultyHandler(err) {
-                    if (err) { MS.tools.toast.long(err); }
+                    if (err) { MS.tools.toast.short(err); }
 
                     scope.header.find('select').on('change', function() {
                         var self = $(this),
@@ -125,18 +99,6 @@ window.MS.page = window.MS.page || {};
                             MS.page.courses.drawSemList(scope, fak, count);
 
                             /*
-                             * Indicate current semester selection.
-                             */
-                            if (!sem) {
-                                sem = MS.user.current.semester;
-                            }
-
-                            semList
-                                .find('li[data-target='+sem+']')
-                                .addClass('active');
-
-
-                            /*
                              * Get and insert the corresponding courses.
                              */
                             MS.courses.getCoursesBySem(fak, sem,
@@ -157,7 +119,7 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, switch between semester.
                  */
                 function semesterHandler(err) {
-                    if (err) { MS.tools.toast.long(err); }
+                    if (err) { MS.tools.toast.short(err); }
 
                     scope.header.find('.semList').on('touchend', 'li', function() {
                         var self = $(this),
@@ -176,7 +138,7 @@ window.MS.page = window.MS.page || {};
                         MS.courses.getCoursesBySem(fak, sem,
                             function(err, courses) {
                                 if (err) {
-                                    MS.tools.toast.long(err.message);
+                                    MS.tools.toast.short(err.message);
                                     return;
                                 }
                                 MS.page.courses.drawCourseList(scope, courses);
@@ -190,17 +152,45 @@ window.MS.page = window.MS.page || {};
                  * UI Handler, toggle state of course on touch.
                  */
                 function checkboxHandler(err) {
-                    if (err) { MS.tools.toast.long(err); }
+                    if (err) { MS.tools.toast.short(err); }
 
                     scope.content.on('touchend', 'li', function() {
                         if (MS.isMove) { return; }
 
-                        var self = $(this);
+                        var self = $(this),
+                            id = self.attr('data-id'),
+                            index;
+
                         if (self.hasClass('on')) {
                             self.removeClass('on').addClass('off');
+                            index = MS.page.courses.tempCourseList.indexOf(id);
+                            if (index !== -1) {
+                                MS.page.courses.tempCourseList.splice(index, 1);
+                            }
                         } else {
                             self.removeClass('off').addClass('on');
+                            MS.page.courses.tempCourseList.push(id);
                         }
+                    });
+
+                    return true;
+                },
+
+                /*
+                 * UI Handler, updates the current users course list.
+                 */
+                function saveButtonHandler(err) {
+                    if (err) { throw err; }
+
+                    scope.footer.find('.button.by').on('touchend', function() {
+                        MS.user.setCourses(MS.page.courses.tempCourseList, function(err) {
+                            if (err) {
+                                MS.tools.toast.short(err);
+                                return;
+                            }
+
+                            MS.tools.toast.long('Kursliste erfolgreich gespeichert');
+                        });
                     });
 
                     return true;
@@ -210,7 +200,7 @@ window.MS.page = window.MS.page || {};
                  * Go to the next phase.
                  */
                 function finishLoad(err) {
-                    if (err) { MS.tools.toast.long(err); }
+                    if (err) { MS.tools.toast.short(err); }
 
                     done();
                 }
@@ -218,11 +208,43 @@ window.MS.page = window.MS.page || {};
         },
 
         /**
-         * Do nothing yet.
+         * Show user settings.
          *
          * @param {Function} done
+         * @param {Object} scope
          */
-        enter: function(done) {
+        enter: function(done, scope) {
+            var semList, fak, i;
+
+            /*
+             * Indicate current semester selection.
+             */
+            semList = scope.header.find('.semList');
+            semList.find('.active').removeClass('active');
+            semList.find('li[data-target='+MS.user.current.semester+']').addClass('active');
+
+            fak = scope.header.find('select').val();
+            if (!fak) {
+                fak = MS.user.current.faculties[0];
+            }
+
+            MS.courses.getCoursesBySem(fak, MS.user.current.semester,
+                function(err, courses) {
+                    if (err) {
+                        MS.tools.toast.long(err.message);
+                        return;
+                    }
+                    MS.page.courses.drawCourseList(scope, courses);
+                });
+
+            /*
+             * Use temporary course list to store changes before saving them
+             */
+            MS.page.courses.tempCourseList = [];
+            for (i=MS.user.current.courses.length; i--;) {
+                MS.page.courses.tempCourseList.push(MS.user.current.courses[i]+'');
+            }
+
             done();
         },
 
@@ -230,8 +252,6 @@ window.MS.page = window.MS.page || {};
          * Do nothing yet.
          */
         leave: function() {},
-
-
 
         /**
          * Insert the semester list (for tab navigation) dynamically
@@ -270,11 +290,11 @@ window.MS.page = window.MS.page || {};
          * @param {Array} courses
          */
         drawCourseList: function drawCourseList(scope, courses) {
-            var courseList, template, i, weekdays;
+            var courseList, template, i;
 
             courseList = scope.content.find('ul');
 
-            template = '<li class="off"><label class="cf"><table><tr>'+
+            template = '<li class="{{#on}}on{{/on}}{{^on}}off{{/on}}" data-id="{{c.id}}"><label class="cf"><table><tr>'+
                 '<td><img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png"><img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png"></td>' +
                 '<td class="label">{{c.name}}<br>Jeden {{weekday}} {{c.start}}-{{c.end}}, {{c.raum}} bei {{c.dozent}}</td>' +
                 '</tr></table></label></li>';
@@ -283,7 +303,8 @@ window.MS.page = window.MS.page || {};
             for (i=courses.length; i--;) {
                 courseList.prepend(Mustache.render(template, {
                     weekday: MS.timeline.weekdays[courses[i].weekday],
-                    c: courses[i]
+                    c: courses[i],
+                    on: MS.page.courses.tempCourseList.indexOf(courses[i].id+'') !== -1
                 }));
             }
         }
