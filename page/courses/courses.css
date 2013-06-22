@@ -21,7 +21,7 @@
 .content .courses ul li label .label {
   padding: 0.65rem 0.8rem 0;
   font-size: 0.8rem;
-  line-height: 0.9rem;
+  line-height: 1rem;
 }
 .content .courses ul li label .label:first-line {
   font-family: 'Raleway-SemiBold';
@@ -38,11 +38,11 @@
 .content .courses ul li.off .off {
   display: inline-block;
 }
-.header .courses .title {
+.header .courses .headerTitle {
   padding: 0.4rem 0;
   height: 1.7999999999999998rem;
   max-width: 60%;
 }
-.header .courses .title select ~ .select {
+.header .courses .headerTitle select ~ .select {
   background-color: transparent;
 }

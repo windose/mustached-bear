@@ -7,7 +7,7 @@
 }
 .content .news li {
   overflow: hidden;
-  max-height: 5.55rem;
+  max-height: 5.95rem;
   margin: 0.5999999999999999rem 1rem 0rem;
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
@@ -26,7 +26,7 @@
   padding: 0.6000000000000001rem 0.8rem 0.8rem;
   vertical-align: top;
   font-size: 0.8rem;
-  line-height: 0.9rem;
+  line-height: 1rem;
 }
 .content .news li .article.touch {
   background: #23394d;
@@ -37,7 +37,7 @@
   line-height: 1.4rem;
 }
 .content .news li.open {
-  max-height: 28.4rem;
+  max-height: 31.4rem;
 }
 .header .news .title {
   width: 7rem;

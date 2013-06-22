@@ -20,6 +20,9 @@ window.MS.page = window.MS.page || {};
             scope.header.on('touchstart', '.mheader, .semList li', function() {
                 $(this).addClass('touch');
             });
+            scope.footer.on('touchstart', '.button', function() {
+                $(this).addClass('touch');
+            });
             scope.content.on('touchstart', 'label, .footer span', function() {
                 $(this).addClass('touch');
             });

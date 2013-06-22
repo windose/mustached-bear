@@ -254,16 +254,33 @@ window.MS.page = window.MS.page || {};
             );
 
             /*
+             * Touch highlighting.
+             */
+            scope.header.on('touchstart', '.mheader', function() {
+                $(this).addClass('touch');
+            });
+            scope.content.on('touchstart', '.onoffswitch', function() {
+                $(this).addClass('touch');
+            });
+            scope.footer.on('touchstart', '.button', function() {
+                $(this).addClass('touch');
+            });
+
+            /*
              * Hack, hide / show footer to prevent bugged position:absolute.
              */
             document.addEventListener("showkeyboard", function() {
-                MS.dom.footer.hide();
+                if (MS.dom.wrapper.attr('data-page') === 'settings') {
+                    MS.dom.footer.hide();
+                }
             }, false);
 
             document.addEventListener("hidekeyboard", function() {
-                setTimeout(function() {
-                    MS.dom.footer.show();
-                }, 200);
+                if (MS.dom.wrapper.attr('data-page') === 'settings') {
+                    setTimeout(function() {
+                            MS.dom.footer.show();
+                    }, 200);
+                }
             }, false);
 
 

@@ -22,6 +22,7 @@
         <script src="./lib/md5.js"></script>
         <script src="./lib/share.js"></script>
         <script src="./lib/moment.min.js"></script>
+        <script src="./lib/capitalizeFirst.js"></script>
 
         <link rel="stylesheet" type="text/css" href="./style/style.css" id="theme">
 
@@ -44,10 +45,10 @@
 
             <div id="sidebarLeft" class="sidebar small l0">
                 <ul class="navList">
-                    <li data-target="News"><img src="./asset/icon/iconmoon-232124/paragraph-right.png"></li>
-                    <li data-target="Courses"><img src="./asset/icon/iconmoon-232124/list.png"></li>
-                    <li data-target="Settings"><img src="./asset/icon/iconmoon-232124/cog.png"></li>
-                    <li data-target="Login"><img src="./asset/icon/iconmoon-232124/exit.png"></li>
+                    <li data-target="news"><img src="./asset/icon/iconmoon-232124/paragraph-right.png"></li>
+                    <li data-target="courses"><img src="./asset/icon/iconmoon-232124/list.png"></li>
+                    <li data-target="settings"><img src="./asset/icon/iconmoon-232124/cog.png"></li>
+                    <li data-target="login"><img src="./asset/icon/iconmoon-232124/exit.png"></li>
                 </ul>
             </div>
 
@@ -58,6 +59,9 @@
             </div>
 
             <div id="sidebarRight" class="sidebar r0">
+                <div class="headerHeight tc cf">
+                    <span class="headerTitle fl ">Kommende Termine</span>
+                </div>
                 <ul class="timeline"></ul>
             </div>
         </div>

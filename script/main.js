@@ -54,13 +54,13 @@ document.addEventListener('deviceready', function() {
             var loggedInUser = localStorage.getItem('user_id');
 
             if (loggedInUser === 'null') {
-                MS.navigator.goTo('Login');
+                MS.navigator.goTo('login');
 
             } else {
                 MS.user.autoLogIn(loggedInUser, function(err) {
                     if (err) {
                         console.log(err);
-                        MS.navigator.goTo('Login');
+                        MS.navigator.goTo('login');
                     } else {
 
                         // Close keyboard
@@ -69,7 +69,7 @@ document.addEventListener('deviceready', function() {
 
                         MS.timeline.init();
 
-                        MS.navigator.goTo('News');
+                        MS.navigator.goTo('news');
                     }
                 });
             }

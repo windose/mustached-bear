@@ -184,9 +184,6 @@ body {
 .sidebar ul.navList li img {
   margin: 0 auto;
 }
-.sidebar ul.timeline {
-  padding: 3rem 0 0 0;
-}
 .sidebar ul.timeline li {
   width: 85%;
   padding: 0.7rem 1rem;
@@ -258,15 +255,6 @@ body {
 .header .mheader.fr.touch {
   background: #23394d;
 }
-.header .title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: left;
-  max-width: 52%;
-  padding: 0.8rem 0.8rem;
-  display: inline-block;
-  height: 1.4rem;
-}
 .header .addition {
   margin: 0 1rem 0 1rem;
   height: 3rem;
@@ -277,8 +265,17 @@ body {
   height: 1.4rem;
   display: inline-block;
 }
-.headerheight {
+.headerHeight {
   height: 3rem;
+}
+.headerTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+  max-width: 52%;
+  padding: 0.8rem 0.8rem;
+  display: inline-block;
+  height: 1.4rem;
 }
 .onoffswitch {
   float: right;
@@ -328,12 +325,18 @@ body {
   color: rgba(255, 255, 255, 0.5);
   text-align: left;
 }
+.onoffswitch.touch .onoffswitch-inner:before {
+  background-color: #69bb00;
+}
 .onoffswitch-inner:after {
   content: "AUS";
   padding-right: 1rem;
   background-color: #6f6d70;
   color: rgba(255, 255, 255, 0.5);
   text-align: right;
+}
+.onoffswitch.touch .onoffswitch-inner:after {
+  background-color: #5e5c5f;
 }
 .onoffswitch-inner.helldunkel:before {
   content: "HELL";

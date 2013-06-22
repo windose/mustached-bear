@@ -28,15 +28,23 @@
 .onoffswitch-inner:before {
     content: "AN";
     padding-left: 1rem;
-    background-color: @color-bgr-yes; color: @color-font-light;
+    background-color: @color-bgr-yes;
+    color: @color-font-light;
     text-align: left;
+}
+.onoffswitch.touch .onoffswitch-inner:before {
+    background-color: @color-bgr-yes - #111;
 }
 
 .onoffswitch-inner:after {
     content: "AUS";
     padding-right: 1rem;
-    background-color: @color-bgr-no; color: @color-font-light;
+    background-color: @color-bgr-no;
+    color: @color-font-light;
     text-align: right;
+}
+.onoffswitch.touch .onoffswitch-inner:after {
+    background-color: @color-bgr-no - #111;
 }
 
 .onoffswitch-inner.helldunkel:before {

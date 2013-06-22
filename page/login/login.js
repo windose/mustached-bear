@@ -45,7 +45,7 @@ window.MS.page = window.MS.page || {};
                     }
 
                     // Go to the news page, in case of a successful authorization
-                    MS.navigator.goTo('News');
+                    MS.navigator.goTo('news');
 
                     return true;
                 });
