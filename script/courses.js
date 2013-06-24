@@ -26,6 +26,11 @@ window.MS = window.MS || {};
         getMaxSemesterCount: function getMaxSemesterCount(facultyId, callback) {
             var sql;
 
+            if (!facultyId) {
+                callback('facultyId mandatory');
+                return;
+            }
+
             sql = 'SELECT MAX( s.semesterCount ) AS count ' +
                 'FROM studiengang AS s ' +
                 'JOIN fakultaet_studiengang AS fs ON s.id = fs.studiengang_id ' +

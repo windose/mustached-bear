@@ -145,6 +145,12 @@ body {
 .bn {
   background-color: #6f6d70;
 }
+.be {
+  background-color: #7a00cc;
+}
+.bm {
+  background-color: #007acc;
+}
 .dn {
   display: none;
 }
@@ -159,6 +165,9 @@ body {
 }
 .bo > * {
   display: none;
+}
+.t4 {
+  opacity: 0.6;
 }
 .cf:before,
 .cf:after {
@@ -236,9 +245,6 @@ body {
   background-clip: padding-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-.header {
-  min-height: 3rem;
 }
 .header .mheader {
   height: 3rem;
@@ -1444,7 +1450,24 @@ img {
   width: 1.4rem;
   padding: 0.8rem;
 }
+h1,
+h2,
+h3 {
+  display: block;
+  box-sizing: border-box;
+}
+h1 {
+  margin: 2rem 1rem;
+  font-size: 3rem;
+  font-family: 'Raleway-ExtraLight';
+}
+h3 {
+  margin: 1rem;
+  font-size: 1rem;
+  font-family: 'Raleway-Light';
+}
 input[type=text],
+input[type=email],
 input[type=password] {
   border: 0;
   border-bottom: 1px solid;
@@ -1458,7 +1481,7 @@ input[type=password] {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 100%;
+  height: 3rem;
   min-width: 14rem;
 }
 .selectWrapper select {
@@ -1469,7 +1492,7 @@ input[type=password] {
   width: 100%;
   opacity: .01;
 }
-.selectWrapper select ~ .select {
+.selectWrapper .select {
   position: absolute;
   top: 0;
   left: 0;
@@ -1481,7 +1504,7 @@ input[type=password] {
   width: 100%;
   overflow: hidden;
 }
-.selectWrapper select ~ .select:after {
+.selectWrapper .select:after {
   content: "";
   width: 2rem;
   height: 2rem;
@@ -1492,7 +1515,7 @@ input[type=password] {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
-.selectWrapper select ~ .select .selectContent {
+.selectWrapper .select .selectContent {
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -1501,14 +1524,39 @@ input[type=password] {
 .selectWrapper.small select {
   font-size: 1.6500000000000001rem;
 }
-.selectWrapper.small select ~ .select {
+.selectWrapper.small .select {
   padding: 0.4rem;
 }
-.selectWrapper.small select ~ .select:after {
+.selectWrapper.small .select:after {
   width: 2.8rem;
   height: 2.8rem;
   bottom: -1.4rem;
   right: -1.4rem;
+}
+.button {
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+}
+.button img {
+  display: inline-block;
+}
+.button label {
+  display: inline-block;
+  padding: 0.8rem 0.8rem 0.8rem 0;
+  max-width: 80%;
+}
+.button.by.touch {
+  background-color: #69bb00;
+}
+.button.bn.touch {
+  background-color: #5e5c5f;
+}
+.button.be.touch {
+  background-color: #6900bb;
+}
+.button.bm.touch {
+  background-color: #0069bb;
 }
 .template,
 .fragment {

@@ -6,19 +6,24 @@
     background: url('../../asset/img/login.jpg');
     background-repeat: no-repeat;
     background-size: auto 100%;
-    background-position: center bottom;
-    z-index: 3;
+    background-position: center top;
+
+    .outer {
+        position: absolute;
+        bottom: @body-padding;
+    }
 
     .wrapper {
-        position: absolute;
+        position: relative;
         bottom: 0;
-        width: 80%;
-        margin: 0 10% 25%;
+        margin: 0 @body-padding;
+        padding: @body-padding;
         border-spacing: 0;
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(0,0,0,0.3);
+        box-sizing: border-box;
 
         table {
-            margin: @item-padding;
+            width: 100%;
         }
 
         .whitey {
@@ -36,42 +41,35 @@
         }
 
         .space {
-            line-height: 0.5rem;
+            line-height: .5rem;
             background-color: transparent;
         }
 
-        input, button {
+        .gap { width: 4%; }
+        .one { width: 24%; }
+
+        .split {
+            label {
+                padding-right: 0;
+            }
+        }
+
+        input {
             -webkit-text-shadow: none;
             text-shadow: none;
             -webkit-box-shadow: none;
             box-shadow: none;
-            font-size: 1.5rem;
             height: 3rem;
             border: 0;
-        }
-
-        .iconBackground {
-            width: 3rem;
-            text-align: center;
-            background-color: @color-bgr;
-        }
-
-        input {
-            color: #bbb;
             background-color: @color-bgr-white;
             padding: 0 5%;
             width: 80%;
         }
 
-        button {
-            font-family: 'Raleway-Regular';
-            color: @color-font-light;
-            background-color: @color-bgr-yes;
-            width: 100%;
-
-            &.touch {
-                background-color: @color-bgr-yes - #111;
-            }
+        .iconBackground {
+            width: @header-height;
+            text-align: center;
+            background-color: @color-bgr;
         }
     }
 }

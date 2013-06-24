@@ -23,7 +23,10 @@ window.MS = window.MS || {};
              * @param {string} str
              * @param {Function} [callback]
              */
-            long: function long(str, callback) {
+            long: function(str, callback) {
+
+                callback = callback || function() {};
+
                 Toast.longshow(str, function() {
                     callback();
                 }, function(err) {
@@ -37,7 +40,10 @@ window.MS = window.MS || {};
              * @param {string} str
              * @param {Function} [callback]
              */
-            short: function short(str, callback) {
+            short: function(str, callback) {
+
+                callback = callback || function() {};
+
                 Toast.shortshow(str, function() {
                     callback();
                 }, function(err) {

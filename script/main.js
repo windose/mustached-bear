@@ -55,14 +55,16 @@ document.addEventListener('deviceready', function() {
             return true;
         },
         function createTables() {
-            if (!isNotFresh) {
-                MS.db.createTables(!isNotFresh, this);
+            if (isNotFresh === 'null' ||
+                isNotFresh === null) {
+                MS.db.createTables(true, this);
             } else {
                 return true;
             }
         },
         function insertDummyData() {
-            if (!isNotFresh) {
+            if (isNotFresh === 'null' ||
+                isNotFresh === null) {
                 MS.dbDummy(this);
             } else {
                 return true;
@@ -71,23 +73,24 @@ document.addEventListener('deviceready', function() {
         function manageLogin() {
             localStorage.setItem('isFresh', true);
 
+            MS.timeline.init();
+
             var loggedInUser = localStorage.getItem('user_id');
 
-            if (loggedInUser === 'null') {
+            if (loggedInUser === 'null' ||
+                loggedInUser === null) {
                 MS.navigator.goTo('login');
 
             } else {
                 MS.user.autoLogIn(loggedInUser, function(err) {
+
                     if (err) {
-                        MS.tools.toast.long(err);
                         MS.navigator.goTo('login');
                     } else {
 
                         // Close keyboard
                         MS.dom.overlay.find('#email').blur();
                         MS.dom.overlay.find('#pw').blur();
-
-                        MS.timeline.init();
 
                         MS.navigator.goTo('news');
                     }

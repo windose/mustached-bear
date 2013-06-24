@@ -19,7 +19,7 @@ window.MS.page = window.MS.page || {};
             /*
              * UI Handler, touch highlighting.
              */
-            scope.overlay.find('.submit').on('touchstart', function() {
+            scope.overlay.find('.button').on('touchstart', function() {
                 $(this).addClass('touch');
             });
 
@@ -50,12 +50,26 @@ window.MS.page = window.MS.page || {};
                         return;
                     }
 
-                    // Save userid for autologin
+                    // Save userId for auto login
                     localStorage.setItem('user_id', MS.user.current.id);
 
                     // Go to the news page, in case of a successful authorization
                     MS.navigator.goTo('news');
                 });
+            });
+
+            /*
+             * UI Handler, go to registration.
+             */
+            scope.overlay.find('.register').on('touchend', function() {
+                MS.navigator.goTo('intro');
+            });
+
+            /*
+             * UI Handler, forgot password.
+             */
+            scope.overlay.find('.forgotpw').on('touchend', function() {
+                MS.navigator.goTo('forgotpw');
             });
 
             /*

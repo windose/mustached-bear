@@ -10,22 +10,27 @@ window.MS.shim = window.MS.shim || {};
          * value is shown behind that element in a separate container.
          * This function have to be called, to keep them synchronised.
          *
-         * @param $list
-         * @param desiredValue
+         * @param {Object} $lists
+         * @param {number|String} desiredValue
          */
-        showSelectItem: function showSelectItem($list, desiredValue) {
-            var target = $list.find('option[value='+desiredValue+']');
+        showSelectItem: function showSelectItem($lists, desiredValue) {
+            var target, $list;
 
-            if (target.length === 0) {
-                target = $list.find('option').first();
-            }
+            $lists.each(function(key, list) {
+                $list = $(list);
+                target = $list.find('option[value='+desiredValue+']');
 
-            if (target.length !== 0) {
-                target.attr('selected', true);
-                $list.parent().find('.selectContent').html(target.text());
-            } else {
-                $list.parent().find('.selectContent').html('');
-            }
+                if (target.length === 0) {
+                    target = $list.find('option').first();
+                }
+
+                if (target.length !== 0) {
+                    target.attr('selected', true);
+                    $list.parent().find('.selectContent').html(target.text());
+                } else {
+                    $list.parent().find('.selectContent').html('');
+                }
+            })
         },
 
     };

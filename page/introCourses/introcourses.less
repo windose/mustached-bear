@@ -1,0 +1,104 @@
+@import "../../style/_colors.less";
+@import "../../style/_dimens.less";
+
+.content .introcourses {
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    table {
+        width: 100%;
+        background-color: @color-bgr;
+
+        tr {
+            height: @header-height + 2*@item-padding;
+
+            td {
+                &:last-child {
+                    padding-right: @body-padding;
+                    text-align: right;
+                }
+
+                &:first-child {
+                    padding-left: @body-padding;
+                    text-align: left;
+
+                    font-size: @font-small-size;
+                    line-height: @font-small-lineheight;
+                }
+            }
+
+            &.heading {
+                height: 1/2*@header-height;
+                font-size: @font-small-size;
+                line-height: @font-small-lineheight;
+                background-color: @color-bgr + #111;
+            }
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=password],
+        .select {
+            display: block;
+            width: 100%;
+            height: @header-height;
+            box-sizing: border-box;
+            border-radius: 0;
+            color: @color-font-lighter;
+            font-size: 1rem;
+        }
+
+        input {
+            padding-top: @item-padding;
+        }
+    }
+
+    ul {
+        padding: 0.6rem @body-padding @header-height + 0.6rem;
+
+        li {
+
+            label {
+                min-height: 2*@font-regular-lineheight;
+                display: block;
+
+                &.touch {
+                    background: @color-bgr + @color-main/5;
+                }
+                td {
+                    vertical-align: top;
+                    text-align: left !important;
+                }
+                img {
+                    vertical-align: baseline;
+                }
+                .label {
+                    padding: @item-padding - 0.15rem @item-padding 0;
+                    font-size: @font-small-size;
+                    line-height: @font-small-lineheight;
+
+                    &:first-line {
+                        font-family: 'Raleway-SemiBold';
+                        font-size: @font-regular-size;
+                        line-height: @font-regular-lineheight;
+                    }
+                }
+            }
+            .on, .off { display: none; }
+
+            &.on .on { display: inline-block; }
+            &.off .off { display: inline-block; }
+        }
+    }
+}
+
+.footer .introcourses {
+
+    .button {
+        width: 100%;
+    }
+    img {
+        padding: 0;
+        margin: 0;
+    }
+}

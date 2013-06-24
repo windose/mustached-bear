@@ -7,6 +7,22 @@ document.addEventListener('deviceready', function() {
 
         /**
          *
+         * @param email
+         * @param pw
+         * @param studygroupId
+         * @param callback
+         */
+        create: function create(email, pw, studygroupId, callback) {
+            var sql;
+
+            sql = 'INSERT INTO user (email, password, studiengruppe_id, isPush, isSync, isLightTheme, isBackup) ' +
+                'VALUES ("'+MS.db.escape(email)+'", "'+md5(pw)+'", '+MS.db.escape(studygroupId)+', 0, 0, 0, 0)';
+
+            MS.db.sql(sql, callback);
+        },
+
+        /**
+         *
          * @param {String} email
          * @param {String} pw
          * @param {Function} callback

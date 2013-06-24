@@ -39,9 +39,11 @@ document.addEventListener('deviceready', function() {
          * @param {Function} [callback]
          */
         back: function back(callback) {
-            if (MS.navigator.history.length === 1 ||
-               (MS.navigator.history.length === 2 &&
-                MS.navigator.history[0] === 'login')) {
+            if (!MS.user.current ||
+                MS.navigator.history.length === 1 ||
+               (MS.navigator.history.length > 1 &&
+               (MS.navigator.history[MS.navigator.history.length-2] === 'login' ||
+                MS.navigator.history[MS.navigator.history.length-2] === 'intro'))) {
                 window.navigator.app.exitApp();
                 return;
             }
@@ -114,8 +116,12 @@ document.addEventListener('deviceready', function() {
             /*
              * Show new fragments
              */
-            this.scope.header.show();
             this.scope.content.show();
+
+            if (this.scope.header.length > 0) {
+                MS.dom.header.show();
+                this.scope.header.show();
+            }
 
             if (this.scope.overlay.length > 0) {
                 this.scope.overlay.show();
@@ -125,11 +131,6 @@ document.addEventListener('deviceready', function() {
             if (this.scope.footer.length > 0) {
                 MS.dom.footer.show();
                 this.scope.footer.show();
-            }
-
-            // Close side menu, if open
-            if(MS.dom.body.hasClass('open-menu')) {
-                MS.navigator.back();
             }
 
             if (this.scope.name !== this.lastScope.name) {
@@ -143,10 +144,7 @@ document.addEventListener('deviceready', function() {
                 this.lastScope.header.hide();
                 this.lastScope.content.hide();
                 this.lastScope.footer.hide();
-
-                if (this.scope.overlay.length > 0) {
-                    this.lastScope.overlay.hide();
-                }
+                this.lastScope.overlay.hide();
             }
 
             /*
@@ -155,8 +153,20 @@ document.addEventListener('deviceready', function() {
             MS.dimens.header.update();
             MS.dimens.footer.update();
 
-            // Set fixed content height for scrolling
-            this.scope.content.height(MS.dimens.viewport.height-MS.dimens.header.height-MS.dimens.footer.height);
+            /*
+             * Set fixed content height for scrolling.
+             */
+            var size = MS.dimens.viewport.height;
+            if (this.scope.footer.length > 0) {
+                size -= MS.dimens.footer.height;
+            }
+            if (this.scope.header.length > 0) {
+                size -= MS.dimens.header.height;
+            }
+            if(this.scope.name === 'news') {
+                size -= MS.dimens.header.height;
+            }
+            this.scope.content.height(size);
         },
 
         /**
@@ -186,6 +196,11 @@ document.addEventListener('deviceready', function() {
                 footer: MS.dom.footer.find('#footer'+capLastPagename),
                 overlay: MS.dom.overlay.find('#overlay'+capLastPagename)
             };
+
+            // Close side menu, if open
+            if(MS.dom.body.hasClass('open-menu')) {
+                MS.navigator.back();
+            }
 
             // Save desired pagename
             MS.dom.wrapper.attr('data-page', pagename);
@@ -240,6 +255,9 @@ document.addEventListener('deviceready', function() {
                 // Show cached header
                 if (scope.header.length > 0) {
                     MS.dom.header.attr('data-content', pagename);
+                } else {
+                    MS.dom.header.attr('data-content', 'none');
+                    MS.dom.header.hide();
                 }
 
                 // Show cached footer
@@ -325,6 +343,9 @@ document.addEventListener('deviceready', function() {
                         MS.dom.header.prepend(scope.header);
                         MS.dom.header.attr('data-content', pagename);
                         MS.navigator.initSidemenu(scope.header);
+                    } else {
+                        MS.dom.header.attr('data-content', 'none');
+                        MS.dom.header.hide();
                     }
 
                     // Hide old and attach new footer

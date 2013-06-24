@@ -50,6 +50,7 @@ ToDos
 -------------
 - IDs entfernen, nur mit Klassen in lokalem scope hantieren.
 - Loading Screen
+- Icon font
 
 Aussichten
 --------------

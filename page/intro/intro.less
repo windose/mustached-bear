@@ -1,0 +1,62 @@
+@import "../../style/_colors.less";
+@import "../../style/_dimens.less";
+
+.overlay .intro {
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    table {
+        margin: 0 0 1/6*@header-height;
+        width: 100%;
+        background-color: @color-bgr;
+
+        tr {
+            height: @header-height + 2*@item-padding;
+
+            td {
+                &:last-child {
+                    padding-right: @body-padding;
+                    text-align: right;
+                }
+
+                &:first-child {
+                    padding-left: @body-padding;
+                    text-align: left;
+
+                    font-size: @font-small-size;
+                    line-height: @font-small-lineheight;
+                }
+            }
+
+            &.heading {
+                height: 1/2*@header-height;
+                font-size: @font-small-size;
+                line-height: @font-small-lineheight;
+                background-color: @color-bgr + #111;
+            }
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=password],
+        .select {
+            display: block;
+            width: 100%;
+            height: @header-height;
+            box-sizing: border-box;
+            border-radius: 0;
+            color: @color-font-lighter;
+            font-size: 1rem;
+        }
+
+        input {
+            padding-top: @item-padding;
+        }
+    }
+
+    .fullButton {
+        width: 100%;
+        padding: @body-padding;
+        box-sizing: border-box;
+    }
+}
