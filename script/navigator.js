@@ -43,7 +43,8 @@ document.addEventListener('deviceready', function() {
                 MS.navigator.history.length === 1 ||
                (MS.navigator.history.length > 1 &&
                (MS.navigator.history[MS.navigator.history.length-2] === 'login' ||
-                MS.navigator.history[MS.navigator.history.length-2] === 'intro'))) {
+                MS.navigator.history[MS.navigator.history.length-2] === 'intro' ||
+                MS.navigator.history[MS.navigator.history.length-2] === 'introcourses'))) {
                 window.navigator.app.exitApp();
                 return;
             }
@@ -289,7 +290,8 @@ document.addEventListener('deviceready', function() {
                     }).appendTo('head');
                     return true;
                 },
-                function getHtmlFile() {
+                function getHtmlFile(err) {
+                    if (err) { throw err; }
                     var self = this;
                     $.ajax({
                             url: './page/'+pagename+'/'+pagename+'.html',
@@ -301,14 +303,25 @@ document.addEventListener('deviceready', function() {
                             }
                     });
                 },
-                function getJSFile() {
+                function getJSFile(err) {
+                    if (err) { throw err; }
+                    var self = this;
                     $.ajax({
                         url: './page/'+pagename+'/'+pagename+'.js',
                         dataType: "script",
-                        success: this
+                        success: function() {
+                            self();
+                        }, error: function(err) {
+                            self(err);
+                        }
                     });
                 },
-                function buildPage() {
+                function buildPage(err) {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
                     // Find new views and templates
                     var dom = $("<div></div>").html(html),
                         templates = dom.find('.template');

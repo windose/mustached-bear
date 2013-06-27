@@ -84,7 +84,8 @@ document.addEventListener('deviceready', function() {
             'type',
             'user',
             'user_vorlesung',
-            'vorlesung'
+            'vorlesung',
+            'sync'
         ];
 
         Step(
@@ -105,7 +106,7 @@ document.addEventListener('deviceready', function() {
                     MS.db.createTable(data[i].name, data[i].table, drop, group());
                 }
             },
-            function done() {
+            function done(err) {
                 MS.db.isCreated = true;
                 if (typeof callback === 'function') {
                     callback();
@@ -239,7 +240,7 @@ document.addEventListener('deviceready', function() {
                 // and double/single quotes
             }
         });
-    },
+    };
 
     /*
      * Initialize database

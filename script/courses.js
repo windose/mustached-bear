@@ -101,7 +101,7 @@ window.MS = window.MS || {};
                     'AND studiengang_id = '+studyId,
                 callback
             );
-        },
+        }
 
     };
 

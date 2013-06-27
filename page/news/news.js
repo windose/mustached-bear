@@ -71,7 +71,15 @@ window.MS.page = window.MS.page || {};
                 return true;
             });
 
-            done();
+            MS.api.getNews(MS.user.current.faculties[0], function(err, data) {
+                if (err) {
+                    MS.tools.toast.short(err);
+                } else {
+                    MS.tools.toast.short('got news');
+                }
+
+                done();
+            });
         },
 
         /**
@@ -90,7 +98,7 @@ window.MS.page = window.MS.page || {};
                  */
                 function drawNews() {
                     self = this;
-                    MS.db.get('SELECT * from nachrichten', function(err, result) {
+                    MS.db.get('SELECT * from nachrichten ORDER BY date DESC', function(err, result) {
                         if (err) {
                             return self(err.message);
                         }

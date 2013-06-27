@@ -62,15 +62,21 @@ document.addEventListener('deviceready', function() {
                 return true;
             }
         },
-        function insertDummyData() {
+        function insertBasicData() {
             if (isNotFresh === 'null' ||
                 isNotFresh === null) {
-                MS.dbDummy(this);
+                MS.api.getBasicData(this);
             } else {
                 return true;
             }
         },
-        function manageLogin() {
+        function manageLogin(err) {
+            if (err) {
+                console.log(err);
+                MS.navigator.goTo('connectionrequired');
+                return;
+            }
+
             localStorage.setItem('isFresh', true);
 
             MS.timeline.init();
