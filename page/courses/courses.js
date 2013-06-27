@@ -197,6 +197,21 @@ window.MS.page = window.MS.page || {};
                 },
 
                 /*
+                 * UI Handler, resets the current users course list via <enter>.
+                 */
+                function resetButtonHandler(err) {
+                    if (err) { throw err; }
+
+                    scope.footer.find('.button.bn').on('touchend', function() {
+                        MS.page.courses.enter(function() {
+                            MS.tools.toast.short('Änderungen verworfen');
+                        }, scope);
+                    });
+
+                    return true;
+                },
+
+                /*
                  * Go to the next phase.
                  */
                 function finishLoad(err) {

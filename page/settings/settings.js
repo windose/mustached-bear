@@ -195,46 +195,6 @@ window.MS.page = window.MS.page || {};
                 },
 
                 /*
-                 * UI Handler, toggle theme.
-                 */
-                function toggleThemeHandler(err) {
-                    if (err) { throw err; }
-
-                    /*
-                     * Switch Theme button. Replaces css with a new theme file.
-                     */
-                    scope.content.find('#changeTheme').on('change', function() {
-                        var checked = $(this).is(':checked');
-
-                        MS.page.settings.setTheme(checked);
-                        MS.user.setSetting('isLightTheme', checked);
-                    });
-                    return true;
-                },
-
-                /*
-                 * UI Handler, save user settings on toggle buttons change.
-                 */
-                function toggleButtonHandler(err) {
-                    if (err) { throw err; }
-
-                    scope.content.on('change', '.onoffswitch-checkbox', function() {
-                        var self = $(this),
-                            checked = self.is(':checked')? 1 : 0,
-                            fieldMap = {
-                                'changePush': 'isPush',
-                                'changeSync': 'isSync',
-                                'changeBackup': 'isBackup',
-                                'changeTheme': 'isLightTheme'
-                            },
-                            field = fieldMap[self.attr('id')];
-
-                        MS.user.setSetting(field, checked);
-                    });
-                    return true;
-                },
-
-                /*
                  * UI Handler, updates the current users password and studygroup.
                  */
                 function saveButtonHandler(err) {
@@ -243,6 +203,40 @@ window.MS.page = window.MS.page || {};
                     scope.footer.find('.button.by').on('touchend', function() {
                         MS.page.settings.savePassword(scope);
                         MS.page.settings.saveStudygroup(scope);
+
+                        var toggleButtons = scope.content.find('.onoffswitch-checkbox'),
+                            fieldMap = {
+                                'changePush': 'isPush',
+                                'changeSync': 'isSync',
+                                'changeBackup': 'isBackup',
+                                'changeTheme': 'isLightTheme'
+                            };
+
+                        toggleButtons.each(function(key, obj) {
+                            var self = $(obj),
+                                checked = self.is(':checked')? 1 : 0,
+                                field = fieldMap[$(this).attr('id')];
+                            MS.user.setSetting(field, checked);
+
+                            if (field === 'isLightTheme') {
+                                MS.page.settings.setTheme(checked);
+                            }
+                        });
+                    });
+
+                    return true;
+                },
+
+                /*
+                 * UI Handler, resets the current users course list via <enter>.
+                 */
+                function resetButtonHandler(err) {
+                    if (err) { throw err; }
+
+                    scope.footer.find('.button.bn').on('touchend', function() {
+                        MS.page.settings.enter(function() {
+                            MS.tools.toast.short('Änderungen verworfen');
+                        }, scope);
                     });
 
                     return true;
@@ -306,10 +300,10 @@ window.MS.page = window.MS.page || {};
             user = MS.user.current;
 
             if (user) {
-                scope.content.find('#changePush').attr('checked', !!user.isPush);
-                scope.content.find('#changeSync').attr('checked', !!user.isSync);
-                scope.content.find('#changeBackup').attr('checked', !!user.isBackup);
-                scope.content.find('#changeTheme').attr('checked', !!user.isLightTheme);
+                scope.content.find('#changePush').prop('checked', !!user.isPush);
+                scope.content.find('#changeSync').prop('checked', !!user.isSync);
+                scope.content.find('#changeBackup').prop('checked', !!user.isBackup);
+                scope.content.find('#changeTheme').prop('checked', !!user.isLightTheme);
 
                 MS.courses.getMaxSemesterCount(user.faculties[0], function(err, count) {
                     MS.page.settings.drawSemList(scope, user.faculties[0], count);
