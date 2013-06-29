@@ -69,3 +69,8 @@ Aussichten
   unabhängig vom Ziel globalisieren.
 
 - SQL Queries entJOINen
+
+
+
+
+progressive enhancement
