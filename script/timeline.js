@@ -115,7 +115,7 @@ window.MS = window.MS || {};
                  * Sort the dates, closest one first.
                  */
                 dates = dates.sort(function(a, b) {
-                    return b.absDatetime.isBefore(a.absDatetime);
+                    return a.absDatetime.valueOf() - b.absDatetime.valueOf();
                 });
 
                 callback(undefined, dates);

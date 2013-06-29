@@ -140,11 +140,17 @@ window.MS.page = window.MS.page || {};
                             return self(err);
                         }
 
-                        var i, l, timeline;
+                        var i, l, timeline, peakTimeline;
 
                         timeline = MS.dom.sidebarRight.find('.timeline');
-
+                        peakTimeline = MS.dom.sidebarRight.find('.peakTimeline');
                         timeline.empty();
+                        peakTimeline.empty();
+
+                        /*
+                         * Insert dates into the sidebar.
+                         */
+                        MS.timeline.insertDate(peakTimeline, dates[0]);
                         for (i=0, l=dates.length; i<l; i++) {
                             MS.timeline.insertDate(timeline, dates[i]);
                         }
@@ -163,6 +169,14 @@ window.MS.page = window.MS.page || {};
                         MS.tools.toast.long(err);
                     }
                     done();
+
+                    /*
+                     * Sidebar height hack.
+                     */
+                    MS.dom.sidebarRight.find('.sidebarContent').height(
+                        MS.dimens.viewport.height -
+                        MS.dom.sidebarRight.find('.peakTimeline li').outerHeight() -
+                        MS.dimens.header.height);
                 }
             );
         },
