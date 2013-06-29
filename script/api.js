@@ -210,6 +210,24 @@ window.MS = window.MS || {};
                         }
                     });
                 },
+                function vorlesungen(err) {
+                    if (err) { throw err; }
+                    if (!MS.api.isOnline()) { throw 'Keine Internetverbindung verfügbar'; }
+                    done = this;
+
+                    $.jsonp({
+                        url: config.host+'/api/vorlesungen',
+                        callback: 'app',
+                        success: function(data) {
+                            basicData.vorlesungen = data;
+                            done();
+                        },
+                        error: function(err, msg) {
+                            console.log(JSON.stringify(msg));
+                            done('Vorlesungen konnten nicht geladen werden');
+                        }
+                    });
+                },
                 function insertIntoDb(err) {
                     if (err) { throw err; }
 
@@ -374,6 +392,38 @@ window.MS = window.MS || {};
                                 MS.db.escape(item.name)+'","'+
                                 item.semester+'","'+
                                 item.studiengang_id+'");');
+                        }
+
+                        MS.db.sql(sql, done);
+                    });
+                },
+                function vorlesungen(err) {
+                    if (err) { throw err; }
+                    done = this;
+                    sql = 'DELETE FROM vorlesung;';
+
+                    MS.db.sql(sql, function(err) {
+                        if (err) {
+                            done(err);
+                            return;
+                        }
+
+                        sql = [];
+                        for (i=data.vorlesungen.length; i--;) {
+                            item = data.vorlesungen[i];
+
+                            sql.push('INSERT INTO vorlesung ' +
+                                '(id, type, raum, dozent, end, start, weekday, fach_id, studiengruppe_id) ' +
+                                'VALUES ("' +
+                                item.id+'","' +
+                                item.type+'","' +
+                                item.raum+'","' +
+                                item.dozent+'","' +
+                                item.end+'","' +
+                                item.start+'","' +
+                                item.weekday+'","' +
+                                item.fach_id+'","' +
+                                item.studiengruppe_id + '");');
                         }
 
                         MS.db.sql(sql, done);

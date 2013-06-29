@@ -54,21 +54,46 @@ window.MS = window.MS || {};
         /**
          * Retrieves every course of a faculty.
          *
-         * @param facultyId
-         * @param callback
+         * @param {number|String} facultyId
+         * @param {number|String} semester
+         * @param {number|String} [studygroupId]
+         * @param {Function} callback
          */
-        getCoursesBySem: function getCoursesBySem(facultyId, semester, callback) {
+        getCoursesBySem: function getCoursesBySem(facultyId, semester, studygroupId, callback) {
             var sql;
 
             sql =
-                'SELECT v.*, f.name, f.info, sgr.semester, fs.fakultaet_id ' +
+                'SELECT v.*, f.name, f.info, sgr.semester, fs.fakultaet_id, sgr.name as studiengruppe_name ' +
                     'FROM vorlesung AS v ' +
                     'JOIN fach AS f ON v.fach_id = f.id ' +
                     'JOIN studiengruppe AS sgr ON sgr.id = v.studiengruppe_id ' +
                     'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
                     'JOIN fakultaet_studiengang AS fs ON fs.studiengang_id = sga.id ' +
                     'WHERE fs.fakultaet_id = ' + facultyId + ' ' +
-                    'AND sgr.semester = ' + semester;
+                    (!!studygroupId? 'AND sgr.id = ' + studygroupId + ' ' : '') +
+                    'AND sgr.semester = ' + semester + ' ' +
+                    'GROUP BY f.name ' +
+                    'ORDER BY f.name ASC';
+
+            MS.db.get(sql, callback);
+        },
+
+        /**
+         *
+         * @param {number|String} fachId
+         * @param {number|String} semester
+         * @param {number|String} [studygroupId]
+         * @param {Function} callback
+         */
+        getCoursesByFach: function getCoursesByFach(fachId, semester, studygroupId, callback) {
+            var sql;
+
+            sql = 'SELECT *, sgr.name as studiengruppe_name FROM vorlesung AS v ' +
+                'JOIN studiengruppe AS sgr ON sgr.id = v.studiengruppe_id ' +
+                'WHERE v.fach_id = ' + fachId + ' ' +
+                'AND sgr.semester = ' + semester + ' ' +
+                (!!studygroupId? 'AND sgr.id = ' + studygroupId + ' ' : '') +
+                'ORDER BY v.weekday ASC, v.start ASC';
 
             MS.db.get(sql, callback);
         },

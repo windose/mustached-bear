@@ -98,7 +98,7 @@ window.MS.page = window.MS.page || {};
                  */
                 function drawNews() {
                     self = this;
-                    MS.db.get('SELECT * from nachrichten ORDER BY date DESC', function(err, result) {
+                    MS.db.get('SELECT * from nachrichten ORDER BY date DESC LIMIT 0,10', function(err, result) {
                         if (err) {
                             return self(err.message);
                         }

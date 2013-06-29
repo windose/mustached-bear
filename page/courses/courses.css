@@ -5,38 +5,54 @@
 .content .courses ul {
   padding: 0.6rem 1rem 3.6rem;
 }
-.content .courses ul li label {
-  min-height: 2.8rem;
-  display: block;
+.content .courses ul li {
+  min-height: 3rem;
+  width: 100%;
+  text-align: left;
 }
-.content .courses ul li label.touch {
-  background: #23394d;
-}
-.content .courses ul li label td {
-  vertical-align: top;
-}
-.content .courses ul li label img {
-  vertical-align: baseline;
-}
-.content .courses ul li label .label {
-  padding: 0.65rem 0.8rem 0;
-  font-size: 0.8rem;
-  line-height: 1rem;
-}
-.content .courses ul li label .label:first-line {
-  font-family: 'Raleway-SemiBold';
-  font-size: 1rem;
-  line-height: 1.4rem;
-}
-.content .courses ul li .on,
-.content .courses ul li .off {
+.content .courses ul li .open {
   display: none;
 }
-.content .courses ul li.on .on {
+.content .courses ul li .close {
   display: inline-block;
 }
-.content .courses ul li.off .off {
+.content .courses ul li.open .open {
   display: inline-block;
+}
+.content .courses ul li.open .close {
+  display: none;
+}
+.content .courses ul li.fach {
+  display: table;
+}
+.content .courses ul li.touch {
+  background: #23394d;
+}
+.content .courses ul li p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+}
+.content .courses ul li p.small {
+  width: 3rem;
+}
+.content .courses ul li.lectures table tr .on,
+.content .courses ul li.lectures table tr .off {
+  display: none;
+}
+.content .courses ul li.lectures table tr.on .on {
+  display: inline-block;
+}
+.content .courses ul li.lectures table tr.off .off {
+  display: inline-block;
+}
+.content .courses ul li.lectures table tr.touch {
+  background: #23394d;
+}
+.content .courses ul li.lectures .studygroup {
+  padding: 0 0.4rem;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .header .courses .headerTitle {
   padding: 0.4rem 0;
@@ -45,4 +61,8 @@
 }
 .header .courses .headerTitle select ~ .select {
   background-color: transparent;
+}
+.footer .courses img {
+  padding: 0;
+  margin: 0;
 }

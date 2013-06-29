@@ -23,10 +23,14 @@ window.MS.page = window.MS.page || {};
             scope.footer.on('touchstart', '.button', function() {
                 $(this).addClass('touch');
             });
-            scope.content.on('touchstart', 'label, .footer span', function() {
-                $(this).addClass('touch');
+            scope.content.on('touchstart', 'li.fach, tr', function() {
+                var self = this;
+                setTimeout(function() {
+                    if (MS.isMove) { return; }
+                    $(self).addClass('touch');
+                }, 50);
             });
-            scope.content.on('touchmove', 'label', function() {
+            scope.content.on('touchmove', 'li.fach, tr', function() {
                 $(this).removeClass('touch');
             });
 
@@ -84,7 +88,8 @@ window.MS.page = window.MS.page || {};
                             text = self.find(':selected').text(),
                             valueField = self.parent().find('.selectContent'),
                             semList = scope.content.find('.semList'),
-                            sem = semList.find('.active').attr('data-target');
+                            sem = parseInt(semList.find('.active').attr('data-target')),
+                            sgrId;
 
                         valueField.html(text);
 
@@ -99,9 +104,17 @@ window.MS.page = window.MS.page || {};
                             MS.page.introcourses.drawSemList(scope, fak, count);
 
                             /*
+                             * Show only the current users studygroup entries
+                             * in his semester.
+                             */
+                            if (sem === MS.user.current.semester) {
+                                sgrId = MS.user.current.studiengruppe_id;
+                            }
+
+                            /*
                              * Get and insert the corresponding courses.
                              */
-                            MS.courses.getCoursesBySem(fak, sem,
+                            MS.courses.getCoursesBySem(fak, sem, sgrId,
                                 function(err, courses) {
                                     if (err) {
                                         MS.tools.toast.long(err.message);
@@ -124,7 +137,8 @@ window.MS.page = window.MS.page || {};
                     scope.content.find('.semList').on('touchend', 'li', function() {
                         var self = $(this),
                             fak = scope.content.find('select').val(),
-                            sem = self.attr('data-target');
+                            sem = parseInt(self.attr('data-target')),
+                            sgrId;
 
                         /*
                          * Mark this element as active.
@@ -133,9 +147,17 @@ window.MS.page = window.MS.page || {};
                         self.addClass('active');
 
                         /*
+                         * Show only the current users studygroup entries
+                         * in his semester.
+                         */
+                        if (sem === MS.user.current.semester) {
+                            sgrId = MS.user.current.studiengruppe_id;
+                        }
+
+                        /*
                          * Update course list.
                          */
-                        MS.courses.getCoursesBySem(fak, sem,
+                        MS.courses.getCoursesBySem(fak, sem, sgrId,
                             function(err, courses) {
                                 if (err) {
                                     MS.tools.toast.short(err.message);
@@ -149,26 +171,72 @@ window.MS.page = window.MS.page || {};
                 },
 
                 /*
-                 * UI Handler, toggle state of course on touch.
+                 * UI Handler, open lecture list.
+                 */
+                function lectureHandler(err) {
+                    if (err) { MS.tools.toast.short(err); }
+
+                    scope.content.on('touchend', '.courseList li.fach', function() {
+                        if (MS.isMove) { return; }
+                        var self, semList, sem, fachId, sgrId;
+
+                        self = $(this);
+
+                        /*
+                         * Lecture parent element, draw lectures and open list.
+                         */
+                        if (self.hasClass('open')) {
+                            self.next('.lectures').remove();
+                            self.removeClass('open');
+                            return;
+                        }
+
+                        semList = scope.content.find('.semList');
+                        sem = parseInt(semList.find('.active').attr('data-target'));
+                        fachId = self.attr('data-id');
+
+                        /*
+                         * Show only the current users studygroup entries
+                         * in his semester.
+                         */
+                        if (sem === MS.user.current.semester) {
+                            sgrId = MS.user.current.studiengruppe_id;
+                        }
+
+                        MS.courses.getCoursesByFach(fachId, sem, sgrId, function(err, data) {
+                            if (err) {
+                                MS.tools.toast.short(err.message);
+                                return;
+                            }
+
+                            MS.page.introcourses.drawLectures(self, data);
+                            self.addClass('open');
+                        });
+                    });
+
+                    return true;
+                },
+
+                /*
+                 * UI Handler, select checkbox.
                  */
                 function checkboxHandler(err) {
                     if (err) { MS.tools.toast.short(err); }
 
-                    scope.content.on('touchend', '.courseList li', function() {
+                    scope.content.on('touchend', '.courseList tr', function() {
                         if (MS.isMove) { return; }
+                        var self, id;
 
-                        var self = $(this),
-                            id = self.attr('data-id'),
-                            index;
+                        self = $(this);
+                        id = self.attr('data-id');
 
                         if (self.hasClass('on')) {
                             self.removeClass('on').addClass('off');
-                            index = MS.page.introcourses.tempCourseList.indexOf(id);
-                            if (index !== -1) {
-                                MS.page.introcourses.tempCourseList.splice(index, 1);
-                            }
+
+                            MS.page.introcourses.tempCourseList.splice(MS.page.introcourses.tempCourseList.indexOf(id), 1);
                         } else {
                             self.removeClass('off').addClass('on');
+
                             MS.page.introcourses.tempCourseList.push(id);
                         }
                     });
@@ -222,21 +290,7 @@ window.MS.page = window.MS.page || {};
              */
             semList = scope.content.find('.semList');
             semList.find('.active').removeClass('active');
-            semList.find('li[data-target='+MS.user.current.semester+']').addClass('active');
-
-            fak = scope.content.find('select').val();
-            if (!fak) {
-                fak = MS.user.current.faculties[0];
-            }
-
-            MS.courses.getCoursesBySem(fak, MS.user.current.semester,
-                function(err, courses) {
-                    if (err) {
-                        MS.tools.toast.long(err.message);
-                        return;
-                    }
-                    MS.page.introcourses.drawCourseList(scope, courses);
-                });
+            semList.find('li[data-target='+MS.user.current.semester+']').trigger('touchend');
 
             /*
              * Use temporary course list to store changes before saving them
@@ -271,9 +325,9 @@ window.MS.page = window.MS.page || {};
             semList
                 .removeClass('w'+semList.attr('data-w'))
                 .removeClass('fak'+semList.attr('data-fak'))
-                .addClass('w'+count)
+                .addClass('w'+(count+1))
                 .addClass('fak'+facultyId)
-                .attr('data-w', count)
+                .attr('data-w', (count+1))
                 .attr('data-fak', facultyId);
 
             template = '<li data-target="{{i}}">{{i}}</li>';
@@ -282,6 +336,8 @@ window.MS.page = window.MS.page || {};
             for (;count--;) {
                 semList.prepend(Mustache.render(template, {i:count+1}));
             }
+
+            semList.prepend(Mustache.render(template, {i:0, key: 'e'}));
         },
 
         /**
@@ -293,21 +349,48 @@ window.MS.page = window.MS.page || {};
         drawCourseList: function drawCourseList(scope, courses) {
             var courseList, template, i;
 
-            courseList = scope.content.find('.courseList');
+            courseList = scope.content.find('ul.courseList');
 
-            template = '<li class="{{#on}}on{{/on}}{{^on}}off{{/on}}" data-id="{{c.id}}"><label class="cf"><table><tr>'+
-                '<td><img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png"><img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png"></td>' +
-                '<td class="label">{{c.name}}<br>Jeden {{weekday}} {{c.start}}-{{c.end}}, {{c.raum}} bei {{c.dozent}}</td>' +
-                '</tr></table></label></li>';
+            template = '<li class="fach" data-id="{{c.fach_id}}">' +
+                '<p class="small">' +
+                '<img class="fl open" src="asset/icon/iconmoon-eeecef/bookmark.png">' +
+                '<img class="fl close" src="asset/icon/iconmoon-eeecef/bookmarks.png">' +
+                '</p>' +
+                '<p>{{c.name}}</p>' +
+                '</li>';
 
             courseList.empty();
             for (i=courses.length; i--;) {
-                courseList.prepend(Mustache.render(template, {
-                    weekday: MS.timeline.weekdays[courses[i].weekday],
-                    c: courses[i],
-                    on: MS.page.introcourses.tempCourseList.indexOf(courses[i].id+'') !== -1
-                }));
+                courseList.prepend(Mustache.render(template, {c: courses[i]}));
             }
+        },
+
+        /**
+         * Inserts the lecture list dynamically.
+         *
+         * @param {Object} $listItem
+         * @param {number|String} lectures
+         */
+        drawLectures: function drawLectures($listItem, lectures) {
+            var template, i, time;
+
+            time = moment();
+            for (i=lectures.length; i--;) {
+                lectures[i].weekdayName = time.day((lectures[i].weekday+1)%7).format('dddd');
+                lectures[i].on = MS.page.introcourses.tempCourseList.indexOf(lectures[i].id+'') !== -1;
+            }
+
+            template = '<li class="lectures"><table>{{#lectures}}' +
+                '<tr class="{{#on}}on{{/on}}{{^on}}off{{/on}}" data-id="{{id}}">' +
+                    '<td>' +
+                        '<img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png">' +
+                        '<img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png">' +
+                    '</td>' +
+                    '<td class="label"><span class="studygroup">{{studiengruppe_name}}</span> Jeden {{weekdayName}} {{start}}-{{end}}, {{raum}} bei {{dozent}}</td>' +
+                '</tr>' +
+                '{{/lectures}}</table></li>';
+
+            $listItem.after(Mustache.render(template, {lectures:lectures}));
         }
     };
 

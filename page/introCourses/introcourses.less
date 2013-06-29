@@ -5,7 +5,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
-    table {
+    table.optionTable {
         width: 100%;
         background-color: @color-bgr;
 
@@ -44,7 +44,7 @@
             height: @header-height;
             box-sizing: border-box;
             border-radius: 0;
-            color: @color-font-lighter;
+            color: @color-font-light;
             font-size: 1rem;
         }
 
@@ -53,41 +53,54 @@
         }
     }
 
-    ul {
+    ul.courseList {
         padding: 0.6rem @body-padding @header-height + 0.6rem;
 
         li {
+            min-height: @header-height;
+            width: 100%;
+            text-align: left;
 
-            label {
-                min-height: 2*@font-regular-lineheight;
-                display: block;
+            .open { display: none; }
+            .close { display: inline-block; }
+            &.open {
+                .open { display: inline-block; }
+                .close { display: none; }
+            }
 
-                &.touch {
-                    background: @color-bgr + @color-main/5;
-                }
-                td {
-                    vertical-align: top;
-                    text-align: left !important;
-                }
-                img {
-                    vertical-align: baseline;
-                }
-                .label {
-                    padding: @item-padding - 0.15rem @item-padding 0;
-                    font-size: @font-small-size;
-                    line-height: @font-small-lineheight;
+            &.fach {
+                display: table;
+            }
 
-                    &:first-line {
-                        font-family: 'Raleway-SemiBold';
-                        font-size: @font-regular-size;
-                        line-height: @font-regular-lineheight;
-                    }
+            &.touch {
+                background: @color-bgr + @color-main/5;
+            }
+
+            p {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: left;
+                &.small {
+                    width: @header-height;
                 }
             }
-            .on, .off { display: none; }
 
-            &.on .on { display: inline-block; }
-            &.off .off { display: inline-block; }
+            &.lectures {
+                table {
+                    tr {
+                        td.label { text-align: left; }
+                        .on, .off { display: none; }
+                        &.on .on { display: inline-block; }
+                        &.off .off { display: inline-block; }
+                        &.touch { background: @color-bgr + @color-main/5; }
+                    }
+                }
+                .studygroup {
+                    padding: 0 .5*@item-padding;
+                    margin: 0;
+                    background-color: rgba(255,255,255,.05);
+                }
+            }
         }
     }
 }

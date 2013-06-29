@@ -41,6 +41,9 @@ document.addEventListener('deviceready', function() {
     });
     MS.dom.window.on('touchend', function() {
         $('.touch').removeClass('touch');
+        setTimeout(function() {
+            $('.touch').removeClass('touch');
+        }, 100);
         MS.isMove = false;
     });
 
