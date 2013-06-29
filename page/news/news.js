@@ -21,7 +21,11 @@ window.MS.page = window.MS.page || {};
                 $(this).addClass('touch');
             });
             scope.content.on('touchstart', 'li .article, img', function() {
-                $(this).addClass('touch');
+                var self = this;
+                setTimeout(function() {
+                    if (MS.isMove) { return; }
+                    $(self).addClass('touch');
+                }, 50);
             });
             scope.content.on('touchmove', 'li .article, img', function() {
                 $(this).removeClass('touch');
