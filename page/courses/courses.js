@@ -367,8 +367,8 @@ window.MS.page = window.MS.page || {};
 
             template = '<li class="fach" data-id="{{c.fach_id}}">' +
                 '<p class="small">' +
-                    '<img class="fl open" src="asset/icon/iconmoon-eeecef/bookmark.png">' +
-                    '<img class="fl close" src="asset/icon/iconmoon-eeecef/bookmarks.png">' +
+                    '<img class="fl open" src="asset/icon/iconmoon-bbb9bc/arrow-up.png">' +
+                    '<img class="fl close" src="asset/icon/iconmoon-bbb9bc/arrow-down.png">' +
                 '</p>' +
                 '<p>{{c.name}}</p>' +
                 '</li>';

@@ -70,7 +70,7 @@ document.addEventListener('deviceready', function() {
                     if (err) { throw err; }
 
                     if (data.length === 0) {
-                        throw 'Benutzer nicht gefunden';
+                        throw 'Falsche E-Mail Adresse oder Passwort';
                     }
 
                     user = data[0];
