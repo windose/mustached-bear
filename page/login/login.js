@@ -53,6 +53,9 @@ window.MS.page = window.MS.page || {};
                     // Save userId for auto login
                     localStorage.setItem('user_id', MS.user.current.id);
 
+                    // Set user theme
+                    MS.theme.init();
+
                     // Go to the news page, in case of a successful authorization
                     MS.navigator.goTo('news');
                 });
@@ -96,8 +99,13 @@ window.MS.page = window.MS.page || {};
             // Blackout the content body to prevent tearing effects
             MS.dom.body.addClass('bo');
 
-            // log out existing user
-            MS.user.logOut();
+            if (MS.user.current) {
+                // set theme to default
+                MS.theme.set(false);
+
+                // log out existing user
+                MS.user.logOut();
+            }
 
             /*
              * get last email address for convenience.

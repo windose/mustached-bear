@@ -263,7 +263,7 @@ window.MS.page = window.MS.page || {};
                             MS.user.setSetting(field, checked);
 
                             if (field === 'isLightTheme') {
-                                MS.page.settings.setTheme(checked);
+                                MS.theme.set(checked);
                             }
                             if (field === 'isSync') {
                                 calId = scope.content.find('.changeCal').val();
@@ -351,19 +351,23 @@ window.MS.page = window.MS.page || {};
             
             user = MS.user.current;
 
+            scope.content.find('.changeOldPw').val('');
+            scope.content.find('.changeNewPw').val('');
+            scope.content.find('.changeNewPwSec').val('');
+
             if (user) {
-                scope.content.find('#changeSync').prop('checked', !!user.isSync);
+                scope.content.find('#changePush').prop('checked', !!user.isSync);
                 scope.content.find('#changeBackup').prop('checked', !!user.isBackup);
                 scope.content.find('#changeTheme').prop('checked', !!user.isLightTheme);
 
                 if (!!user.isSync) {
-                    scope.content.find('#changePush').prop('checked', true);
+                    scope.content.find('#changeSync').prop('checked', true);
                     MS.page.settings.drawCalList(scope, function(err, list) {
                         MS.shim.select.showSelectItem(list, user.cal_id || 0);
                     });
 
                 } else {
-                    scope.content.find('#changePush').prop('checked', false);
+                    scope.content.find('#changeSync').prop('checked', false);
                     MS.page.settings.disableCalList(scope);
                 }
 
@@ -535,23 +539,6 @@ window.MS.page = window.MS.page || {};
 
             list.empty()
                 .parent().addClass('disabled');
-        },
-
-        /**
-         * Switch the included css style file to the desired theme.
-         *
-         * @param {boolean} isLightTheme
-         */
-        setTheme: function setTheme(isLightTheme) {
-            var oldLink, newLink;
-
-            oldLink = document.getElementById("theme");
-            newLink = document.createElement("link");
-            newLink.setAttribute("rel", "stylesheet");
-            newLink.setAttribute("type", "text/css");
-            newLink.setAttribute("id", "theme");
-            newLink.setAttribute("href", './style/style'+(isLightTheme?'_light':'')+'.css');
-            document.getElementsByTagName("head").item(0).replaceChild(newLink, oldLink);
         },
 
         /**

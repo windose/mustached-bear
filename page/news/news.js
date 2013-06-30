@@ -201,8 +201,8 @@ window.MS.page = window.MS.page || {};
 
             template = '<li><table><tr>' +
                 '<td class="icons">' +
-                    '<img class="openNews t4" src="asset/icon/news.png">' +
-                    '<img class="share" data-id="{{id}}" src="asset/icon/iconmoon-434144/share.png">' +
+                    '<img class="openNews t4" src="asset/icon/theme'+(MS.theme.isLight?'_light':'')+'/news.png">' +
+                    '<img class="share" data-id="{{id}}" src="asset/icon/theme'+(MS.theme.isLight?'_light':'')+'/iconmoon-434144/share.png">' +
                 '</td>' +
                 '<td class="article openNews">{{title}}. {{content}}</td>' +
             '</tr></table></li>';

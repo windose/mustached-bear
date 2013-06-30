@@ -147,7 +147,7 @@ document.addEventListener('deviceready', function() {
                     if (email && pw) {
                         MS.user.authenticate(email, pw, function(err, data) {
                             if (err || data.length === 0) {
-                                done('Benutzer nicht gefunden');
+                                done('E-Mail Adresse oder Passwort ungültig');
                             } else {
                                 MS.user.current = {
                                     id: data[0].id

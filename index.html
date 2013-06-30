@@ -15,6 +15,7 @@
         <meta name="format-detection" content="email=no" />
         <meta name="format-detection" content="address=no" />
 
+        <!-- external libraries -->
         <script src="./lib/cordova.js"></script>
         <script src="./lib/jquery-2.0.0.min.js"></script>
         <script src="./lib/jquery.jsonp-2.4.0.min.js"></script>
@@ -25,8 +26,7 @@
         <script src="./lib/moment.min.js"></script>
         <script src="./lib/toast.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="./style/style.css" id="theme">
-
+        <!-- components -->
         <script src="./script/calendar.js"></script>
         <script src="./script/select.shim.js"></script>
         <script src="./script/tools.js"></script>
@@ -39,7 +39,13 @@
         <script src="./script/user.js"></script>
         <script src="./script/dbDummy.js"></script>
         <script src="./script/api.js"></script>
-        <script src="./script/main.js"></script>
+        <script src="./script/theme.js"></script>
+
+        <!-- Entry point -->
+        <script src="./script/_main.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="./style/theme_light.css" id="theme_light">
+        <link rel="stylesheet" type="text/css" href="./style/theme.css" id="theme">
     </head>
 
     <body class="h100">
@@ -49,10 +55,10 @@
 
             <div id="sidebarLeft" class="sidebar small l0">
                 <ul class="navList">
-                    <li data-target="news"><img src="./asset/icon/iconmoon-232124/paragraph-right.png"></li>
-                    <li data-target="courses"><img src="./asset/icon/iconmoon-232124/list.png"></li>
-                    <li data-target="settings"><img src="./asset/icon/iconmoon-232124/cog.png"></li>
-                    <li data-target="login"><img src="./asset/icon/iconmoon-232124/exit.png"></li>
+                    <li data-target="news"><img src="./asset/icon/theme/iconmoon-232124/paragraph-right.png"></li>
+                    <li data-target="courses"><img src="./asset/icon/theme/iconmoon-232124/list.png"></li>
+                    <li data-target="settings"><img src="./asset/icon/theme/iconmoon-232124/cog.png"></li>
+                    <li data-target="login"><img src="./asset/icon/theme/iconmoon-232124/exit.png"></li>
                 </ul>
             </div>
 

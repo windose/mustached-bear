@@ -1,0 +1,31 @@
+/* OOCSS */
+.fl { float: left; }
+.fr { float: right; }
+.l0 { left: 0; }
+.r0 { right: 0; }
+.tl { text-align: left; }
+.tr { text-align: right; }
+.tc { text-align: center; }
+.ty { color: @color-yes; }
+.tn { color: @color-no; }
+
+.by { background-color: @color-bgr-yes; }
+.bn { background-color: @color-bgr-no; }
+.be { background-color: @color-bgr-e; }
+.bm { background-color: @color-bgr-main; }
+
+.dn { display: none; }
+.db { display: block; }
+.h100 { height: 100%; }
+.bo { background: black; & > * { display: none; } }
+
+.t4 { opacity: 0.8; }
+
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}

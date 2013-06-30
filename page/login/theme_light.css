@@ -1,0 +1,63 @@
+.overlay .login {
+  background: url('../../asset/img/login.jpg');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center top;
+}
+.overlay .login .outer {
+  position: absolute;
+  bottom: 1rem;
+}
+.overlay .login .wrapper {
+  position: relative;
+  bottom: 0;
+  margin: 0 1rem;
+  padding: 1rem;
+  border-spacing: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+.overlay .login .wrapper table {
+  width: 100%;
+}
+.overlay .login .wrapper .whitey {
+  background-color: #eeecef;
+}
+.overlay .login .wrapper .desc {
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  color: #232124;
+  font-family: "Raleway-SemiBold";
+}
+.overlay .login .wrapper .desc p {
+  text-decoration: underline;
+}
+.overlay .login .wrapper .space {
+  line-height: .5rem;
+  background-color: transparent;
+}
+.overlay .login .wrapper .gap {
+  width: 4%;
+}
+.overlay .login .wrapper .one {
+  width: 24%;
+}
+.overlay .login .wrapper .split label {
+  padding-right: 0;
+}
+.overlay .login .wrapper input {
+  -webkit-text-shadow: none;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  height: 3rem;
+  border: 0;
+  background-color: #eeecef;
+  padding: 0 5%;
+  width: 80%;
+}
+.overlay .login .wrapper .iconBackground {
+  width: 3rem;
+  text-align: center;
+  background-color: #232124;
+}

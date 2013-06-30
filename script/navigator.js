@@ -286,7 +286,7 @@ document.addEventListener('deviceready', function() {
                     $('<link/>', {
                         rel: 'stylesheet',
                         type: 'text/css',
-                        href: './page/'+pagename+'/'+pagename+'.css'
+                        href: './page/'+pagename+'/theme'+(MS.theme.isLight?'_light':'')+'.css'
                     }).appendTo('head');
                     return true;
                 },
@@ -296,6 +296,10 @@ document.addEventListener('deviceready', function() {
                     $.ajax({
                             url: './page/'+pagename+'/'+pagename+'.html',
                             success: function(data) {
+                                if (MS.theme.isLight) {
+                                    data = data.replace(/theme(?!_)/g, 'theme_light');
+                                }
+
                                 html = data;
                                 self();
                             }, error: function(err) {
