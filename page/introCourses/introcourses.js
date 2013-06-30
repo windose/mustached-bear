@@ -354,7 +354,7 @@ window.MS.page = window.MS.page || {};
             template = '<li class="fach" data-id="{{c.fach_id}}">' +
                 '<p class="small">' +
                 '<img class="fl open" src="asset/icon/iconmoon-bbb9bc/arrow-up.png">' +
-                '<img class="fl close" src="asset/icon/iconmoon-bbb9bc/arrow-down.png">' +
+                '<img class="fl close" src="asset/icon/iconmoon-434144/arrow-down.png">' +
                 '</p>' +
                 '<p>{{c.name}}</p>' +
                 '</li>';
@@ -384,7 +384,7 @@ window.MS.page = window.MS.page || {};
                 '<tr class="{{#on}}on{{/on}}{{^on}}off{{/on}}" data-id="{{id}}">' +
                     '<td>' +
                         '<img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png">' +
-                        '<img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png">' +
+                        '<img class="off" src="./asset/icon/iconmoon-434144/checkbox-unchecked.png">' +
                     '</td>' +
                     '<td class="label"><span class="studygroup">{{studiengruppe_name}}</span> Jeden {{weekdayName}} {{start}}-{{end}}, {{raum}} bei {{dozent}}</td>' +
                 '</tr>' +

@@ -101,6 +101,11 @@ document.addEventListener('deviceready', function() {
                         MS.dom.overlay.find('#email').blur();
                         MS.dom.overlay.find('#pw').blur();
 
+                        // Update Calendar
+                        if (MS.user.current.isSync) {
+                            MS.calendar.synchronizeWith(MS.user.current.cal_id);
+                        }
+
                         MS.navigator.goTo('news');
                     }
                 });

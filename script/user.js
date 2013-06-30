@@ -54,7 +54,7 @@ document.addEventListener('deviceready', function() {
                  *
                  */
                 function getStudy() {
-                    sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sga.id AS studiengang_id ' +
+                    sql = 'SELECT u.*, sgr.semester, sgr.id AS studiengruppe_id, sgr.name AS studiengruppe_name, sga.id AS studiengang_id ' +
                         'FROM user AS u ' +
                         'JOIN studiengruppe AS sgr ON u.studiengruppe_id = sgr.id ' +
                         'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
@@ -255,6 +255,31 @@ document.addEventListener('deviceready', function() {
                     MS.user.updateData(callback);
                 });
             });
+        },
+
+        /**
+         *
+         * @param {Function} callback
+         */
+        getEvents: function getEvents(callback) {
+            var sql;
+
+            sql = 'SELECT * FROM usercalendar ' +
+                'WHERE user_id = '+MS.user.current.id;
+
+            MS.db.get(sql, callback);
+        },
+
+        /**
+         *
+         * @param {Function} [callback]
+         */
+        dropEvents: function dropEvents(callback) {
+            var sql;
+
+            sql = 'DELETE FROM usercalendar WHERE user_id = '+MS.user.current.id;
+
+            MS.db.sql(sql, callback);
         }
     };
 

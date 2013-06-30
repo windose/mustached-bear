@@ -134,6 +134,23 @@ window.MS.page = window.MS.page || {};
                 },
 
                 /*
+                 * UI Handler, switch between faculties.
+                 */
+                function calHandler(err) {
+                    if (err) { throw err; }
+
+                    list = scope.content.find('.changeCal');
+                    list.on('change', function() {
+                        var self = $(this),
+                            text = self.find(':selected').text(),
+                            valueField = self.parent().find('.selectContent');
+
+                        valueField.html(text);
+                    });
+                    return true;
+                },
+
+                /*
                  * UI Handler, switch between studies.
                  */
                 function studyHandler(err) {
@@ -195,6 +212,31 @@ window.MS.page = window.MS.page || {};
                 },
 
                 /*
+                 * UI Handler, toggle calendar list.
+                 */
+                function calCheckboxHandler(err) {
+                    if (err) { throw err; }
+
+                    var checkbox, checked;
+
+                    checkbox = scope.content.find('#changeSync');
+
+                    checkbox.on('change', function() {
+                        checked = $(this).is(':checked');
+
+                        if (checked) {
+                            MS.page.settings.drawCalList(scope, function(err, list) {
+                                MS.shim.select.showSelectItem(list, 0);
+                            });
+                        } else {
+                            MS.page.settings.disableCalList(scope);
+                        }
+                    });
+
+                    return true;
+                },
+
+                /*
                  * UI Handler, updates the current users password and studygroup.
                  */
                 function saveButtonHandler(err) {
@@ -215,11 +257,21 @@ window.MS.page = window.MS.page || {};
                         toggleButtons.each(function(key, obj) {
                             var self = $(obj),
                                 checked = self.is(':checked')? 1 : 0,
-                                field = fieldMap[$(this).attr('id')];
+                                field = fieldMap[$(this).attr('id')],
+                                calId;
+
                             MS.user.setSetting(field, checked);
 
                             if (field === 'isLightTheme') {
                                 MS.page.settings.setTheme(checked);
+                            }
+                            if (field === 'isSync') {
+                                calId = scope.content.find('.changeCal').val();
+                                MS.user.setSetting('cal_id', calId);
+
+                                if (checked) {
+                                    MS.calendar.synchronizeWith(calId);
+                                }
                             }
                         });
                     });
@@ -300,10 +352,20 @@ window.MS.page = window.MS.page || {};
             user = MS.user.current;
 
             if (user) {
-                scope.content.find('#changePush').prop('checked', !!user.isPush);
                 scope.content.find('#changeSync').prop('checked', !!user.isSync);
                 scope.content.find('#changeBackup').prop('checked', !!user.isBackup);
                 scope.content.find('#changeTheme').prop('checked', !!user.isLightTheme);
+
+                if (!!user.isSync) {
+                    scope.content.find('#changePush').prop('checked', true);
+                    MS.page.settings.drawCalList(scope, function(err, list) {
+                        MS.shim.select.showSelectItem(list, user.cal_id || 0);
+                    });
+
+                } else {
+                    scope.content.find('#changePush').prop('checked', false);
+                    MS.page.settings.disableCalList(scope);
+                }
 
                 MS.courses.getMaxSemesterCount(user.faculties[0], function(err, count) {
                     MS.page.settings.drawSemList(scope, user.faculties[0], count);
@@ -423,6 +485,56 @@ window.MS.page = window.MS.page || {};
             for (;count--;) {
                 semList.prepend(Mustache.render(template, {i:count+1}));
             }
+        },
+
+        /**
+         *
+         *
+         * @param {Object} scope
+         * @param {Function} [callback]
+         */
+        drawCalList: function drawCalList(scope, callback) {
+            callback = callback || function() {};
+
+            var list, id, template;
+
+            list = scope.content.find('.changeCal');
+            template = '<option value={{id}}>{{name}}</option>';
+
+            list.empty();
+            list.parent().removeClass('disabled');
+
+            MS.calendar.getCalendars(function(err, data) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+
+                for (id in data) {
+                    if (data.hasOwnProperty(id)) {
+                        list.append(Mustache.render(template, {
+                            id: id,
+                            name: data[id]
+                        }));
+                    }
+                }
+
+                callback(undefined, list);
+            });
+        },
+
+        /**
+         *
+         *
+         * @param scope
+         */
+        disableCalList: function disableCalList(scope) {
+            var list;
+
+            list = scope.content.find('.changeCal');
+
+            list.empty()
+                .parent().addClass('disabled');
         },
 
         /**

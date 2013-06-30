@@ -4,19 +4,6 @@ window.MS = window.MS || {};
 
     MS.timeline = {
 
-         /**
-         * German weekdays.
-         */
-        weekdays: [
-            'Montag',
-            'Dienstag',
-            'Mittwoch',
-            'Donnerstag',
-            'Freitag',
-            'Samstag',
-            'Sonntag',
-        ],
-
         /**
          * Initializes momentjs with the german notation.
          */
@@ -70,6 +57,29 @@ window.MS = window.MS || {};
         },
 
         /**
+         *
+         * @param {String} weekday
+         * @param {String} time in the format hh:mm
+         * @param {number} [offset]
+         * @returns {Object} moment.js Object
+         */
+        relToAbsTime: function relToAbsTime(weekday, time, offset) {
+            var absDatetime;
+
+            absDatetime = moment()
+                .day(weekday+1)
+                .hour(time.split(':')[0])
+                .minute(time.split(':')[1])
+                .second(0);
+
+            if (absDatetime.valueOf() <= moment().valueOf()) {
+                absDatetime.add('days', 7);
+            }
+
+            return absDatetime;
+        },
+
+        /**
          * Retrieves the dates in the future. It limits the db request to 20.
          * This is a potential problem, if the user has too much dates on a single
          * day. ToDo
@@ -77,9 +87,8 @@ window.MS = window.MS || {};
          * @param {Function} callback
          */
         getFutureDates: function getFutureDates(callback) {
-            var sql, absDatetime, i, l, date, now;
+            var sql, i, l, date;
 
-            now = moment();
             sql = 'SELECT v.*, f.name, f.info ' +
                 'FROM vorlesung AS v ' +
                 'JOIN fach AS f ON f.id = v.fach_id ' +
@@ -98,17 +107,8 @@ window.MS = window.MS || {};
                  */
                 for (i=0, l=dates.length; i<l; i++) {
                     date = dates[i];
-                    absDatetime = moment()
-                        .day(date.weekday+1)
-                        .hour(date.start.split(':')[0])
-                        .minute(date.start.split(':')[1])
-                        .second(0);
-
-                    if (absDatetime.isBefore(now)) {
-                        absDatetime.add('days', 7);
-                    }
-
-                    date.absDatetime = absDatetime;
+                    date.absDatetime = MS.timeline.relToAbsTime(date.weekday, date.start);
+                    date.absDatetimeEnd = MS.timeline.relToAbsTime(date.weekday, date.end);
                 }
 
                 /*

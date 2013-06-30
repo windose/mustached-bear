@@ -1525,6 +1525,12 @@ input[type=password] {
   height: 100%;
   white-space: nowrap;
 }
+.selectWrapper.disabled select {
+  display: none;
+}
+.selectWrapper.disabled .select {
+  opacity: 0.2;
+}
 .selectWrapper.small select {
   font-size: 1.6500000000000001rem;
 }

@@ -8,6 +8,7 @@
     "isSync": "INTEGER",
     "isLightTheme": "INTEGER",
     "isBackup": "INTEGER",
+    "cal_id": "INTEGER",
     "last_update": "TIMESTAMP(8)",
     "validcookie": "VARCHAR(255)"
 }

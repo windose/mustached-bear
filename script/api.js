@@ -11,8 +11,6 @@ window.MS = window.MS || {};
         isOnline: function isOnline() {
             var state = window.navigator.connection.type;
 
-            MS.tools.toast.short('Networt state '+state);
-
             return !(state === Connection.UNKNOWN ||
                      state === Connection.NONE);
         },

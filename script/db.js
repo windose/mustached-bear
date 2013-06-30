@@ -83,6 +83,7 @@ document.addEventListener('deviceready', function() {
             'studiengruppe',
             'type',
             'user',
+            'usercalendar',
             'user_vorlesung',
             'vorlesung',
             'sync'
@@ -137,10 +138,11 @@ document.addEventListener('deviceready', function() {
      * Used in dummy data insertion.
      *
      * @param sql
-     * @param callback
+     * @param {function} [callback]
      */
     MS.db.sql = function sql(sql, callback) {
         sql = $.isArray(sql)? sql : [sql];
+        callback = callback || function() {};
 
         MS.db.obj.transaction(function(tx) {
             var i, l;

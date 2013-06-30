@@ -257,6 +257,11 @@ window.MS.page = window.MS.page || {};
                                 return;
                             }
 
+                            // Update Calendar
+                            if (MS.user.current.isSync) {
+                                MS.calendar.synchronizeWith(MS.user.current.cal_id);
+                            }
+
                             MS.tools.toast.long('Kursliste erfolgreich gespeichert');
                         });
                     });
@@ -368,7 +373,7 @@ window.MS.page = window.MS.page || {};
             template = '<li class="fach" data-id="{{c.fach_id}}">' +
                 '<p class="small">' +
                     '<img class="fl open" src="asset/icon/iconmoon-bbb9bc/arrow-up.png">' +
-                    '<img class="fl close" src="asset/icon/iconmoon-bbb9bc/arrow-down.png">' +
+                    '<img class="fl close" src="asset/icon/iconmoon-434144/arrow-down.png">' +
                 '</p>' +
                 '<p>{{c.name}}</p>' +
                 '</li>';
@@ -392,15 +397,17 @@ window.MS.page = window.MS.page || {};
             for (i=lectures.length; i--;) {
                 lectures[i].weekdayName = time.day((lectures[i].weekday+1)%7).format('dddd');
                 lectures[i].on = MS.page.courses.tempCourseList.indexOf(lectures[i].id+'') !== -1;
+                lectures[i].isOwnStudygroup = lectures[i].studiengruppe_name === MS.user.current.studiengruppe_name;
             }
 
             template = '<li class="lectures"><table>{{#lectures}}' +
                 '<tr class="{{#on}}on{{/on}}{{^on}}off{{/on}}" data-id="{{id}}">' +
                     '<td>' +
                         '<img class="on" src="./asset/icon/iconmoon-bbb9bc/checkbox-checked.png">' +
-                        '<img class="off" src="./asset/icon/iconmoon-bbb9bc/checkbox-unchecked.png">' +
+                        '<img class="off" src="./asset/icon/iconmoon-434144/checkbox-unchecked.png">' +
                     '</td>' +
-                    '<td class="label"><span class="studygroup">{{studiengruppe_name}}</span> Jeden {{weekdayName}} {{start}}-{{end}}, {{raum}} bei {{dozent}}</td>' +
+                    '<td class="label">{{^isOwnStudygroup}}<span class="studygroup">{{studiengruppe_name}}</span> {{/isOwnStudygroup}}' +
+                        'Jeden {{weekdayName}} {{start}}-{{end}}, {{raum}} bei {{dozent}}</td>' +
                 '</tr>' +
                 '{{/lectures}}</table></li>';
 

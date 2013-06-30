@@ -78,8 +78,6 @@ window.MS.page = window.MS.page || {};
             MS.api.getNews(MS.user.current.faculties[0], function(err, data) {
                 if (err) {
                     MS.tools.toast.short(err);
-                } else {
-                    MS.tools.toast.short('got news');
                 }
 
                 done();
@@ -154,12 +152,14 @@ window.MS.page = window.MS.page || {};
                         /*
                          * Insert dates into the sidebar.
                          */
-                        MS.timeline.insertDate(peakTimeline, dates[0]);
-                        for (i=0, l=dates.length; i<l; i++) {
-                            MS.timeline.insertDate(timeline, dates[i]);
-                        }
+                        if (dates.length > 0) {
+                            MS.timeline.insertDate(peakTimeline, dates[0]);
+                            for (i=1, l=dates.length; i<l; i++) {
+                                MS.timeline.insertDate(timeline, dates[i]);
+                            }
 
-                        MS.page.news.insertDateInfo(scope, dates[0]);
+                            MS.page.news.insertDateInfo(scope, dates[0]);
+                        }
 
                         return self();
                     });
@@ -202,7 +202,7 @@ window.MS.page = window.MS.page || {};
             template = '<li><table><tr>' +
                 '<td class="icons">' +
                     '<img class="openNews t4" src="asset/icon/news.png">' +
-                    '<img class="share" data-id="{{id}}" src="asset/icon/iconmoon-bbb9bc/share.png">' +
+                    '<img class="share" data-id="{{id}}" src="asset/icon/iconmoon-434144/share.png">' +
                 '</td>' +
                 '<td class="article openNews">{{title}}. {{content}}</td>' +
             '</tr></table></li>';

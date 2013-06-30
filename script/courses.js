@@ -62,18 +62,33 @@ window.MS = window.MS || {};
         getCoursesBySem: function getCoursesBySem(facultyId, semester, studygroupId, callback) {
             var sql;
 
-            sql =
-                'SELECT v.*, f.name, f.info, sgr.semester, fs.fakultaet_id, sgr.name as studiengruppe_name ' +
-                    'FROM vorlesung AS v ' +
-                    'JOIN fach AS f ON v.fach_id = f.id ' +
-                    'JOIN studiengruppe AS sgr ON sgr.id = v.studiengruppe_id ' +
-                    'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
-                    'JOIN fakultaet_studiengang AS fs ON fs.studiengang_id = sga.id ' +
-                    'WHERE fs.fakultaet_id = ' + facultyId + ' ' +
-                    (!!studygroupId? 'AND sgr.id = ' + studygroupId + ' ' : '') +
-                    'AND sgr.semester = ' + semester + ' ' +
-                    'GROUP BY f.name ' +
-                    'ORDER BY f.name ASC';
+            sql = 'SELECT v.*, f.name, f.info, sgr.semester, fs.fakultaet_id, sgr.name as studiengruppe_name ' +
+                'FROM vorlesung AS v ' +
+                'JOIN fach AS f ON v.fach_id = f.id ' +
+                'JOIN studiengruppe AS sgr ON sgr.id = v.studiengruppe_id ' +
+                'JOIN studiengang AS sga ON sgr.studiengang_id = sga.id ' +
+                'JOIN fakultaet_studiengang AS fs ON fs.studiengang_id = sga.id ' +
+                'WHERE fs.fakultaet_id = ' + facultyId + ' ' +
+                (!!studygroupId? 'AND sgr.id = ' + studygroupId + ' ' : '') +
+                'AND sgr.semester = ' + semester + ' ' +
+                'GROUP BY f.name ' +
+                'ORDER BY f.name ASC';
+
+            MS.db.get(sql, callback);
+        },
+
+        /**
+         *
+         *
+         * @param userId
+         * @param callback
+         */
+        getCoursesByUser: function getCoursesByUser(userId, callback) {
+            var sql;
+
+            sql = 'SELECT v.* FROM vorlesung AS v ' +
+                'JOIN user_vorlesung AS uv ON uv.vorlesung_id = v.id ' +
+                'WHERE uv.user_id = ' + userId;
 
             MS.db.get(sql, callback);
         },
@@ -101,31 +116,34 @@ window.MS = window.MS || {};
         /**
          *
          *
-         * @param facultyId
-         * @param callback
+         * @param {number|String} facultyId
+         * @param {Function} [callback]
          */
         getStudies: function getStudies(facultyId, callback) {
-            MS.db.get(
-                'SELECT id, name FROM studiengang AS s ' +
-                    'JOIN fakultaet_studiengang AS fs ON fs.studiengang_id = s.id ' +
-                    'WHERE fs.fakultaet_id = '+facultyId,
-                callback
-            );
+            var sql;
+
+            sql = 'SELECT id, name FROM studiengang AS s ' +
+                'JOIN fakultaet_studiengang AS fs ON fs.studiengang_id = s.id ' +
+                'WHERE fs.fakultaet_id = '+facultyId;
+
+            MS.db.get(sql, callback);
         },
 
         /**
          *
-         * @param studyId
-         * @param sem
-         * @param callback
+         *
+         * @param {number|String} studyId
+         * @param {number|String} sem
+         * @param {Function} [callback]
          */
         getStudygroupsBySem: function getStudygroupsBySem(studyId, sem, callback) {
-            MS.db.get(
-                'SELECT id, name FROM studiengruppe ' +
-                    'WHERE semester = '+sem+' ' +
-                    'AND studiengang_id = '+studyId,
-                callback
-            );
+            var sql;
+
+            sql = 'SELECT id, name FROM studiengruppe ' +
+                'WHERE semester = '+sem+' ' +
+                'AND studiengang_id = '+studyId;
+
+            MS.db.get(sql, callback);
         }
 
     };
