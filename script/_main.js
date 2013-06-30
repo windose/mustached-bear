@@ -7,9 +7,25 @@ window.MS = window.MS || {};
 document.addEventListener('deviceready', function() {
 
     /*
-     * Back navigation
+     * Init push notification.
+     * Source: https://github.com/phonegap-build/PushPlugin
      */
-    if (device.platform === 'Android') {
+    MS.push = window.plugins.pushNotification;
+    if (device.platform == 'android' || device.platform == 'Android') {
+        MS.push.register(function(msg) {
+            console.log('success '+msg);
+        }, function(err) {
+            console.log('error '+err);
+        },{
+            "senderID":"753391436037",
+            "ecb":"onNotificationGCM"
+        });
+    }
+
+    /*
+     * Back navigation.
+     */
+    if (device.platform == 'android' || device.platform == 'Android') {
         document.addEventListener("backbutton", function backbutton() {
             MS.navigator.back();
         }, false);
