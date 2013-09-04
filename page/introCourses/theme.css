@@ -1,0 +1,104 @@
+.content .introcourses {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.content .introcourses table.optionTable {
+  width: 100%;
+  background-color: #232124;
+}
+.content .introcourses table.optionTable tr {
+  height: 4.6rem;
+}
+.content .introcourses table.optionTable tr td:last-child {
+  padding-right: 1rem;
+  text-align: right;
+}
+.content .introcourses table.optionTable tr td:first-child {
+  padding-left: 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+.content .introcourses table.optionTable tr.heading {
+  height: 1.5rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  background-color: #343235;
+}
+.content .introcourses table.optionTable input[type=text],
+.content .introcourses table.optionTable input[type=email],
+.content .introcourses table.optionTable input[type=password],
+.content .introcourses table.optionTable .select {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  box-sizing: border-box;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+.content .introcourses table.optionTable input {
+  padding-top: 0.8rem;
+}
+.content .introcourses ul.courseList {
+  padding: 0.6rem 1rem 3.6rem;
+}
+.content .introcourses ul.courseList li {
+  min-height: 3rem;
+  width: 100%;
+  text-align: left;
+}
+.content .introcourses ul.courseList li .open {
+  display: none;
+}
+.content .introcourses ul.courseList li .close {
+  display: inline-block;
+}
+.content .introcourses ul.courseList li.open .open {
+  display: inline-block;
+}
+.content .introcourses ul.courseList li.open .close {
+  display: none;
+}
+.content .introcourses ul.courseList li.fach {
+  display: table;
+}
+.content .introcourses ul.courseList li.touch {
+  background: #23394d;
+}
+.content .introcourses ul.courseList li p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+}
+.content .introcourses ul.courseList li p.small {
+  width: 3rem;
+}
+.content .introcourses ul.courseList li.lectures table tr td.label {
+  text-align: left;
+}
+.content .introcourses ul.courseList li.lectures table tr .on,
+.content .introcourses ul.courseList li.lectures table tr .off {
+  display: none;
+}
+.content .introcourses ul.courseList li.lectures table tr.on .on {
+  display: inline-block;
+}
+.content .introcourses ul.courseList li.lectures table tr.off .off {
+  display: inline-block;
+}
+.content .introcourses ul.courseList li.lectures table tr.touch {
+  background: #23394d;
+}
+.content .introcourses ul.courseList li.lectures .studygroup {
+  padding: 0 0.4rem;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.footer .introcourses .button {
+  width: 100%;
+}
+.footer .introcourses img {
+  padding: 0;
+  margin: 0;
+}
